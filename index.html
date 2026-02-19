@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DistriVision – Distribución de Excelencia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="scroll-progress"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="img/DISTRIVION.png" alt="DistriVision Logo" class="logo-img">
+    <span class="brand-name">Distri<span>Vision</span></span>
+  </a>
+  <ul>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#mision">Misión &amp; Visión</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#contacto" class="nav-cta">Contáctenos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="nosotros">
+  <div class="hero-bg">
+    <div class="geo geo-1"></div>
+    <div class="geo geo-2"></div>
+    <div class="geo geo-3"></div>
+  </div>
+  <div class="hero-text">
+    <span class="hero-eyebrow">Distribución de Excelencia</span>
+    <h1>Líderes en<br>Distribución y<br><em>Comercialización</em></h1>
+    <p class="hero-desc">Somos la empresa líder en la distribución de productos de alta calidad y consumo masivo, ofreciendo un servicio superior para satisfacer las necesidades de nuestra zona asignada.</p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-primary">Nuestros Servicios</a>
+      <a href="#mision" class="btn-outline">Conocer Más</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="visual-orbit">
+      <div class="orbit-ring"><div class="orbit-dot"></div></div>
+      <div class="orbit-ring"><div class="orbit-dot"></div></div>
+      <div class="center-card">
+        <div class="icon">📦</div>
+        <h3>DistriVision</h3>
+        <p>Distribución de primer nivel</p>
+      </div>
+      <div class="floating-badge badge-1"><div class="badge-dot"></div> Servicio Premium</div>
+      <div class="floating-badge badge-2"><div class="badge-dot"></div> Alta Calidad</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <span class="stat-num"><span class="stat-plus">+</span>500</span>
+    <span class="stat-lbl">Clientes Satisfechos</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">30</span>
+    <span class="stat-lbl">Años de Experiencia</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num"><span class="stat-plus">+</span>1,000</span>
+    <span class="stat-lbl">Productos Distribuidos</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">100%</span>
+    <span class="stat-lbl">Cobertura de Zona</span>
+  </div>
+</div>
+
+<!-- MISIÓN / VISIÓN -->
+<section class="mv-section" id="mision">
+  <div class="mv-header">
+    <span class="section-tag">Nuestra Identidad</span>
+    <h2 class="section-title">Misión &amp; Visión</h2>
+    <p class="section-desc">Los valores que nos guían y el futuro al que aspiramos como empresa líder en distribución.</p>
+  </div>
+  <div class="mv-grid">
+    <div class="mv-card mission">
+      <span class="mv-badge">🎯 Misión</span>
+      <h3>Nuestra Misión</h3>
+      <p>Ser la empresa líder en la distribución y comercialización de productos de alta calidad y consumo masivo, ofreciendo un superior servicio para satisfacer las necesidades de la zona asignada y dando un mayor asesoramiento al cliente consumidor; contribuyendo así a la continuidad del excelente posicionamiento de la marca representada.</p>
+    </div>
+    <div class="mv-card vision">
+      <span class="mv-badge">🔭 Visión</span>
+      <h3>Nuestra Visión</h3>
+      <p>Lograr el reconocimiento como distribuidor, alcanzando la lealtad de los clientes de la zona asignada con:</p>
+      <ul class="vision-list">
+        <li><span class="check-icon">✓</span> Excelente servicio al cliente</li>
+        <li><span class="check-icon">✓</span> Innovación en esquemas y métodos de trabajo</li>
+        <li><span class="check-icon">✓</span> Portafolio atractivo y diversificado</li>
+        <li><span class="check-icon">✓</span> Asesoría especializada al Cliente-Consumidor</li>
+        <li><span class="check-icon">✓</span> Infraestructura acorde con las necesidades</li>
+        <li><span class="check-icon">✓</span> Trabajo en equipo de alto rendimiento</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="services-section" id="servicios">
+  <div class="services-header">
+    <div>
+      <span class="section-tag">Lo que Ofrecemos</span>
+      <h2 class="section-title">Nuestros Servicios</h2>
+    </div>
+    <p class="section-desc" style="max-width:340px">Soluciones integrales de distribución para maximizar el alcance de su marca.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="svc-number">01</span>
+      <div class="svc-icon">🚚</div>
+      <h4>Distribución Directa</h4>
+      <p>Entrega oportuna y eficiente en toda la zona asignada, garantizando que sus productos lleguen en perfecto estado y a tiempo.</p>
+    </div>
+    <div class="service-card featured">
+      <span class="svc-number">02</span>
+      <div class="svc-icon">⭐</div>
+      <h4>Servicio Premium</h4>
+      <p>Atención personalizada y superior a cada cliente, con seguimiento continuo y soluciones adaptadas a sus necesidades específicas.</p>
+    </div>
+    <div class="service-card">
+      <span class="svc-number">03</span>
+      <div class="svc-icon">📊</div>
+      <h4>Asesoría Comercial</h4>
+      <p>Orientación experta al cliente-consumidor para maximizar el potencial de ventas y fortalecer el posicionamiento de la marca.</p>
+    </div>
+    <div class="service-card">
+      <span class="svc-number">04</span>
+      <div class="svc-icon">📦</div>
+      <h4>Portafolio Completo</h4>
+      <p>Amplio catálogo de productos de alta calidad y consumo masivo que satisfacen las demandas del mercado actual.</p>
+    </div>
+    <div class="service-card">
+      <span class="svc-number">05</span>
+      <div class="svc-icon">🔄</div>
+      <h4>Innovación Continua</h4>
+      <p>Implementamos esquemas y métodos de trabajo innovadores para mantenernos a la vanguardia del sector.</p>
+    </div>
+    <div class="service-card">
+      <span class="svc-number">06</span>
+      <div class="svc-icon">🤝</div>
+      <h4>Trabajo en Equipo</h4>
+      <p>Equipo humano comprometido con la excelencia, trabajando juntos para lograr los mejores resultados para nuestros socios.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery-section" id="galeria">
+  <div class="gallery-header">
+    <span class="section-tag">Nuestra Operación</span>
+    <h2 class="section-title">Galería DistriVision</h2>
+    <p class="section-desc">Conoce de cerca nuestra infraestructura, equipo y procesos que garantizan la excelencia en cada entrega.</p>
+  </div>
+  <div class="gallery-grid">
+
+    <div class="gallery-item" data-title="Almacén Central" data-desc="Nuestras instalaciones de almacenamiento de última generación garantizan la conservación óptima de todos los productos que distribuimos." data-cat="Infraestructura">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#1a4470,#228fd2)">
+        <div class="ph-icon">🏭</div>
+        <div class="ph-label">Almacén Central<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Infraestructura</span>
+        <h3 class="gallery-title">Almacén Central</h3>
+        <p class="gallery-desc">Instalaciones de última generación para la conservación óptima de productos.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-title="Flota de Distribución" data-desc="Vehículos modernos y equipados para garantizar entregas puntuales en toda la zona asignada." data-cat="Logística">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#1a74b5,#228fd2)">
+        <div class="ph-icon">🚚</div>
+        <div class="ph-label">Flota de Vehículos<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Logística</span>
+        <h3 class="gallery-title">Flota de Distribución</h3>
+        <p class="gallery-desc">Vehículos modernos para entregas puntuales en toda la zona.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-title="Portafolio de Productos" data-desc="Una amplia selección de productos de consumo masivo y alta calidad que satisfacen todas las necesidades del mercado." data-cat="Productos">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#1e4a7a,#2d6ba8)">
+        <div class="ph-icon">📦</div>
+        <div class="ph-label">Portafolio<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Productos</span>
+        <h3 class="gallery-title">Portafolio de Productos</h3>
+        <p class="gallery-desc">Amplia selección de productos de consumo masivo y alta calidad.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-title="Nuestro Equipo" data-desc="Profesionales comprometidos con la excelencia y el servicio al cliente, pilares fundamentales de DistriVision." data-cat="Equipo">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#1a74b5,#228fd2)">
+        <div class="ph-icon">👥</div>
+        <div class="ph-label">Equipo Humano<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Equipo</span>
+        <h3 class="gallery-title">Nuestro Equipo</h3>
+        <p class="gallery-desc">Profesionales comprometidos con la excelencia y el servicio.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-title="Atención al Cliente" data-desc="Servicio personalizado y seguimiento cercano a cada cliente para garantizar su total satisfacción." data-cat="Servicio">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#164070,#1e5a8c)">
+        <div class="ph-icon">🤝</div>
+        <div class="ph-label">Atención al Cliente<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Servicio</span>
+        <h3 class="gallery-title">Atención al Cliente</h3>
+        <p class="gallery-desc">Seguimiento personalizado para la total satisfacción de cada cliente.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-title="Control de Calidad" data-desc="Rigurosos procesos de verificación aseguran que cada producto distribuido cumpla con los más altos estándares." data-cat="Calidad">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#255c95,#3a7ac4)">
+        <div class="ph-icon">✅</div>
+        <div class="ph-label">Control de Calidad<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Calidad</span>
+        <h3 class="gallery-title">Control de Calidad</h3>
+        <p class="gallery-desc">Rigurosos procesos para garantizar los más altos estándares.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-title="Gestión Logística" data-desc="Sistemas avanzados de gestión logística que optimizan rutas y aseguran la eficiencia en cada distribución." data-cat="Logística">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#1a4470,#228fd2)">
+        <div class="ph-icon">📊</div>
+        <div class="ph-label">Gestión Logística<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Logística</span>
+        <h3 class="gallery-title">Gestión Logística</h3>
+        <p class="gallery-desc">Sistemas avanzados que optimizan rutas y aseguran eficiencia.</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-title="Cobertura de Zona" data-desc="Presencia sólida y conocimiento profundo de toda la zona asignada para garantizar la mejor distribución." data-cat="Cobertura">
+      <div class="gallery-placeholder" style="background:linear-gradient(135deg,#1a4470,#228fd2)">
+        <div class="ph-icon">🗺️</div>
+        <div class="ph-label">Cobertura de Zona<br><span style="opacity:.5;font-weight:300">Reemplazar con foto</span></div>
+      </div>
+      <div class="gallery-overlay">
+        <span class="gallery-category">Cobertura</span>
+        <h3 class="gallery-title">Cobertura de Zona</h3>
+        <p class="gallery-desc">Presencia sólida y conocimiento profundo de la zona asignada.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content" id="lightboxContent">
+    <div class="lightbox-info" id="lightboxInfo"></div>
+  </div>
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>¿Listo para llevar su distribución al <span>siguiente nivel?</span></h2>
+  <a href="#contacto" class="btn-white">Contáctenos Hoy →</a>
+</div>
+
+<!-- CONTACTO -->
+<section class="contact-section" id="contacto">
+  <div class="contact-info-block">
+    <span class="section-tag">Estamos Aquí</span>
+    <h2 class="section-title">Hablemos de su<br>necesidad</h2>
+    <p class="lead">Nuestro equipo está listo para brindarle la asesoría que necesita y diseñar la mejor solución de distribución para su negocio.</p>
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div>
+        <h5>Dirección</h5>
+        <p>CL 26 SUR No. 6 – 74, Neiva, Huila</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📞</div>
+      <div>
+        <h5>Teléfono</h5>
+        <p>(8) 870 34 34 &nbsp;|&nbsp; 310 599 6169</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">✉️</div>
+      <div>
+        <h5>Correo Electrónico</h5>
+        <p>recursos.humanos@distrivision.com.co</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🕐</div>
+      <div>
+        <h5>Horario de Atención</h5>
+        <p>Lunes – Viernes: 8:00 am – 6:00 pm</p>
+      </div>
+    </div>
+  </div>
+  <div class="contact-visual">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.691471935467!2d-75.28315132415565!3d2.9049109546036593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b7390dae46ff9%3A0xca9cdd8e2aa56fde!2sCl.%2026%20Sur%20%23%206-74%2C%20Neiva%2C%20Huila!5e0!3m2!1ses-419!2sco!4v1771445547641!5m2!1ses-419!2sco" width="100%" height="100%" style="border:0;border-radius:20px;min-height:380px;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="img/DISTRIVION.png" alt="DistriVision Logo" class="fp-logo-img">
+      <div class="fp-name">Distri<span>Vision</span></div>
+      <p>Líderes en distribución y comercialización de productos de alta calidad, comprometidos con la excelencia y el servicio superior en cada entrega.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#mision">Misión &amp; Visión</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Distribución Directa</a></li>
+        <li><a href="#servicios">Asesoría Comercial</a></li>
+        <li><a href="#servicios">Portafolio de Productos</a></li>
+        <li><a href="#servicios">Servicio Premium</a></li>
+        <li><a href="#servicios">Innovación Continua</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 DistriVision. Todos los derechos reservados.</p>
+    <p>Distribución con Excelencia y Compromiso</p>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+});
+(function animateRing() {
+  ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+})();
+
+/* ── SCROLL PROGRESS ── */
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+/* ── NAV SCROLLED ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── MENÚ HAMBURGUESA ── */
+(function setupHamburger() {
+  const btn = document.getElementById('navHamburger');
+  if (!btn) return;
+  btn.addEventListener('click', () => navbar.classList.toggle('menu-open'));
+  document.querySelectorAll('nav ul a').forEach(link => {
+    link.addEventListener('click', () => navbar.classList.remove('menu-open'));
+  });
+})();
+
+/* ── PARTÍCULAS HERO ── */
+(function createParticles() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (!heroBg) return;
+  const colors = ['#255c95', '#228fd2', '#ffffff'];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 8 + 4;
+    Object.assign(p.style, {
+      width: size + 'px', height: size + 'px',
+      left: (Math.random() * 100) + '%', top: (Math.random() * 100) + '%',
+      animationDelay: '-' + (Math.random() * 12) + 's',
+      animationDuration: (Math.random() * 10 + 10) + 's',
+      background: colors[Math.floor(Math.random() * colors.length)],
+      opacity: (Math.random() * .15 + .05).toString()
+    });
+    heroBg.appendChild(p);
+  }
+})();
+
+/* ── LIGHTBOX GALERÍA ── */
+(function setupGallery() {
+  const items = document.querySelectorAll('.gallery-item');
+  const lightbox = document.getElementById('lightbox');
+  const lbContent = document.getElementById('lightboxContent');
+  const lbInfo = document.getElementById('lightboxInfo');
+  const lbClose = document.getElementById('lightboxClose');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const title = item.dataset.title || 'Sin título';
+      const desc = item.dataset.desc || '';
+      const cat = item.dataset.cat || '';
+      lbContent.querySelectorAll('.lb-img-wrap').forEach(n => n.remove());
+      const wrap = document.createElement('div');
+      wrap.className = 'lb-img-wrap';
+      const ph = item.querySelector('.gallery-placeholder').cloneNode(true);
+      Object.assign(ph.style, { minHeight: '320px', borderRadius: '0', fontSize: '1.1rem' });
+      wrap.appendChild(ph);
+      lbContent.insertBefore(wrap, lbInfo);
+      lbInfo.innerHTML = `<small style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)">${cat}</small><h3>${title}</h3><p>${desc}</p>`;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+})();
+
+/* ── PARALLAX HERO ── */
+(function setupParallax() {
+  const heroText = document.querySelector('.hero-text');
+  if (!heroText) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) heroText.style.transform = `translateY(${y * 0.18}px)`;
+  }, { passive: true });
+})();
+
+/* ── BOTONES MAGNÉTICOS ── */
+(function magneticButtons() {
+  document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      btn.style.transform = `translate(${dx * .18}px,${dy * .22}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+})();
+</script>
+</body>
+</html>
