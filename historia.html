@@ -292,6 +292,45 @@ if (hambBtn) {
   els.forEach(el => obs.observe(el));
 })();
 
+/* ── TIMELINE MÓVIL — columna única ── */
+(function setupMobileTimeline() {
+  function isMobile() { return window.innerWidth <= 900; }
+
+  function build() {
+    if (!isMobile()) return;
+    document.querySelectorAll('.tl-item').forEach(item => {
+      if (item.querySelector('.tl-mobile-card')) return; // ya procesado
+
+      // Buscar la tl-card (puede estar en tl-left o tl-right)
+      const card = item.querySelector('.tl-card');
+      if (!card) return;
+
+      const icon  = card.querySelector('.tl-icon')  ? card.querySelector('.tl-icon').textContent  : '';
+      const title = card.querySelector('h4')         ? card.querySelector('h4').innerHTML           : '';
+      const body  = card.querySelector('p')          ? card.querySelector('p').innerHTML            : '';
+
+      // Crear dot móvil
+      const dot = document.createElement('div');
+      dot.className = 'tl-mobile-dot';
+
+      // Crear tarjeta móvil
+      const mc = document.createElement('div');
+      mc.className = 'tl-mobile-card';
+      mc.innerHTML = `<span class="tl-mobile-icon">${icon}</span><h4>${title}</h4><p>${body}</p>`;
+
+      item.appendChild(dot);
+      item.appendChild(mc);
+    });
+  }
+
+  // Construir al cargar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+})();
+
 /* ── BOTONES MAGNÉTICOS ── */
 (function magneticButtons() {
   document.querySelectorAll('.btn-white, .nav-cta').forEach(btn => {
