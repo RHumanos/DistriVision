@@ -5,266 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DistriVision – Distribución de Excelencia</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* ══════════════════════════════
-       HISTORIA SECTION
-    ══════════════════════════════ */
-    .historia-section {
-      padding: 96px 6vw;
-      background: linear-gradient(160deg, #0d1f35 0%, #1a4470 40%, #255c95 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .historia-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Ccircle cx='50' cy='50' r='30'/%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='100' cy='100' r='30'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      background-size: 120px;
-      pointer-events: none;
-    }
-    .historia-section::after {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(34,143,210,.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .historia-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 80px;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* LEFT: logo + decorative block */
-    .historia-logo-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .historia-logo-wrap {
-      position: relative;
-      width: 240px;
-      height: 240px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .historia-logo-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 2px dashed rgba(255,255,255,.2);
-      animation: spin 30s linear infinite;
-    }
-    .historia-logo-ring-2 {
-      inset: 14px;
-      border-color: rgba(34,143,210,.3);
-      animation-direction: reverse;
-      animation-duration: 20s;
-    }
-    .historia-logo-circle {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 60px rgba(34,143,210,.2), inset 0 0 40px rgba(255,255,255,.03);
-      backdrop-filter: blur(10px);
-    }
-    .historia-logo-text {
-      text-align: center;
-    }
-    .historia-logo-text .logo-main {
-      font-family: 'Lato', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: #fff;
-      letter-spacing: -1px;
-      line-height: 1;
-    }
-    .historia-logo-text .logo-main span {
-      color: #64b9f0;
-    }
-    .historia-logo-text .logo-sub {
-      font-family: 'Lato', sans-serif;
-      font-size: .62rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.45);
-      margin-top: 4px;
-    }
-
-    .historia-founded {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-      padding: 20px 32px;
-      text-align: center;
-      backdrop-filter: blur(8px);
-      width: 100%;
-    }
-    .historia-founded .year {
-      font-family: 'Lato', sans-serif;
-      font-size: 3.2rem;
-      font-weight: 900;
-      color: #64b9f0;
-      line-height: 1;
-    }
-    .historia-founded .year-label {
-      font-family: 'Lato', sans-serif;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.4);
-      margin-top: 4px;
-    }
-
-    /* RIGHT: story text */
-    .historia-content {
-      color: #fff;
-    }
-    .historia-content .section-tag {
-      color: #64b9f0;
-      margin-bottom: 12px;
-    }
-    .historia-content .section-title {
-      color: #fff;
-      margin-bottom: 32px;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-    }
-
-    .historia-body {
-      position: relative;
-      padding-left: 28px;
-      border-left: 3px solid rgba(100,185,240,.3);
-    }
-    .historia-body::before {
-      content: '';
-      position: absolute;
-      left: -7px;
-      top: 0;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #64b9f0;
-      box-shadow: 0 0 20px rgba(100,185,240,.6);
-    }
-
-    .historia-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-style: italic;
-      color: rgba(255,255,255,.9);
-      line-height: 1.75;
-      margin-bottom: 28px;
-      position: relative;
-    }
-    .historia-quote::before {
-      content: '\201C';
-      font-size: 5rem;
-      color: rgba(100,185,240,.2);
-      position: absolute;
-      top: -20px;
-      left: -28px;
-      font-family: 'Playfair Display', serif;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    .historia-text {
-      font-family: 'Playfair Display', serif;
-      font-size: .97rem;
-      color: rgba(255,255,255,.65);
-      line-height: 1.85;
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-
-    .historia-pillars {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 36px;
-    }
-    .pilar {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 14px;
-      padding: 20px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      transition: background .3s, transform .3s;
-    }
-    .pilar:hover {
-      background: rgba(255,255,255,.1);
-      transform: translateY(-4px);
-    }
-    .pilar-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(100,185,240,.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .pilar-text h6 {
-      font-family: 'Lato', sans-serif;
-      font-size: .78rem;
-      font-weight: 700;
-      color: #64b9f0;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-    }
-    .pilar-text p {
-      font-family: 'Lato', sans-serif;
-      font-size: .78rem;
-      color: rgba(255,255,255,.5);
-      line-height: 1.55;
-    }
-
-    /* Responsive historia */
-    @media (max-width: 900px) {
-      .historia-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-      .historia-logo-block {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .historia-logo-wrap { width: 180px; height: 180px; }
-      .historia-logo-circle { width: 140px; height: 140px; }
-      .historia-logo-text .logo-main { font-size: 1.7rem; }
-      .historia-founded { width: auto; min-width: 160px; }
-    }
-    @media (max-width: 600px) {
-      .historia-section { padding: 72px 5vw; }
-      .historia-pillars { grid-template-columns: 1fr; }
-      .historia-quote { font-size: 1.08rem; }
-    }
-  </style>
 </head>
 <body>
 
@@ -272,13 +12,13 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
-<!-- NAV -->
+<!-- ══════════════ NAV ══════════════ -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
     <img src="img/1.jpeg" alt="DistriVision Logo" class="logo-img">
     <span class="brand-name">Distri<span>Vision</span></span>
   </a>
-  <ul>
+  <ul id="navMenu">
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="historia.html">Historia</a></li>
     <li><a href="#mision">Misión &amp; Visión</a></li>
@@ -292,7 +32,7 @@
   </button>
 </nav>
 
-<!-- HERO -->
+<!-- ══════════════ HERO ══════════════ -->
 <section class="hero" id="nosotros">
   <div class="hero-bg">
     <div class="geo geo-1"></div>
@@ -323,10 +63,10 @@
   </div>
 </section>
 
-<!-- STATS -->
+<!-- ══════════════ STATS ══════════════ -->
 <div class="stats-strip">
   <div class="stat-item">
-    <span class="stat-num"><span class="stat-plus">+</span>500</span>
+    <span class="stat-num">+500</span>
     <span class="stat-lbl">Clientes Satisfechos</span>
   </div>
   <div class="stat-item">
@@ -334,7 +74,7 @@
     <span class="stat-lbl">Años de Experiencia</span>
   </div>
   <div class="stat-item">
-    <span class="stat-num"><span class="stat-plus">+</span>1,000</span>
+    <span class="stat-num">+1,000</span>
     <span class="stat-lbl">Productos Distribuidos</span>
   </div>
   <div class="stat-item">
@@ -343,8 +83,7 @@
   </div>
 </div>
 
-
-<!-- MISIÓN / VISIÓN -->
+<!-- ══════════════ MISIÓN / VISIÓN ══════════════ -->
 <section class="mv-section" id="mision">
   <div class="mv-header">
     <span class="section-tag">Nuestra Identidad</span>
@@ -373,7 +112,7 @@
   </div>
 </section>
 
-<!-- SERVICIOS -->
+<!-- ══════════════ SERVICIOS ══════════════ -->
 <section class="services-section" id="servicios">
   <div class="services-header">
     <div>
@@ -422,7 +161,7 @@
   </div>
 </section>
 
-<!-- GALERÍA -->
+<!-- ══════════════ GALERÍA ══════════════ -->
 <section class="gallery-section" id="galeria">
   <div class="gallery-header">
     <span class="section-tag">Nuestra Operación</span>
@@ -499,19 +238,19 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <div class="lightbox-content" id="lightboxContent">
+  <div class="lightbox-content">
     <div class="lightbox-info" id="lightboxInfo"></div>
   </div>
   <button class="lightbox-close" id="lightboxClose">✕</button>
 </div>
 
-<!-- CTA -->
+<!-- ══════════════ CTA BAND ══════════════ -->
 <div class="cta-band">
   <h2>¿Listo para llevar su distribución al <span>siguiente nivel?</span></h2>
   <a href="#contacto" class="btn-white">Contáctenos Hoy →</a>
 </div>
 
-<!-- CONTACTO -->
+<!-- ══════════════ CONTACTO ══════════════ -->
 <section class="contact-section" id="contacto">
   <div class="contact-info-block">
     <span class="section-tag">Estamos Aquí</span>
@@ -535,7 +274,7 @@
       <div class="info-icon">✉️</div>
       <div>
         <h5>Correo Electrónico</h5>
-        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c4e595f494e4f534f125449515d52534f7c58554f484e554a554f555352125f5351125f53">[email&#160;protected]</a></p>
+        <p>distribuciones_vision@hotmail.com</p>
       </div>
     </div>
     <div class="info-item">
@@ -547,11 +286,16 @@
     </div>
   </div>
   <div class="contact-visual">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.691471935467!2d-75.28315132415565!3d2.9049109546036593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b7390dae46ff9%3A0xca9cdd8e2aa56fde!2sCl.%2026%20Sur%20%23%206-74%2C%20Neiva%2C%20Huila!5e0!3m2!1ses-419!2sco!4v1771445547641!5m2!1ses-419!2sco" width="100%" height="100%" style="border:0;border-radius:20px;min-height:380px;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.691471935467!2d-75.28315132415565!3d2.9049109546036593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b7390dae46ff9%3A0xca9cdd8e2aa56fde!2sCl.%2026%20Sur%20%23%206-74%2C%20Neiva%2C%20Huila!5e0!3m2!1ses-419!2sco!4v1771445547641!5m2!1ses-419!2sco"
+      width="100%" height="100%"
+      style="border:0;border-radius:20px;min-height:380px;display:block;"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════════════ FOOTER ══════════════ -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -587,18 +331,25 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
 /* ── CURSOR ── */
-const dot = document.getElementById('cursorDot');
+const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
 document.addEventListener('mousemove', e => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dot.style.left = mouseX + 'px';
+  dot.style.top  = mouseY + 'px';
 });
+
 (function animateRing() {
-  ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
-  ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top  = ringY + 'px';
   requestAnimationFrame(animateRing);
 })();
 
@@ -607,23 +358,26 @@ const progressBar = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
   const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
   progressBar.style.width = pct + '%';
-});
+}, { passive: true });
 
 /* ── NAV SCROLLED ── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+}, { passive: true });
 
-/* ── MENÚ HAMBURGUESA ── */
-(function setupHamburger() {
-  const btn = document.getElementById('navHamburger');
-  if (!btn) return;
-  btn.addEventListener('click', () => navbar.classList.toggle('menu-open'));
-  document.querySelectorAll('nav ul a').forEach(link => {
-    link.addEventListener('click', () => navbar.classList.remove('menu-open'));
+/* ── HAMBURGUESA ── */
+const hambBtn = document.getElementById('navHamburger');
+if (hambBtn) {
+  hambBtn.addEventListener('click', () => {
+    navbar.classList.toggle('menu-open');
   });
-})();
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('menu-open');
+    });
+  });
+}
 
 /* ── PARTÍCULAS HERO ── */
 (function createParticles() {
@@ -635,12 +389,14 @@ window.addEventListener('scroll', () => {
     p.className = 'particle';
     const size = Math.random() * 8 + 4;
     Object.assign(p.style, {
-      width: size + 'px', height: size + 'px',
-      left: (Math.random() * 100) + '%', top: (Math.random() * 100) + '%',
-      animationDelay: '-' + (Math.random() * 12) + 's',
+      width:             size + 'px',
+      height:            size + 'px',
+      left:              (Math.random() * 100) + '%',
+      top:               (Math.random() * 100) + '%',
+      animationDelay:    '-' + (Math.random() * 12) + 's',
       animationDuration: (Math.random() * 10 + 10) + 's',
-      background: colors[Math.floor(Math.random() * colors.length)],
-      opacity: (Math.random() * .15 + .05).toString()
+      background:        colors[Math.floor(Math.random() * colors.length)],
+      opacity:           (Math.random() * 0.15 + 0.05).toString()
     });
     heroBg.appendChild(p);
   }
@@ -648,21 +404,30 @@ window.addEventListener('scroll', () => {
 
 /* ── LIGHTBOX GALERÍA ── */
 (function setupGallery() {
-  const items = document.querySelectorAll('.gallery-item');
+  const items   = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
-  const lbInfo = document.getElementById('lightboxInfo');
+  const lbInfo  = document.getElementById('lightboxInfo');
   const lbClose = document.getElementById('lightboxClose');
+
   items.forEach(item => {
     item.addEventListener('click', () => {
       const title = item.dataset.title || 'Sin título';
-      const desc = item.dataset.desc || '';
-      const cat = item.dataset.cat || '';
-      lbInfo.innerHTML = `<small style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)">${cat}</small><h3>${title}</h3><p>${desc}</p>`;
+      const desc  = item.dataset.desc  || '';
+      const cat   = item.dataset.cat   || '';
+      lbInfo.innerHTML = `
+        <small style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)">${cat}</small>
+        <h3>${title}</h3>
+        <p>${desc}</p>`;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
     });
   });
-  function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   lbClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
@@ -682,26 +447,14 @@ window.addEventListener('scroll', () => {
 (function magneticButtons() {
   document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
     btn.addEventListener('mousemove', e => {
-      const r = btn.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width / 2);
-      const dy = e.clientY - (r.top + r.height / 2);
-      btn.style.transform = `translate(${dx * .18}px,${dy * .22}px)`;
+      const r  = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width  / 2);
+      const dy = e.clientY - (r.top  + r.height / 2);
+      btn.style.transform = `translate(${dx * 0.18}px,${dy * 0.22}px)`;
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
   });
 })();
-
-/* ── HISTORIA REVEAL ON SCROLL ── */
-(function historiaReveal() {
-  const pilares = document.querySelectorAll('.pilar');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, i * 100);
-        observer.unobserve(entry.target);
-      }
-    });
-  }
+</script>
+</body>
+</html>
