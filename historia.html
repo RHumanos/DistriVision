@@ -278,6 +278,44 @@ if (hambBtn) {
   }
 })();
 
+/* ── PARTÍCULAS SECCIÓN TIMELINE ── */
+(function storyParticles() {
+  const section = document.querySelector('.story-section');
+  if (!section) return;
+
+  // Colores que coinciden con los de cada tarjeta
+  const colors = [
+    'rgba(30,111,168,',    // azul medio
+    'rgba(15,138,110,',    // verde azulado
+    'rgba(123,63,160,',    // violeta
+    'rgba(192,98,42,',     // naranja cobre
+    'rgba(26,116,181,',    // azul brillante
+    'rgba(100,185,240,',   // celeste
+    'rgba(255,255,255,',   // blanco
+  ];
+
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'story-particle';
+    const size     = Math.random() * 7 + 3;
+    const color    = colors[Math.floor(Math.random() * colors.length)];
+    const opacity  = (Math.random() * 0.35 + 0.1).toFixed(2);
+    const duration = (Math.random() * 12 + 8).toFixed(1);
+    const delay    = '-' + (Math.random() * 16).toFixed(1);
+    Object.assign(p.style, {
+      width:             size + 'px',
+      height:            size + 'px',
+      left:              (Math.random() * 100) + '%',
+      top:               (Math.random() * 100) + '%',
+      background:        color + opacity + ')',
+      animationDuration: duration + 's',
+      animationDelay:    delay + 's',
+      filter:            `blur(${Math.random() > 0.6 ? '1px' : '0px'})`,
+    });
+    section.appendChild(p);
+  }
+})();
+
 /* ── REVEAL ON SCROLL ── */
 (function setupReveal() {
   const els = document.querySelectorAll('.reveal');
