@@ -277,33 +277,7 @@ if (hambBtn) {
     hero.appendChild(p);
   }
 })();
-  * ── PARTÍCULAS SECCIÓN TIMELINE ── */
-(function storyParticles() {
-  const section = document.querySelector('.story-section');
-  if (!section) return;
-
-  const colors = [
-    '#1e6fa8', '#0f8a6e', '#7b3fa0',
-    '#c0622a', '#1a74b5', '#64b9f0', '#ffffff'
-  ];
-
-  for (let i = 0; i < 30; i++) {
-    const p   = document.createElement('div');
-    p.className = 'story-particle';
-    const size = Math.random() * 8 + 3;
-    Object.assign(p.style, {
-      width:             size + 'px',
-      height:            size + 'px',
-      left:              (Math.random() * 100) + '%',
-      top:               (Math.random() * 100) + '%',
-      background:        colors[Math.floor(Math.random() * colors.length)],
-      opacity:           (Math.random() * 0.4 + 0.15).toFixed(2),
-      animationDuration: (Math.random() * 5 + 3).toFixed(1) + 's',
-      animationDelay:    (Math.random() * -8).toFixed(1) + 's',
-    });
-    section.appendChild(p);
-  }
-})();
+  
 
 
 /* ── REVEAL ON SCROLL ── */
