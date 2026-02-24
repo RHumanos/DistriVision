@@ -14,63 +14,57 @@ h1,h2,h3,h4,h5,h6,.brand-name,.section-tag,.section-title,.prod-name,.prod-meta,
 #sp{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--accent));z-index:200;transition:width .12s linear}
 
 /* ══ NAV ══ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  height:76px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 6vw;
-  background:rgba(255,255,255,.97);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(37,92,149,.08);
-  transition:box-shadow .3s;
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 76px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 6vw;
+  background: rgba(255,255,255,.9); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(37,92,149,.08);
+  transition: box-shadow .3s;
 }
-nav.scrolled{box-shadow:var(--shadow-md)}
+nav.scrolled { box-shadow: var(--shadow-md); }
 
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-img{height:48px;width:auto;max-width:120px;object-fit:contain;border-radius:8px;display:block;transition:transform .3s}
-.nav-logo:hover .logo-img{transform:scale(1.05)}
-.brand-name{font-size:1.4rem;font-weight:700;color:var(--blue);letter-spacing:-.4px}
-.brand-name span{color:var(--accent)}
+.nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 
-/* Links desktop */
-.nav-links{display:flex;gap:20px;list-style:none;align-items:center;flex-wrap:nowrap}
-.nav-link{text-decoration:none;color:var(--text-muted);font-size:.82rem;font-weight:500;transition:color .2s;white-space:nowrap}
-.nav-link:hover,.nav-link.active{color:var(--blue)}
-.nav-link.active{font-weight:700}
-.nav-cta{
-  background:var(--blue)!important;color:var(--white)!important;
-  padding:8px 18px;border-radius:50px;font-weight:700!important;
-  box-shadow:0 4px 16px rgba(37,92,149,.3);transition:background .2s,transform .2s;
-  white-space:nowrap
+.logo-img {
+  height: 52px; width: auto; border-radius: 10px;
+  object-fit: contain; transition: transform .3s;
 }
-.nav-cta:hover{background:var(--blue-dark)!important;transform:translateY(-2px)}
+.nav-logo:hover .logo-img { transform: scale(1.06); }
 
-/* ══ HAMBURGUESA ══ */
-.nav-toggle{
-  display:none; /* solo visible en ≤860px */
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:5px;
-  width:44px;height:44px;
-  cursor:pointer;
-  border:none;background:none;
-  border-radius:10px;padding:8px;
-  transition:background .2s;
-  z-index:110;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
+.brand-name {
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--blue); letter-spacing: -.5px;
 }
-.nav-toggle:hover,.nav-toggle:active{background:var(--blue-xlight)}
-.nav-toggle span{
-  display:block;width:22px;height:2.5px;
-  background:var(--blue);border-radius:4px;
-  transition:transform .35s ease,opacity .25s ease,width .25s ease;
-  transform-origin:center;
+.brand-name span { color: var(--accent); }
+
+nav ul { list-style: none; display: flex; gap: 36px; }
+nav ul a {
+  text-decoration: none; color: var(--text);
+  font-family: 'Lato', sans-serif;
+  font-weight: 500; font-size: .88rem; letter-spacing: .3px;
+  position: relative; transition: color .2s;
 }
-.nav-toggle.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
-.nav-toggle.open span:nth-child(2){opacity:0;width:0}
-.nav-toggle.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+nav ul a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 2px; background: var(--blue);
+  transform: scaleX(0); transition: transform .3s cubic-bezier(.4,0,.2,1);
+  transform-origin: left;
+}
+nav ul a:hover { color: var(--blue); }
+nav ul a:hover::after { transform: scaleX(1); }
+
+.nav-cta {
+  background: var(--blue) !important; color: var(--white) !important;
+  padding: 9px 22px; border-radius: 50px; font-weight: 700 !important;
+  transition: background .2s, transform .2s, box-shadow .2s !important;
+  box-shadow: 0 4px 16px rgba(37,92,149,.3);
+}
+.nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-2px) !important; }
+.nav-cta::after { display: none !important; }
+
+/* Hamburguesa oculta en desktop */
+.nav-hamburger { display: none; }
 
 /* ══ DROPDOWN MÓVIL ══
    Siempre en el DOM (display:block), animado con max-height.
