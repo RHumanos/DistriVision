@@ -286,8 +286,23 @@ footer{background:var(--blue-dark);padding:26px 6vw}
 @media(max-width:860px){
   nav{padding:0 5vw;height:68px}
   .nav-links{display:none}
-  .nav-toggle{display:flex}           /* muestra botón hamburguesa */
-  .nav-dropdown{top:68px}             /* ajusta posición al alto del nav */
+
+  /* Mostrar botón hamburguesa */
+  .nav-toggle{display:flex}
+  /* Ajustar dropdown al nuevo alto del nav */
+  .nav-dropdown{top:68px}
+
+  /* Animación X al abrir */
+  .nav-toggle.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0;width:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+  /* Dropdown: links internos */
+  .nav-dropdown ul li a{padding:14px 5vw;font-size:1rem}
+  .nav-dropdown ul li a.nav-cta{
+    margin:12px 5vw 0;border-radius:12px!important;
+    text-align:center;padding:14px 5vw!important;border-left:none!important
+  }
 
   .cat-hero{padding:100px 5vw 44px;min-height:260px}
   .cat-hero h1{font-size:clamp(1.9rem,6vw,3rem)}
