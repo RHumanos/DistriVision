@@ -33,14 +33,15 @@ nav.scrolled{box-shadow:var(--shadow-md)}
 .brand-name span{color:var(--accent)}
 
 /* Links desktop */
-.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
-.nav-link{text-decoration:none;color:var(--text-muted);font-size:.86rem;font-weight:500;transition:color .2s}
+.nav-links{display:flex;gap:20px;list-style:none;align-items:center;flex-wrap:nowrap}
+.nav-link{text-decoration:none;color:var(--text-muted);font-size:.82rem;font-weight:500;transition:color .2s;white-space:nowrap}
 .nav-link:hover,.nav-link.active{color:var(--blue)}
 .nav-link.active{font-weight:700}
 .nav-cta{
   background:var(--blue)!important;color:var(--white)!important;
-  padding:9px 22px;border-radius:50px;font-weight:700!important;
-  box-shadow:0 4px 16px rgba(37,92,149,.3);transition:background .2s,transform .2s
+  padding:8px 18px;border-radius:50px;font-weight:700!important;
+  box-shadow:0 4px 16px rgba(37,92,149,.3);transition:background .2s,transform .2s;
+  white-space:nowrap
 }
 .nav-cta:hover{background:var(--blue-dark)!important;transform:translateY(-2px)}
 
@@ -280,15 +281,21 @@ footer{background:var(--blue-dark);padding:26px 6vw}
    RESPONSIVE — 4 BREAKPOINTS
 ══════════════════════════════ */
 
-/* ── Tablet grande ≤ 1100px ── */
+/* ── Tablet grande ≤ 1100px — nav más compacto ── */
 @media(max-width:1100px){
+  nav{padding:0 4vw}
+  .nav-links{gap:14px}
+  .nav-link{font-size:.78rem}
+  .nav-cta{padding:7px 14px!important;font-size:.78rem}
+  .brand-name{font-size:1.2rem}
+  .logo-img{height:40px}
   .catalog-wrapper{grid-template-columns:210px 1fr;gap:20px;padding:44px 5vw 80px}
   .products-grid{grid-template-columns:repeat(2,1fr);gap:16px}
   .banner-title{font-size:1.2rem}
 }
 
-/* ── Tablet / Móvil ≤ 860px — hamburguesa activo ── */
-@media(max-width:860px){
+/* ── Tablet / Móvil ≤ 1024px — hamburguesa activo ── */
+@media(max-width:1024px){
   nav{padding:0 5vw;height:68px}
   .nav-links{display:none}
 
@@ -308,7 +315,10 @@ footer{background:var(--blue-dark);padding:26px 6vw}
     margin:12px 5vw 0;border-radius:12px!important;
     text-align:center;padding:14px 5vw!important;border-left:none!important
   }
+}
 
+/* ── Tablet ≤ 860px — layout página ── */
+@media(max-width:860px){
   .cat-hero{padding:100px 5vw 44px;min-height:260px}
   .cat-hero h1{font-size:clamp(1.9rem,6vw,3rem)}
 
