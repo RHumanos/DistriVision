@@ -88,7 +88,7 @@ nav.scrolled{box-shadow:var(--shadow-md)}
   transition:max-height .38s cubic-bezier(.25,.8,.25,1);
   /* display:block siempre para que la transición funcione */
 }
-.nav-dropdown.open{max-height:560px}
+.nav-dropdown.open{max-height:800px}
 
 .nav-dropdown ul{list-style:none;padding:10px 0 18px}
 .nav-dropdown ul li a{
