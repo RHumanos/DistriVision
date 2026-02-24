@@ -4,11 +4,194 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo de Productos – DistriVision</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles3.css">
   <style>
-    
+    :root {
+      --blue:#255c95; --blue-dark:#1a4470; --blue-light:#d6e5f5; --blue-xlight:#edf4fc;
+      --accent:#228fd2; --accent-dark:#1a74b5; --white:#ffffff; --gray:#f6f8fb;
+      --text:#1c2535; --text-muted:#5a6b80;
+      --shadow-sm:0 4px 20px rgba(37,92,149,.08); --shadow-md:0 12px 40px rgba(37,92,149,.13); --shadow-lg:0 24px 70px rgba(37,92,149,.18);
+      --radius:20px; --tr:.35s cubic-bezier(.25,.8,.25,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Playfair Display',serif;background:var(--gray);color:var(--text);overflow-x:hidden}
+    h1,h2,h3,h4,h5,h6,.brand-name,.section-tag,.section-title,.prod-name,.prod-meta,.stat-num,
+    .nav-link,.cta-title,.cat-item,.filter-pill,.prod-cat,.prod-btn,.sidebar-title,.banner-tag,.banner-title{font-family:'Lato',sans-serif}
+
+    #sp{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--accent));z-index:200;transition:width .12s linear}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(37,92,149,.08);transition:box-shadow .3s}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-logo-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--accent));display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+    .brand-name{font-size:1.4rem;font-weight:700;color:var(--blue);letter-spacing:-.4px}
+    .brand-name span{color:var(--accent)}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-link{text-decoration:none;color:var(--text-muted);font-size:.86rem;font-weight:500;transition:color .2s}
+    .nav-link:hover,.nav-link.active{color:var(--blue)}
+    .nav-link.active{font-weight:700}
+    .nav-cta{background:var(--blue)!important;color:var(--white)!important;padding:9px 22px;border-radius:50px;font-weight:700!important;box-shadow:0 4px 16px rgba(37,92,149,.3);transition:background .2s,transform .2s}
+    .nav-cta:hover{background:var(--blue-dark)!important;transform:translateY(-2px)}
+    @media(max-width:860px){.nav-links{display:none}}
+
+    /* HERO */
+    .cat-hero{min-height:300px;background:linear-gradient(145deg,var(--blue-dark) 0%,var(--blue) 55%,var(--accent) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 6vw 56px;position:relative;overflow:hidden}
+    .cat-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 20% 50%,rgba(255,255,255,.06) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 80% 30%,rgba(255,255,255,.04) 0%,transparent 60%)}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:7px 18px;border-radius:50px;margin-bottom:18px;border:1px solid rgba(255,255,255,.2);position:relative;z-index:1;opacity:0;animation:revealUp .6s .1s ease forwards}
+    .hero-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.8);animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+    .cat-hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:14px;position:relative;z-index:1;opacity:0;transform:translateY(24px);animation:revealUp .7s .25s ease forwards}
+    .cat-hero h1 em{font-style:italic;color:rgba(255,255,255,.65);font-family:'Playfair Display',serif}
+    .cat-hero p{font-size:1rem;color:rgba(255,255,255,.65);max-width:500px;line-height:1.75;font-weight:400;position:relative;z-index:1;opacity:0;transform:translateY(20px);animation:revealUp .7s .4s ease forwards}
+    @keyframes revealUp{to{opacity:1;transform:translateY(0)}}
+
+    /* BRAND STRIP */
+    .brand-strip{background:var(--white);border-bottom:1px solid rgba(37,92,149,.07);display:flex;align-items:center;justify-content:center;gap:14px;padding:16px 6vw;flex-wrap:wrap}
+    .brand-strip-label{font-size:.74rem;font-weight:700;letter-spacing:1px;color:var(--text-muted);text-transform:uppercase;font-family:'Lato',sans-serif}
+    .brand-pill{display:flex;align-items:center;gap:7px;padding:8px 20px;border-radius:50px;border:1.5px solid rgba(37,92,149,.15);background:var(--white);font-family:'Lato',sans-serif;font-size:.82rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+    .brand-pill:hover{border-color:var(--accent);color:var(--accent)}
+    .brand-pill.active{background:var(--blue);border-color:var(--blue);color:var(--white)}
+
+    /* STATS */
+    .stats-strip{background:var(--blue);display:grid;grid-template-columns:repeat(4,1fr)}
+    .stat-item{text-align:center;padding:26px 16px;border-right:1px solid rgba(255,255,255,.1)}
+    .stat-item:last-child{border-right:none}
+    .stat-num{font-size:1.8rem;font-weight:900;color:var(--white);display:block;line-height:1}
+    .stat-lbl{font-size:.73rem;color:rgba(255,255,255,.6);margin-top:5px;letter-spacing:.4px}
+
+    /* LAYOUT */
+    .catalog-wrapper{max-width:1360px;margin:0 auto;padding:52px 6vw 96px;display:grid;grid-template-columns:255px 1fr;gap:36px;align-items:start}
+
+    /* SIDEBAR */
+    .sidebar{position:sticky;top:96px;background:var(--white);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow-sm);border:1px solid rgba(37,92,149,.06)}
+    .sidebar-title{font-size:.64rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(37,92,149,.08)}
+    .sidebar-search{display:flex;align-items:center;gap:8px;background:var(--gray);border-radius:12px;padding:9px 13px;border:1px solid rgba(37,92,149,.08);margin-bottom:18px;transition:border-color .2s,box-shadow .2s}
+    .sidebar-search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,143,210,.12)}
+    .sidebar-search input{border:none;background:none;outline:none;font-size:.83rem;color:var(--text);width:100%;font-family:'Lato',sans-serif}
+    .sidebar-search input::placeholder{color:var(--text-muted)}
+    .cat-list{list-style:none;display:flex;flex-direction:column;gap:3px}
+    .cat-item{display:flex;align-items:center;justify-content:space-between;padding:9px 11px;border-radius:10px;cursor:pointer;transition:background var(--tr),color var(--tr);font-size:.83rem;font-weight:500;color:var(--text-muted)}
+    .cat-item:hover{background:var(--blue-xlight);color:var(--blue)}
+    .cat-item.active{background:var(--blue);color:var(--white);font-weight:700}
+    .cat-item.active .cat-count{background:rgba(255,255,255,.2);color:var(--white)}
+    .cat-item-inner{display:flex;align-items:center;gap:8px}
+    .cat-icon{font-size:.9rem}
+    .cat-count{font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:50px;background:var(--blue-light);color:var(--blue);min-width:22px;text-align:center}
+    .sidebar-divider{height:1px;background:rgba(37,92,149,.08);margin:14px 0}
+    .filter-row{display:flex;gap:6px;flex-wrap:wrap}
+    .filter-pill{padding:5px 13px;border-radius:50px;cursor:pointer;font-size:.75rem;font-weight:600;border:1.5px solid rgba(37,92,149,.15);background:var(--white);color:var(--text-muted);transition:all .2s;white-space:nowrap;font-family:'Lato',sans-serif}
+    .filter-pill:hover{border-color:var(--accent);color:var(--accent)}
+    .filter-pill.active{background:var(--accent);border-color:var(--accent);color:var(--white)}
+
+    /* CONTENT */
+    .catalog-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px}
+    .section-tag{font-size:.66rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+    .section-title{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:var(--blue-dark)}
+    .view-controls{display:flex;gap:6px}
+    .view-btn{width:38px;height:38px;border-radius:10px;border:1px solid rgba(37,92,149,.12);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:background var(--tr),border-color var(--tr)}
+    .view-btn.active,.view-btn:hover{background:var(--blue);border-color:var(--blue);color:var(--white)}
+    .results-info{font-size:.79rem;color:var(--text-muted)}
+
+    /* BANNER */
+    .featured-banner{margin-bottom:26px;background:linear-gradient(135deg,var(--blue-dark),var(--blue) 60%,var(--accent));border-radius:var(--radius);padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:22px;position:relative;overflow:hidden}
+    .featured-banner::before{content:'';position:absolute;right:-40px;top:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
+    .featured-banner::after{content:'';position:absolute;right:80px;bottom:-80px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.04)}
+    .banner-text{position:relative;z-index:1}
+    .banner-tag{font-size:.64rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px;display:block}
+    .banner-title{font-size:1.35rem;font-weight:900;color:var(--white);margin-bottom:6px}
+    .banner-desc{font-size:.82rem;color:rgba(255,255,255,.65);max-width:380px;line-height:1.6}
+    .banner-btn{flex-shrink:0;background:var(--white);color:var(--blue);padding:10px 24px;border-radius:50px;text-decoration:none;font-family:'Lato',sans-serif;font-weight:700;font-size:.83rem;transition:transform .2s,box-shadow .2s;position:relative;z-index:1;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+    .banner-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.22)}
+
+    /* GRID */
+    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .products-grid.list-view{grid-template-columns:1fr}
+    .product-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(37,92,149,.06);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr)}
+    .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:rgba(37,92,149,.14)}
+    .product-img-wrap{position:relative;height:185px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .product-card[data-brand="alpina"] .product-img-wrap{background:linear-gradient(135deg,#e8f4fd,#c8e4f5)}
+    .product-card[data-brand="ramo"]   .product-img-wrap{background:linear-gradient(135deg,#fff3e6,#ffd9b0)}
+    .prod-emoji{font-size:3.6rem;transition:transform .4s}
+    .product-card:hover .prod-emoji{transform:scale(1.15) rotate(-5deg)}
+    .prod-badge{position:absolute;top:11px;left:11px;font-size:.61rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:50px}
+    .badge-new{background:var(--blue);color:var(--white)}
+    .badge-popular{background:var(--accent);color:var(--white)}
+    .badge-promo{background:#e05c2a;color:var(--white)}
+    .brand-tag-card{position:absolute;top:11px;right:11px;font-size:.59rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:50px}
+    .bta{background:var(--blue);color:var(--white)}
+    .btr{background:#e05c2a;color:var(--white)}
+    .prod-body{padding:17px 19px 13px;flex:1;display:flex;flex-direction:column}
+    .prod-cat{font-size:.64rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+    .prod-name{font-size:.97rem;font-weight:700;color:var(--blue-dark);margin-bottom:6px;line-height:1.3}
+    .prod-desc{font-size:.78rem;color:var(--text-muted);line-height:1.65;flex:1;font-weight:400}
+    .prod-footer{display:flex;align-items:center;justify-content:space-between;padding:11px 19px;border-top:1px solid rgba(37,92,149,.06)}
+    .prod-meta{font-size:.71rem;color:var(--text-muted)}
+    .prod-meta strong{color:var(--blue);font-size:.84rem;display:block}
+    .prod-btn{padding:7px 15px;border-radius:50px;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:.74rem;font-weight:700;background:var(--blue);color:var(--white);transition:background .2s,transform .2s}
+    .prod-btn:hover{background:var(--blue-dark);transform:translateY(-1px)}
+
+    /* LIST VIEW */
+    .products-grid.list-view .product-card{flex-direction:row;align-items:stretch}
+    .products-grid.list-view .product-img-wrap{width:125px;height:auto;flex-shrink:0;min-height:110px}
+    .products-grid.list-view .prod-body{padding:16px 20px}
+    .products-grid.list-view .prod-footer{border-top:none;border-left:1px solid rgba(37,92,149,.06);flex-direction:column;gap:9px;padding:16px;min-width:115px}
+
+    /* EMPTY */
+    .empty-state{display:none;grid-column:1/-1;text-align:center;padding:72px 24px;flex-direction:column;align-items:center;gap:10px}
+    .empty-state.show{display:flex}
+    .empty-icon{font-size:2.8rem;opacity:.35}
+    .empty-title{font-size:1.1rem;font-weight:700;color:var(--blue-dark);font-family:'Lato',sans-serif}
+    .empty-desc{font-size:.83rem;color:var(--text-muted)}
+
+    /* PAGINATION */
+    .pagination{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:42px}
+    .page-btn{width:38px;height:38px;border-radius:10px;border:1.5px solid rgba(37,92,149,.12);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Lato',sans-serif;font-size:.84rem;font-weight:600;color:var(--text-muted);transition:all .2s}
+    .page-btn:hover,.page-btn.active{background:var(--blue);border-color:var(--blue);color:var(--white)}
+    .page-btn.pn{width:auto;padding:0 14px;font-size:.77rem}
+
+    /* CTA */
+    .cta-bottom{background:linear-gradient(145deg,var(--blue-dark),var(--blue) 60%,var(--accent));padding:68px 6vw;text-align:center;position:relative;overflow:hidden}
+    .cta-bottom::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 40px)}
+    .cta-title{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:900;color:var(--white);margin-bottom:10px;position:relative}
+    .cta-desc{color:rgba(255,255,255,.6);font-size:.93rem;max-width:450px;margin:0 auto 24px;line-height:1.7}
+    .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-white{background:var(--white);color:var(--blue);padding:13px 32px;border-radius:50px;text-decoration:none;font-family:'Lato',sans-serif;font-weight:700;font-size:.9rem;box-shadow:0 6px 24px rgba(0,0,0,.2);transition:transform .2s,box-shadow .2s}
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.28)}
+    .btn-ghost{background:transparent;color:var(--white);padding:13px 32px;border-radius:50px;text-decoration:none;font-family:'Lato',sans-serif;font-weight:700;font-size:.9rem;border:2px solid rgba(255,255,255,.4);transition:border-color .2s,background .2s}
+    .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.1)}
+
+    /* FOOTER */
+    footer{background:var(--blue-dark);padding:26px 6vw}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+    .footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.35);font-family:'Lato',sans-serif}
+    .footer-bottom a{color:rgba(255,255,255,.5);text-decoration:none;font-family:'Lato',sans-serif;font-size:.75rem;transition:color .2s}
+    .footer-bottom a:hover{color:var(--white)}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(10,20,30,.82);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;backdrop-filter:blur(8px)}
+    .modal-overlay.open{opacity:1;pointer-events:all}
+    .modal-box{background:var(--white);border-radius:24px;padding:32px;max-width:450px;width:90%;transform:scale(.92) translateY(20px);transition:transform .35s;box-shadow:var(--shadow-lg)}
+    .modal-overlay.open .modal-box{transform:scale(1) translateY(0)}
+    .modal-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+    .modal-emoji{font-size:2.8rem;line-height:1}
+    .modal-brand-badge{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 10px;border-radius:50px;margin-bottom:4px;font-family:'Lato',sans-serif}
+    .modal-cat{font-size:.64rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin-bottom:3px;font-family:'Lato',sans-serif}
+    .modal-name{font-size:1.25rem;font-weight:700;color:var(--blue-dark);font-family:'Lato',sans-serif}
+    .modal-desc{font-size:.87rem;color:var(--text-muted);line-height:1.75;margin-bottom:16px}
+    .modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+    .modal-tag{background:var(--blue-xlight);color:var(--blue);font-size:.69rem;font-weight:600;padding:3px 11px;border-radius:50px;font-family:'Lato',sans-serif}
+    .modal-footer{display:flex;gap:10px}
+    .modal-close-btn{flex:1;padding:10px;border-radius:12px;border:1.5px solid rgba(37,92,149,.15);background:none;cursor:pointer;font-family:'Lato',sans-serif;font-weight:700;font-size:.84rem;color:var(--text-muted);transition:border-color .2s,color .2s}
+    .modal-close-btn:hover{border-color:var(--blue);color:var(--blue)}
+    .modal-contact-btn{flex:2;padding:10px;border-radius:12px;border:none;background:var(--blue);color:var(--white);cursor:pointer;font-family:'Lato',sans-serif;font-weight:700;font-size:.84rem;transition:background .2s;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px}
+    .modal-contact-btn:hover{background:var(--blue-dark)}
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){.catalog-wrapper{grid-template-columns:220px 1fr;gap:22px}.products-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:860px){.catalog-wrapper{grid-template-columns:1fr}.sidebar{position:static}.cat-list{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.products-grid{grid-template-columns:repeat(2,1fr)}.stats-strip{grid-template-columns:repeat(2,1fr)}.featured-banner{flex-direction:column;text-align:center}.banner-desc{margin:0 auto}}
+    @media(max-width:560px){.products-grid{grid-template-columns:1fr}.cat-list{grid-template-columns:repeat(2,1fr)}.catalog-wrapper{padding:30px 5vw 64px}.stats-strip{grid-template-columns:repeat(2,1fr)}}
   </style>
 </head>
 <body>
@@ -32,141 +215,105 @@
 
 <!-- HERO -->
 <div class="cat-hero">
-  <span class="hero-eyebrow">DistriVision</span>
-  <h1>Catálogo<br><em>Alpina</em></h1>
-  <p>Distribuidores oficiales de Alpina en Neiva, Huila. Conozca nuestro portafolio completo de productos lácteos y alimenticios de la más alta calidad.</p>
+  <span class="hero-eyebrow">DistriVision – Neiva, Huila</span>
+  <h1>Catálogo Oficial<br><em>Alpina &amp; Ramo</em></h1>
+  <p>Distribuidores autorizados de las marcas más queridas de Colombia. Portafolio completo con disponibilidad inmediata en toda la zona asignada.</p>
+</div>
+
+<!-- BRAND STRIP -->
+<div class="brand-strip">
+  <span class="brand-strip-label">Filtrar por marca:</span>
+  <button class="brand-pill active" data-brand="all">🗂️ Todas</button>
+  <button class="brand-pill" data-brand="alpina">🥛 Alpina</button>
+  <button class="brand-pill" data-brand="ramo">🧁 Ramo</button>
 </div>
 
 <!-- STATS -->
 <div class="stats-strip">
-  <div class="stat-item">
-    <span class="stat-num">Alpina</span>
-    <span class="stat-lbl">Marca Oficial Distribuida</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">5</span>
-    <span class="stat-lbl">Líneas de Producto</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">+500</span>
-    <span class="stat-lbl">Clientes Activos</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">100%</span>
-    <span class="stat-lbl">Calidad Alpina</span>
-  </div>
+  <div class="stat-item"><span class="stat-num">2</span><span class="stat-lbl">Marcas Oficiales</span></div>
+  <div class="stat-item"><span class="stat-num">7</span><span class="stat-lbl">Líneas de Producto</span></div>
+  <div class="stat-item"><span class="stat-num">+500</span><span class="stat-lbl">Clientes Activos</span></div>
+  <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lbl">Calidad Garantizada</span></div>
 </div>
 
 <!-- MAIN -->
 <div class="catalog-wrapper">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="sidebar-search">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Buscar producto…">
-    </div>
-
-    <p class="sidebar-title">Líneas Alpina</p>
+    <div class="sidebar-search"><span>🔍</span><input type="text" id="searchInput" placeholder="Buscar producto…"></div>
+    <p class="sidebar-title">Categorías</p>
     <ul class="cat-list" id="catList">
-      <li class="cat-item active" data-cat="all">
-        <div class="cat-item-inner"><span class="cat-icon">🗂️</span> Todos</div>
-        <span class="cat-count" id="count-all">20</span>
-      </li>
-      <li class="cat-item" data-cat="lacteos">
-        <div class="cat-item-inner"><span class="cat-icon">🥛</span> Lácteos</div>
-        <span class="cat-count" id="count-lacteos">5</span>
-      </li>
-      <li class="cat-item" data-cat="yogur">
-        <div class="cat-item-inner"><span class="cat-icon">🫙</span> Yogur</div>
-        <span class="cat-count" id="count-yogur">5</span>
-      </li>
-      <li class="cat-item" data-cat="quesos">
-        <div class="cat-item-inner"><span class="cat-icon">🧀</span> Quesos</div>
-        <span class="cat-count" id="count-quesos">4</span>
-      </li>
-      <li class="cat-item" data-cat="bebidas">
-        <div class="cat-item-inner"><span class="cat-icon">🥤</span> Bebidas</div>
-        <span class="cat-count" id="count-bebidas">3</span>
-      </li>
-      <li class="cat-item" data-cat="postres">
-        <div class="cat-item-inner"><span class="cat-icon">🍮</span> Postres</div>
-        <span class="cat-count" id="count-postres">3</span>
-      </li>
+      <li class="cat-item active" data-cat="all"><div class="cat-item-inner"><span class="cat-icon">🗂️</span>Todos</div><span class="cat-count" id="cnt-all">0</span></li>
+      <li class="cat-item" data-cat="lacteos"><div class="cat-item-inner"><span class="cat-icon">🥛</span>Lácteos</div><span class="cat-count" id="cnt-lacteos">0</span></li>
+      <li class="cat-item" data-cat="yogur"><div class="cat-item-inner"><span class="cat-icon">🫙</span>Yogur</div><span class="cat-count" id="cnt-yogur">0</span></li>
+      <li class="cat-item" data-cat="quesos"><div class="cat-item-inner"><span class="cat-icon">🧀</span>Quesos</div><span class="cat-count" id="cnt-quesos">0</span></li>
+      <li class="cat-item" data-cat="bebidas"><div class="cat-item-inner"><span class="cat-icon">🥤</span>Bebidas</div><span class="cat-count" id="cnt-bebidas">0</span></li>
+      <li class="cat-item" data-cat="ponques"><div class="cat-item-inner"><span class="cat-icon">🧁</span>Ponqués</div><span class="cat-count" id="cnt-ponques">0</span></li>
+      <li class="cat-item" data-cat="galletas"><div class="cat-item-inner"><span class="cat-icon">🍪</span>Galletas</div><span class="cat-count" id="cnt-galletas">0</span></li>
+      <li class="cat-item" data-cat="panaderia"><div class="cat-item-inner"><span class="cat-icon">🥐</span>Panadería</div><span class="cat-count" id="cnt-panaderia">0</span></li>
     </ul>
-
     <div class="sidebar-divider"></div>
     <p class="sidebar-title">Etiquetas</p>
-    <div class="filter-row" style="margin-bottom:0">
+    <div class="filter-row">
       <span class="filter-pill active" data-tag="all">Todos</span>
-      <span class="filter-pill" data-tag="nuevo">Nuevo</span>
       <span class="filter-pill" data-tag="popular">Popular</span>
-      <span class="filter-pill" data-tag="promo">Promoción</span>
+      <span class="filter-pill" data-tag="nuevo">Nuevo</span>
+      <span class="filter-pill" data-tag="promo">Promo</span>
     </div>
   </aside>
 
-  <!-- CONTENT -->
-  <section class="catalog-content">
+  <section>
     <div class="catalog-header">
-      <div class="catalog-heading">
-        <span class="section-tag">Portafolio Completo</span>
-        <h2 class="section-title" id="catTitle">Todos los Productos</h2>
+      <div>
+        <span class="section-tag" id="sectionTag">Portafolio Completo</span>
+        <h2 class="section-title" id="catTitle">Alpina &amp; Ramo</h2>
       </div>
-      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <span class="results-info" id="resultsInfo">18 productos encontrados</span>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="results-info" id="resultsInfo"></span>
         <div class="view-controls">
-          <button class="view-btn active" id="gridBtn" title="Vista grilla">⊞</button>
-          <button class="view-btn" id="listBtn" title="Vista lista">☰</button>
+          <button class="view-btn active" id="gridBtn" title="Grilla">⊞</button>
+          <button class="view-btn" id="listBtn" title="Lista">☰</button>
         </div>
       </div>
     </div>
 
-    <!-- FEATURED BANNER -->
-    <div class="featured-banner" id="featuredBanner">
+    <div class="featured-banner">
       <div class="banner-text">
-        <span class="banner-tag">🥛 Distribuidores Oficiales Alpina – Neiva, Huila</span>
-        <h3 class="banner-title">Toda la línea Alpina para su negocio</h3>
-        <p class="banner-desc">Leches, yogures, quesos, bebidas y postres con disponibilidad inmediata, cadena de frío garantizada y entrega en toda la zona asignada.</p>
+        <span class="banner-tag">🏆 Distribuidores Oficiales – Neiva, Huila</span>
+        <h3 class="banner-title">Alpina &amp; Ramo para su negocio</h3>
+        <p class="banner-desc">Las marcas favoritas de Colombia con entrega inmediata y cadena de frío garantizada en toda la zona asignada.</p>
       </div>
       <a href="index.html#contacto" class="banner-btn">Solicitar Pedido →</a>
     </div>
 
-    <!-- GRID -->
-    <div class="products-grid" id="productsGrid">
-      <!-- Cards rendered by JS -->
-    </div>
+    <div class="products-grid" id="productsGrid"></div>
     <div class="empty-state" id="emptyState">
       <span class="empty-icon">📦</span>
       <p class="empty-title">Sin resultados</p>
       <p class="empty-desc">No se encontraron productos para esta búsqueda.</p>
     </div>
 
-    <!-- PAGINATION -->
-    <div class="pagination" id="pagination">
-      <button class="page-btn prev-next" onclick="changePage(-1)">← Anterior</button>
-      <button class="page-btn active" onclick="goPage(1)">1</button>
-      <button class="page-btn" onclick="goPage(2)">2</button>
-      <button class="page-btn" onclick="goPage(3)">3</button>
-      <button class="page-btn prev-next" onclick="changePage(1)">Siguiente →</button>
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
     </div>
   </section>
 </div>
 
-<!-- CTA BOTTOM -->
+<!-- CTA -->
 <div class="cta-bottom">
-  <h2 class="cta-title">¿No encuentra lo que busca?</h2>
-  <p class="cta-desc">Nuestro equipo puede orientarle sobre disponibilidad, precios especiales y condiciones de distribución para su zona.</p>
+  <h2 class="cta-title">¿Desea hacer un pedido?</h2>
+  <p class="cta-desc">Nuestro equipo le asesorará sobre disponibilidad, condiciones especiales y tiempos de entrega en su zona.</p>
   <div class="cta-btns">
     <a href="index.html#contacto" class="btn-white">Contactar Asesor →</a>
     <a href="index.html" class="btn-ghost">Ver Más Servicios</a>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-bottom">
     <p>© 2025 DistriVision LTDA. Todos los derechos reservados.</p>
-    <div style="display:flex;gap:20px">
+    <div style="display:flex;gap:18px">
       <a href="index.html">Inicio</a>
       <a href="index.html#contacto">Contacto</a>
       <a href="index.html#servicios">Servicios</a>
@@ -180,6 +327,7 @@
     <div class="modal-head">
       <div class="modal-emoji" id="modalEmoji"></div>
       <div>
+        <div id="modalBrandBadge"></div>
         <div class="modal-cat" id="modalCat"></div>
         <div class="modal-name" id="modalName"></div>
       </div>
@@ -195,173 +343,202 @@
 
 <script>
 const PRODUCTS = [
-  { id:1, name:'Detergente Premium Plus', cat:'limpieza', emoji:'🧴', badge:'popular', desc:'Detergente multiusos de alta concentración con acción triple que elimina el 99.9% de bacterias. Ideal para distribución en supermercados y tiendas de barrio.', tags:['Alta rotación','Economía familiar','Envase 2L','Envase 5L'] },
-  { id:2, name:'Limpiador Multiusos Citrus', cat:'limpieza', emoji:'🍋', badge:'nuevo', desc:'Fórmula a base de cítricos naturales para limpieza profunda en cocinas, baños y superficies. Sin químicos agresivos.', tags:['Aroma cítrico','Biodegradable','500ml','1L'] },
-  { id:3, name:'Suavizante Floral Intenso', cat:'limpieza', emoji:'🌸', badge:'promo', desc:'Suavizante de ropa con microfragancia de larga duración. Protege las fibras y reduce el encogimiento de las prendas.', tags:['Fragancia 24h','Ropa delicada','1.5L'] },
-  { id:4, name:'Desinfectante Profesional', cat:'limpieza', emoji:'🧪', badge:null, desc:'Desinfectante de grado profesional recomendado para uso institucional, comercial y doméstico. Elimina virus y bacterias.', tags:['Uso institucional','4L','Galón','Alta eficacia'] },
-  { id:5, name:'Arroz Extra Premium', cat:'alimentos', emoji:'🌾', badge:'popular', desc:'Arroz de grano largo seleccionado, ideal para consumo masivo. Excelente textura y sabor garantizado.', tags:['500g','1kg','5kg','Grano largo'] },
-  { id:6, name:'Aceite Vegetal Puro', cat:'alimentos', emoji:'🫙', badge:null, desc:'Aceite vegetal refinado sin colesterol. Perfecto para frituras y preparaciones culinarias de todo tipo.', tags:['1L','3L','Sin colesterol','Premium'] },
-  { id:7, name:'Pasta Seca Artesanal', cat:'alimentos', emoji:'🍝', badge:'nuevo', desc:'Línea de pastas artesanales elaboradas con semolina de trigo duro. Alta resistencia a la cocción.', tags:['500g','Semolina','Al dente','Varios formatos'] },
-  { id:8, name:'Conservas Selectas', cat:'alimentos', emoji:'🥫', badge:'promo', desc:'Línea de conservas vegetales y de atún seleccionado. Frescura garantizada y procesos de calidad certificados.', tags:['Atún','Vegetales','170g','425g'] },
-  { id:9, name:'Gaseosa Refrescante 350ml', cat:'bebidas', emoji:'🥤', badge:'popular', desc:'Bebida carbonatada en diversas presentaciones y sabores para distribución en tiendas y puntos de venta.', tags:['350ml','600ml','Cola','Frutas'] },
-  { id:10, name:'Agua Purificada Premium', cat:'bebidas', emoji:'💧', badge:'nuevo', desc:'Agua purificada con proceso de osmosis inversa y mineralización controlada. Para un estilo de vida saludable.', tags:['500ml','1.5L','Mineralizada','Sin gas'] },
-  { id:11, name:'Jugo Natural Tropical', cat:'bebidas', emoji:'🧃', badge:null, desc:'Jugos de frutas tropicales sin conservantes artificiales. Con pulpa y vitaminas naturales preservadas.', tags:['250ml','1L','Sin conservantes','Tropical'] },
-  { id:12, name:'Jabón de Baño Hidratante', cat:'higiene', emoji:'🧼', badge:'popular', desc:'Jabón con fórmula hidratante enriquecida con manteca de karité y aloe vera. Cuida y nutre la piel.', tags:['90g','120g','Karité','Aloe vera'] },
-  { id:13, name:'Shampoo Nutritivo', cat:'higiene', emoji:'💆', badge:'nuevo', desc:'Shampoo de uso diario con keratina y proteínas del trigo para cabello brillante y saludable.', tags:['250ml','500ml','Keratina','Uso diario'] },
-  { id:14, name:'Crema Dental Blanqueadora', cat:'higiene', emoji:'🦷', badge:'promo', desc:'Pasta dental blanqueadora con flúor activo para protección completa. Blanquea desde el primer uso.', tags:['90ml','150ml','Con flúor','Blanqueador'] },
-  { id:15, name:'Papel Higiénico Triple Hoja', cat:'hogar', emoji:'🧻', badge:'popular', desc:'Papel higiénico de triple hoja con suavidad premium. Resistente y suave, ideal para distribución masiva.', tags:['4 rollos','12 rollos','Triple hoja','Suave'] },
-  { id:16, name:'Focos LED Ahorradores', cat:'hogar', emoji:'💡', badge:'nuevo', desc:'Focos LED de alta eficiencia energética con vida útil de hasta 25,000 horas. Ahorro garantizado en energía.', tags:['9W','15W','Cálida','Fría'] },
-  { id:17, name:'Papas Fritas Crujientes', cat:'snacks', emoji:'🍿', badge:'popular', desc:'Papas fritas con sal marina y paprika natural. Presentación atractiva y sabor inigualable para retail.', tags:['70g','150g','Paprika','Sal marina'] },
-  { id:18, name:'Galletitas Surtidas', cat:'snacks', emoji:'🍪', badge:'promo', desc:'Surtido de galletas dulces y saladas en presentación familiar. Alta rotación en puntos de venta al detalle.', tags:['300g','600g','Dulces','Saladas'] },
+  /* ── ALPINA: LÁCTEOS ── */
+  {id:1, brand:'alpina', cat:'lacteos', emoji:'🥛', badge:'popular', name:'Leche Entera Alpina',
+   desc:'Leche entera pasteurizada con todos sus nutrientes naturales. Rica en calcio, proteínas y vitaminas esenciales para toda la familia. Disponible en bolsa y caja UHT.',
+   tags:['900ml','1.1L','Bolsa','Caja UHT','Alta rotación']},
+  {id:2, brand:'alpina', cat:'lacteos', emoji:'🥛', badge:'nuevo', name:'Leche Deslactosada Alpina',
+   desc:'Leche sin lactosa para personas con intolerancia. Mismo sabor y valor nutricional que la leche tradicional, formulada para el sistema digestivo sensible.',
+   tags:['900ml','1.1L','Sin lactosa','Digestión fácil']},
+  {id:3, brand:'alpina', cat:'lacteos', emoji:'🥛', badge:null, name:'Leche Semidescremada Alpina',
+   desc:'Leche con bajo contenido graso, ideal para quienes cuidan su alimentación sin renunciar al sabor y a los nutrientes del lácteo fresco.',
+   tags:['900ml','1.1L','Bajo en grasa','Calcio']},
+  {id:4, brand:'alpina', cat:'lacteos', emoji:'🍫', badge:'popular', name:'Choco Alpina',
+   desc:'Bebida láctea con chocolate para niños y jóvenes. Deliciosa, nutritiva y enriquecida con vitaminas. La favorita para la lonchera escolar.',
+   tags:['200ml','900ml','Chocolate','Niños','Lonchera']},
+  {id:5, brand:'alpina', cat:'lacteos', emoji:'🫙', badge:null, name:'Crema de Leche Alpina',
+   desc:'Crema de leche pasteurizada para uso culinario y repostería. Textura suave y consistencia ideal para salsas, sopas y preparaciones dulces.',
+   tags:['250ml','500ml','Repostería','Culinaria']},
+
+  /* ── ALPINA: YOGUR ── */
+  {id:6, brand:'alpina', cat:'yogur', emoji:'🍓', badge:'popular', name:'Yogo Yogo Fresa',
+   desc:'Yogur bebible sabor fresa enriquecido con calcio y vitaminas. Perfecto para la lonchera escolar y el consumo diario de toda la familia.',
+   tags:['180ml','1kg','Fresa','Bebible','Niños']},
+  {id:7, brand:'alpina', cat:'yogur', emoji:'🫐', badge:null, name:'Yogo Yogo Mora',
+   desc:'Yogur bebible sabor mora con cultivos activos benéficos para la flora intestinal. Sabor intenso y natural que gusta a toda la familia.',
+   tags:['180ml','1kg','Mora','Probióticos']},
+  {id:8, brand:'alpina', cat:'yogur', emoji:'🥣', badge:'nuevo', name:'Yogur Griego Alpina',
+   desc:'Yogur griego de textura densa y cremosa, rico en proteínas. Ideal para desayunos saludables o como base de preparaciones culinarias.',
+   tags:['150g','500g','Alto en proteína','Sin azúcar añadida']},
+  {id:9, brand:'alpina', cat:'yogur', emoji:'🍯', badge:'popular', name:'Alpinito x6',
+   desc:'Pack familiar de mini-vasitos de yogur con trozos de fruta real. El snack saludable que los niños adoran. Mezcla de sabores fresa y durazno.',
+   tags:['6 unidades','Fresa','Durazno','Familiar']},
+
+  /* ── ALPINA: QUESOS ── */
+  {id:10, brand:'alpina', cat:'quesos', emoji:'🧀', badge:'popular', name:'Queso Campesino Alpina',
+   desc:'Queso fresco campesino de textura suave y sabor auténtico. Perfecto para arepas y platos típicos colombianos. El más vendido de la línea.',
+   tags:['250g','500g','1kg','Fresco','Alta rotación']},
+  {id:11, brand:'alpina', cat:'quesos', emoji:'🍕', badge:'nuevo', name:'Queso Mozarela Alpina',
+   desc:'Mozarela de alta calidad con derretido perfecto. Ideal para pizzas, pastas y todo tipo de preparaciones gratinadas.',
+   tags:['250g','500g','Gratinar','Pizza','Pasta']},
+  {id:12, brand:'alpina', cat:'quesos', emoji:'🧀', badge:'promo', name:'Queso Doble Crema Alpina',
+   desc:'Queso doble crema colombiano, untuoso y de sabor intenso. El favorito para acompañar arepas y desayunos regionales.',
+   tags:['250g','500g','Doble crema','Tradicional']},
+
+  /* ── ALPINA: BEBIDAS ── */
+  {id:13, brand:'alpina', cat:'bebidas', emoji:'🌾', badge:'popular', name:'Avena Alpina Original',
+   desc:'Bebida de avena líquida nutritiva y refrescante. Rica en fibra y vitaminas del complejo B. Una de las bebidas de mayor tradición en Colombia.',
+   tags:['200ml','900ml','Fibra','Vitaminas','Tradicional']},
+  {id:14, brand:'alpina', cat:'bebidas', emoji:'🍑', badge:'nuevo', name:'Avena Alpina Sabores',
+   desc:'Avena líquida en sabores durazno, fresa y vainilla. Misma nutrición de la avena tradicional con variedad de sabores para toda la familia.',
+   tags:['200ml','Durazno','Fresa','Vainilla']},
+  {id:15, brand:'alpina', cat:'bebidas', emoji:'🍊', badge:null, name:'Frutto Alpina',
+   desc:'Bebida a base de jugo de frutas con leche, vitamina C y calcio. Refrescante y nutritiva, ideal para meriendas y desayunos escolares.',
+   tags:['200ml','Naranja','Maracuyá','Vitamina C','Calcio']},
+
+  /* ── RAMO: PONQUÉS ── */
+  {id:16, brand:'ramo', cat:'ponques', emoji:'🍫', badge:'popular', name:'Chocoramo',
+   desc:'El ponqué recubierto de chocolate más icónico de Colombia. Esponjoso por dentro con una capa de chocolate suave que lo hace irresistible desde 1970.',
+   tags:['45g','Unidad','Chocolate','Icónico','Lonchera']},
+  {id:17, brand:'ramo', cat:'ponques', emoji:'🧁', badge:'popular', name:'Ponqué Ramo Vainilla',
+   desc:'Clásico ponqué de vainilla Ramo, esponjoso y húmedo. El favorito de las meriendas colombianas desde generaciones.',
+   tags:['300g','500g','Vainilla','Familiar','Clásico']},
+  {id:18, brand:'ramo', cat:'ponques', emoji:'🍰', badge:null, name:'Ponqué Ramo Chocolate',
+   desc:'Ponqué de chocolate húmedo y esponjoso, bañado en cobertura de cacao. Una delicia clásica para compartir en familia.',
+   tags:['300g','500g','Chocolate','Familiar']},
+  {id:19, brand:'ramo', cat:'ponques', emoji:'🐦', badge:'nuevo', name:'Gansito Ramo',
+   desc:'Pastelito relleno de crema y mermelada de fresa cubierto de chocolate. Uno de los snacks más queridos en Colombia con nueva presentación.',
+   tags:['Unidad','Fresa','Crema','Chocolate','Snack']},
+
+  /* ── RAMO: GALLETAS ── */
+  {id:20, brand:'ramo', cat:'galletas', emoji:'🍘', badge:'popular', name:'Saltinas Ramo',
+   desc:'Galleta salada crocante, perfecta para acompañar sopas, queso campesino y pasabocas. La galleta de soda más tradicional de Colombia.',
+   tags:['200g','400g','Salada','Crocante','Sopa']},
+  {id:21, brand:'ramo', cat:'galletas', emoji:'🍪', badge:'popular', name:'Ducales Ramo',
+   desc:'Galleta tipo cracker crujiente y de sabor suave. Ideal para acompañar con salsas, quesos y cremas. Alta rotación en tiendas y minimercados.',
+   tags:['100g','250g','Cracker','Versátil','Alta rotación']},
+  {id:22, brand:'ramo', cat:'galletas', emoji:'❤️', badge:null, name:'Amor Ramo',
+   desc:'Galleta de vainilla con relleno de arequipe. Dulce, crujiente y deliciosa. La merienda preferida de los niños colombianos.',
+   tags:['100g','250g','Arequipe','Vainilla','Niños']},
+
+  /* ── RAMO: PANADERÍA ── */
+  {id:23, brand:'ramo', cat:'panaderia', emoji:'🍞', badge:'popular', name:'Tostadas Ramo',
+   desc:'Tostadas de pan con textura crujiente y sabor suave. Perfectas para el desayuno untadas con mantequilla, mermelada o arequipe.',
+   tags:['200g','Desayuno','Crujiente','Tradicional']},
+  {id:24, brand:'ramo', cat:'panaderia', emoji:'🥖', badge:'promo', name:'Pan Bimbo Ramo',
+   desc:'Pan de molde suave y esponjoso para sándwiches y tostadas. Elaborado con ingredientes seleccionados para una miga perfecta.',
+   tags:['400g','700g','Molde','Sándwich','Blanco','Integral']},
 ];
 
-let currentCat = 'all';
-let currentTag = 'all';
-let currentSearch = '';
-let currentView = 'grid';
-let currentPage = 1;
-const PER_PAGE = 9; // show all for simplicity
+const CAT_NAMES = {all:'Alpina & Ramo',lacteos:'Lácteos',yogur:'Yogur',quesos:'Quesos',bebidas:'Bebidas',ponques:'Ponqués',galletas:'Galletas',panaderia:'Panadería'};
+const CAT_IDS = ['all','lacteos','yogur','quesos','bebidas','ponques','galletas','panaderia'];
+const BADGE_MAP = {popular:'badge-popular',nuevo:'badge-new',promo:'badge-promo'};
+const BADGE_LBL = {popular:'Popular',nuevo:'Nuevo',promo:'Promo'};
 
-const grid = document.getElementById('productsGrid');
-const emptyState = document.getElementById('emptyState');
-const resultsInfo = document.getElementById('resultsInfo');
-const catTitle = document.getElementById('catTitle');
-const catNames = { all:'Todos los Productos', limpieza:'Limpieza', alimentos:'Alimentos', bebidas:'Bebidas', higiene:'Higiene Personal', hogar:'Hogar', snacks:'Snacks y Golosinas' };
+let fCat='all', fBrand='all', fTag='all', fSearch='';
 
-function filteredProducts() {
-  return PRODUCTS.filter(p => {
-    const matchCat  = currentCat === 'all' || p.cat === currentCat;
-    const matchTag  = currentTag === 'all' || p.badge === currentTag || (currentTag === 'promo' && p.badge === 'promo') || (currentTag === 'popular' && p.badge === 'popular') || (currentTag === 'nuevo' && p.badge === 'nuevo');
-    const matchSearch = currentSearch === '' || p.name.toLowerCase().includes(currentSearch.toLowerCase()) || p.desc.toLowerCase().includes(currentSearch.toLowerCase());
-    return matchCat && matchTag && matchSearch;
-  });
+const grid=document.getElementById('productsGrid');
+const empty=document.getElementById('emptyState');
+const resEl=document.getElementById('resultsInfo');
+const titleEl=document.getElementById('catTitle');
+
+function filtered(){
+  return PRODUCTS.filter(p=>
+    (fCat==='all'||p.cat===fCat)&&
+    (fBrand==='all'||p.brand===fBrand)&&
+    (fTag==='all'||p.badge===fTag)&&
+    (fSearch===''||p.name.toLowerCase().includes(fSearch)||p.desc.toLowerCase().includes(fSearch))
+  );
 }
 
-function badgeHTML(badge) {
-  if (!badge) return '';
-  const map = { nuevo:'badge-new', popular:'badge-popular', promo:'badge-promo' };
-  const labels = { nuevo:'Nuevo', popular:'Popular', promo:'Promo' };
-  return `<span class="prod-badge ${map[badge]}">${labels[badge]}</span>`;
-}
-
-function render() {
-  const prods = filteredProducts();
-  grid.innerHTML = '';
-  emptyState.classList.toggle('show', prods.length === 0);
-  resultsInfo.textContent = prods.length + ' producto' + (prods.length !== 1 ? 's' : '') + ' encontrado' + (prods.length !== 1 ? 's' : '');
-  catTitle.textContent = catNames[currentCat] || 'Productos';
-
-  prods.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
+function render(){
+  const prods=filtered();
+  grid.innerHTML='';
+  empty.classList.toggle('show',prods.length===0);
+  resEl.textContent=prods.length+' producto'+(prods.length!==1?'s':'')+' encontrado'+(prods.length!==1?'s':'');
+  titleEl.innerHTML=CAT_NAMES[fCat]||'Productos';
+  prods.forEach(p=>{
+    const bHTML=p.badge?`<span class="prod-badge ${BADGE_MAP[p.badge]}">${BADGE_LBL[p.badge]}</span>`:'';
+    const bClass=p.brand==='alpina'?'bta':'btr';
+    const bLbl=p.brand==='alpina'?'🥛 Alpina':'🧁 Ramo';
+    const c=document.createElement('div');
+    c.className='product-card'; c.dataset.brand=p.brand;
+    c.innerHTML=`
       <div class="product-img-wrap">
-        ${badgeHTML(p.badge)}
-        <button class="prod-fav" data-id="${p.id}" title="Favorito">🤍</button>
+        ${bHTML}
+        <span class="brand-tag-card ${bClass}">${bLbl}</span>
         <span class="prod-emoji">${p.emoji}</span>
       </div>
       <div class="prod-body">
-        <div class="prod-cat">${catNames[p.cat] || p.cat}</div>
+        <div class="prod-cat">${CAT_NAMES[p.cat]||p.cat}</div>
         <div class="prod-name">${p.name}</div>
-        <div class="prod-desc">${p.desc.substring(0,90)}…</div>
+        <div class="prod-desc">${p.desc.substring(0,95)}…</div>
       </div>
       <div class="prod-footer">
         <div class="prod-meta"><strong>Disponible</strong>Consultar stock</div>
-        <button class="prod-btn" data-id="${p.id}">Ver Detalle</button>
+        <button class="prod-btn">Ver Detalle</button>
       </div>`;
-    card.querySelector('.prod-btn').addEventListener('click', () => openModal(p));
-    card.querySelector('.prod-fav').addEventListener('click', e => {
-      e.stopPropagation();
-      const btn = e.currentTarget;
-      btn.classList.toggle('active');
-      btn.textContent = btn.classList.contains('active') ? '❤️' : '🤍';
-    });
-    grid.appendChild(card);
+    c.querySelector('.prod-btn').addEventListener('click',()=>openModal(p));
+    grid.appendChild(c);
   });
-
-  // update counts
-  const cats = ['all','limpieza','alimentos','bebidas','higiene','hogar','snacks'];
-  cats.forEach(c => {
-    const el = document.getElementById('count-' + c);
-    if (el) {
-      const cnt = c === 'all' ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === c).length;
-      el.textContent = cnt;
-    }
+  CAT_IDS.forEach(cat=>{
+    const el=document.getElementById('cnt-'+cat);
+    if(!el)return;
+    const base=cat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===cat);
+    el.textContent=(fBrand==='all'?base:base.filter(p=>p.brand===fBrand)).length;
   });
 }
 
-// CATEGORY clicks
-document.querySelectorAll('.cat-item').forEach(item => {
-  item.addEventListener('click', () => {
-    document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
-    item.classList.add('active');
-    currentCat = item.dataset.cat;
-    currentPage = 1;
+document.querySelectorAll('.cat-item').forEach(item=>{
+  item.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-item').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active'); fCat=item.dataset.cat; render();
+  });
+});
+
+document.querySelectorAll('.brand-pill').forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    document.querySelectorAll('.brand-pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active'); fBrand=pill.dataset.brand;
+    document.getElementById('sectionTag').textContent=fBrand==='all'?'Portafolio Completo':'Portafolio '+(fBrand==='alpina'?'Alpina':'Ramo');
     render();
   });
 });
 
-// TAG pills
-document.querySelectorAll('.filter-pill').forEach(pill => {
-  pill.addEventListener('click', () => {
-    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-    pill.classList.add('active');
-    currentTag = pill.dataset.tag;
-    render();
+document.querySelectorAll('.filter-pill').forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active'); fTag=pill.dataset.tag; render();
   });
 });
 
-// SEARCH
-document.getElementById('searchInput').addEventListener('input', e => {
-  currentSearch = e.target.value;
-  render();
-});
+document.getElementById('searchInput').addEventListener('input',e=>{fSearch=e.target.value.toLowerCase();render();});
 
-// VIEW toggle
-document.getElementById('gridBtn').addEventListener('click', () => {
-  currentView = 'grid';
-  grid.classList.remove('list-view');
-  document.getElementById('gridBtn').classList.add('active');
-  document.getElementById('listBtn').classList.remove('active');
-});
-document.getElementById('listBtn').addEventListener('click', () => {
-  currentView = 'list';
-  grid.classList.add('list-view');
-  document.getElementById('listBtn').classList.add('active');
-  document.getElementById('gridBtn').classList.remove('active');
-});
+document.getElementById('gridBtn').addEventListener('click',()=>{grid.classList.remove('list-view');document.getElementById('gridBtn').classList.add('active');document.getElementById('listBtn').classList.remove('active');});
+document.getElementById('listBtn').addEventListener('click',()=>{grid.classList.add('list-view');document.getElementById('listBtn').classList.add('active');document.getElementById('gridBtn').classList.remove('active');});
 
-// MODAL
-const modalOverlay = document.getElementById('modalOverlay');
-function openModal(p) {
-  document.getElementById('modalEmoji').textContent = p.emoji;
-  document.getElementById('modalCat').textContent = catNames[p.cat] || p.cat;
-  document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalDesc').textContent = p.desc;
-  const tagsEl = document.getElementById('modalTags');
-  tagsEl.innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-  modalOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
+const modalOverlay=document.getElementById('modalOverlay');
+function openModal(p){
+  document.getElementById('modalEmoji').textContent=p.emoji;
+  document.getElementById('modalCat').textContent=CAT_NAMES[p.cat]||p.cat;
+  document.getElementById('modalName').textContent=p.name;
+  document.getElementById('modalDesc').textContent=p.desc;
+  document.getElementById('modalBrandBadge').innerHTML=p.brand==='alpina'
+    ?'<span class="modal-brand-badge" style="background:var(--blue);color:#fff">🥛 Alpina</span>'
+    :'<span class="modal-brand-badge" style="background:#e05c2a;color:#fff">🧁 Ramo</span>';
+  document.getElementById('modalTags').innerHTML=p.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('');
+  modalOverlay.classList.add('open'); document.body.style.overflow='hidden';
 }
-document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-function closeModal() { modalOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('modalCloseBtn').addEventListener('click',closeModal);
+modalOverlay.addEventListener('click',e=>{if(e.target===modalOverlay)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function closeModal(){modalOverlay.classList.remove('open');document.body.style.overflow='';}
 
-// PAGINATION placeholder
-function changePage(d) {}
-function goPage(n) {
-  document.querySelectorAll('.page-btn:not(.prev-next)').forEach((b,i) => b.classList.toggle('active', i+1===n));
-}
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',scrollY>60);
+  document.getElementById('sp').style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%';
+},{passive:true});
 
-// NAV scroll
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60);
-  const pct = (scrollY / (document.documentElement.scrollHeight - innerHeight)) * 100;
-  document.getElementById('sp').style.width = pct + '%';
-}, { passive: true });
-
-// INIT
 render();
 </script>
 </body>
