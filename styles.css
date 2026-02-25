@@ -85,13 +85,13 @@ nav {
 }
 nav.scrolled { box-shadow: var(--shadow-md); }
 
-.nav-logo { display: flex; align-items: center; gap: 20px; text-decoration: none; }
+.nav-logo { display: flex; align-items: center; gap: 30px; text-decoration: none; }
 
 .logo-img {
   height: 60px; width: auto; border-radius: 10px;
   object-fit: contain; transition: transform .3s;
 }
-.nav-logo:hover .logo-img { transform: scale(2); }
+.nav-logo:hover .logo-img { transform: scale(1.5); }
 
 .brand-name {
   font-size: 1.5rem; font-weight: 700;
@@ -806,5 +806,6 @@ footer { background: var(--blue-dark); padding: 60px 6vw 32px; }
   .mv-card { padding: 24px 16px; }
   nav { padding: 0 4vw; }
 }
+
 
 
