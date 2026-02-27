@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DistriVision – Vacantes</title>
+  <link rel="stylesheet" href="styles4.css">
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="scroll-progress"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="img/1 (3).png" alt="DistriVision Logo" class="logo-img">
+  </a>
+  <ul id="navMenu">
+    <li><a href="index.html#nosotros">Nosotros</a></li>
+    <li><a href="historia.html">Historia</a></li>
+    <li><a href="catalogo.html">Catalogo</a></li>
+    <li><a href="index.html#mision">Misión &amp; Visión</a></li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#galeria">Galería</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+    <li><a href="vacantes.html" class="nav-active">Vacantes</a></li>
+    <li><a href="index.html#contacto" class="nav-cta">Contáctenos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════ HERO VACANTES ══════════════ -->
+<section class="page-hero">
+  <div class="hero-bg">
+    <div class="geo geo-1"></div>
+    <div class="geo geo-2"></div>
+    <div class="geo geo-3"></div>
+  </div>
+  <div class="page-hero-content">
+    <span class="hero-eyebrow">Únete a nuestro equipo</span>
+    <h1>Vacantes<br><em>DistriVision</em></h1>
+    <p class="hero-desc">Forma parte de la empresa líder en distribución y comercialización. Buscamos talentos comprometidos con la excelencia y el servicio superior.</p>
+  </div>
+</section>
+
+<!-- ══════════════ PDF VIEWER ══════════════ -->
+<section class="pdf-section">
+  <div class="pdf-header">
+    <span class="section-tag">Oportunidades de Empleo</span>
+    <h2 class="section-title">Nuestras Vacantes Disponibles</h2>
+    <p class="section-desc">Revisa las posiciones abiertas en DistriVision. Si encuentras una oportunidad que se ajuste a tu perfil, no dudes en contactarnos.</p>
+  </div>
+
+  <div class="pdf-container">
+    <div class="pdf-toolbar">
+      <div class="pdf-info">
+        <span class="pdf-icon">📄</span>
+        <span class="pdf-name">Vacantes DistriVision 2025</span>
+      </div>
+      <a href="vacantes.pdf" download class="pdf-download-btn">
+        <span>⬇</span> Descargar PDF
+      </a>
+    </div>
+
+    <!-- Visor PDF principal -->
+    <div class="pdf-viewer-wrapper">
+      <iframe
+        id="pdfViewer"
+        src="vacantes.pdf"
+        type="application/pdf"
+        width="100%"
+        height="100%"
+        style="border:none;"
+        title="Vacantes DistriVision">
+        <!-- Fallback si el navegador no soporta iframe PDF -->
+        <div class="pdf-fallback">
+          <div class="fallback-icon">📄</div>
+          <h3>Tu navegador no puede mostrar el PDF directamente</h3>
+          <p>Por favor descarga el archivo para verlo.</p>
+          <a href="vacantes.pdf" download class="btn-primary">Descargar Vacantes PDF</a>
+        </div>
+      </iframe>
+    </div>
+
+    <!-- Enlace alternativo para móviles -->
+    <div class="pdf-mobile-alt">
+      <p>¿No puedes ver el PDF? <a href="vacantes.pdf" target="_blank">Ábrelo en una nueva pestaña →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CTA BAND ══════════════ -->
+<div class="cta-band">
+  <h2>¿Listo para unirte a nuestro <span>equipo de excelencia?</span></h2>
+  <a href="index.html#contacto" class="btn-white">Contáctenos Hoy →</a>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="img/2.png" alt="DistriVision Logo" class="fp-logo-img">
+      <div class="fp-name">Distri<span>Vision</span></div>
+      <p>Líderes en distribución y comercialización de productos de alta calidad, comprometidos con la excelencia y el servicio superior en cada entrega.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="index.html#nosotros">Nosotros</a></li>
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="index.html#mision">Misión &amp; Visión</a></li>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="index.html#galeria">Galería</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+        <li><a href="vacantes.html">Vacantes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="#">CL 26 SUR No. 6 – 74, Neiva</a></li>
+        <li><a href="#">(8) 870 34 34</a></li>
+        <li><a href="#">310 599 6169</a></li>
+        <li><a href="#">distribuciones_vision@hotmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 DistriVision LTDA. Todos los derechos reservados.</p>
+    <p>Distribución con Excelencia y Compromiso</p>
+  </div>
+</footer>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+/* ── CURSOR ── */
+const dot  = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  dot.style.left = mouseX + 'px';
+  dot.style.top  = mouseY + 'px';
+});
+
+(function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top  = ringY + 'px';
+  requestAnimationFrame(animateRing);
+})();
+
+/* ── SCROLL PROGRESS ── */
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  progressBar.style.width = pct + '%';
+}, { passive: true });
+
+/* ── NAV SCROLLED ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── HAMBURGUESA ── */
+const hambBtn = document.getElementById('navHamburger');
+if (hambBtn) {
+  hambBtn.addEventListener('click', () => { navbar.classList.toggle('menu-open'); });
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => { navbar.classList.remove('menu-open'); });
+  });
+}
+
+/* ── PARTÍCULAS HERO ── */
+(function createParticles() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (!heroBg) return;
+  const colors = ['#255c95', '#228fd2', '#ffffff'];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 8 + 4;
+    Object.assign(p.style, {
+      width:             size + 'px',
+      height:            size + 'px',
+      left:              (Math.random() * 100) + '%',
+      top:               (Math.random() * 100) + '%',
+      animationDelay:    '-' + (Math.random() * 12) + 's',
+      animationDuration: (Math.random() * 10 + 10) + 's',
+      background:        colors[Math.floor(Math.random() * colors.length)],
+      opacity:           (Math.random() * 0.15 + 0.05).toString()
+    });
+    heroBg.appendChild(p);
+  }
+})();
+
+/* ── BOTONES MAGNÉTICOS ── */
+(function magneticButtons() {
+  document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-download-btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r  = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width  / 2);
+      const dy = e.clientY - (r.top  + r.height / 2);
+      btn.style.transform = `translate(${dx * 0.18}px,${dy * 0.22}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+})();
+</script>
+</body>
+</html>
