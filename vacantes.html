@@ -40,15 +40,61 @@
     <div class="geo geo-2"></div>
     <div class="geo geo-3"></div>
   </div>
+
+  <!-- Columna izquierda: texto -->
   <div class="page-hero-content">
     <span class="hero-eyebrow">Únete a nuestro equipo</span>
-    <h1>Vacantes<br><em>DistriVision</em></h1>
-    <p class="hero-desc">Forma parte de la empresa líder en distribución y comercialización. Buscamos talentos comprometidos con la excelencia y el servicio superior.</p>
+    <h1>Trabaja con<br>los Mejores en<br><em>DistriVision</em></h1>
+    <p class="hero-desc">Forma parte de la empresa líder en distribución y comercialización de Huila. Buscamos talentos comprometidos con la excelencia y el servicio superior.</p>
+    <div class="hero-btns-vacantes">
+      <a href="#pdf-vacantes" class="btn-primary">Ver Vacantes ↓</a>
+      <a href="index.html#contacto" class="btn-outline">Contáctenos →</a>
+    </div>
+  </div>
+
+  <!-- Columna derecha: visual animado -->
+  <div class="hero-visual-vacantes">
+    <div class="vacantes-orbit">
+
+      <!-- 3 Anillos orbitales -->
+      <div class="v-orbit-ring"><div class="v-orbit-dot"></div></div>
+      <div class="v-orbit-ring"><div class="v-orbit-dot"></div></div>
+      <div class="v-orbit-ring"><div class="v-orbit-dot"></div></div>
+
+      <!-- Emojis anillo exterior (gira normal) -->
+      <div class="v-emoji-ring">
+        <span class="v-emoji" style="top:-20px;left:calc(50% - 14px)">💼</span>
+        <span class="v-emoji" style="top:calc(50% - 14px);right:-20px">📋</span>
+        <span class="v-emoji" style="bottom:-20px;left:calc(50% - 14px)">🚀</span>
+        <span class="v-emoji" style="top:calc(50% - 14px);left:-20px">⭐</span>
+      </div>
+
+      <!-- Emojis anillo interior (gira al revés) -->
+      <div class="v-emoji-ring v-emoji-ring--inner reverse">
+        <span class="v-emoji v-emoji--sm" style="top:-14px;left:calc(50% - 11px)">🤝</span>
+        <span class="v-emoji v-emoji--sm" style="top:calc(50% - 11px);right:-14px">📦</span>
+        <span class="v-emoji v-emoji--sm" style="bottom:-14px;left:calc(50% - 11px)">🏆</span>
+        <span class="v-emoji v-emoji--sm" style="top:calc(50% - 11px);left:-14px">💡</span>
+      </div>
+
+      <!-- Tarjeta central -->
+      <div class="v-center-card">
+        <span class="v-main-emoji">👔</span>
+        <h3>Únete Hoy</h3>
+        <p>Oportunidades de crecimiento</p>
+      </div>
+
+      <!-- Badges flotantes -->
+      <div class="v-badge v-badge-1"><div class="v-badge-dot"></div> Crecimiento Profesional</div>
+      <div class="v-badge v-badge-2"><div class="v-badge-dot"></div> Buen Ambiente</div>
+      <div class="v-badge v-badge-3"><div class="v-badge-dot"></div> Disponible Ahora</div>
+
+    </div>
   </div>
 </section>
 
 <!-- ══════════════ PDF VIEWER ══════════════ -->
-<section class="pdf-section">
+<section class="pdf-section" id="pdf-vacantes">
   <div class="pdf-header">
     <span class="section-tag">Oportunidades de Empleo</span>
     <h2 class="section-title">Nuestras Vacantes Disponibles</h2>
@@ -66,7 +112,6 @@
       </a>
     </div>
 
-    <!-- Visor PDF principal -->
     <div class="pdf-viewer-wrapper">
       <iframe
         id="pdfViewer"
@@ -76,7 +121,6 @@
         height="100%"
         style="border:none;"
         title="Vacantes DistriVision">
-        <!-- Fallback si el navegador no soporta iframe PDF -->
         <div class="pdf-fallback">
           <div class="fallback-icon">📄</div>
           <h3>Tu navegador no puede mostrar el PDF directamente</h3>
@@ -86,7 +130,6 @@
       </iframe>
     </div>
 
-    <!-- Enlace alternativo para móviles -->
     <div class="pdf-mobile-alt">
       <p>¿No puedes ver el PDF? <a href="vacantes.pdf" target="_blank">Ábrelo en una nueva pestaña →</a></p>
     </div>
@@ -147,7 +190,6 @@ document.addEventListener('mousemove', e => {
   dot.style.left = mouseX + 'px';
   dot.style.top  = mouseY + 'px';
 });
-
 (function animateRing() {
   ringX += (mouseX - ringX) * 0.12;
   ringY += (mouseY - ringY) * 0.12;
@@ -183,7 +225,7 @@ if (hambBtn) {
   const heroBg = document.querySelector('.hero-bg');
   if (!heroBg) return;
   const colors = ['#255c95', '#228fd2', '#ffffff'];
-  for (let i = 0; i < 22; i++) {
+  for (let i = 0; i < 28; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
     const size = Math.random() * 8 + 4;
@@ -212,6 +254,16 @@ if (hambBtn) {
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
   });
+})();
+
+/* ── PARALLAX HERO ── */
+(function setupParallax() {
+  const heroContent = document.querySelector('.page-hero-content');
+  if (!heroContent) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) heroContent.style.transform = `translateY(${y * 0.1}px)`;
+  }, { passive: true });
 })();
 </script>
 </body>
