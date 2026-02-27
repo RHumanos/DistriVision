@@ -46,12 +46,16 @@
   <button class="brand-pill active" data-brand="all">🗂️ Todas</button>
   <button class="brand-pill" data-brand="alpina">🥛 Alpina</button>
   <button class="brand-pill" data-brand="ramo">🧁 Ramo</button>
+  <button class="brand-pill" data-brand="zenu">🌭 Zenú</button>
+  <button class="brand-pill" data-brand="bimbo">🍞 Bimbo</button>
+  <button class="brand-pill" data-brand="colombina">🍬 Colombina</button>
+  <button class="brand-pill" data-brand="quala">🧴 Quala</button>
 </div>
 
 <!-- STATS -->
 <div class="stats-strip">
-  <div class="stat-item"><span class="stat-num">2</span><span class="stat-lbl">Marcas Oficiales</span></div>
-  <div class="stat-item"><span class="stat-num">7</span><span class="stat-lbl">Líneas de Producto</span></div>
+  <div class="stat-item"><span class="stat-num">6</span><span class="stat-lbl">Marcas Oficiales</span></div>
+  <div class="stat-item"><span class="stat-num">12</span><span class="stat-lbl">Líneas de Producto</span></div>
   <div class="stat-item"><span class="stat-num">+500</span><span class="stat-lbl">Clientes Activos</span></div>
   <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lbl">Calidad Garantizada</span></div>
 </div>
@@ -70,6 +74,9 @@
       <li class="cat-item" data-cat="ponques"><div class="cat-item-inner"><span class="cat-icon">🧁</span>Ponqués</div><span class="cat-count" id="cnt-ponques">0</span></li>
       <li class="cat-item" data-cat="galletas"><div class="cat-item-inner"><span class="cat-icon">🍪</span>Galletas</div><span class="cat-count" id="cnt-galletas">0</span></li>
       <li class="cat-item" data-cat="panaderia"><div class="cat-item-inner"><span class="cat-icon">🥐</span>Panadería</div><span class="cat-count" id="cnt-panaderia">0</span></li>
+      <li class="cat-item" data-cat="embutidos"><div class="cat-item-inner"><span class="cat-icon">🌭</span>Embutidos</div><span class="cat-count" id="cnt-embutidos">0</span></li>
+      <li class="cat-item" data-cat="confiteria"><div class="cat-item-inner"><span class="cat-icon">🍬</span>Confitería</div><span class="cat-count" id="cnt-confiteria">0</span></li>
+      <li class="cat-item" data-cat="aseo"><div class="cat-item-inner"><span class="cat-icon">🧴</span>Aseo</div><span class="cat-count" id="cnt-aseo">0</span></li>
     </ul>
     <div class="sidebar-divider"></div>
     <p class="sidebar-title">Etiquetas</p>
@@ -85,7 +92,7 @@
     <div class="catalog-header">
       <div>
         <span class="section-tag" id="sectionTag">Portafolio Completo</span>
-        <h2 class="section-title" id="catTitle">Alpina &amp; Ramo</h2>
+        <h2 class="section-title" id="catTitle">Alpina, Ramo, Zenú, Bimbo, Colombina &amp; Quala</h2>
       </div>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <span class="results-info" id="resultsInfo"></span>
@@ -99,8 +106,8 @@
     <div class="featured-banner">
       <div class="banner-text">
         <span class="banner-tag">🏆 Distribuidores Oficiales – Neiva, Huila</span>
-        <h3 class="banner-title">Alpina &amp; Ramo para su negocio</h3>
-        <p class="banner-desc">Las marcas favoritas de Colombia con entrega inmediata y cadena de frío garantizada en toda la zona asignada.</p>
+        <h3 class="banner-title">6 Marcas Líderes para su Negocio</h3>
+        <p class="banner-desc">Alpina, Ramo, Zenú, Bimbo, Colombina y Quala — las marcas favoritas de Colombia con entrega inmediata en toda la zona asignada.</p>
       </div>
       <a href="index.html#contacto" class="banner-btn">Solicitar Pedido →</a>
     </div>
@@ -162,7 +169,23 @@
 </div>
 
 <script>
+/* ════════════════════════════════════════════════════════════
+   ✏️  CONFIGURACIÓN DE MARCAS
+   Para agregar/editar una marca: modifica el array BRANDS.
+   Para agregar/editar productos: modifica el array PRODUCTS.
+   ════════════════════════════════════════════════════════════ */
+
+const BRANDS = [
+  { id:'alpina',   label:'🥛 Alpina',     color:'#2563eb', cssClass:'bta' },
+  { id:'ramo',     label:'🧁 Ramo',        color:'#e05c2a', cssClass:'btr' },
+  { id:'zenu',     label:'🌭 Zenú',        color:'#c0392b', cssClass:'btz' },
+  { id:'bimbo',    label:'🍞 Bimbo',       color:'#e8a200', cssClass:'btb' },
+  { id:'colombina',label:'🍬 Colombina',   color:'#8e44ad', cssClass:'btc' },
+  { id:'quala',    label:'🧴 Quala',       color:'#16a085', cssClass:'btq' },
+];
+
 const PRODUCTS = [
+  /* ── ALPINA ──────────────────────────────────────────────── */
   {id:1,brand:'alpina',cat:'lacteos',emoji:'🥛',badge:'popular',name:'Leche Entera Alpina',desc:'Leche entera pasteurizada con todos sus nutrientes naturales. Rica en calcio, proteínas y vitaminas esenciales para toda la familia. Disponible en bolsa y caja UHT.',tags:['900ml','1.1L','Bolsa','Caja UHT','Alta rotación']},
   {id:2,brand:'alpina',cat:'lacteos',emoji:'🥛',badge:'nuevo',name:'Leche Deslactosada Alpina',desc:'Leche sin lactosa para personas con intolerancia. Mismo sabor y valor nutricional que la leche tradicional, formulada para el sistema digestivo sensible.',tags:['900ml','1.1L','Sin lactosa','Digestión fácil']},
   {id:3,brand:'alpina',cat:'lacteos',emoji:'🥛',badge:null,name:'Leche Semidescremada Alpina',desc:'Leche con bajo contenido graso, ideal para quienes cuidan su alimentación sin renunciar al sabor y a los nutrientes del lácteo fresco.',tags:['900ml','1.1L','Bajo en grasa','Calcio']},
@@ -186,13 +209,54 @@ const PRODUCTS = [
   {id:21,brand:'ramo',cat:'galletas',emoji:'🍪',badge:'popular',name:'Ducales Ramo',desc:'Galleta tipo cracker crujiente y de sabor suave. Ideal para acompañar con salsas, quesos y cremas. Alta rotación en tiendas y minimercados.',tags:['100g','250g','Cracker','Versátil','Alta rotación']},
   {id:22,brand:'ramo',cat:'galletas',emoji:'❤️',badge:null,name:'Amor Ramo',desc:'Galleta de vainilla con relleno de arequipe. Dulce, crujiente y deliciosa. La merienda preferida de los niños colombianos.',tags:['100g','250g','Arequipe','Vainilla','Niños']},
   {id:23,brand:'ramo',cat:'panaderia',emoji:'🍞',badge:'popular',name:'Tostadas Ramo',desc:'Tostadas de pan con textura crujiente y sabor suave. Perfectas para el desayuno untadas con mantequilla, mermelada o arequipe.',tags:['200g','Desayuno','Crujiente','Tradicional']},
-  {id:24,brand:'ramo',cat:'panaderia',emoji:'🥖',badge:'promo',name:'Pan Bimbo Ramo',desc:'Pan de molde suave y esponjoso para sándwiches y tostadas. Elaborado con ingredientes seleccionados para una miga perfecta.',tags:['400g','700g','Molde','Sándwich','Blanco','Integral']},
+  {id:24,brand:'ramo',cat:'panaderia',emoji:'🥖',badge:'promo',name:'Pan de Molde Ramo',desc:'Pan de molde suave y esponjoso para sándwiches y tostadas. Elaborado con ingredientes seleccionados para una miga perfecta.',tags:['400g','700g','Molde','Sándwich','Blanco','Integral']},
+
+  /* ── ZENÚ ────────────────────────────────────────────────── */
+  {id:25,brand:'zenu',cat:'embutidos',emoji:'🌭',badge:'popular',name:'Salchicha Zenú Clásica',desc:'Salchicha de res y cerdo de sabor tradicional, lista para preparar en minutos. La más vendida en tiendas y supermercados de Colombia.',tags:['250g','500g','Res','Cerdo','Alta rotación']},
+  {id:26,brand:'zenu',cat:'embutidos',emoji:'🥓',badge:'popular',name:'Tocineta Zenú',desc:'Tocineta ahumada de sabor intenso y textura crujiente. Ideal para desayunos, hamburguesas y preparaciones gourmet.',tags:['200g','400g','Ahumada','Cerdo','Desayuno']},
+  {id:27,brand:'zenu',cat:'embutidos',emoji:'🍖',badge:'nuevo',name:'Jamón Pierna Zenú',desc:'Jamón de pierna cocido con bajo contenido de grasa. Perfecto para sándwiches, ensaladas y platos fríos con sabor suave y natural.',tags:['250g','500g','Bajo en grasa','Sándwich']},
+  {id:28,brand:'zenu',cat:'embutidos',emoji:'🥚',badge:'promo',name:'Mortadela Zenú',desc:'Mortadela tradicional con pistachos, de textura suave y sabor característico. Muy usada en emparedados y mesas de quesos y embutidos.',tags:['200g','500g','Con pistachos','Clásica']},
+  {id:29,brand:'zenu',cat:'embutidos',emoji:'🌭',badge:null,name:'Chorizo Zenú Santarrosano',desc:'Chorizo estilo santarrosano con mezcla de especias tradicionales. El favorito para fritanga, asados y platos típicos colombianos.',tags:['500g','1kg','Especias','Fritanga','Asado']},
+
+  /* ── BIMBO ───────────────────────────────────────────────── */
+  {id:30,brand:'bimbo',cat:'panaderia',emoji:'🍞',badge:'popular',name:'Pan Blanco Bimbo',desc:'Pan de molde blanco suave y esponjoso, el clásico para desayunos y meriendas. Textura perfecta para tostadas y sándwiches.',tags:['320g','680g','Blanco','Sándwich','Clásico']},
+  {id:31,brand:'bimbo',cat:'panaderia',emoji:'🌾',badge:'popular',name:'Pan Integral Bimbo',desc:'Pan de molde integral con fibra y granos enteros. Opción saludable con el mismo sabor suave que lo hace perfecto para cualquier momento del día.',tags:['320g','680g','Integral','Fibra','Saludable']},
+  {id:32,brand:'bimbo',cat:'panaderia',emoji:'🥐',badge:'nuevo',name:'Medias Noches Bimbo',desc:'Pan mini ovalado suave e ideal para pasabocas, mini hamburguesas y loncheras. Presentación familiar de alta demanda en eventos y reuniones.',tags:['8 unidades','16 unidades','Mini','Pasabocas','Lonchera']},
+  {id:33,brand:'bimbo',cat:'panaderia',emoji:'🥖',badge:null,name:'Pan de Hot Dog Bimbo',desc:'Pan suave y alargado para perros calientes. Textura esponjosa que se adapta perfectamente a la salchicha.',tags:['8 unidades','Hot Dog','Suave','Festivo']},
+  {id:34,brand:'bimbo',cat:'galletas',emoji:'🍪',badge:'promo',name:'Gamesa Bimbo Chocochip',desc:'Galleta con chips de chocolate, crujiente por fuera y suave por dentro. Snack clásico de la marca Bimbo, favorito para lonchera y merienda.',tags:['150g','300g','Chocolate','Snack','Niños']},
+
+  /* ── COLOMBINA ───────────────────────────────────────────── */
+  {id:35,brand:'colombina',cat:'confiteria',emoji:'🍬',badge:'popular',name:'Bon Bon Bum Fresa',desc:'El chupetín de bola con chicle en el centro más famoso de Colombia. Sabor fresa intenso que ha conquistado generaciones de niños y adultos.',tags:['Unidad','Fresa','Con chicle','Icónico']},
+  {id:36,brand:'colombina',cat:'confiteria',emoji:'🍭',badge:'popular',name:'Bon Bon Bum Tutti Frutti',desc:'Variedad tutti frutti del emblemático chupetín Bon Bon Bum. Mezcla de sabores frutales con chicle sorpresa en el interior.',tags:['Unidad','Tutti Frutti','Con chicle','Surtido']},
+  {id:37,brand:'colombina',cat:'confiteria',emoji:'🍫',badge:'nuevo',name:'Nucita Colombina',desc:'Crema de chocolate y avellana en vasito, el clásico colombiano para untar. Viene con paleta para disfrutar hasta el último gramo.',tags:['33g','Chocolate','Avellana','Con paleta']},
+  {id:38,brand:'colombina',cat:'confiteria',emoji:'🍬',badge:null,name:'Frugele Colombina',desc:'Caramelo de frutas suave y sin azúcar añadida. Surtido de sabores tropicales ideales para regalo y consumo masivo.',tags:['Surtido','Sin azúcar','Frutas','Blando']},
+  {id:39,brand:'colombina',cat:'bebidas',emoji:'🥤',badge:'promo',name:'Yogu Yogu Colombina',desc:'Bebida láctea dulce en presentación de tubo, lista para consumir. Sabores fresa y mora, alta demanda en tiendas escolares.',tags:['Tubo','Fresa','Mora','Escolar']},
+
+  /* ── QUALA ───────────────────────────────────────────────── */
+  {id:40,brand:'quala',cat:'aseo',emoji:'🧴',badge:'popular',name:'Ego Men Shampoo',desc:'Shampoo para hombre con fórmula anticaspa y control de grasa. Frescura duradera con fragancia masculina. De la marca colombiana líder Quala.',tags:['200ml','400ml','Anticaspa','Hombre']},
+  {id:41,brand:'quala',cat:'aseo',emoji:'🧼',badge:'popular',name:'Plusbelle Shampoo',desc:'Shampoo para mujer con proteínas y vitaminas para un cabello fuerte y brillante. Disponible en variedad hidratante, reparadora y anti-caída.',tags:['200ml','400ml','Hidratante','Reparador','Anti-caída']},
+  {id:42,brand:'quala',cat:'aseo',emoji:'🧴',badge:'nuevo',name:'Konzil Crema de Dientes',desc:'Crema dental con flúor y blanqueadores naturales. Protección total contra caries, sarro y manchas, con aliento fresco duradero.',tags:['60g','125g','Con flúor','Blanqueador','Anti-caries']},
+  {id:43,brand:'quala',cat:'aseo',emoji:'🫧',badge:null,name:'OGX Quala Acondicionador',desc:'Acondicionador con aceite de argán de Marruecos para cabello seco y dañado. Fórmula sin parabenos que deja el cabello suave y manejable.',tags:['385ml','Argán','Sin parabenos','Reparador']},
+  {id:44,brand:'quala',cat:'aseo',emoji:'🧹',badge:'promo',name:'Glade Quala Ambientador',desc:'Ambientador en aerosol con fragancias florales y cítricas para el hogar. Elimina olores de cocina, baño y espacios cerrados de forma rápida.',tags:['270ml','Floral','Cítrico','Hogar','Aerosol']},
 ];
 
-const CAT_NAMES={all:'Alpina & Ramo',lacteos:'Lácteos',yogur:'Yogur',quesos:'Quesos',bebidas:'Bebidas',ponques:'Ponqués',galletas:'Galletas',panaderia:'Panadería'};
-const CAT_IDS=['all','lacteos','yogur','quesos','bebidas','ponques','galletas','panaderia'];
+const CAT_NAMES={all:'Todas las Marcas',lacteos:'Lácteos',yogur:'Yogur',quesos:'Quesos',bebidas:'Bebidas',ponques:'Ponqués',galletas:'Galletas',panaderia:'Panadería',embutidos:'Embutidos',confiteria:'Confitería',aseo:'Aseo'};
+const CAT_IDS=['all','lacteos','yogur','quesos','bebidas','ponques','galletas','panaderia','embutidos','confiteria','aseo'];
 const BADGE_MAP={popular:'badge-popular',nuevo:'badge-new',promo:'badge-promo'};
 const BADGE_LBL={popular:'Popular',nuevo:'Nuevo',promo:'Promo'};
+
+/* Mapa de colores/clases por brand (generado desde BRANDS) */
+const BRAND_MAP = {};
+BRANDS.forEach(b => { BRAND_MAP[b.id] = b; });
+
+/* Inyectar estilos dinámicos para los brand-tag-card de cada marca */
+(function(){
+  const style = document.createElement('style');
+  style.textContent = BRANDS.map(b =>
+    `.${b.cssClass}{background:${b.color};color:#fff;}`
+  ).join('');
+  document.head.appendChild(style);
+})();
 
 let fCat='all',fBrand='all',fTag='all',fSearch='';
 
@@ -218,8 +282,8 @@ function render(){
   titleEl.innerHTML=CAT_NAMES[fCat]||'Productos';
   prods.forEach(p=>{
     const bHTML=p.badge?`<span class="prod-badge ${BADGE_MAP[p.badge]}">${BADGE_LBL[p.badge]}</span>`:'';
-    const bClass=p.brand==='alpina'?'bta':'btr';
-    const bLbl=p.brand==='alpina'?'🥛 Alpina':'🧁 Ramo';
+    const bClass = BRAND_MAP[p.brand]?.cssClass || 'bta';
+    const bLbl   = BRAND_MAP[p.brand]?.label   || p.brand;
     const c=document.createElement('div');
     c.className='product-card';c.dataset.brand=p.brand;
     c.innerHTML=`
@@ -259,7 +323,9 @@ document.querySelectorAll('.brand-pill').forEach(pill=>{
   pill.addEventListener('click',()=>{
     document.querySelectorAll('.brand-pill').forEach(p=>p.classList.remove('active'));
     pill.classList.add('active');fBrand=pill.dataset.brand;
-    document.getElementById('sectionTag').textContent=fBrand==='all'?'Portafolio Completo':'Portafolio '+(fBrand==='alpina'?'Alpina':'Ramo');
+    document.getElementById('sectionTag').textContent = fBrand === 'all'
+      ? 'Portafolio Completo'
+      : 'Portafolio ' + (BRAND_MAP[fBrand]?.label || fBrand);
     render();
   });
 });
@@ -291,9 +357,9 @@ function openModal(p){
   document.getElementById('modalCat').textContent=CAT_NAMES[p.cat]||p.cat;
   document.getElementById('modalName').textContent=p.name;
   document.getElementById('modalDesc').textContent=p.desc;
-  document.getElementById('modalBrandBadge').innerHTML=p.brand==='alpina'
-    ?'<span class="modal-brand-badge" style="background:var(--blue);color:#fff">🥛 Alpina</span>'
-    :'<span class="modal-brand-badge" style="background:#e05c2a;color:#fff">🧁 Ramo</span>';
+  const brand = BRAND_MAP[p.brand] || { label: p.brand, color: '#666' };
+  document.getElementById('modalBrandBadge').innerHTML =
+    `<span class="modal-brand-badge" style="background:${brand.color};color:#fff">${brand.label}</span>`;
   document.getElementById('modalTags').innerHTML=p.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('');
   modalOverlay.classList.add('open');document.body.style.overflow='hidden';
 }
