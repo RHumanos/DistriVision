@@ -36,7 +36,7 @@
   </button>
 </nav>
 
-<!-- ══════════════ HERO ══════════════ -->
+!-- ══════════════ HERO ══════════════ -->
 <section class="page-hero">
   <div class="hero-bg">
     <div class="geo geo-1"></div>
@@ -314,6 +314,44 @@ if (hambBtn) {
       btn.style.transform = `translate(${dx * 0.18}px,${dy * 0.22}px)`;
     });
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+})();
+
+/* ── PARTÍCULAS SECCIONES ── */
+(function createSectionParticles() {
+  const sections = [
+    { selector: '.proceso-section',   count: 18, colors: ['#255c95','#228fd2','#d6e5f5'] },
+    { selector: '.drive-section',     count: 14, colors: ['#255c95','#228fd2','#ffffff'] },
+    { selector: '.rrhh-nota-section', count: 12, colors: ['#255c95','#228fd2','#d6e5f5'] },
+  ];
+  sections.forEach(({ selector, count, colors }) => {
+    const section = document.querySelector(selector);
+    if (!section) return;
+    // Asegurar posición relativa
+    section.style.position = 'relative';
+    section.style.overflow = 'hidden';
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      const size = Math.random() * 10 + 4;
+      Object.assign(p.style, {
+        position:          'absolute',
+        borderRadius:      '50%',
+        pointerEvents:     'none',
+        zIndex:            '0',
+        width:             size + 'px',
+        height:            size + 'px',
+        left:              (Math.random() * 100) + '%',
+        top:               (Math.random() * 100) + '%',
+        animationName:     'sectionParticleFloat',
+        animationDelay:    '-' + (Math.random() * 14) + 's',
+        animationDuration: (Math.random() * 12 + 10) + 's',
+        animationTimingFunction: 'ease-in-out',
+        animationIterationCount: 'infinite',
+        background:        colors[Math.floor(Math.random() * colors.length)],
+        opacity:           (Math.random() * 0.13 + 0.04).toString()
+      });
+      section.appendChild(p);
+    }
   });
 })();
 
