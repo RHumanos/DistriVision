@@ -630,6 +630,14 @@ footer { background: var(--blue-dark); padding: 60px 6vw 32px; }
 @keyframes revealUp  { to { opacity: 1; transform: translateY(0); } }
 @keyframes revealFade { to { opacity: 1; } }
 
+@keyframes sectionParticleFloat {
+  0%   { transform: translateY(0)     translateX(0)   scale(1)    rotate(0deg);   opacity: .05; }
+  20%  { opacity: .18; }
+  50%  { transform: translateY(-70px) translateX(35px) scale(1.15) rotate(180deg); opacity: .1;  }
+  80%  { opacity: .2; }
+  100% { transform: translateY(0)     translateX(0)   scale(1)    rotate(360deg); opacity: .05; }
+}
+
 /* ══════════════════════════════
    RESPONSIVE — 900px
 ══════════════════════════════ */
