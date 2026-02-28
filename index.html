@@ -5,8 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DistriVision – Distribución de Excelencia</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="splash.css">
 </head>
 <body>
+
+<!-- ══════════════ SPLASH SCREEN ══════════════ -->
+<div id="splash-screen">
+  <div class="splash-geo splash-geo-1"></div>
+  <div class="splash-geo splash-geo-2"></div>
+  <div class="splash-logo-wrap">
+    <img src="img/1 (3).png" alt="DistriVision Logo" class="splash-logo-img">
+    <div class="splash-brand">Distri<span>Vision</span></div>
+  </div>
+  <p class="splash-tagline">Distribución de Excelencia</p>
+  <div class="splash-bar-wrap">
+    <div class="splash-bar"></div>
+  </div>
+</div>
 
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -335,6 +350,26 @@
 
 <!-- ══════════════ SCRIPTS ══════════════ -->
 <script>
+/* ── SPLASH SCREEN ── */
+(function initSplash() {
+  const splash = document.getElementById('splash-screen');
+  if (!splash) return;
+
+  // Bloquear scroll mientras carga
+  document.body.style.overflow = 'hidden';
+
+  // Después de 2 segundos, ocultar con transición
+  setTimeout(() => {
+    splash.classList.add('splash-hidden');
+    document.body.style.overflow = '';
+
+    // Una vez terminada la transición, quitar del DOM
+    splash.addEventListener('transitionend', () => {
+      splash.classList.add('splash-gone');
+    }, { once: true });
+  }, 2000);
+})();
+
 /* ── CURSOR ── */
 const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
@@ -460,15 +495,3 @@ if (hambBtn) {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
