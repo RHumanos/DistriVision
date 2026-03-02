@@ -346,6 +346,10 @@ footer{background:var(--blue-dark);padding:26px 6vw}
    CHATBOT WIDGET
 ═══════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════════
+   CHATBOT WIDGET
+═══════════════════════════════════════════════ */
+
 #dv-help-btn {
   position:fixed;bottom:32px;right:32px;z-index:9000;
   width:62px;height:62px;border-radius:50%;
@@ -443,8 +447,8 @@ footer{background:var(--blue-dark);padding:26px 6vw}
   border-radius:18px 18px 18px 4px;max-width:260px;
   box-shadow:0 2px 8px rgba(37,92,149,.08);
 }
-.dv-bubble.user                  { flex-direction:row-reverse; }
-.dv-bubble.user .dv-bubble-text  {
+.dv-bubble.user                 { flex-direction:row-reverse; }
+.dv-bubble.user .dv-bubble-text {
   background:linear-gradient(135deg,#255c95,#228fd2);color:#fff;
   border-radius:18px 18px 4px 18px;
 }
@@ -511,3 +515,66 @@ footer{background:var(--blue-dark);padding:26px 6vw}
   font-family:'Lato',sans-serif;font-size:.68rem;color:#a0aec0;flex-shrink:0;
 }
 .dv-chat-footer span { color:#255c95;font-weight:700; }
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  #dv-chat-panel {
+    width:calc(100vw - 24px);
+    right:12px;
+    bottom:88px;
+    max-height:75vh;
+    border-radius:18px;
+  }
+  #dv-help-btn {
+    bottom:18px;
+    right:18px;
+    width:54px;
+    height:54px;
+  }
+}
+
+@media(max-width:600px){
+  #dv-chat-panel {
+    width:calc(100vw - 16px);
+    right:8px;
+    left:8px;
+    bottom:80px;
+    max-height:70vh;
+    border-radius:16px;
+  }
+  #dv-help-btn {
+    bottom:14px;
+    right:14px;
+    width:50px;
+    height:50px;
+  }
+  .dv-chat-header        { padding:14px 16px 12px; }
+  .dv-bot-avatar         { width:38px;height:38px;font-size:1.1rem; }
+  .dv-chat-header-name   { font-size:.85rem; }
+  .dv-chat-header-status { font-size:.65rem; }
+  .dv-chat-body          { padding:16px 12px 10px;gap:10px; }
+  .dv-bubble-text        { font-size:.82rem;padding:9px 13px;max-width:calc(100vw - 100px); }
+  .dv-options            { padding:0 12px 14px;gap:7px; }
+  .dv-option-btn         { padding:10px 13px;font-size:.80rem; }
+  .dv-option-btn .opt-icon { width:28px;height:28px;font-size:.85rem; }
+  .dv-answer             { padding:0 12px 14px; }
+  .dv-answer-card        { font-size:.80rem;padding:13px 14px; }
+  .dv-chat-footer        { font-size:.63rem;padding:8px 14px 12px; }
+}
+
+@media(max-width:380px){
+  #dv-chat-panel {
+    width:calc(100vw - 12px);
+    right:6px;
+    left:6px;
+    bottom:74px;
+    max-height:68vh;
+  }
+  #dv-help-btn {
+    bottom:10px;
+    right:10px;
+    width:46px;
+    height:46px;
+  }
+  .dv-bubble-text { max-width:calc(100vw - 80px); }
+}
