@@ -400,11 +400,11 @@ nav ul a:hover::after { transform: scaleX(1); }
   box-shadow: 0 6px 20px rgba(0,0,0,.2);
 }
 
-/* Visor iframe */
+/* ── Visor iframe — reducido para caber en pantalla ── */
 .drive-viewer-wrapper {
   width: 100%;
-  height: 75vh;
-  min-height: 560px;
+  height: 50vh;
+  min-height: 400px;
   background: #f1f3f4;
   position: relative;
   overflow: hidden;
@@ -684,7 +684,7 @@ footer { background: var(--blue-dark); padding: 60px 6vw 32px; }
   .drive-section { padding: 0 5vw 72px; }
   .drive-toolbar { flex-direction: column; align-items: flex-start; gap: 14px; }
   .drive-open-btn { align-self: flex-start; }
-  .drive-viewer-wrapper { height: 65vh; min-height: 440px; }
+  .drive-viewer-wrapper { height: 48vh; min-height: 360px; }
   .drive-footer-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
 
   .rrhh-nota-section { padding: 56px 5vw 64px; }
@@ -716,7 +716,7 @@ footer { background: var(--blue-dark); padding: 60px 6vw 32px; }
   .drive-section { padding: 0 5vw 60px; }
   .drive-header { padding: 60px 0 40px; }
   .drive-folder-name { font-size: .85rem; }
-  .drive-viewer-wrapper { height: 60vh; min-height: 380px; }
+  .drive-viewer-wrapper { height: 45vh; min-height: 300px; }
 
   .rrhh-nota-section { padding: 44px 5vw 52px; }
   .rrhh-nota-card { padding: 28px 22px; }
