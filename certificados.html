@@ -448,7 +448,7 @@ if(iframe&&loading){
     }
   };
 
-  /* Toggle */
+  /* Toggle — solo el botón abre/cierra */
   helpBtn.addEventListener('click', ()=>{
     isOpen = !isOpen;
     helpBtn.classList.toggle('open', isOpen);
@@ -456,14 +456,7 @@ if(iframe&&loading){
     if(isOpen && !initialized) initChat();
   });
 
-  /* Cerrar al clicar fuera */
-  document.addEventListener('click', e=>{
-    if(isOpen && !chatPanel.contains(e.target) && e.target !== helpBtn && !helpBtn.contains(e.target)){
-      isOpen = false;
-      helpBtn.classList.remove('open');
-      chatPanel.classList.remove('open');
-    }
-  });
+  /* ← bloque "cerrar al clicar fuera" eliminado */
 
   function initChat(){
     initialized = true;
