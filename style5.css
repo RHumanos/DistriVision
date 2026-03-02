@@ -1,4 +1,3 @@
-
 :root {
   --blue:        #255c95;
   --blue-dark:   #1a4470;
@@ -367,8 +366,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 /* ═══════════════════════════════════════════════
    CHATBOT WIDGET
 ═══════════════════════════════════════════════ */
-
-/* ── Botón flotante ── */
 #dv-help-btn {
   position:fixed;bottom:32px;right:32px;z-index:9000;
   width:62px;height:62px;border-radius:50%;
@@ -395,7 +392,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
   50%    { box-shadow:0 8px 28px rgba(37,92,149,.45),0 0 0 10px rgba(34,143,210,.0); }
 }
 
-/* Tooltip */
 #dv-help-btn::before {
   content:'¿Necesitas ayuda?';position:absolute;right:72px;top:50%;
   transform:translateY(-50%);background:#1a4470;color:#fff;
@@ -413,7 +409,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 #dv-help-btn.open::before,
 #dv-help-btn.open::after   { opacity:0 !important; }
 
-/* ── Panel ── */
 #dv-chat-panel {
   position:fixed;bottom:106px;right:32px;z-index:8999;
   width:360px;max-height:520px;background:#fff;border-radius:24px;
@@ -424,7 +419,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 }
 #dv-chat-panel.open { transform:translateY(0)scale(1);opacity:1;pointer-events:all; }
 
-/* Header */
 .dv-chat-header {
   background:linear-gradient(135deg,#1a4470 0%,#255c95 60%,#228fd2 100%);
   padding:20px 22px 18px;display:flex;align-items:center;gap:14px;flex-shrink:0;
@@ -442,7 +436,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 .dv-chat-header-name { font-family:'Lato',sans-serif;font-weight:700;font-size:.95rem;color:#fff;line-height:1.2; }
 .dv-chat-header-status { font-family:'Lato',sans-serif;font-size:.72rem;color:rgba(255,255,255,.65);margin-top:2px; }
 
-/* Cuerpo */
 .dv-chat-body {
   flex:1;overflow-y:auto;padding:22px 18px 12px;
   display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth;
@@ -451,7 +444,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 .dv-chat-body::-webkit-scrollbar-track { background:transparent; }
 .dv-chat-body::-webkit-scrollbar-thumb { background:#d6e5f5;border-radius:4px; }
 
-/* Burbujas */
 .dv-bubble {
   display:flex;align-items:flex-end;gap:8px;
   animation:dvBubbleIn .35s cubic-bezier(.34,1.56,.64,1) forwards;opacity:0;
@@ -477,7 +469,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
   border-radius:18px 18px 4px 18px;
 }
 
-/* Typing */
 .dv-typing {
   display:flex;align-items:flex-end;gap:8px;
   animation:dvBubbleIn .3s ease forwards;opacity:0;
@@ -497,7 +488,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
   40%        { transform:scale(1.4);opacity:1; }
 }
 
-/* Opciones */
 .dv-options { display:flex;flex-direction:column;gap:9px;padding:0 18px 18px;flex-shrink:0; }
 .dv-option-btn {
   width:100%;background:#fff;border:1.5px solid #d6e5f5;border-radius:14px;
@@ -521,7 +511,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 .dv-option-btn .opt-arrow { font-size:.8rem;color:#228fd2;opacity:.7;transition:transform .2s,opacity .2s; }
 .dv-option-btn:hover .opt-arrow { transform:translateX(3px);opacity:1; }
 
-/* Respuesta */
 .dv-answer { padding:0 18px 18px;flex-shrink:0; }
 .dv-answer-card {
   background:#f0f6ff;border:1px solid #d6e5f5;border-left:4px solid #255c95;border-radius:14px;
@@ -538,18 +527,109 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 }
 .dv-back-btn:hover { gap:9px;cursor:pointer; }
 
-/* Footer chat */
 .dv-chat-footer {
   padding:10px 18px 14px;border-top:1px solid #f0f4f8;text-align:center;
   font-family:'Lato',sans-serif;font-size:.68rem;color:#a0aec0;flex-shrink:0;
 }
 .dv-chat-footer span { color:#255c95;font-weight:700; }
 
-/* ─────────────────────────────
+/* ═══════════════════════════════════════════════
    RESPONSIVE
-───────────────────────────── */
-/* ── Chatbot responsive ── */
-@media(max-width:900px){
+═══════════════════════════════════════════════ */
+
+/* ── Tablet grande (1024px) ── */
+@media (max-width: 1024px) {
+  nav { padding: 0 4vw; }
+  nav ul { gap: 20px; }
+
+  .page-hero { padding: 130px 4vw 80px; }
+  .page-hero-content h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+
+  .proceso-section { padding: 72px 4vw 80px; }
+  .drive-section   { padding: 0 4vw 80px; }
+  .drive-viewer-wrapper { min-height: 360px; }
+
+  .rrhh-nota-section { padding: 60px 4vw 72px; }
+
+  .footer-top { gap: 32px; }
+}
+
+/* ── Tablet (900px) ── */
+@media (max-width: 900px) {
+  /* Cursor oculto en touch */
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+
+  /* Nav — hamburguesa */
+  nav { padding: 0 5vw; height: 68px; }
+  nav ul { display: none; }
+  .nav-hamburger {
+    display: flex; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 8px; background: none; border: none;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--blue); border-radius: 2px;
+    transition: transform .3s, opacity .3s;
+  }
+  nav.menu-open ul {
+    display: flex; flex-direction: column; gap: 0;
+    position: absolute; top: 68px; left: 0; right: 0;
+    background: rgba(255,255,255,.97); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(37,92,149,.1);
+    padding: 12px 0; box-shadow: var(--shadow-md);
+  }
+  nav.menu-open ul li { width: 100%; }
+  nav.menu-open ul a {
+    display: block; padding: 14px 5vw;
+    font-size: 1rem; border-bottom: 1px solid rgba(37,92,149,.05);
+  }
+  nav.menu-open ul a::after { display: none; }
+  .nav-cta {
+    margin: 12px 5vw !important; border-radius: 12px !important;
+    text-align: center; padding: 14px !important;
+  }
+  nav.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+  nav.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Hero */
+  .page-hero { padding: 100px 5vw 60px; min-height: auto; }
+  .page-hero-content h1 { font-size: clamp(2.4rem, 6vw, 3.4rem); }
+  .hero-desc { font-size: .95rem; }
+
+  /* Proceso */
+  .proceso-section { padding: 64px 5vw 72px; }
+  .proc-step { grid-template-columns: 56px 2px 1fr; gap: 0 20px; }
+  .proc-step-icon { width: 56px; height: 56px; font-size: 1.3rem; }
+  .proc-step-body { padding: 0 0 36px; }
+  .proc-step-body h3 { font-size: 1.05rem; }
+
+  /* Drive */
+  .drive-section { padding: 0 5vw 72px; }
+  .drive-header  { padding: 64px 0 44px; }
+  .drive-toolbar { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+  .drive-viewer-wrapper { height: 45vh; min-height: 300px; }
+  .drive-footer-bar { padding: 12px 20px; }
+
+  /* RRHH */
+  .rrhh-nota-section { padding: 56px 5vw 64px; }
+  .rrhh-nota-card {
+    flex-direction: column; gap: 20px;
+    padding: 28px 24px;
+  }
+  .rrhh-nota-icon-wrap { width: 56px; height: 56px; border-radius: 14px; }
+  .rrhh-nota-icon { font-size: 1.5rem; }
+
+  /* CTA */
+  .cta-band { flex-direction: column; text-align: center; padding: 60px 5vw; gap: 28px; }
+  .cta-band h2 { max-width: 100%; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  footer { padding: 48px 5vw 24px; }
+
+  /* Chatbot */
   #dv-chat-panel {
     width: calc(100vw - 24px);
     right: 12px;
@@ -565,7 +645,52 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
   }
 }
 
-@media(max-width:600px){
+/* ── Móvil (600px) ── */
+@media (max-width: 600px) {
+  /* Nav */
+  .logo-img  { height: 40px; }
+
+  /* Hero */
+  .page-hero { padding: 88px 5vw 52px; }
+  .page-hero-content h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero-desc { font-size: .92rem; }
+
+  /* Proceso */
+  .proceso-section { padding: 52px 5vw 60px; }
+  .proceso-header  { margin-bottom: 44px; }
+  .proc-step { grid-template-columns: 48px 2px 1fr; gap: 0 16px; }
+  .proc-step-icon { width: 48px; height: 48px; font-size: 1.1rem; }
+  .proc-step-body h3 { font-size: 1rem; }
+  .proc-step-body p  { font-size: .88rem; }
+  .proc-step-body { padding: 0 0 28px; }
+
+  /* Drive */
+  .drive-section { padding: 0 5vw 60px; }
+  .drive-header  { padding: 52px 0 36px; }
+  .drive-toolbar { padding: 14px 16px; }
+  .drive-folder-name { font-size: .85rem; }
+  .drive-open-btn { padding: 8px 16px; font-size: .78rem; }
+  .drive-viewer-wrapper { height: 40vh; min-height: 260px; }
+  .drive-footer-bar { padding: 10px 16px; flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  /* RRHH */
+  .rrhh-nota-section { padding: 48px 5vw 56px; }
+  .rrhh-nota-card { padding: 24px 20px; gap: 16px; }
+  .rrhh-nota-body h3 { font-size: 1.05rem; }
+  .rrhh-nota-body > p { font-size: .88rem; }
+  .rrhh-dato { font-size: .82rem; }
+
+  /* CTA */
+  .cta-band { padding: 52px 5vw; }
+  .cta-band h2 { font-size: 1.5rem; }
+  .btn-white { width: 100%; max-width: 280px; text-align: center; display: block; margin: 0 auto; }
+
+  /* Footer */
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+  .fp-logo-img { height: 38px; }
+
+  /* Chatbot */
   #dv-chat-panel {
     width: calc(100vw - 16px);
     right: 8px;
@@ -580,38 +705,37 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
     width: 50px;
     height: 50px;
   }
-  .dv-chat-header {
-    padding: 14px 16px 12px;
-  }
-  .dv-bot-avatar {
-    width: 38px;
-    height: 38px;
-    font-size: 1.1rem;
-  }
+  .dv-chat-header        { padding: 14px 16px 12px; }
+  .dv-bot-avatar         { width: 38px; height: 38px; font-size: 1.1rem; }
   .dv-chat-header-name   { font-size: .85rem; }
   .dv-chat-header-status { font-size: .65rem; }
-  .dv-chat-body  { padding: 16px 12px 10px; gap: 10px; }
-  .dv-bubble-text {
-    font-size: .82rem;
-    padding: 9px 13px;
-    max-width: calc(100vw - 100px);
-  }
-  .dv-options { padding: 0 12px 14px; gap: 7px; }
-  .dv-option-btn {
-    padding: 10px 13px;
-    font-size: .80rem;
-  }
-  .dv-option-btn .opt-icon {
-    width: 28px;
-    height: 28px;
-    font-size: .85rem;
-  }
-  .dv-answer      { padding: 0 12px 14px; }
-  .dv-answer-card { font-size: .80rem; padding: 13px 14px; }
-  .dv-chat-footer { font-size: .63rem; padding: 8px 14px 12px; }
+  .dv-chat-body          { padding: 16px 12px 10px; gap: 10px; }
+  .dv-bubble-text        { font-size: .82rem; padding: 9px 13px; max-width: calc(100vw - 100px); }
+  .dv-options            { padding: 0 12px 14px; gap: 7px; }
+  .dv-option-btn         { padding: 10px 13px; font-size: .80rem; }
+  .dv-option-btn .opt-icon { width: 28px; height: 28px; font-size: .85rem; }
+  .dv-answer             { padding: 0 12px 14px; }
+  .dv-answer-card        { font-size: .80rem; padding: 13px 14px; }
+  .dv-chat-footer        { font-size: .63rem; padding: 8px 14px 12px; }
 }
 
-@media(max-width:380px){
+/* ── Móvil pequeño (380px) ── */
+@media (max-width: 380px) {
+  nav { padding: 0 4vw; }
+  .logo-img { height: 34px; }
+
+  .page-hero { padding: 80px 4vw 44px; }
+  .page-hero-content h1 { font-size: 1.9rem; }
+
+  .proc-step { grid-template-columns: 40px 2px 1fr; gap: 0 12px; }
+  .proc-step-icon { width: 40px; height: 40px; font-size: 1rem; }
+
+  .rrhh-nota-card { padding: 20px 16px; }
+
+  .footer-top { gap: 24px; }
+  .fp-logo-img { height: 34px; }
+
+  /* Chatbot */
   #dv-chat-panel {
     width: calc(100vw - 12px);
     right: 6px;
