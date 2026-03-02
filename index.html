@@ -520,9 +520,133 @@ if (hambBtn) {
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
   });
 })();
+  (function(){
+  const helpBtn   = document.getElementById('dv-help-btn');
+  const chatPanel = document.getElementById('dv-chat-panel');
+  const chatBody  = document.getElementById('dvChatBody');
+  const dynamic   = document.getElementById('dvDynamic');
+  let isOpen = false, initialized = false;
+
+  const OPTIONS = [
+    { icon:'📞', label:'Comunícate con nosotros',     sub:'Teléfono, WhatsApp o correo', id:'contacto'    },
+    { icon:'📋', label:'Cómo obtener mi certificado', sub:'Pasos del proceso explicados', id:'certificado' },
+    { icon:'💼', label:'Vacantes y empleo',           sub:'Trabaja con DistriVision',     id:'vacantes'    }
+  ];
+
+  const ANSWERS = {
+    contacto: {
+      title:'📞 Contáctanos directamente',
+      html:`
+        <p>Puedes comunicarte con nosotros por cualquiera de estos medios:</p><br>
+        <p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p>
+        <p>📞 <b>Teléfono:</b> (8) 870 34 34</p>
+        <p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p>
+        <p>✉️ <b>RR.HH.:</b> <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
+        <p>✉️ <b>General:</b> <a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></p>
+      `
+    },
+    certificado: {
+      title:'📋 Cómo obtener tu certificado',
+      html:`
+        <p><b>Sigue estos 3 sencillos pasos:</b></p><br>
+        <p><b>1️⃣ Descarga e imprime</b> el formato desde la carpeta de Drive en esta página.</p>
+        <p><b>2️⃣ Diligencia</b> todos los campos con letra clara y legible.</p>
+        <p><b>3️⃣ Preséntalo</b> en Recursos Humanos para firma y sello oficial.</p><br>
+        <p>📍 <b>RR.HH.:</b> CL 26 SUR No. 6 – 74, Neiva</p>
+      `
+    },
+    vacantes: {
+      title:'💼 Vacantes en DistriVision',
+      html:`
+        <p>¿Quieres ser parte de nuestro equipo?</p><br>
+        <p>👉 <a href="vacantes.html">Ver vacantes disponibles →</a></p><br>
+        <p>O envía tu hoja de vida a:</p>
+        <p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
+        <p>📱 <a href="https://wa.me/573105996169" target="_blank">WhatsApp: 310 599 6169</a></p>
+      `
+    }
+  };
+
+  helpBtn.addEventListener('click', ()=>{
+    isOpen = !isOpen;
+    helpBtn.classList.toggle('open', isOpen);
+    chatPanel.classList.toggle('open', isOpen);
+    if(isOpen && !initialized) initChat();
+  });
+
+  function initChat(){
+    initialized = true;
+    addTyping(()=>{
+      addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte hoy?');
+      setTimeout(()=>showOptions(), 400);
+    });
+  }
+
+  function showOptions(){
+    dynamic.innerHTML = '<div class="dv-options" id="dvOptions"></div>';
+    const container = document.getElementById('dvOptions');
+    OPTIONS.forEach((opt,i)=>{
+      const b = document.createElement('button');
+      b.className = 'dv-option-btn';
+      b.style.animationDelay = (i*.08)+'s';
+      b.innerHTML = `
+        <div class="opt-icon">${opt.icon}</div>
+        <div class="opt-label">
+          <div>${opt.label}</div>
+          <div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${opt.sub}</div>
+        </div>
+        <span class="opt-arrow">›</span>
+      `;
+      b.addEventListener('click', ()=>selectOption(opt));
+      container.appendChild(b);
+    });
+    scrollBot();
+  }
+
+  function selectOption(opt){
+    addUser(opt.icon+' '+opt.label);
+    dynamic.innerHTML = '';
+    addTyping(()=>{
+      const ans = ANSWERS[opt.id];
+      dynamic.innerHTML = `
+        <div class="dv-answer">
+          <div class="dv-answer-card"><strong>${ans.title}</strong>${ans.html}</div>
+          <button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button>
+        </div>`;
+      document.getElementById('dvBackBtn').addEventListener('click',()=>{
+        addBot('¿Hay algo más en lo que pueda ayudarte?');
+        dynamic.innerHTML = '';
+        setTimeout(()=>showOptions(), 300);
+      });
+      scrollBot();
+    });
+  }
+
+  function addBot(html){
+    const el=document.createElement('div');
+    el.className='dv-bubble';
+    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${html}</div>`;
+    chatBody.appendChild(el);scrollBot();
+  }
+  function addUser(text){
+    const el=document.createElement('div');
+    el.className='dv-bubble user';
+    el.innerHTML=`<div class="dv-bubble-text">${text}</div>`;
+    chatBody.appendChild(el);scrollBot();
+  }
+  function addTyping(cb){
+    const el=document.createElement('div');
+    el.className='dv-typing';
+    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
+    chatBody.appendChild(el);scrollBot();
+    setTimeout(()=>{chatBody.removeChild(el);cb();},950);
+  }
+  function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
+})();
 </script>
 </body>
 </html>
+
 
 
 
