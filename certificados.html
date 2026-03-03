@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DistriVision – Certificados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style5.css">
 </head>
 <body>
@@ -202,9 +203,9 @@
       <h5>Contacto</h5>
       <ul>
         <li><a href="#">CL 26 SUR No. 6 – 74, Neiva</a></li>
-        <li><a href="#">(8) 870 34 34</a></li>
-        <li><a href="#">310 599 6169</a></li>
-        <li><a href="#">distribuciones_vision@hotmail.com</a></li>
+        <li><a href="tel:+5788703434">(8) 870 34 34</a></li>
+        <li><a href="https://wa.me/573105996169">310 599 6169</a></li>
+        <li><a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></li>
       </ul>
     </div>
   </div>
@@ -302,16 +303,22 @@ if(hambBtn){
   }
 })();
 
-/* ── BOTONES MAGNÉTICOS ── */
-document.querySelectorAll('.btn-white,.nav-cta,.drive-open-btn').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{
-    const r=btn.getBoundingClientRect();
-    const dx=e.clientX-(r.left+r.width/2);
-    const dy=e.clientY-(r.top+r.height/2);
-    btn.style.transform=`translate(${dx*.18}px,${dy*.22}px)`;
+/* ── BOTONES MAGNÉTICOS — solo en desktop, nunca en el btn-white ── */
+(function(){
+  // Solo aplica efecto magnético si NO es touch y NO es el btn-white
+  const isTouchDevice = window.matchMedia('(hover: none)').matches;
+  if(isTouchDevice) return;
+
+  document.querySelectorAll('.nav-cta, .drive-open-btn').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const dx=e.clientX-(r.left+r.width/2);
+      const dy=e.clientY-(r.top+r.height/2);
+      btn.style.transform=`translate(${dx*.18}px,${dy*.22}px)`;
+    });
+    btn.addEventListener('mouseleave',()=>btn.style.transform='');
   });
-  btn.addEventListener('mouseleave',()=>btn.style.transform='');
-});
+})();
 
 /* ── PARTÍCULAS SECCIONES ── */
 (function(){
@@ -448,15 +455,12 @@ if(iframe&&loading){
     }
   };
 
-  /* Toggle — solo el botón abre/cierra */
   helpBtn.addEventListener('click', ()=>{
     isOpen = !isOpen;
     helpBtn.classList.toggle('open', isOpen);
     chatPanel.classList.toggle('open', isOpen);
     if(isOpen && !initialized) initChat();
   });
-
-  /* ← bloque "cerrar al clicar fuera" eliminado */
 
   function initChat(){
     initialized = true;
