@@ -237,7 +237,8 @@ nav ul a:hover::after { transform: scaleX(1); }
   display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);color:var(--white);
   padding:10px 22px;border-radius:50px;font-family:'Lato',sans-serif;font-weight:700;font-size:.84rem;
   text-decoration:none;border:1px solid rgba(255,255,255,.25);white-space:nowrap;
-  transition:background .2s,transform .2s,box-shadow .2s;cursor:none;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  cursor:pointer;pointer-events:all;
 }
 .drive-open-btn:hover { background:rgba(255,255,255,.25);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2); }
 .drive-viewer-wrapper {
@@ -263,6 +264,7 @@ nav ul a:hover::after { transform: scaleX(1); }
 .drive-alt-link {
   font-family:'Lato',sans-serif;font-size:.8rem;font-weight:700;color:var(--accent);
   text-decoration:none;white-space:nowrap;transition:color .2s;
+  cursor:pointer;pointer-events:all;
 }
 .drive-alt-link:hover { color:var(--accent-dark); }
 
@@ -306,19 +308,44 @@ nav ul a:hover::after { transform: scaleX(1); }
 .cta-band::before {
   content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(255,255,255,.02)20px,rgba(255,255,255,.02)40px);
+  pointer-events:none;
 }
 .cta-band h2 {
   font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--white);
   max-width:520px;line-height:1.2;position:relative;
 }
 .cta-band h2 span { color:rgba(255,255,255,.55); }
+
+/* ── BTN-WHITE — funcional en todos los dispositivos ── */
 .btn-white {
-  background:var(--white);color:var(--blue);padding:16px 38px;border-radius:50px;
-  font-family:'Lato',sans-serif;font-weight:700;text-decoration:none;font-size:.95rem;
-  white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.2);
-  transition:transform .25s,box-shadow .25s;cursor:none;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  background: var(--white);
+  color: var(--blue);
+  padding: 16px 38px;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: .95rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(0,0,0,.2);
+  transition: transform .25s, box-shadow .25s;
+  /* Garantiza que sea clicable */
+  cursor: pointer;
+  pointer-events: all;
+  -webkit-tap-highlight-color: rgba(37,92,149,.15);
+  user-select: none;
 }
-.btn-white:hover { transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.3); }
+.btn-white:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,.3);
+}
+.btn-white:active {
+  transform: translateY(0px) scale(.97);
+  box-shadow: 0 4px 14px rgba(0,0,0,.2);
+}
 
 /* ─────────────────────────────
    FOOTER
@@ -556,11 +583,9 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 
 /* ── Tablet (900px) ── */
 @media (max-width: 900px) {
-  /* Cursor oculto en touch */
   body { cursor: auto; }
   .cursor-dot, .cursor-ring { display: none; }
 
-  /* Nav — hamburguesa */
   nav { padding: 0 5vw; height: 68px; }
   nav ul { display: none; }
   .nav-hamburger {
@@ -593,43 +618,44 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
   nav.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; }
   nav.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Hero */
   .page-hero { padding: 100px 5vw 60px; min-height: auto; }
   .page-hero-content h1 { font-size: clamp(2.4rem, 6vw, 3.4rem); }
   .hero-desc { font-size: .95rem; }
 
-  /* Proceso */
   .proceso-section { padding: 64px 5vw 72px; }
   .proc-step { grid-template-columns: 56px 2px 1fr; gap: 0 20px; }
   .proc-step-icon { width: 56px; height: 56px; font-size: 1.3rem; }
   .proc-step-body { padding: 0 0 36px; }
   .proc-step-body h3 { font-size: 1.05rem; }
 
-  /* Drive */
   .drive-section { padding: 0 5vw 72px; }
   .drive-header  { padding: 64px 0 44px; }
   .drive-toolbar { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
   .drive-viewer-wrapper { height: 45vh; min-height: 300px; }
   .drive-footer-bar { padding: 12px 20px; }
 
-  /* RRHH */
   .rrhh-nota-section { padding: 56px 5vw 64px; }
-  .rrhh-nota-card {
-    flex-direction: column; gap: 20px;
-    padding: 28px 24px;
-  }
+  .rrhh-nota-card { flex-direction: column; gap: 20px; padding: 28px 24px; }
   .rrhh-nota-icon-wrap { width: 56px; height: 56px; border-radius: 14px; }
   .rrhh-nota-icon { font-size: 1.5rem; }
 
-  /* CTA */
-  .cta-band { flex-direction: column; text-align: center; padding: 60px 5vw; gap: 28px; }
+  /* CTA — botón ancho completo en tablet */
+  .cta-band {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 5vw;
+    gap: 28px;
+    align-items: center;
+  }
   .cta-band h2 { max-width: 100%; }
+  .btn-white {
+    padding: 15px 44px;
+    font-size: 1rem;
+  }
 
-  /* Footer */
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
   footer { padding: 48px 5vw 24px; }
 
-  /* Chatbot */
   #dv-chat-panel {
     width: calc(100vw - 24px);
     right: 12px;
@@ -637,25 +663,17 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
     max-height: 75vh;
     border-radius: 18px;
   }
-  #dv-help-btn {
-    bottom: 18px;
-    right: 18px;
-    width: 54px;
-    height: 54px;
-  }
+  #dv-help-btn { bottom: 18px; right: 18px; width: 54px; height: 54px; }
 }
 
 /* ── Móvil (600px) ── */
 @media (max-width: 600px) {
-  /* Nav */
   .logo-img  { height: 40px; }
 
-  /* Hero */
   .page-hero { padding: 88px 5vw 52px; }
   .page-hero-content h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
   .hero-desc { font-size: .92rem; }
 
-  /* Proceso */
   .proceso-section { padding: 52px 5vw 60px; }
   .proceso-header  { margin-bottom: 44px; }
   .proc-step { grid-template-columns: 48px 2px 1fr; gap: 0 16px; }
@@ -664,7 +682,6 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
   .proc-step-body p  { font-size: .88rem; }
   .proc-step-body { padding: 0 0 28px; }
 
-  /* Drive */
   .drive-section { padding: 0 5vw 60px; }
   .drive-header  { padding: 52px 0 36px; }
   .drive-toolbar { padding: 14px 16px; }
@@ -673,38 +690,35 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
   .drive-viewer-wrapper { height: 40vh; min-height: 260px; }
   .drive-footer-bar { padding: 10px 16px; flex-direction: column; align-items: flex-start; gap: 8px; }
 
-  /* RRHH */
   .rrhh-nota-section { padding: 48px 5vw 56px; }
   .rrhh-nota-card { padding: 24px 20px; gap: 16px; }
   .rrhh-nota-body h3 { font-size: 1.05rem; }
   .rrhh-nota-body > p { font-size: .88rem; }
   .rrhh-dato { font-size: .82rem; }
 
-  /* CTA */
-  .cta-band { padding: 52px 5vw; }
+  /* CTA — botón ocupa todo el ancho en móvil */
+  .cta-band { padding: 52px 5vw; gap: 22px; align-items: center; }
   .cta-band h2 { font-size: 1.5rem; }
-  .btn-white { width: 100%; max-width: 280px; text-align: center; display: block; margin: 0 auto; }
+  .btn-white {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: .95rem;
+  }
 
-  /* Footer */
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
   .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
   .fp-logo-img { height: 38px; }
 
-  /* Chatbot */
   #dv-chat-panel {
     width: calc(100vw - 16px);
-    right: 8px;
-    left: 8px;
+    right: 8px; left: 8px;
     bottom: 80px;
     max-height: 70vh;
     border-radius: 16px;
   }
-  #dv-help-btn {
-    bottom: 14px;
-    right: 14px;
-    width: 50px;
-    height: 50px;
-  }
+  #dv-help-btn { bottom: 14px; right: 14px; width: 50px; height: 50px; }
   .dv-chat-header        { padding: 14px 16px 12px; }
   .dv-bot-avatar         { width: 38px; height: 38px; font-size: 1.1rem; }
   .dv-chat-header-name   { font-size: .85rem; }
@@ -732,22 +746,17 @@ footer { background:var(--blue-dark);padding:60px 6vw 32px; }
 
   .rrhh-nota-card { padding: 20px 16px; }
 
+  .btn-white { max-width: 100%; }
+
   .footer-top { gap: 24px; }
   .fp-logo-img { height: 34px; }
 
-  /* Chatbot */
   #dv-chat-panel {
     width: calc(100vw - 12px);
-    right: 6px;
-    left: 6px;
+    right: 6px; left: 6px;
     bottom: 74px;
     max-height: 68vh;
   }
-  #dv-help-btn {
-    bottom: 10px;
-    right: 10px;
-    width: 46px;
-    height: 46px;
-  }
+  #dv-help-btn { bottom: 10px; right: 10px; width: 46px; height: 46px; }
   .dv-bubble-text { max-width: calc(100vw - 80px); }
 }
