@@ -286,7 +286,6 @@ nav ul a.active::after{transform:scaleX(1);}
   color:var(--text);background:var(--white);
   transition:border-color .2s,box-shadow .2s,background .2s;
   outline:none;resize:none;appearance:none;-webkit-appearance:none;
-  /* Prevent zoom on iOS */
   font-size:16px;
 }
 .form-group select{
@@ -366,6 +365,71 @@ nav ul a.active::after{transform:scaleX(1);}
 .form-result.show{display:block;animation:revealUp .4s ease both;}
 .result-icon{font-size:1.4rem;margin-bottom:6px;display:block;}
 .result-title{font-size:.97rem;font-weight:700;margin-bottom:4px;}
+
+/* EMAIL REDIRECT MODAL */
+.email-modal-overlay{
+  position:fixed;inset:0;background:rgba(26,68,112,.55);
+  backdrop-filter:blur(6px);z-index:500;
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+}
+.email-modal-overlay.show{display:flex;animation:fadeIn .3s ease both;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.email-modal{
+  background:var(--white);border-radius:24px;padding:40px 36px;
+  max-width:480px;width:100%;text-align:center;
+  box-shadow:var(--shadow-lg);
+  animation:slideUp .35s ease both;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.email-modal-icon{font-size:3rem;margin-bottom:16px;display:block;}
+.email-modal h3{
+  font-size:1.35rem;font-weight:700;color:var(--blue-dark);margin-bottom:10px;
+  font-family:'Lato',sans-serif;
+}
+.email-modal p{
+  font-size:.88rem;color:var(--text-muted);line-height:1.65;margin-bottom:28px;
+  font-family:'Lato',sans-serif;
+}
+.email-modal p strong{color:var(--blue-dark);font-weight:700;}
+.email-btn-group{display:flex;flex-direction:column;gap:12px;}
+.email-btn{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:14px 24px;border-radius:50px;border:none;cursor:pointer;
+  font-family:'Lato',sans-serif;font-weight:700;font-size:.95rem;
+  text-decoration:none;transition:transform .2s,box-shadow .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.email-btn-gmail{
+  background:linear-gradient(135deg,#EA4335,#c5221f);color:#fff;
+  box-shadow:0 4px 18px rgba(234,67,53,.35);
+}
+.email-btn-gmail:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(234,67,53,.45);}
+.email-btn-hotmail{
+  background:linear-gradient(135deg,#0072C6,#005da0);color:#fff;
+  box-shadow:0 4px 18px rgba(0,114,198,.35);
+}
+.email-btn-hotmail:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,114,198,.45);}
+.email-btn-default{
+  background:var(--blue-xlight);color:var(--blue);
+  border:1.5px solid var(--blue-light);
+  box-shadow:none;font-size:.88rem;
+}
+.email-btn-default:hover{background:var(--blue-light);transform:translateY(-1px);}
+.email-modal-skip{
+  margin-top:16px;font-size:.78rem;color:var(--text-muted);
+  font-family:'Lato',sans-serif;cursor:pointer;
+  background:none;border:none;text-decoration:underline;
+  transition:color .2s;
+}
+.email-modal-skip:hover{color:var(--blue);}
+.email-modal-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue-light);color:var(--blue);
+  font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:5px 14px;border-radius:50px;margin-bottom:18px;
+  font-family:'Lato',sans-serif;
+}
 
 .ai-response-wrap{margin-top:24px;display:none;animation:revealUp .5s ease both;}
 .ai-response-wrap.show{display:block;}
@@ -448,20 +512,15 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
 .footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.35);font-family:'Lato',sans-serif;}
 
 /* ══ RESPONSIVE ══ */
-
-/* Tablet landscape */
 @media(max-width:1100px){
   nav ul{gap:18px;}
   nav ul a{font-size:.82rem;}
   .contact-main{gap:28px;}
   .form-card{padding:36px 32px;}
 }
-
-/* Tablet */
 @media(max-width:900px){
   body{cursor:auto;}
   .cursor-dot,.cursor-ring{display:none;}
-
   nav{padding:0 5vw;height:68px;}
   nav ul{display:none;}
   .nav-hamburger{
@@ -486,112 +545,59 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
   nav.menu-open .nav-hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   nav.menu-open .nav-hamburger span:nth-child(2){opacity:0;}
   nav.menu-open .nav-hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
   .page-hero{padding:90px 5vw 56px;min-height:auto;}
   .page-hero h1{font-size:clamp(2rem,5.5vw,2.8rem);}
-
-  /* Stack sidebar above form on tablet */
-  .contact-main{
-    grid-template-columns:1fr;
-    padding:50px 5vw 70px;
-    gap:28px;
-  }
+  .contact-main{grid-template-columns:1fr;padding:50px 5vw 70px;gap:28px;}
   .form-card{padding:32px 28px;}
   .form-row{grid-template-columns:1fr 1fr;}
-
   .cta-band{flex-direction:column;text-align:center;padding:56px 5vw;gap:24px;}
   .footer-top{grid-template-columns:1fr 1fr;gap:28px;}
   footer{padding:44px 5vw 22px;}
   .map-section{padding:0 5vw 56px;}
+  .email-modal{padding:32px 24px;}
 }
-
-/* Mobile — main breakpoint */
 @media(max-width:640px){
   nav{padding:0 4vw;height:62px;}
   nav.menu-open ul{top:62px;}
   .logo-img{height:42px;}
   .brand-name{font-size:1.25rem;}
-
   .page-hero{padding:80px 4vw 50px;}
   .page-hero h1{font-size:clamp(1.9rem,7vw,2.4rem);}
   .page-hero p{font-size:.92rem;}
-
-  .contact-main{
-    padding:36px 4vw 56px;
-    gap:20px;
-  }
-
-  /* Sidebar: show as horizontal scroll cards on mobile */
-  .contact-sidebar{
-    flex-direction:column;
-    gap:16px;
-  }
-  .sidebar-card{
-    padding:24px 20px;
-    border-radius:16px;
-  }
+  .contact-main{padding:36px 4vw 56px;gap:20px;}
+  .contact-sidebar{flex-direction:column;gap:16px;}
+  .sidebar-card{padding:24px 20px;border-radius:16px;}
   .sidebar-card h3{font-size:1.1rem;margin-bottom:16px;}
   .info-item{gap:12px;margin-bottom:16px;}
   .info-icon{width:40px;height:40px;font-size:1rem;border-radius:10px;}
   .info-item p{font-size:.85rem;}
-
-  /* Quick links: 2-col grid on mobile */
-  .quick-links{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-  }
-  .quick-links li a{
-    padding:10px 10px;
-    font-size:.78rem;
-    gap:8px;
-    border-radius:10px;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-  }
+  .quick-links{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .quick-links li a{padding:10px 10px;font-size:.78rem;gap:8px;border-radius:10px;flex-direction:column;align-items:center;text-align:center;}
   .ql-icon{width:32px;height:32px;font-size:.9rem;}
-
-  .form-card{
-    padding:24px 18px;
-    border-radius:16px;
-  }
+  .form-card{padding:24px 18px;border-radius:16px;}
   .form-header{margin-bottom:24px;}
   .form-header h2{font-size:1.35rem;}
   .form-header p{font-size:.85rem;}
-
-  .form-row{
-    grid-template-columns:1fr;
-    gap:0;
-  }
+  .form-row{grid-template-columns:1fr;gap:0;}
   .form-group{margin-bottom:16px;gap:6px;}
-  .form-group input,
-  .form-group select,
-  .form-group textarea{
-    padding:13px 14px;
-    border-radius:10px;
-    font-size:16px; /* Prevents iOS zoom */
-  }
+  .form-group input,.form-group select,.form-group textarea{padding:13px 14px;border-radius:10px;font-size:16px;}
   .form-group textarea{min-height:110px;}
-
   .privacy-check{gap:10px;margin-bottom:20px;}
   .privacy-check p{font-size:.78rem;}
-
   .btn-submit{font-size:.92rem;padding:14px 24px;}
-
   .map-section{padding:0 4vw 50px;}
   .map-card{height:240px;border-radius:16px;}
-
   .cta-band{padding:48px 4vw;gap:20px;}
   .cta-band h2{font-size:1.5rem;}
   .btn-white{padding:13px 28px;font-size:.9rem;}
-
   footer{padding:40px 4vw 20px;}
   .footer-top{grid-template-columns:1fr;gap:28px;}
   .footer-bottom{flex-direction:column;text-align:center;gap:6px;}
+  .email-modal{padding:28px 18px;}
+  .email-modal h3{font-size:1.15rem;}
+  .email-btn-group{gap:10px;}
+  .email-btn{font-size:.88rem;padding:13px 20px;}
 }
-
-/* Small mobile */
 @media(max-width:390px){
   nav{padding:0 4vw;}
   .page-hero{padding:72px 4vw 44px;}
@@ -599,13 +605,8 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
   .contact-main{padding:28px 4vw 48px;}
   .form-card{padding:20px 14px;}
   .form-header h2{font-size:1.2rem;}
-
   .quick-links{grid-template-columns:1fr;}
-  .quick-links li a{
-    flex-direction:row;
-    text-align:left;
-    font-size:.82rem;
-  }
+  .quick-links li a{flex-direction:row;text-align:left;font-size:.82rem;}
 }
   </style>
 </head>
@@ -614,6 +615,29 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
+
+<!-- EMAIL REDIRECT MODAL -->
+<div class="email-modal-overlay" id="emailModal">
+  <div class="email-modal">
+    <span class="email-modal-badge">✉️ Enviar correo</span>
+    <h3>¿Con qué correo desea enviarnos el mensaje?</h3>
+    <p>Su información ya está lista. Elija su proveedor de correo y se abrirá con el mensaje <strong>prellenado automáticamente</strong>. Solo haga clic en <em>Enviar</em>.</p>
+    <div class="email-btn-group">
+      <a href="#" id="btnGmail" class="email-btn email-btn-gmail" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="8" fill="white" fill-opacity="0.15"/><path d="M8 12h32a2 2 0 012 2v20a2 2 0 01-2 2H8a2 2 0 01-2-2V14a2 2 0 012-2z" fill="white" fill-opacity="0.1"/><path d="M6 14l18 13L42 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+        Abrir con Gmail
+      </a>
+      <a href="#" id="btnHotmail" class="email-btn email-btn-hotmail" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="8" fill="white" fill-opacity="0.15"/><path d="M8 12h32a2 2 0 012 2v20a2 2 0 01-2 2H8a2 2 0 01-2-2V14a2 2 0 012-2z" fill="white" fill-opacity="0.1"/><path d="M6 14l18 13L42 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+        Abrir con Hotmail / Outlook
+      </a>
+      <a href="#" id="btnMailto" class="email-btn email-btn-default">
+        📧 Usar mi cliente de correo predeterminado
+      </a>
+    </div>
+    <button class="email-modal-skip" id="modalSkip">Omitir y continuar sin enviar correo</button>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -836,28 +860,26 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
 </footer>
 
 <script>
-/* CURSOR */
+/* ── CURSOR ── */
 const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
 (function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
 
-/* SCROLL PROGRESS */
+/* ── SCROLL PROGRESS ── */
 const pb=document.getElementById('scroll-progress');
 window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
 
-/* NAV SCROLLED */
+/* ── NAV ── */
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
-
-/* HAMBURGUESA */
 const hambBtn=document.getElementById('navHamburger');
 if(hambBtn){
   hambBtn.addEventListener('click',()=>navbar.classList.toggle('menu-open'));
   document.querySelectorAll('#navMenu a').forEach(a=>a.addEventListener('click',()=>navbar.classList.remove('menu-open')));
 }
 
-/* PARTÍCULAS */
+/* ── PARTÍCULAS ── */
 (function(){
   const bg=document.querySelector('.page-hero-bg');if(!bg)return;
   const colors=['#255c95','#228fd2','#ffffff'];
@@ -869,22 +891,34 @@ if(hambBtn){
   }
 })();
 
-/* MAGNETIC BUTTONS */
+/* ── MAGNETIC BUTTONS ── */
 document.querySelectorAll('.btn-submit,.btn-white,.nav-cta').forEach(btn=>{
   btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;});
   btn.addEventListener('mouseleave',()=>btn.style.transform='');
 });
 
-/* FORM */
-const form=document.getElementById('contactForm'),submitBtn=document.getElementById('submitBtn'),formResult=document.getElementById('formResult'),aiWrap=document.getElementById('aiResponseWrap'),aiTyping=document.getElementById('aiTyping'),aiText=document.getElementById('aiText');
+/* ── FORM VALIDATION ── */
+const form=document.getElementById('contactForm');
+const submitBtn=document.getElementById('submitBtn');
+const formResult=document.getElementById('formResult');
+const aiWrap=document.getElementById('aiResponseWrap');
+const aiTyping=document.getElementById('aiTyping');
+const aiText=document.getElementById('aiText');
 
 ['nombre','apellido','email','asunto','mensaje'].forEach(id=>{
   const el=document.getElementById(id);
   el.addEventListener('input',()=>clearError(id));
   el.addEventListener('blur',()=>validateField(id));
 });
-function clearError(id){document.getElementById('fg-'+id).classList.remove('has-error');document.getElementById('err-'+id).classList.remove('show');}
-function showError(id){document.getElementById('fg-'+id).classList.add('has-error');document.getElementById('err-'+id).classList.add('show');}
+
+function clearError(id){
+  document.getElementById('fg-'+id).classList.remove('has-error');
+  document.getElementById('err-'+id).classList.remove('show');
+}
+function showError(id){
+  document.getElementById('fg-'+id).classList.add('has-error');
+  document.getElementById('err-'+id).classList.add('show');
+}
 function validateField(id){
   const val=(document.getElementById(id).value||'').trim();
   if(id==='email'){if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){showError(id);return false;}}
@@ -893,6 +927,7 @@ function validateField(id){
   clearError(id);return true;
 }
 function validateAll(){let ok=true;['nombre','apellido','email','asunto','mensaje'].forEach(id=>{if(!validateField(id))ok=false;});return ok;}
+
 function showResult(type,icon,title,msg){
   formResult.className='form-result '+type+' show';
   document.getElementById('resultIcon').textContent=icon;
@@ -900,32 +935,187 @@ function showResult(type,icon,title,msg){
   document.getElementById('resultMsg').textContent=msg;
   formResult.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+
+/* ── EMAIL REDIRECT ── */
+const DESTINO = 'recurso.humano@distrivision.com.co';
+
+function detectEmailProvider(email) {
+  const domain = email.split('@')[1]?.toLowerCase() || '';
+  if (domain === 'gmail.com') return 'gmail';
+  if (['hotmail.com','hotmail.es','outlook.com','outlook.es','live.com','msn.com'].includes(domain)) return 'hotmail';
+  return 'default';
+}
+
+function buildEmailContent(data) {
+  const subject = `[DistriVision] ${data.asunto} - ${data.nombre} ${data.apellido}`;
+  const body =
+`Estimado equipo de Recursos Humanos de DistriVision,
+
+Me dirijo a ustedes para hacer llegar la siguiente consulta a través del formulario de contacto de su página web.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DATOS DEL REMITENTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nombre completo : ${data.nombre} ${data.apellido}
+Correo electrónico: ${data.email}
+Teléfono         : ${data.telefono || 'No proporcionado'}
+Asunto           : ${data.asunto}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MENSAJE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${data.mensaje}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Quedo atento(a) a su respuesta.
+
+Cordialmente,
+${data.nombre} ${data.apellido}
+${data.email}${data.telefono ? '\n' + data.telefono : ''}`;
+
+  return { subject, body };
+}
+
+function buildGmailURL(data) {
+  const { subject, body } = buildEmailContent(data);
+  const params = new URLSearchParams({
+    to: DESTINO,
+    su: subject,
+    body: body
+  });
+  return `https://mail.google.com/mail/?view=cm&fs=1&${params.toString()}`;
+}
+
+function buildHotmailURL(data) {
+  const { subject, body } = buildEmailContent(data);
+  const params = new URLSearchParams({
+    to: DESTINO,
+    subject: subject,
+    body: body
+  });
+  return `https://outlook.live.com/mail/0/deeplink/compose?${params.toString()}`;
+}
+
+function buildMailtoURL(data) {
+  const { subject, body } = buildEmailContent(data);
+  return `mailto:${DESTINO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+/* ── MODAL ── */
+const emailModal = document.getElementById('emailModal');
+const btnGmail   = document.getElementById('btnGmail');
+const btnHotmail = document.getElementById('btnHotmail');
+const btnMailto  = document.getElementById('btnMailto');
+const modalSkip  = document.getElementById('modalSkip');
+
+let currentFormData = null;
+
+function openEmailModal(data) {
+  currentFormData = data;
+  const provider = detectEmailProvider(data.email);
+
+  // Set URLs
+  btnGmail.href   = buildGmailURL(data);
+  btnHotmail.href = buildHotmailURL(data);
+  btnMailto.href  = buildMailtoURL(data);
+
+  // Highlight the detected provider
+  btnGmail.style.opacity   = '1';
+  btnHotmail.style.opacity = '1';
+
+  if (provider === 'gmail') {
+    btnGmail.style.boxShadow = '0 0 0 3px #EA4335, 0 8px 28px rgba(234,67,53,.45)';
+    btnGmail.innerHTML = `<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="8" fill="white" fill-opacity="0.15"/><path d="M6 14l18 13L42 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> ✨ Abrir con Gmail (recomendado)`;
+  } else if (provider === 'hotmail') {
+    btnHotmail.style.boxShadow = '0 0 0 3px #0072C6, 0 8px 28px rgba(0,114,198,.45)';
+    btnHotmail.innerHTML = `<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="8" fill="white" fill-opacity="0.15"/><path d="M6 14l18 13L42 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> ✨ Abrir con Outlook (recomendado)`;
+  }
+
+  emailModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEmailModal() {
+  emailModal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+modalSkip.addEventListener('click', closeEmailModal);
+emailModal.addEventListener('click', e => { if(e.target === emailModal) closeEmailModal(); });
+
+[btnGmail, btnHotmail, btnMailto].forEach(btn => {
+  btn.addEventListener('click', () => {
+    setTimeout(closeEmailModal, 400);
+  });
+});
+
+/* ── AI RESPONSE ── */
 async function getAIResponse(data){
   const prompt=`Eres el asistente virtual de DistriVision LTDA, empresa distribuidora en Neiva, Huila, Colombia. Un usuario envió el siguiente formulario de contacto a Recursos Humanos:\n- Nombre: ${data.nombre} ${data.apellido}\n- Correo: ${data.email}\n- Teléfono: ${data.telefono||'No proporcionado'}\n- Asunto: ${data.asunto}\n- Mensaje: ${data.mensaje}\n\nRedacta una respuesta automática cordial y profesional en español, confirmando la recepción y que RR.HH. responderá en 24 horas hábiles. Si aplica, menciona contacto: (8) 870 34 34 o recurso.humano@distrivision.com.co. Máximo 3-4 oraciones, sin saludos formales.`;
   const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
   const json=await resp.json();
   return json.content?.[0]?.text||'Gracias por su mensaje. Nuestro equipo le responderá pronto.';
 }
-form.addEventListener('submit',async(e)=>{
+
+/* ── FORM SUBMIT ── */
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  if(!validateAll())return;
-  if(!document.getElementById('privacy').checked){showResult('error','⚠️','Acepta la política de privacidad','Por favor marque la casilla de tratamiento de datos para continuar.');return;}
-  const data={nombre:document.getElementById('nombre').value.trim(),apellido:document.getElementById('apellido').value.trim(),email:document.getElementById('email').value.trim(),telefono:document.getElementById('telefono').value.trim(),asunto:document.getElementById('asunto').value,mensaje:document.getElementById('mensaje').value.trim()};
-  submitBtn.disabled=true;submitBtn.classList.add('loading');
-  formResult.classList.remove('show');aiWrap.classList.remove('show');
-  try{
-    await new Promise(r=>setTimeout(r,800));
-    showResult('success','✅','¡Mensaje enviado con éxito!',`Gracias ${data.nombre}, su mensaje fue recibido. Le responderemos a ${data.email} en 24 horas hábiles.`);
-    aiWrap.classList.add('show');aiTyping.style.display='flex';aiText.style.display='none';
-    aiWrap.scrollIntoView({behavior:'smooth',block:'nearest'});
-    const msg=await getAIResponse(data);
-    aiTyping.style.display='none';aiText.style.display='block';aiText.textContent=msg;
-    form.reset();submitBtn.disabled=false;submitBtn.classList.remove('loading');
-  }catch(err){
-    submitBtn.disabled=false;submitBtn.classList.remove('loading');
-    showResult('success','✅','¡Mensaje enviado con éxito!',`Gracias ${data.nombre}, su mensaje fue recibido. Le responderemos a ${data.email} en 24 horas hábiles.`);
-    aiWrap.classList.add('show');aiTyping.style.display='none';aiText.style.display='block';
-    aiText.textContent='Hemos recibido su mensaje con éxito. Nuestro equipo de Recursos Humanos se comunicará con usted a la brevedad. Si necesita atención inmediata, puede llamarnos al (8) 870 34 34 o escribirnos a recurso.humano@distrivision.com.co.';
+  if(!validateAll()) return;
+  if(!document.getElementById('privacy').checked){
+    showResult('error','⚠️','Acepta la política de privacidad','Por favor marque la casilla de tratamiento de datos para continuar.');
+    return;
+  }
+
+  const data = {
+    nombre:   document.getElementById('nombre').value.trim(),
+    apellido: document.getElementById('apellido').value.trim(),
+    email:    document.getElementById('email').value.trim(),
+    telefono: document.getElementById('telefono').value.trim(),
+    asunto:   document.getElementById('asunto').value,
+    mensaje:  document.getElementById('mensaje').value.trim()
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.classList.add('loading');
+  formResult.classList.remove('show');
+  aiWrap.classList.remove('show');
+
+  try {
+    await new Promise(r => setTimeout(r, 800));
+
+    // Show success message
+    showResult('success','✅','¡Mensaje listo para enviar!',
+      `Gracias ${data.nombre}. Haga clic en su proveedor de correo para enviar el mensaje a ${DESTINO}.`);
+
+    // Show AI response
+    aiWrap.classList.add('show');
+    aiTyping.style.display = 'flex';
+    aiText.style.display   = 'none';
+    aiWrap.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+    // Open email modal
+    setTimeout(() => openEmailModal(data), 600);
+
+    // Get AI response in parallel
+    const msg = await getAIResponse(data);
+    aiTyping.style.display = 'none';
+    aiText.style.display   = 'block';
+    aiText.textContent     = msg;
+
+    form.reset();
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+
+  } catch(err) {
+    submitBtn.disabled = false;
+    submitBtn.classList.remove('loading');
+    showResult('success','✅','¡Mensaje listo para enviar!',
+      `Gracias ${data.nombre}. Se abrirá su correo para enviar el mensaje a ${DESTINO}.`);
+    aiWrap.classList.add('show');
+    aiTyping.style.display = 'none';
+    aiText.style.display   = 'block';
+    aiText.textContent     = 'Hemos preparado su mensaje con éxito. Por favor seleccione su proveedor de correo para enviarlo a nuestro equipo de Recursos Humanos. Si necesita atención inmediata puede llamarnos al (8) 870 34 34.';
+    setTimeout(() => openEmailModal(data), 600);
     form.reset();
   }
 });
