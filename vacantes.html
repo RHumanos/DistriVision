@@ -5,6 +5,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DistriVision – Vacantes</title>
   <link rel="stylesheet" href="styles4.css">
+  <style>
+    /* ══════════════════════════════════════════
+       FORMULARIO DE DATOS PERSONALES
+    ══════════════════════════════════════════ */
+    .form-solicitud-wrap {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 40px;
+      box-shadow: 0 8px 36px rgba(37,92,149,.11);
+      border: 1px solid rgba(37,92,149,.09);
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-solicitud-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+    }
+    .form-solicitud-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .form-solicitud-title span {
+      font-size: 1.15rem;
+    }
+    .form-solicitud-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: .82rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .form-solicitud-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+    .fs-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .fs-label {
+      font-family: 'Lato', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+    }
+    .fs-label em {
+      color: #e53e3e;
+      font-style: normal;
+      margin-left: 2px;
+    }
+    .fs-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid rgba(37,92,149,.18);
+      border-radius: 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: .9rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s, background .2s;
+      outline: none;
+    }
+    .fs-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(37,92,149,.1);
+      background: var(--blue-xlight);
+    }
+    .fs-input::placeholder {
+      color: rgba(90,107,128,.4);
+    }
+    .fs-input.fs-error {
+      border-color: #e53e3e;
+      box-shadow: 0 0 0 4px rgba(229,62,62,.09);
+    }
+    .fs-error-msg {
+      font-family: 'Lato', sans-serif;
+      font-size: .72rem;
+      color: #e53e3e;
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+    .fs-error-msg.show {
+      display: flex;
+    }
+    .fs-hint {
+      font-family: 'Lato', sans-serif;
+      font-size: .7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      opacity: .75;
+    }
+    /* Preview del correo */
+    .fs-preview {
+      margin-top: 22px;
+      background: var(--blue-xlight);
+      border: 1px solid var(--blue-light);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: none;
+      animation: revealUp .35s ease both;
+    }
+    .fs-preview.show { display: block; }
+    .fs-preview-label {
+      font-family: 'Lato', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .fs-preview-text {
+      font-family: 'Lato', sans-serif;
+      font-size: .8rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .fs-preview-text strong { color: var(--blue-dark); }
+
+    @media (max-width: 768px) {
+      .form-solicitud-grid { grid-template-columns: 1fr; gap: 14px; }
+      .form-solicitud-wrap { padding: 28px 22px; }
+    }
+    @media (max-width: 480px) {
+      .form-solicitud-wrap { padding: 22px 16px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -141,7 +285,7 @@
         <div class="paso-num">5</div>
         <div class="paso-body">
           <h4>Completa tu información personal</h4>
-          <p>En el cuerpo del correo, reemplaza los campos entre corchetes con tu <strong>nombre completo</strong>, <strong>teléfono de contacto</strong> y <strong>correo electrónico</strong> para que podamos comunicarnos contigo.</p>
+          <p>Diligencia el formulario de abajo con tu <strong>nombre completo</strong>, <strong>número de cédula</strong> y <strong>teléfono</strong>. Tus datos se incluirán automáticamente en el mensaje del correo.</p>
         </div>
       </div>
 
@@ -159,15 +303,75 @@
     <!-- NOTA INFORMATIVA -->
     <div class="solicitud-nota">
       <span class="nota-icon">💡</span>
-      <p><strong>Importante:</strong> Al hacer clic en el botón, tu cliente de correo habitual (Gmail, Hotmail, Outlook, etc.) se abrirá automáticamente con el destinatario y el mensaje ya redactados en español. Solo debes: completar tu nombre y datos de contacto en el cuerpo del mensaje, ajustar el nombre del cargo en el asunto, y adjuntar los dos documentos solicitados antes de enviar.</p>
+      <p><strong>Importante:</strong> Completa el formulario con tus datos personales antes de hacer clic en el botón. Tu nombre, cédula y teléfono se incluirán automáticamente en el cuerpo del correo. Solo deberás ajustar el nombre del cargo en el asunto y adjuntar los dos documentos solicitados antes de enviar.</p>
     </div>
+
+    <!-- ══ FORMULARIO DE DATOS PERSONALES ══ -->
+    <div class="form-solicitud-wrap">
+      <div class="form-solicitud-title">
+        <span>📝</span> Tus datos personales
+      </div>
+      <p class="form-solicitud-sub">
+        Completa los campos a continuación. Esta información se insertará automáticamente en el correo que se enviará a Recursos Humanos.
+      </p>
+
+      <div class="form-solicitud-grid">
+
+        <div class="fs-group">
+          <label class="fs-label" for="fs-nombre">Nombre completo <em>*</em></label>
+          <input
+            class="fs-input"
+            type="text"
+            id="fs-nombre"
+            placeholder="Ej: Carlos Andrés Pérez"
+            autocomplete="name"
+            maxlength="80"
+          >
+          <span class="fs-error-msg" id="err-nombre">⚠ Por favor ingresa tu nombre completo.</span>
+        </div>
+
+        <div class="fs-group">
+          <label class="fs-label" for="fs-cedula">Número de cédula <em>*</em></label>
+          <input
+            class="fs-input"
+            type="text"
+            id="fs-cedula"
+            placeholder="Ej: 1075834920"
+            inputmode="numeric"
+            maxlength="15"
+          >
+          <span class="fs-error-msg" id="err-cedula">⚠ Por favor ingresa tu número de cédula.</span>
+        </div>
+
+        <div class="fs-group">
+          <label class="fs-label" for="fs-telefono">Teléfono de contacto <em>*</em></label>
+          <input
+            class="fs-input"
+            type="tel"
+            id="fs-telefono"
+            placeholder="Ej: 310 599 6169"
+            autocomplete="tel"
+            maxlength="15"
+          >
+          <span class="fs-error-msg" id="err-telefono">⚠ Por favor ingresa tu teléfono de contacto.</span>
+        </div>
+
+      </div>
+
+      <!-- Vista previa del mensaje -->
+      <div class="fs-preview" id="fsPreview">
+        <span class="fs-preview-label">✅ Vista previa — así aparecerá tu información en el correo</span>
+        <div class="fs-preview-text" id="fsPreviewText"></div>
+      </div>
+    </div>
+    <!-- FIN FORMULARIO -->
 
     <!-- BOTÓN ENVIAR SOLICITUD -->
     <div class="solicitud-cta-wrap">
-      <a
+      <button
         class="btn-solicitud"
-        href="mailto:recurso.humano@distrivision.com.co?subject=Solicitud%20de%20Vacante%20%E2%80%93%20%5BNombre%20del%20Cargo%5D&body=Estimado%20equipo%20de%20Recursos%20Humanos%20de%20DistriVision%2C%0A%0AMi%20nombre%20es%20%5BTu%20Nombre%20Completo%5D%20y%20me%20dirijo%20a%20ustedes%20con%20el%20fin%20de%20postularme%20formalmente%20al%20cargo%20de%20%5BNombre%20del%20Cargo%5D%2C%20publicado%20en%20el%20documento%20de%20Vacantes%20DistriVision%202025.%0A%0AConsidero%20que%20mi%20perfil%20profesional%2C%20experiencia%20y%20habilidades%20se%20alinean%20con%20los%20requisitos%20de%20la%20posici%C3%B3n.%20Me%20motiva%20unirme%20a%20una%20empresa%20comprometida%20con%20la%20excelencia%2C%20el%20servicio%20superior%20y%20el%20crecimiento%20continuo%20como%20DistriVision.%0A%0AAdjunto%20a%20este%20correo%3A%0A%20%20%E2%80%A2%20Hoja%20de%20vida%20actualizada%20(PDF%20o%20Word).%0A%20%20%E2%80%A2%20Captura%20de%20pantalla%20de%20la%20vacante%20de%20mi%20inter%C3%A9s.%0A%0AQuedo%20atento%2Fa%20cualquier%20informaci%C3%B3n%20adicional%20que%20requieran%20y%20agradezco%20de%20antemano%20la%20consideraci%C3%B3n%20a%20mi%20solicitud.%0A%0ACordialmente%2C%0A%5BTu%20Nombre%20Completo%5D%0ATel%C3%A9fono%3A%20%5BTu%20N%C3%BAmero%20de%20Contacto%5D%0ACorreo%3A%20%5BTu%20Correo%20Electr%C3%B3nico%5D"
         id="btnSolicitud"
+        type="button"
       >
         <span class="btn-solicitud-icon">✉️</span>
         <span class="btn-solicitud-texts">
@@ -175,7 +379,7 @@
           <span class="btn-solicitud-sub">Se abrirá tu cliente de correo automáticamente</span>
         </span>
         <span class="btn-solicitud-arrow">→</span>
-      </a>
+      </button>
       <span class="solicitud-email-hint">
         <span class="hint-icon">📧</span>
         Dirigido a: <strong>recurso.humano@distrivision.com.co</strong>
@@ -226,6 +430,7 @@
     <p>Distribución con Excelencia y Compromiso</p>
   </div>
 </footer>
+
 <!-- ══════════════ CHATBOT WIDGET ══════════════ -->
 <button id="dv-help-btn" aria-label="Abrir asistente de ayuda">
   <svg class="icon-bot" width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -256,6 +461,7 @@
   <div id="dvDynamic"></div>
   <div class="dv-chat-footer">Potenciado por <span>DistriVision</span> · Neiva, Colombia</div>
 </div>
+
 <!-- ══════════════ SCRIPTS ══════════════ -->
 <script>
 /* ── CURSOR ── */
@@ -339,7 +545,7 @@ if (hambBtn) {
   const cards = document.querySelectorAll('.paso-card');
   if (!cards.length) return;
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         setTimeout(() => {
           entry.target.classList.add('paso-visible');
@@ -353,7 +559,131 @@ if (hambBtn) {
     observer.observe(card);
   });
 })();
-  (function(){
+
+/* ════════════════════════════════════════════════
+   FORMULARIO + BOTÓN SOLICITUD
+════════════════════════════════════════════════ */
+(function formSolicitud() {
+  const inputNombre   = document.getElementById('fs-nombre');
+  const inputCedula   = document.getElementById('fs-cedula');
+  const inputTelefono = document.getElementById('fs-telefono');
+  const errNombre     = document.getElementById('err-nombre');
+  const errCedula     = document.getElementById('err-cedula');
+  const errTelefono   = document.getElementById('err-telefono');
+  const preview       = document.getElementById('fsPreview');
+  const previewText   = document.getElementById('fsPreviewText');
+  const btnSolicitud  = document.getElementById('btnSolicitud');
+
+  /* Solo permite números en cédula */
+  inputCedula.addEventListener('input', () => {
+    inputCedula.value = inputCedula.value.replace(/\D/g, '');
+  });
+
+  /* Solo permite números y espacios en teléfono */
+  inputTelefono.addEventListener('input', () => {
+    inputTelefono.value = inputTelefono.value.replace(/[^\d\s+\-()]/g, '');
+  });
+
+  /* Actualizar vista previa en tiempo real */
+  function updatePreview() {
+    const nombre   = inputNombre.value.trim();
+    const cedula   = inputCedula.value.trim();
+    const telefono = inputTelefono.value.trim();
+
+    if (nombre || cedula || telefono) {
+      previewText.innerHTML = `
+        <strong>Nombre:</strong> ${nombre  || '<em style="color:#aaa">pendiente</em>'}<br>
+        <strong>Cédula:</strong> ${cedula  || '<em style="color:#aaa">pendiente</em>'}<br>
+        <strong>Teléfono:</strong> ${telefono || '<em style="color:#aaa">pendiente</em>'}
+      `;
+      preview.classList.add('show');
+    } else {
+      preview.classList.remove('show');
+    }
+  }
+
+  inputNombre.addEventListener('input',   updatePreview);
+  inputCedula.addEventListener('input',   updatePreview);
+  inputTelefono.addEventListener('input', updatePreview);
+
+  /* Limpiar error al escribir */
+  function clearError(input, errEl) {
+    input.addEventListener('input', () => {
+      input.classList.remove('fs-error');
+      errEl.classList.remove('show');
+    });
+  }
+  clearError(inputNombre,   errNombre);
+  clearError(inputCedula,   errCedula);
+  clearError(inputTelefono, errTelefono);
+
+  /* Clic en el botón: validar y construir mailto */
+  btnSolicitud.addEventListener('click', () => {
+    const nombre   = inputNombre.value.trim();
+    const cedula   = inputCedula.value.trim();
+    const telefono = inputTelefono.value.trim();
+
+    let valid = true;
+
+    if (!nombre) {
+      inputNombre.classList.add('fs-error');
+      errNombre.classList.add('show');
+      valid = false;
+    }
+    if (!cedula) {
+      inputCedula.classList.add('fs-error');
+      errCedula.classList.add('show');
+      valid = false;
+    }
+    if (!telefono) {
+      inputTelefono.classList.add('fs-error');
+      errTelefono.classList.add('show');
+      valid = false;
+    }
+
+    if (!valid) {
+      /* Scroll suave al formulario */
+      document.querySelector('.form-solicitud-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    /* Construir el cuerpo del correo con los datos reales */
+    const body =
+`Estimado equipo de Recursos Humanos de DistriVision,
+
+Me dirijo a ustedes con el fin de postularme formalmente al cargo de [Nombre del Cargo], publicado en el documento de Vacantes DistriVision 2025.
+
+Considero que mi perfil profesional, experiencia y habilidades se alinean con los requisitos de la posición. Me motiva unirme a una empresa comprometida con la excelencia, el servicio superior y el crecimiento continuo como DistriVision.
+
+Adjunto a este correo:
+  • Hoja de vida actualizada (PDF o Word).
+  • Captura de pantalla de la vacante de mi interés.
+
+Mis datos de contacto:
+  Nombre completo : ${nombre}
+  Cédula          : ${cedula}
+  Teléfono        : ${telefono}
+
+Quedo atento/a a cualquier información adicional que requieran y agradezco de antemano la consideración a mi solicitud.
+
+Cordialmente,
+${nombre}`;
+
+    const subject = 'Solicitud de Vacante – [Nombre del Cargo]';
+
+    const mailto =
+      'mailto:recurso.humano@distrivision.com.co' +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body='    + encodeURIComponent(body);
+
+    window.location.href = mailto;
+  });
+})();
+
+/* ════════════════════════════════════════════════
+   CHATBOT
+════════════════════════════════════════════════ */
+(function(){
   const helpBtn   = document.getElementById('dv-help-btn');
   const chatPanel = document.getElementById('dv-chat-panel');
   const chatBody  = document.getElementById('dvChatBody');
