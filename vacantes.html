@@ -617,66 +617,93 @@ if (hambBtn) {
   clearError(inputCedula,   errCedula);
   clearError(inputTelefono, errTelefono);
 
-  /* Clic en el botón: validar y construir mailto */
+  /* Clic en el botón: validar y abrir Gmail o Hotmail */
   btnSolicitud.addEventListener('click', () => {
     const nombre   = inputNombre.value.trim();
     const cedula   = inputCedula.value.trim();
     const telefono = inputTelefono.value.trim();
 
     let valid = true;
-
-    if (!nombre) {
-      inputNombre.classList.add('fs-error');
-      errNombre.classList.add('show');
-      valid = false;
-    }
-    if (!cedula) {
-      inputCedula.classList.add('fs-error');
-      errCedula.classList.add('show');
-      valid = false;
-    }
-    if (!telefono) {
-      inputTelefono.classList.add('fs-error');
-      errTelefono.classList.add('show');
-      valid = false;
-    }
+    if (!nombre)   { inputNombre.classList.add('fs-error');   errNombre.classList.add('show');   valid = false; }
+    if (!cedula)   { inputCedula.classList.add('fs-error');   errCedula.classList.add('show');   valid = false; }
+    if (!telefono) { inputTelefono.classList.add('fs-error'); errTelefono.classList.add('show'); valid = false; }
 
     if (!valid) {
-      /* Scroll suave al formulario */
       document.querySelector('.form-solicitud-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
-    /* Construir el cuerpo del correo con los datos reales */
-    const body =
-`Estimado equipo de Recursos Humanos de DistriVision,
+    const destinatario = 'recurso.humano@distrivision.com.co';
+    const asunto       = 'Solicitud de Vacante - [Nombre del Cargo]';
 
-Me dirijo a ustedes con el fin de postularme formalmente al cargo de [Nombre del Cargo], publicado en el documento de Vacantes DistriVision 2025.
+    const lineas = [
+      'Estimado equipo de Recursos Humanos de DistriVision,',
+      '',
+      'Me dirijo a ustedes con el fin de postularme formalmente al cargo de [Nombre del Cargo], publicado en el documento de Vacantes DistriVision 2025.',
+      '',
+      'Considero que mi perfil profesional, experiencia y habilidades se alinean con los requisitos de la posicion. Me motiva unirme a una empresa comprometida con la excelencia, el servicio superior y el crecimiento continuo como DistriVision.',
+      '',
+      'Adjunto a este correo:',
+      '- Hoja de vida actualizada (PDF o Word).',
+      '- Captura de pantalla de la vacante de mi interes.',
+      '',
+      'Mis datos de contacto:',
+      'Nombre completo : ' + nombre,
+      'Cedula          : ' + cedula,
+      'Telefono        : ' + telefono,
+      '',
+      'Quedo atento/a a cualquier informacion adicional que requieran y agradezco de antemano la consideracion a mi solicitud.',
+      '',
+      'Cordialmente,',
+      nombre
+    ];
+    const cuerpo = lineas.join('\n');
 
-Considero que mi perfil profesional, experiencia y habilidades se alinean con los requisitos de la posición. Me motiva unirme a una empresa comprometida con la excelencia, el servicio superior y el crecimiento continuo como DistriVision.
+    /* URLs directas para cada cliente */
+    const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1'
+      + '&to='   + encodeURIComponent(destinatario)
+      + '&su='   + encodeURIComponent(asunto)
+      + '&body=' + encodeURIComponent(cuerpo);
 
-Adjunto a este correo:
-  • Hoja de vida actualizada (PDF o Word).
-  • Captura de pantalla de la vacante de mi interés.
+    const hotmailURL = 'https://outlook.live.com/mail/0/deeplink/compose'
+      + '?to='      + encodeURIComponent(destinatario)
+      + '&subject=' + encodeURIComponent(asunto)
+      + '&body='    + encodeURIComponent(cuerpo);
 
-Mis datos de contacto:
-  Nombre completo : ${nombre}
-  Cédula          : ${cedula}
-  Teléfono        : ${telefono}
+    /* Modal selector */
+    const overlay = document.createElement('div');
+    overlay.id = 'mailModalOverlay';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,20,40,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;animation:mFadeIn .22s ease both';
 
-Quedo atento/a a cualquier información adicional que requieran y agradezco de antemano la consideración a mi solicitud.
+    overlay.innerHTML = [
+      '<style>',
+      '@keyframes mFadeIn{from{opacity:0}to{opacity:1}}',
+      '@keyframes mSlideUp{from{transform:translateY(30px) scale(.95);opacity:0}to{transform:none;opacity:1}}',
+      '#mailBox{animation:mSlideUp .32s cubic-bezier(.34,1.56,.64,1) both}',
+      '.mc-btn{transition:transform .22s,box-shadow .22s !important}',
+      '.mc-btn:hover{transform:translateY(-3px) !important}',
+      '</style>',
+      '<div id="mailBox" style="background:#fff;border-radius:24px;padding:40px 36px 34px;max-width:400px;width:92%;text-align:center;box-shadow:0 32px 80px rgba(37,92,149,.28);border:1px solid rgba(37,92,149,.1)">',
+        '<div style="font-size:2.4rem;margin-bottom:14px">✉️</div>',
+        '<h3 style="font-family:Lato,sans-serif;font-size:1.12rem;font-weight:700;color:#1a4470;margin-bottom:8px">¿Con qué correo deseas enviar?</h3>',
+        '<p style="font-family:Lato,sans-serif;font-size:.81rem;color:#5a6b80;line-height:1.55;margin-bottom:28px">El mensaje ya está listo con tus datos.<br>Solo elige tu cliente de correo.</p>',
+        '<div style="display:flex;flex-direction:column;gap:13px;margin-bottom:18px">',
+          '<a href="' + gmailURL + '" target="_blank" class="mc-btn" style="display:flex;align-items:center;gap:13px;background:linear-gradient(135deg,#ea4335,#d93025);color:#fff;padding:15px 22px;border-radius:14px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:.92rem;box-shadow:0 6px 22px rgba(234,67,53,.38)">',
+            '<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><path d="M44 8H4a2 2 0 00-2 2v28a2 2 0 002 2h40a2 2 0 002-2V10a2 2 0 00-2-2z" fill="rgba(255,255,255,.18)"/><path d="M2 10l22 16L46 10" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>',
+            'Abrir en Gmail<span style="margin-left:auto;opacity:.75">→</span>',
+          '</a>',
+          '<a href="' + hotmailURL + '" target="_blank" class="mc-btn" style="display:flex;align-items:center;gap:13px;background:linear-gradient(135deg,#0078d4,#005a9e);color:#fff;padding:15px 22px;border-radius:14px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:.92rem;box-shadow:0 6px 22px rgba(0,120,212,.38)">',
+            '<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect x="2" y="8" width="44" height="32" rx="4" fill="rgba(255,255,255,.18)" stroke="white" stroke-width="2.5"/><path d="M2 14l22 14 22-14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>',
+            'Abrir en Hotmail / Outlook<span style="margin-left:auto;opacity:.75">→</span>',
+          '</a>',
+        '</div>',
+        '<button id="mcClose" style="background:none;border:none;cursor:pointer;font-family:Lato,sans-serif;font-size:.82rem;color:#5a6b80;padding:7px 18px;border-radius:8px">Cancelar</button>',
+      '</div>'
+    ].join('');
 
-Cordialmente,
-${nombre}`;
-
-    const subject = 'Solicitud de Vacante – [Nombre del Cargo]';
-
-    const mailto =
-      'mailto:recurso.humano@distrivision.com.co' +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body='    + encodeURIComponent(body);
-
-    window.location.href = mailto;
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+    overlay.querySelector('#mcClose').addEventListener('click', () => overlay.remove());
   });
 })();
 
