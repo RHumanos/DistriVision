@@ -659,17 +659,86 @@ if (hambBtn) {
     ];
     const cuerpo = lineas.join('\n');
 
-    /* ── Detectar si es móvil ── */
-    const esMobil = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    /* ── Detectar plataforma ── */
+    const ua        = navigator.userAgent;
+    const esAndroid = /Android/i.test(ua);
+    const esIOS     = /iPhone|iPad|iPod/i.test(ua);
+    const esMobil   = esAndroid || esIOS;
 
-    /* En móvil: mailto nativo abre la app de correo instalada (Gmail, Outlook, etc.)   */
-    /* En escritorio: mostrar modal para elegir Gmail web o Hotmail web                  */
+    /* En móvil: mostrar modal con botones de app nativa (intent links) */
+    /* En escritorio: mostrar modal con Gmail web / Hotmail web          */
     if (esMobil) {
-      /* mailto:// — el SO redirige a la app de correo nativa */
-      const mailtoURL = 'mailto:' + destinatario
+      /* Intent links — abren directamente la APP instalada */
+      const gmailAppAndroid = 'googlegmail://co'
+        + '?to='      + encodeURIComponent(destinatario)
+        + '&subject=' + encodeURIComponent(asunto)
+        + '&body='    + encodeURIComponent(cuerpo);
+
+      const gmailAppIOS = 'googlegmail:///co'
+        + '?to='      + encodeURIComponent(destinatario)
+        + '&subject=' + encodeURIComponent(asunto)
+        + '&body='    + encodeURIComponent(cuerpo);
+
+      const outlookApp = 'ms-outlook://compose'
+        + '?to='      + encodeURIComponent(destinatario)
+        + '&subject=' + encodeURIComponent(asunto)
+        + '&body='    + encodeURIComponent(cuerpo);
+
+      const mailtoFallback = 'mailto:' + destinatario
         + '?subject=' + encodeURIComponent(asunto)
         + '&body='    + encodeURIComponent(cuerpo);
-      window.location.href = mailtoURL;
+
+      const gmailIntentURL = esAndroid ? gmailAppAndroid : gmailAppIOS;
+
+      /* Modal móvil */
+      const overlayM = document.createElement('div');
+      overlayM.id = 'mailModalOverlay';
+      overlayM.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,20,40,.82);backdrop-filter:blur(10px);display:flex;align-items:flex-end;justify-content:center;animation:mFadeIn .22s ease both';
+
+      overlayM.innerHTML = [
+        '<style>',
+        '@keyframes mFadeIn{from{opacity:0}to{opacity:1}}',
+        '@keyframes mSlideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}',
+        '#mailBox{animation:mSlideUp .35s cubic-bezier(.25,.8,.25,1) both}',
+        '.mc-btn{-webkit-tap-highlight-color:rgba(0,0,0,0);active:opacity:.85}',
+        '</style>',
+        '<div id="mailBox" style="background:#fff;border-radius:28px 28px 0 0;padding:28px 22px 40px;width:100%;max-width:520px;box-shadow:0 -16px 60px rgba(37,92,149,.22)">',
+          /* Handle bar */
+          '<div style="width:40px;height:4px;background:#dde3eb;border-radius:4px;margin:0 auto 24px"></div>',
+          '<div style="font-size:2rem;margin-bottom:10px;text-align:center">✉️</div>',
+          '<h3 style="font-family:Lato,sans-serif;font-size:1.08rem;font-weight:700;color:#1a4470;margin-bottom:6px;text-align:center">Abrir app de correo</h3>',
+          '<p style="font-family:Lato,sans-serif;font-size:.79rem;color:#5a6b80;line-height:1.5;margin-bottom:22px;text-align:center">El mensaje ya está listo con tus datos.<br>Elige la app donde quieres enviarlo.</p>',
+          '<div style="display:flex;flex-direction:column;gap:11px;margin-bottom:16px">',
+
+            /* Gmail app */
+            '<a href="' + gmailIntentURL + '" class="mc-btn" style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#ea4335,#d93025);color:#fff;padding:16px 20px;border-radius:16px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:.95rem;box-shadow:0 4px 18px rgba(234,67,53,.32)">',
+              '<svg width="24" height="24" viewBox="0 0 48 48" fill="none"><path d="M44 8H4a2 2 0 00-2 2v28a2 2 0 002 2h40a2 2 0 002-2V10a2 2 0 00-2-2z" fill="rgba(255,255,255,.2)"/><path d="M2 10l22 16L46 10" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>',
+              '<span style="flex:1">Gmail <span style="font-weight:400;font-size:.78rem;opacity:.8">(app)</span></span>',
+              '<span style="opacity:.7;font-size:.9rem">→</span>',
+            '</a>',
+
+            /* Outlook app */
+            '<a href="' + outlookApp + '" class="mc-btn" style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#0078d4,#005a9e);color:#fff;padding:16px 20px;border-radius:16px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:.95rem;box-shadow:0 4px 18px rgba(0,120,212,.32)">',
+              '<svg width="24" height="24" viewBox="0 0 48 48" fill="none"><rect x="2" y="8" width="44" height="32" rx="4" fill="rgba(255,255,255,.2)" stroke="white" stroke-width="2.5"/><path d="M2 14l22 14 22-14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>',
+              '<span style="flex:1">Outlook / Hotmail <span style="font-weight:400;font-size:.78rem;opacity:.8">(app)</span></span>',
+              '<span style="opacity:.7;font-size:.9rem">→</span>',
+            '</a>',
+
+            /* Correo nativo / cualquier otra app */
+            '<a href="' + mailtoFallback + '" class="mc-btn" style="display:flex;align-items:center;gap:14px;background:#f0f4f8;color:#1a4470;padding:16px 20px;border-radius:16px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:.95rem;border:1.5px solid #d6e5f5">',
+              '<svg width="24" height="24" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#255c95" stroke-width="2.5"/><path d="M14 20l10 7 10-7" stroke="#255c95" stroke-width="2" stroke-linecap="round"/><rect x="10" y="16" width="28" height="18" rx="3" stroke="#255c95" stroke-width="2.2"/></svg>',
+              '<span style="flex:1">Otra app de correo</span>',
+              '<span style="opacity:.5;font-size:.9rem">→</span>',
+            '</a>',
+
+          '</div>',
+          '<button id="mcClose" style="width:100%;background:none;border:1.5px solid #e2e8f0;cursor:pointer;font-family:Lato,sans-serif;font-size:.88rem;color:#5a6b80;padding:13px;border-radius:14px;font-weight:600">Cancelar</button>',
+        '</div>'
+      ].join('');
+
+      document.body.appendChild(overlayM);
+      overlayM.addEventListener('click', e => { if (e.target === overlayM) overlayM.remove(); });
+      overlayM.querySelector('#mcClose').addEventListener('click', () => overlayM.remove());
       return;
     }
 
