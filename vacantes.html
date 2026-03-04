@@ -659,7 +659,21 @@ if (hambBtn) {
     ];
     const cuerpo = lineas.join('\n');
 
-    /* URLs directas para cada cliente */
+    /* ── Detectar si es móvil ── */
+    const esMobil = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+
+    /* En móvil: mailto nativo abre la app de correo instalada (Gmail, Outlook, etc.)   */
+    /* En escritorio: mostrar modal para elegir Gmail web o Hotmail web                  */
+    if (esMobil) {
+      /* mailto:// — el SO redirige a la app de correo nativa */
+      const mailtoURL = 'mailto:' + destinatario
+        + '?subject=' + encodeURIComponent(asunto)
+        + '&body='    + encodeURIComponent(cuerpo);
+      window.location.href = mailtoURL;
+      return;
+    }
+
+    /* ── Desktop: modal selector Gmail / Hotmail web ── */
     const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1'
       + '&to='   + encodeURIComponent(destinatario)
       + '&su='   + encodeURIComponent(asunto)
