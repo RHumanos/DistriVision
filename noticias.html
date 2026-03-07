@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Interno – DistriVision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styles6.css">
 </head>
 <body>
 
-<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-dot"  id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
-<!-- ══════════════ NAV ══════════════ -->
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
-    <img src="img/1 (3).png" alt="DistriVision Logo" class="logo-img">
+    <img src="img/1 (3).png" alt="DistriVision" class="logo-img">
   </a>
   <ul id="navMenu">
     <li><a href="index.html#nosotros">Nosotros</a></li>
@@ -27,6 +32,7 @@
     <li><a href="certificados.html">Certificados</a></li>
     <li><a href="vacantes.html">Vacantes</a></li>
     <li><a href="index.html#contacto">Contacto</a></li>
+    <li><a href="comunicados.html" class="nav-active">Portal Interno</a></li>
     <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
@@ -34,14 +40,16 @@
   </button>
 </nav>
 
-<!-- ══════════════ HERO ══════════════ -->
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
 <section class="portal-hero">
   <div class="hero-bg">
     <div class="geo geo-1"></div>
     <div class="geo geo-2"></div>
   </div>
   <div class="portal-date-badge">
-    <div class="day" id="heroDay">—</div>
+    <div class="day"        id="heroDay">—</div>
     <div class="month-year" id="heroMonthYear">—</div>
   </div>
   <div class="portal-hero-content">
@@ -51,7 +59,9 @@
   </div>
 </section>
 
-<!-- ══════════════ TABS ══════════════ -->
+<!-- ══════════════════════════════════════
+     TABS
+══════════════════════════════════════ -->
 <div class="portal-tabs" id="portalTabs">
   <button class="ptab active" data-tab="todos">
     <span class="tab-icon">📋</span> Todos
@@ -79,9 +89,12 @@
   </button>
 </div>
 
-<!-- ══════════════ CUERPO ══════════════ -->
+<!-- ══════════════════════════════════════
+     CUERPO PRINCIPAL
+══════════════════════════════════════ -->
 <div class="portal-body">
 
+  <!-- Feed -->
   <div class="portal-feed" id="portalFeed">
     <div class="feed-empty" id="feedEmpty">
       <div class="fe-icon">📭</div>
@@ -89,9 +102,9 @@
     </div>
   </div>
 
+  <!-- Sidebar -->
   <aside class="portal-sidebar">
 
-    <!-- Próximos Eventos -->
     <div class="sidebar-widget">
       <div class="sw-header">
         <span class="sw-title"><span>📅</span> Próximos Eventos</span>
@@ -99,16 +112,14 @@
       <div class="sw-body" id="upcomingEvents"></div>
     </div>
 
-    <!-- Cumpleaños del Mes -->
     <div class="sidebar-widget">
       <div class="sw-header">
         <span class="sw-title"><span>🎂</span> Cumpleaños del Mes</span>
-        <span style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-muted);" id="bdayMonthLabel"></span>
+        <span id="bdayMonthLabel" style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-muted);"></span>
       </div>
       <div class="bday-scroll" id="bdaySidebarList" style="padding:8px 22px 14px;"></div>
     </div>
 
-    <!-- Clima Laboral -->
     <div class="sidebar-widget">
       <div class="sw-header">
         <span class="sw-title"><span>💬</span> ¿Cómo estás hoy?</span>
@@ -125,28 +136,29 @@
       </div>
     </div>
 
-    <!-- Accesos Rápidos -->
     <div class="sidebar-widget">
       <div class="sw-header">
         <span class="sw-title"><span>⚡</span> Accesos Rápidos</span>
       </div>
       <div class="sw-body" style="padding-top:8px;padding-bottom:8px;">
-        <a href="vacantes.html"       class="quick-link"><div class="ql-icon">💼</div><span class="ql-text">Vacantes Internas</span><span class="ql-arrow">›</span></a>
-        <a href="certificados.html"   class="quick-link"><div class="ql-icon">📋</div><span class="ql-text">Mis Certificados</span><span class="ql-arrow">›</span></a>
-        <a href="index.html#contacto" class="quick-link"><div class="ql-icon">📞</div><span class="ql-text">Directorio Interno</span><span class="ql-arrow">›</span></a>
-        <a href="historia.html"       class="quick-link"><div class="ql-icon">📖</div><span class="ql-text">Historia de la Empresa</span><span class="ql-arrow">›</span></a>
-        <a href="contacto.html"       class="quick-link"><div class="ql-icon">✉️</div><span class="ql-text">Contáctanos</span><span class="ql-arrow">›</span></a>
+        <a href="vacantes.html"        class="quick-link"><div class="ql-icon">💼</div><span class="ql-text">Vacantes Internas</span>    <span class="ql-arrow">›</span></a>
+        <a href="certificados.html"    class="quick-link"><div class="ql-icon">📋</div><span class="ql-text">Mis Certificados</span>      <span class="ql-arrow">›</span></a>
+        <a href="index.html#contacto"  class="quick-link"><div class="ql-icon">📞</div><span class="ql-text">Directorio Interno</span>   <span class="ql-arrow">›</span></a>
+        <a href="historia.html"        class="quick-link"><div class="ql-icon">📖</div><span class="ql-text">Historia de la Empresa</span><span class="ql-arrow">›</span></a>
+        <a href="contacto.html"        class="quick-link"><div class="ql-icon">✉️</div><span class="ql-text">Contáctanos</span>           <span class="ql-arrow">›</span></a>
       </div>
     </div>
 
   </aside>
 </div>
 
-<!-- ══════════════ FOOTER ══════════════ -->
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <img src="img/2.png" alt="DistriVision Logo" class="fp-logo-img">
+      <img src="img/2.png" alt="DistriVision" class="fp-logo-img">
       <div class="fp-name">Distri<span>Vision</span></div>
       <p>Líderes en distribución y comercialización de productos de alta calidad, comprometidos con la excelencia en cada entrega.</p>
     </div>
@@ -174,45 +186,49 @@
   </div>
 </footer>
 
-<!-- ══════════════ MODAL ══════════════ -->
+<!-- ══════════════════════════════════════
+     MODAL COMUNICADO
+══════════════════════════════════════ -->
 <div class="comm-modal" id="commModal">
   <div class="comm-modal-box">
     <button class="cmm-close" id="cmmClose">✕</button>
     <div class="cmm-band" id="cmmBand"></div>
     <div class="cmm-body">
       <div class="cmm-meta">
-        <span class="cc-type-badge" id="cmmBadge">Tipo</span>
-        <span class="cc-date"       id="cmmDate">Fecha</span>
+        <span class="cc-type-badge" id="cmmBadge"></span>
+        <span class="cc-date"       id="cmmDate"></span>
       </div>
-      <h2 class="cmm-title" id="cmmTitle">Título</h2>
+      <h2 class="cmm-title" id="cmmTitle"></h2>
       <div id="cmmText"></div>
       <div class="cmm-divider"></div>
       <div class="cmm-footer-row">
         <div class="cmm-footer-avatar" id="cmmAvatar">👤</div>
         <div class="cmm-footer-info">
-          <h6 id="cmmAuthor">Autor</h6>
-          <p  id="cmmDept">Departamento</p>
+          <h6 id="cmmAuthor"></h6>
+          <p  id="cmmDept"></p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ CHATBOT ══════════════ -->
-<button id="dv-help-btn" aria-label="Abrir asistente de ayuda">
+<!-- ══════════════════════════════════════
+     CHATBOT
+══════════════════════════════════════ -->
+<button id="dv-help-btn" aria-label="Abrir asistente">
   <svg class="icon-bot" width="26" height="26" viewBox="0 0 24 24" fill="none">
     <rect x="3" y="8" width="18" height="12" rx="4" fill="white" opacity=".9"/>
-    <circle cx="9" cy="14" r="1.5" fill="#255c95"/>
+    <circle cx="9"  cy="14" r="1.5" fill="#255c95"/>
     <circle cx="15" cy="14" r="1.5" fill="#255c95"/>
-    <path d="M9 18h6" stroke="#255c95" stroke-width="1.5" stroke-linecap="round"/>
-    <path d="M12 8V5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M9 18h6"  stroke="#255c95" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M12 8V5"  stroke="white"   stroke-width="1.8" stroke-linecap="round"/>
     <circle cx="12" cy="4" r="1.5" fill="white"/>
-    <path d="M7 8V6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M7 8V6.5"  stroke="white" stroke-width="1.5" stroke-linecap="round"/>
     <path d="M17 8V6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
   </svg>
   <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
-    <line x1="18" y1="6" x2="6" y2="18"/>
-    <line x1="6" y1="6" x2="18" y2="18"/>
+    <line x1="18" y1="6"  x2="6"  y2="18"/>
+    <line x1="6"  y1="6"  x2="18" y2="18"/>
   </svg>
 </button>
 <div id="dv-chat-panel" role="dialog" aria-label="Asistente DistriVision">
@@ -228,27 +244,29 @@
   <div class="dv-chat-footer">Potenciado por <span>DistriVision</span> · Neiva, Colombia</div>
 </div>
 
+<!-- ══════════════════════════════════════════════════════════════
+     ████████████  ZONA DE DATOS — SOLO EDITAR AQUÍ  ████████████
+══════════════════════════════════════════════════════════════ -->
 <script>
-/* ════════════════════════════════════════════════════════════════
-   ████  ZONA DE CONFIGURACIÓN  ████
-   Todo lo que necesitas editar está en esta zona.
-   No modifiques nada fuera de ella salvo que sepas JS.
-════════════════════════════════════════════════════════════════ */
 
-/* ══════════════════════════════════════════════════════════════
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    1. CUMPLEAÑOS
-   ──────────────────────────────────────────────────────────────
-   Agrega una línea por persona:
-     { month: MES, day: DÍA, name: 'NOMBRE COMPLETO', photo: '' }
+   ─────────────────────────────────────────────────────────────
+   Una línea por empleado:
+     { month: MES, day: DÍA, name: 'Nombre Apellido', photo: '' }
 
-   • month/day : número (mes 1=enero … 12=diciembre)
-   • photo     : ruta a la foto, p. ej. 'img/empleados/juan.jpg'
-                 Dejar '' si no tienes foto todavía.
+   ▸ month / day → número  (1 = Enero … 12 = Diciembre)
+   ▸ photo       → ruta de la foto del cumpleañero, p.ej.:
+                   'img/empleados/juan_diego.jpg'
+                   Dejar '' si no hay foto todavía.
+                   Tamaño ideal: 200 × 260 px (vertical)
 
-   PARA EL SIGUIENTE MES: agrega las entradas con el mes correcto.
-   El sistema muestra automáticamente solo el mes en curso.
-══════════════════════════════════════════════════════════════ */
+   El portal muestra automáticamente solo el mes actual.
+   Para el mes siguiente: agrega las entradas con el mes correcto,
+   pueden coexistir varios meses en el mismo array.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const BIRTHDAYS = [
+
   /* ── MARZO ── */
   { month:3, day:6,  name:'Juan Diego Oliveros Orjuela',    photo:'' },
   { month:3, day:8,  name:'Evelio Esneid Llanos Rodríguez', photo:'' },
@@ -264,8 +282,9 @@ const BIRTHDAYS = [
   { month:3, day:29, name:'Flavio Abdel Córdoba Gordo',     photo:'' },
   { month:3, day:31, name:'Anyelo Stiven Ortiz Casas',      photo:'' },
 
-  /* ── ABRIL ── (descomenta y completa cuando llegue el mes)
+  /* ── ABRIL ── descomenta y completa cuando llegue el mes
   { month:4, day:1,  name:'Nombre Apellido', photo:'' },
+  { month:4, day:10, name:'Nombre Apellido', photo:'' },
   */
 
   /* ── MAYO ──
@@ -273,47 +292,80 @@ const BIRTHDAYS = [
   */
 ];
 
-/* ══════════════════════════════════════════════════════════════
-   2. CELEBRACIONES
-   ──────────────────────────────────────────────────────────────
-   Deja el array VACÍO [] cuando no haya celebración activa.
-   Al estar vacío, se muestra automáticamente un mensaje
-   genérico que dice "Sin celebraciones pendientes".
 
-   Para agregar una celebración, descomenta el bloque ejemplo
-   y rellena los campos. eventDetails es opcional; si no hay
-   evento con fecha/hora, elimina ese bloque completo.
-══════════════════════════════════════════════════════════════ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2. CELEBRACIÓN ACTIVA
+   ─────────────────────────────────────────────────────────────
+   ▸ Cuando NO hay celebración → deja el array vacío: []
+     El portal mostrará automáticamente "Sin celebraciones
+     pendientes por el momento."
+
+   ▸ Cuando SÍ hay una → rellena el bloque con los datos.
+     Si el evento NO tiene fecha/hora/lugar, borra el bloque
+     completo de  eventDetails: { ... }
+
+   Campos de color (bg):
+     Rosa  → 'linear-gradient(135deg,#880e4f,#c2185b,#f06292,#f8bbd0)'
+     Azul  → 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)'
+     Verde → 'linear-gradient(135deg,#1b5e20,#2e7d32,#66bb6a)'
+     Morado→ 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)'
+     Naranja→'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)'
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const CELEBRATIONS = [
-  /* EJEMPLO:
+
+  /* ── CELEBRACIÓN ACTIVA AHORA ──────────────────────────── */
   {
-    title:     'Nombre del evento',
-    excerpt:   'Descripción breve visible en la tarjeta.',
-    body:      '<p>Texto completo del comunicado.</p>',
+    title:     '💜 ¡Feliz Día Internacional de la Mujer!',
+    excerpt:   'Hoy celebramos y honramos a todas las mujeres que hacen grande a DistriVision. Su fuerza, talento y dedicación nos inspiran cada día.',
+    body:      `<p>Queridas compañeras,</p>
+    <p>Hoy, <strong>8 de Marzo</strong>, el mundo entero celebra el <strong>Día Internacional de la Mujer</strong> y en DistriVision queremos dedicar este día especialmente a cada una de ustedes.</p>
+    <p>Gracias por su fuerza inquebrantable, su talento extraordinario y su entrega diaria que hace posible que esta empresa siga creciendo. Cada sonrisa, cada esfuerzo y cada logro suyo es el motor de nuestro equipo.</p>
+    <p>💜 A las que llegan primero y se van de últimas.<br>
+    💜 A las que dan todo en el trabajo y aún más en casa.<br>
+    💜 A las que levantan a los demás con su ejemplo.<br>
+    💜 A las que hacen de DistriVision un lugar mejor cada día.</p>
+    <p><strong>¡Hoy y siempre, las admiramos y las celebramos con todo el corazón!</strong> 💜</p>`,
+    date:      'Publicado el 8 de Marzo, 2025',
+    author:    'Gerencia General',
+    dept:      'DistriVision LTDA',
+    avatar:    '💜',
+    bg:        'linear-gradient(135deg, #880e4f 0%, #c2185b 40%, #f06292 75%, #f8bbd0 100%)',
+    icon:      '💜',
+    bandLabel: '8 de Marzo',
+    /* Sin evento presencial — se borra el bloque eventDetails */
+  },
+
+  /* ── PRÓXIMA CELEBRACIÓN — descomenta cuando sea el momento ──
+  {
+    title:     'Título de la celebración',
+    excerpt:   'Descripción corta visible en la tarjeta del feed.',
+    body:      `<p>Texto completo del mensaje aquí.</p>`,
     date:      'Publicado el DD de Mes, AAAA',
-    author:    'Quien publica',
+    author:    'Quien lo publica',
     dept:      'Área o departamento',
     avatar:    '🎉',
     bg:        'linear-gradient(135deg,#1a4470,#255c95,#228fd2)',
     icon:      '🎊',
-    bandLabel: 'Texto sobre la imagen (ej: "30 Años")',
+    bandLabel: 'Texto visual en la banda (ej: "30 Años")',
     eventDetails: {
-      date:  '📅 Sábado DD de Mes',
-      time:  '🕐 HH:MM pm',
-      place: '📍 Lugar',
-      extra: '👥 Nota adicional'
+      date:  '📅 Día y fecha del evento',
+      time:  '🕐 Hora inicio – Hora fin',
+      place: '📍 Lugar del evento',
+      extra: '👥 Nota adicional o invitados'
     }
   },
-  */
+  ── */
+
 ];
 
-/* ══════════════════════════════════════════════════════════════
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    3. COMUNICADOS, REUNIONES Y LOGROS
-   ──────────────────────────────────────────────────────────────
-   type   : 'comunicado' | 'reunion' | 'logro'
-   pinned : true  →  aparece con etiqueta 📌 Fijado
-   eventDetails es opcional; quítalo si no hay evento.
-══════════════════════════════════════════════════════════════ */
+   ─────────────────────────────────────────────────────────────
+   ▸ type   : 'comunicado' | 'reunion' | 'logro'
+   ▸ pinned : true  →  aparece con etiqueta 📌 Fijado
+   ▸ eventDetails es opcional; quítalo si no hay evento.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const POSTS = [
   {
     type:'reunion', pinned:true,
@@ -343,8 +395,10 @@ const POSTS = [
     excerpt:'¡Gracias al esfuerzo de todo el equipo cerramos febrero con un resultado histórico! Este logro es de todos y cada uno de ustedes.',
     body:`<p>¡Equipo DistriVision, tenemos razones para celebrar!</p>
     <p>Cerramos <strong>febrero 2025 con el 112% de la meta de ventas</strong>.</p>
-    <p>🚚 Repartidores al 100% · 📊 Equipo comercial impecable<br>
-    📦 Bodega comprometida · 💼 Cartera y facturación rigurosa</p>
+    <p>🚚 Repartidores al 100%<br>
+    📊 Equipo comercial impecable<br>
+    📦 Bodega comprometida<br>
+    💼 Cartera y facturación rigurosa</p>
     <p><strong>¡Este logro es de todos!</strong> Próximamente se anuncian reconocimientos individuales.</p>`,
     date:'Publicado el 2 de Marzo, 2025',
     author:'Dirección Comercial', dept:'Área Comercial', avatar:'🌟',
@@ -353,11 +407,13 @@ const POSTS = [
   {
     type:'reunion',
     title:'Reunión de coordinación – Logística y Despacho',
-    excerpt:'Para el equipo de logística, repartidores y auxiliares. Se revisará la nueva ruta y el protocolo de devoluciones actualizado.',
+    excerpt:'Para repartidores, auxiliares y supervisores. Nueva ruta sector sur y protocolo de devoluciones actualizado.',
     body:`<p>Equipo de Logística y Despacho,</p>
     <p>Los convocamos para socializar <strong>actualizaciones en nuestros procesos de distribución</strong>.</p>
-    <p>🗺️ Nueva ruta – Sector sur · 🔄 Protocolo de devoluciones<br>
-    📱 App obligatoria para registro de entregas · ⚠️ Revisión de incidentes</p>
+    <p>🗺️ Nueva ruta – Sector sur<br>
+    🔄 Protocolo de devoluciones actualizado<br>
+    📱 App obligatoria para registro de entregas<br>
+    ⚠️ Revisión de incidentes del mes anterior</p>
     <p>Llegar puntual. Traer dispositivo móvil cargado.</p>`,
     date:'Publicado el 3 de Marzo, 2025',
     author:'Jefe de Logística', dept:'Área de Logística', avatar:'🚚',
@@ -375,79 +431,81 @@ const POSTS = [
     excerpt:'Cambios de horario durante la Semana Mayor para todas las áreas y turnos de trabajo.',
     body:`<p>Estimados colaboradores,</p>
     <p><strong>Horarios especiales Semana Santa 2025:</strong></p>
-    <p>📅 <b>Lun 14 Abr:</b> Normal · <b>Jue 17 Abr:</b> Hasta 12:00 pm<br>
-    📅 <b>Vie 18 Abr:</b> Festivo (no hay operación)<br>
+    <p>📅 <b>Lun 14 Abr:</b> Día laboral normal<br>
+    📅 <b>Jue 17 Abr:</b> Hasta las 12:00 pm<br>
+    📅 <b>Vie 18 Abr:</b> Festivo – Sin operación<br>
     📅 <b>Sáb 19 Abr:</b> Solo personal autorizado<br>
-    📅 <b>Lun 21 Abr:</b> Regreso normal</p>
-    <p>Logística coordinar turnos con jefe directo antes del <strong>10 de Abril</strong>.</p>`,
+    📅 <b>Lun 21 Abr:</b> Regreso normal a labores</p>
+    <p>Logística debe coordinar turnos con su jefe directo antes del <strong>10 de Abril</strong>.</p>`,
     date:'Publicado el 4 de Marzo, 2025',
     author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
     bg:'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon:'📢',
     eventDetails:{
       date:'📅 14 al 20 de Abril, 2025',
-      time:'⚠️ Todos los colaboradores',
+      time:'⚠️ Aplica a todos los colaboradores',
       place:'📍 Todas las sedes',
-      extra:'📌 Consultar novedades antes del 10 Abr'
+      extra:'📌 Novedades antes del 10 de Abril'
     }
   },
   {
     type:'comunicado',
     title:'Actualización del Reglamento Interno de Trabajo 2025',
-    excerpt:'Es obligatorio leer y firmar el acuse de recibo antes del 28 de marzo. Disponible en la oficina de RR.HH.',
+    excerpt:'Obligatorio leer y firmar el acuse de recibo antes del 28 de marzo en la oficina de RR.HH.',
     body:`<p>Estimados colaboradores,</p>
-    <p><strong>El Reglamento Interno fue actualizado</strong> conforme a la normatividad laboral vigente.</p>
-    <p>📌 Art. 12 – Horarios y flexibilidad<br>
+    <p><strong>El Reglamento Interno fue actualizado</strong> conforme a la normatividad laboral vigente 2025.</p>
+    <p><strong>Artículos actualizados:</strong><br>
+    📌 Art. 12 – Horarios y flexibilidad<br>
     📌 Art. 23 – Uso de dispositivos móviles<br>
     📌 Art. 31 – Incapacidades y permisos<br>
     📌 Art. 45 – Acoso y convivencia laboral</p>
-    <p>Leer, <strong>firmar y entregar en RR.HH. antes del 28 de Marzo</strong>.</p>`,
+    <p>Leer, <strong>firmar y entregar en RR.HH. antes del 28 de Marzo</strong>. Disponible en la oficina en horario laboral.</p>`,
     date:'Publicado el 27 de Febrero, 2025',
     author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
     bg:'linear-gradient(135deg,#1a4470,#255c95)', icon:'📝',
     eventDetails:{
-      date:'📅 Disponible desde el 27 Feb',
+      date:'📅 Disponible desde el 27 de Febrero',
       time:'⚠️ Fecha límite: 28 de Marzo',
       place:'📍 Oficina RR.HH. – Sede Neiva',
-      extra:'✍️ Obligatorio para todos'
+      extra:'✍️ Obligatorio para todos los colaboradores'
     }
   }
 ];
 
-/* ══════════════════════════════════════════════════════════════
-   4. PRÓXIMOS EVENTOS (widget del sidebar)
-   ──────────────────────────────────────────────────────────────
-   Agrega o quita eventos según el mes.
-══════════════════════════════════════════════════════════════ */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4. PRÓXIMOS EVENTOS — widget del sidebar
+   ─────────────────────────────────────────────────────────────
+   Agrega o quita eventos según el mes en curso.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const UPCOMING_EVENTS = [
-  { day:'10', mon:'Mar', title:'Reunión Logística & Despacho',  time:'🕖 6:30 am · Bodega Central'  },
-  { day:'14', mon:'Mar', title:'Reunión General de Equipo',     time:'🕘 9:00 am · Salón Principal' },
-  { day:'14', mon:'Abr', title:'Inicio Semana Santa',          time:'📅 Horario especial'           },
+  { day:'10', mon:'Mar', title:'Reunión Logística & Despacho', time:'🕖 6:30 am · Bodega Central'   },
+  { day:'14', mon:'Mar', title:'Reunión General de Equipo',    time:'🕘 9:00 am · Salón Principal'  },
+  { day:'14', mon:'Abr', title:'Inicio Semana Santa',         time:'📅 Horario especial'            },
 ];
 
-/* ════════════════════════════════════════════════════════════
-   ── MOTOR DEL PORTAL (no modificar) ──
-════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════════════════
+   MOTOR DEL PORTAL — no modificar nada debajo de esta línea
+════════════════════════════════════════════════════════════════ */
 const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                       'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun',
                       'Jul','Ago','Sep','Oct','Nov','Dic'];
-const now        = new Date();
-const TODAY_DAY  = now.getDate();
-const TODAY_MON  = now.getMonth() + 1;
 
-/* Fecha en hero */
+const now       = new Date();
+const TODAY_DAY = now.getDate();
+const TODAY_MON = now.getMonth() + 1;
+
+/* Fecha hero */
 document.getElementById('heroDay').textContent       = TODAY_DAY;
 document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON-1] + ' ' + now.getFullYear();
 
-/* Cumpleaños del mes */
-const bdaysThisMonth = BIRTHDAYS
-  .filter(b => b.month === TODAY_MON)
-  .sort((a,b) => a.day - b.day);
-const bdaysToday = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
+/* Cumpleaños del mes actual */
+const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a,b) => a.day - b.day);
+const bdaysToday     = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
 
 /* Label sidebar */
-document.getElementById('bdayMonthLabel').textContent =
-  bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON-1];
+document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON-1];
 
 /* Lista sidebar */
 (function(){
@@ -488,10 +546,10 @@ document.getElementById('bdayMonthLabel').textContent =
     </div>`).join('');
 })();
 
-/* ── Construcción del feed ── */
-const feed      = document.getElementById('portalFeed');
-const feedEmpty = document.getElementById('feedEmpty');
-let   allCards  = [];
+/* ── Feed ── */
+const feed       = document.getElementById('portalFeed');
+const feedEmpty  = document.getElementById('feedEmpty');
+let   allCards   = [];
 let   MODAL_DATA = [];
 
 function addCard(el, type) {
@@ -499,28 +557,24 @@ function addCard(el, type) {
   allCards.push({ type, el });
 }
 
-/* ① Cumpleaños del DÍA */
+/* ① Tarjetas individuales de cumpleaños del DÍA */
 bdaysToday.forEach(b => {
   MODAL_DATA.push({ _bday:true, person:b });
-  const idx = MODAL_DATA.length - 1;
+  const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
-  card.className = 'bday-today-card visible';
+  card.className   = 'bday-today-card visible';
   card.dataset.type = 'cumpleanos';
-  card.onclick = () => openModal(idx);
+  card.onclick      = () => openModal(idx);
 
   /*
-   * ── FOTO DEL CUMPLEAÑERO ──────────────────────────────────
-   * Para agregar la foto de un empleado en su cumpleaños:
-   * 1. Coloca la imagen en   img/empleados/nombre.jpg
-   * 2. En el array BIRTHDAYS cambia  photo:''
-   *    por la ruta:           photo:'img/empleados/nombre.jpg'
-   *
-   * Tamaño ideal de foto: 200×260 px (retrato vertical)
-   * Formatos soportados: .jpg .png .webp
-   * ─────────────────────────────────────────────────────────
-   */
+   * ── FOTO DEL CUMPLEAÑERO ────────────────────────────────
+   * 1. Guarda la foto en  img/empleados/nombre.jpg
+   * 2. En BIRTHDAYS pon:  photo: 'img/empleados/nombre.jpg'
+   * Tamaño ideal: 200 × 260 px · formatos: jpg, png, webp
+   * Si no hay foto se muestra el emoji 🎂 automáticamente.
+   * ────────────────────────────────────────────────────── */
   const photoHtml = b.photo
-    ? `<img class="btc-photo" src="${b.photo}" alt="Foto de ${b.name}"
+    ? `<img class="btc-photo" src="${b.photo}" alt="${b.name}"
            onerror="this.parentNode.innerHTML='<div class=\\'btc-photo-placeholder\\'><div class=\\'ph-emoji\\'>🎂</div><div class=\\'ph-hint\\'>Foto del<br>cumpleañero</div></div>'">`
     : `<div class="btc-photo-placeholder">
          <div class="ph-emoji">🎂</div>
@@ -546,13 +600,14 @@ bdaysToday.forEach(b => {
 
 /* ② Celebraciones */
 if (!CELEBRATIONS.length) {
+  /* Sin celebración → tarjeta genérica */
   MODAL_DATA.push({ _generic:true });
-  const idx = MODAL_DATA.length - 1;
+  const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
-  card.className = 'comm-card visible card-highlight';
+  card.className    = 'comm-card visible card-highlight';
   card.dataset.type = 'celebracion';
-  card.onclick = () => openModal(idx);
-  card.innerHTML = `
+  card.onclick      = () => openModal(idx);
+  card.innerHTML    = `
     <div class="cc-header"><span class="cc-type-badge badge-celebracion">🎉 Celebraciones</span></div>
     <div class="cc-body">
       <div class="cc-band" data-label="DistriVision"
@@ -571,12 +626,12 @@ if (!CELEBRATIONS.length) {
 } else {
   CELEBRATIONS.forEach(cel => {
     MODAL_DATA.push({ _cel:true, data:cel });
-    const idx = MODAL_DATA.length - 1;
+    const idx  = MODAL_DATA.length - 1;
     const card = document.createElement('div');
-    card.className = 'comm-card visible card-highlight';
+    card.className    = 'comm-card visible card-highlight';
     card.dataset.type = 'celebracion';
-    card.onclick = () => openModal(idx);
-    card.innerHTML = `
+    card.onclick      = () => openModal(idx);
+    card.innerHTML    = `
       <div class="cc-header"><span class="cc-type-badge badge-celebracion">🎉 Celebración</span></div>
       <div class="cc-body">
         <div class="cc-band" data-label="${cel.bandLabel||''}" style="background:${cel.bg};">${cel.icon}</div>
@@ -605,12 +660,12 @@ if (bdaysThisMonth.length) {
     .map(b => `🎂 <b>${b.day} ${SHORT_MONTHS[TODAY_MON-1]}</b> — ${b.name}`)
     .join('<br>');
   MODAL_DATA.push({ _bdayList:true, listHtml, month:MONTH_NAMES[TODAY_MON-1], total:bdaysThisMonth.length });
-  const idx = MODAL_DATA.length - 1;
+  const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
-  card.className = 'comm-card visible card-highlight';
+  card.className    = 'comm-card visible card-highlight';
   card.dataset.type = 'cumpleanos';
-  card.onclick = () => openModal(idx);
-  card.innerHTML = `
+  card.onclick      = () => openModal(idx);
+  card.innerHTML    = `
     <div class="cc-header"><span class="cc-type-badge badge-cumpleanos">🎂 Cumpleaños</span></div>
     <div class="cc-body">
       <div class="cc-band" data-label="${MONTH_NAMES[TODAY_MON-1]}"
@@ -628,14 +683,14 @@ if (bdaysThisMonth.length) {
   addCard(card, 'cumpleanos');
 }
 
-/* ④ Posts (reuniones, comunicados, logros) */
+/* ④ Posts: reuniones, comunicados, logros */
 POSTS.forEach(p => {
   MODAL_DATA.push({ _post:true, data:p });
-  const idx = MODAL_DATA.length - 1;
+  const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
-  card.className = 'comm-card visible';
+  card.className    = 'comm-card visible';
   card.dataset.type = p.type;
-  card.onclick = () => openModal(idx);
+  card.onclick      = () => openModal(idx);
   const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
   card.innerHTML = `
     <div class="cc-header">
@@ -687,7 +742,9 @@ document.querySelectorAll('.ptab').forEach(tab => {
   });
 });
 
-/* ══ MODAL ══ */
+/* ════════════════════════════════════════
+   MODAL
+════════════════════════════════════════ */
 function openModal(idx) {
   const d = MODAL_DATA[idx]; if (!d) return;
   const band   = document.getElementById('cmmBand');
@@ -699,10 +756,11 @@ function openModal(idx) {
   const dept   = document.getElementById('cmmDept');
   const date   = document.getElementById('cmmDate');
 
-  band.className = 'cmm-band';
+  band.className      = 'cmm-band';
   band.style.background = '';
-  band.innerHTML = '';
+  band.innerHTML      = '';
 
+  /* cumpleaños del día */
   if (d._bday) {
     const b = d.person;
     if (b.photo) {
@@ -710,15 +768,17 @@ function openModal(idx) {
       band.innerHTML = `<img src="${b.photo}" alt="${b.name}"
         onerror="this.parentNode.className='cmm-band';this.parentNode.style.background='linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';this.parentNode.textContent='🎂'">`;
     } else {
-      band.innerHTML = '🎂';
+      band.innerHTML        = '🎂';
       band.style.background = 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';
     }
-    badge.textContent = '🎂 ¡Cumpleaños Hoy!';
-    badge.className   = 'cc-type-badge badge-cumpleanos';
-    date.textContent  = `📅 ${TODAY_DAY} de ${MONTH_NAMES[TODAY_MON-1]}`;
-    title.textContent = `¡Feliz Cumpleaños, ${b.name}!`;
-    avatar.textContent = '🎈'; author.textContent = 'Recursos Humanos'; dept.textContent = 'Talento Humano';
-    text.innerHTML = `<div class="cmm-text">
+    badge.textContent  = '🎂 ¡Cumpleaños Hoy!';
+    badge.className    = 'cc-type-badge badge-cumpleanos';
+    date.textContent   = `📅 ${TODAY_DAY} de ${MONTH_NAMES[TODAY_MON-1]}`;
+    title.textContent  = `¡Feliz Cumpleaños, ${b.name}!`;
+    avatar.textContent = '🎈';
+    author.textContent = 'Recursos Humanos';
+    dept.textContent   = 'Gestión del Talento Humano';
+    text.innerHTML     = `<div class="cmm-text">
       <p>Hoy es un día muy especial. <strong>¡Celebramos el cumpleaños de ${b.name}!</strong></p>
       <p>Toda la familia DistriVision te desea:<br>
       ✨ Un día lleno de amor y felicidad<br>
@@ -727,39 +787,55 @@ function openModal(idx) {
       <p>¡No olvides felicitarle en persona hoy! 🎉</p>
     </div>`;
   }
+
+  /* lista del mes */
   else if (d._bdayList) {
-    band.innerHTML = '🎂';
+    band.innerHTML        = '🎂';
     band.style.background = 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';
-    badge.textContent = `🎂 Cumpleaños de ${d.month}`;
-    badge.className   = 'cc-type-badge badge-cumpleanos';
-    date.textContent  = `📅 ${d.total} celebraciones este mes`;
-    title.textContent = `Cumpleaños de ${d.month}`;
-    avatar.textContent = '🎈'; author.textContent = 'Recursos Humanos'; dept.textContent = 'Talento Humano';
-    text.innerHTML = `<div class="cmm-text">
+    badge.textContent  = `🎂 Cumpleaños de ${d.month}`;
+    badge.className    = 'cc-type-badge badge-cumpleanos';
+    date.textContent   = `📅 ${d.total} celebraciones este mes`;
+    title.textContent  = `Cumpleaños de ${d.month}`;
+    avatar.textContent = '🎈';
+    author.textContent = 'Recursos Humanos';
+    dept.textContent   = 'Gestión del Talento Humano';
+    text.innerHTML     = `<div class="cmm-text">
       <p>¡Felicitaciones a todos los compañeros que cumplen años este mes!</p>
       <p>${d.listHtml}</p>
       <p>Cuando llegue su día, <strong>recuerda felicitarlos con todo el cariño</strong>. ¡Son parte especial de nuestra familia! 💙</p>
     </div>`;
   }
+
+  /* sin celebración (genérico) */
   else if (d._generic) {
-    band.innerHTML = '🎊';
+    band.innerHTML        = '🎊';
     band.style.background = 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)';
-    badge.textContent = '🎉 Celebraciones'; badge.className = 'cc-type-badge badge-celebracion';
-    date.textContent  = '';
-    title.textContent = 'Sin celebraciones pendientes';
-    avatar.textContent = '💛'; author.textContent = 'Bienestar Laboral'; dept.textContent = 'Talento Humano';
-    text.innerHTML = `<div class="cmm-text">
+    badge.textContent  = '🎉 Celebraciones';
+    badge.className    = 'cc-type-badge badge-celebracion';
+    date.textContent   = '';
+    title.textContent  = 'Sin celebraciones pendientes';
+    avatar.textContent = '💛';
+    author.textContent = 'Bienestar Laboral';
+    dept.textContent   = 'Gestión del Talento Humano';
+    text.innerHTML     = `<div class="cmm-text">
       <p>En este momento no hay celebraciones ni eventos especiales programados.</p>
       <p>Cuando la empresa organice una integración, una fecha especial o cualquier evento para el equipo, <strong>aparecerá aquí con todos los detalles</strong>.</p>
       <p>¡Mantente atento al portal! 💙</p>
     </div>`;
   }
+
+  /* celebración real */
   else if (d._cel) {
     const c = d.data;
-    band.innerHTML = c.icon; band.style.background = c.bg;
-    badge.textContent = '🎉 Celebración'; badge.className = 'cc-type-badge badge-celebracion';
-    date.textContent = c.date; title.textContent = c.title;
-    avatar.textContent = c.avatar; author.textContent = c.author; dept.textContent = c.dept;
+    band.innerHTML        = c.icon;
+    band.style.background = c.bg;
+    badge.textContent  = '🎉 Celebración';
+    badge.className    = 'cc-type-badge badge-celebracion';
+    date.textContent   = c.date;
+    title.textContent  = c.title;
+    avatar.textContent = c.avatar;
+    author.textContent = c.author;
+    dept.textContent   = c.dept;
     let html = `<div class="cmm-text">${c.body}</div>`;
     if (c.eventDetails) {
       const ev = c.eventDetails;
@@ -773,13 +849,20 @@ function openModal(idx) {
     }
     text.innerHTML = html;
   }
+
+  /* post genérico */
   else if (d._post) {
     const p = d.data;
-    band.innerHTML = p.icon; band.style.background = p.bg;
+    band.innerHTML        = p.icon;
+    band.style.background = p.bg;
     const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
-    badge.textContent = bLabel; badge.className = `cc-type-badge badge-${p.type}`;
-    date.textContent = p.date; title.textContent = p.title;
-    avatar.textContent = p.avatar; author.textContent = p.author; dept.textContent = p.dept;
+    badge.textContent  = bLabel;
+    badge.className    = `cc-type-badge badge-${p.type}`;
+    date.textContent   = p.date;
+    title.textContent  = p.title;
+    avatar.textContent = p.avatar;
+    author.textContent = p.author;
+    dept.textContent   = p.dept;
     let html = `<div class="cmm-text">${p.body}</div>`;
     if (p.eventDetails) {
       const ev = p.eventDetails;
@@ -799,57 +882,132 @@ function openModal(idx) {
 }
 
 document.getElementById('cmmClose').addEventListener('click', closeModal);
-document.getElementById('commModal').addEventListener('click', e => { if (e.target===document.getElementById('commModal')) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
-function closeModal(){ document.getElementById('commModal').classList.remove('open'); document.body.style.overflow=''; }
-
-/* ── Mood ── */
-function selectMood(btn){
-  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  setTimeout(()=>{document.getElementById('moodOptions').style.display='none';document.getElementById('moodThanks').style.display='block';},600);
+document.getElementById('commModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('commModal')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+function closeModal() {
+  document.getElementById('commModal').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
-/* ── Cursor ── */
-const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-(function l(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(l);})();
+/* ── Mood ── */
+function selectMood(btn) {
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  setTimeout(() => {
+    document.getElementById('moodOptions').style.display = 'none';
+    document.getElementById('moodThanks').style.display  = 'block';
+  }, 600);
+}
+
+/* ── Cursor personalizado ── */
+const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx+'px'; dot.style.top = my+'px';
+});
+(function loop() {
+  rx += (mx-rx)*.12; ry += (my-ry)*.12;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(loop);
+})();
 
 /* ── Scroll progress ── */
-const pb=document.getElementById('scroll-progress');
-window.addEventListener('scroll',()=>{pb.style.width=((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100)+'%';},{passive:true});
+const pb = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  pb.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
+}, { passive:true });
 
 /* ── Nav ── */
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
-const hamb=document.getElementById('navHamburger');
-if(hamb){hamb.addEventListener('click',()=>navbar.classList.toggle('menu-open'));document.querySelectorAll('#navMenu a').forEach(l=>l.addEventListener('click',()=>navbar.classList.remove('menu-open')));}
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), { passive:true });
+const hamb = document.getElementById('navHamburger');
+if (hamb) {
+  hamb.addEventListener('click', () => navbar.classList.toggle('menu-open'));
+  document.querySelectorAll('#navMenu a').forEach(l => l.addEventListener('click', () => navbar.classList.remove('menu-open')));
+}
 
 /* ── Botones magnéticos ── */
-document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;});
-  btn.addEventListener('mouseleave',()=>{btn.style.transform='';});
+document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    btn.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
 /* ── Chatbot ── */
 (function(){
-  const helpBtn=document.getElementById('dv-help-btn'),chatPanel=document.getElementById('dv-chat-panel'),chatBody=document.getElementById('dvChatBody'),dynamic=document.getElementById('dvDynamic');
-  let isOpen=false,initialized=false;
-  const OPTIONS=[{icon:'📞',label:'Comunícate con nosotros',sub:'Teléfono, WhatsApp o correo',id:'contacto'},{icon:'📋',label:'Cómo obtener mi certificado',sub:'Pasos del proceso explicados',id:'certificado'},{icon:'💼',label:'Vacantes y empleo',sub:'Trabaja con DistriVision',id:'vacantes'}];
-  const ANSWERS={
-    contacto:{title:'📞 Contáctanos',html:'<p>📍 CL 26 SUR No. 6–74, Neiva</p><p>📞 (8) 870 34 34</p><p>📱 <a href="https://wa.me/573105996169">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>'},
-    certificado:{title:'📋 Tu certificado',html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p>'},
-    vacantes:{title:'💼 Vacantes',html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>'}
+  const helpBtn   = document.getElementById('dv-help-btn');
+  const chatPanel = document.getElementById('dv-chat-panel');
+  const chatBody  = document.getElementById('dvChatBody');
+  const dynamic   = document.getElementById('dvDynamic');
+  let isOpen = false, initialized = false;
+
+  const OPTIONS = [
+    { icon:'📞', label:'Comunícate con nosotros',      sub:'Teléfono, WhatsApp o correo',   id:'contacto'    },
+    { icon:'📋', label:'Cómo obtener mi certificado',  sub:'Pasos del proceso explicados',  id:'certificado' },
+    { icon:'💼', label:'Vacantes y empleo',             sub:'Trabaja con DistriVision',      id:'vacantes'    }
+  ];
+  const ANSWERS = {
+    contacto:    { title:'📞 Contáctanos directamente',   html:'<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>' },
+    certificado: { title:'📋 Cómo obtener tu certificado', html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>' },
+    vacantes:    { title:'💼 Vacantes en DistriVision',    html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>' }
   };
-  helpBtn.addEventListener('click',()=>{isOpen=!isOpen;helpBtn.classList.toggle('open',isOpen);chatPanel.classList.toggle('open',isOpen);if(isOpen&&!initialized)initChat();});
-  function initChat(){initialized=true;addTyping(()=>{addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?');setTimeout(()=>showOptions(),400);});}
-  function showOptions(){dynamic.innerHTML='<div class="dv-options" id="dvOptions"></div>';const c=document.getElementById('dvOptions');OPTIONS.forEach((o,i)=>{const b=document.createElement('button');b.className='dv-option-btn';b.style.animationDelay=(i*.08)+'s';b.innerHTML=`<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`;b.addEventListener('click',()=>selOpt(o));c.appendChild(b);});scrollBot();}
-  function selOpt(o){addUser(o.icon+' '+o.label);dynamic.innerHTML='';addTyping(()=>{const a=ANSWERS[o.id];dynamic.innerHTML=`<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`;document.getElementById('dvBackBtn').addEventListener('click',()=>{addBot('¿Hay algo más en lo que pueda ayudarte?');dynamic.innerHTML='';setTimeout(()=>showOptions(),300);});scrollBot();});}
-  function addBot(h){const e=document.createElement('div');e.className='dv-bubble';e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`;chatBody.appendChild(e);scrollBot();}
-  function addUser(t){const e=document.createElement('div');e.className='dv-bubble user';e.innerHTML=`<div class="dv-bubble-text">${t}</div>`;chatBody.appendChild(e);scrollBot();}
-  function addTyping(cb){const e=document.createElement('div');e.className='dv-typing';e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;chatBody.appendChild(e);scrollBot();setTimeout(()=>{chatBody.removeChild(e);cb();},950);}
-  function scrollBot(){setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50);}
+
+  helpBtn.addEventListener('click', () => {
+    isOpen = !isOpen;
+    helpBtn.classList.toggle('open', isOpen);
+    chatPanel.classList.toggle('open', isOpen);
+    if (isOpen && !initialized) initChat();
+  });
+
+  function initChat() {
+    initialized = true;
+    addTyping(() => {
+      addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?');
+      setTimeout(() => showOptions(), 400);
+    });
+  }
+  function showOptions() {
+    dynamic.innerHTML = '<div class="dv-options" id="dvOptions"></div>';
+    const c = document.getElementById('dvOptions');
+    OPTIONS.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.className = 'dv-option-btn';
+      b.style.animationDelay = (i * .08) + 's';
+      b.innerHTML = `<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`;
+      b.addEventListener('click', () => selOpt(o));
+      c.appendChild(b);
+    });
+    scrollBot();
+  }
+  function selOpt(o) {
+    addUser(o.icon + ' ' + o.label);
+    dynamic.innerHTML = '';
+    addTyping(() => {
+      const a = ANSWERS[o.id];
+      dynamic.innerHTML = `<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`;
+      document.getElementById('dvBackBtn').addEventListener('click', () => {
+        addBot('¿Hay algo más en lo que pueda ayudarte?');
+        dynamic.innerHTML = '';
+        setTimeout(() => showOptions(), 300);
+      });
+      scrollBot();
+    });
+  }
+  function addBot(h)   { const e=document.createElement('div'); e.className='dv-bubble';      e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addUser(t)  { const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addTyping(cb) {
+    const e = document.createElement('div');
+    e.className = 'dv-typing';
+    e.innerHTML = `<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
+    chatBody.appendChild(e); scrollBot();
+    setTimeout(() => { chatBody.removeChild(e); cb(); }, 950);
+  }
+  function scrollBot() { setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 50); }
 })();
 </script>
 </body>
