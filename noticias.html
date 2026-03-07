@@ -42,6 +42,8 @@
 
 <!-- ══════════════════════════════════════
      HERO
+     ✅ La fecha se actualiza AUTOMÁTICAMENTE
+        con new Date() — no editar manualmente.
 ══════════════════════════════════════ -->
 <section class="portal-hero">
   <div class="hero-bg">
@@ -181,7 +183,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 DistriVision LTDA. Todos los derechos reservados.</p>
+    <p>© 2026 DistriVision LTDA. Todos los derechos reservados.</p>
     <p>Distribución con Excelencia y Compromiso</p>
   </div>
 </footer>
@@ -260,10 +262,6 @@
                    'img/empleados/juan_diego.jpg'
                    Dejar '' si no hay foto todavía.
                    Tamaño ideal: 200 × 260 px (vertical)
-
-   El portal muestra automáticamente solo el mes actual.
-   Para el mes siguiente: agrega las entradas con el mes correcto,
-   pueden coexistir varios meses en el mismo array.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const BIRTHDAYS = [
 
@@ -297,23 +295,18 @@ const BIRTHDAYS = [
    2. CELEBRACIÓN ACTIVA
    ─────────────────────────────────────────────────────────────
    ▸ Cuando NO hay celebración → deja el array vacío: []
-     El portal mostrará automáticamente "Sin celebraciones
-     pendientes por el momento."
-
    ▸ Cuando SÍ hay una → rellena el bloque con los datos.
-     Si el evento NO tiene fecha/hora/lugar, borra el bloque
-     completo de  eventDetails: { ... }
 
-   Campos de color (bg):
-     Rosa  → 'linear-gradient(135deg,#880e4f,#c2185b,#f06292,#f8bbd0)'
-     Azul  → 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)'
-     Verde → 'linear-gradient(135deg,#1b5e20,#2e7d32,#66bb6a)'
-     Morado→ 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)'
-     Naranja→'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)'
+   Colores disponibles para bg:
+     Rosa   → 'linear-gradient(135deg,#880e4f,#c2185b,#f06292,#f8bbd0)'
+     Azul   → 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)'
+     Verde  → 'linear-gradient(135deg,#1b5e20,#2e7d32,#66bb6a)'
+     Morado → 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)'
+     Naranja→ 'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)'
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const CELEBRATIONS = [
 
-  /* ── CELEBRACIÓN ACTIVA AHORA ──────────────────────────── */
+  /* ── CELEBRACIÓN ACTIVA ─────────────────────────────────── */
   {
     title:     '💜 ¡Feliz Día Internacional de la Mujer!',
     excerpt:   'Hoy celebramos y honramos a todas las mujeres que hacen grande a DistriVision. Su fuerza, talento y dedicación nos inspiran cada día.',
@@ -325,14 +318,13 @@ const CELEBRATIONS = [
     💜 A las que levantan a los demás con su ejemplo.<br>
     💜 A las que hacen de DistriVision un lugar mejor cada día.</p>
     <p><strong>¡Hoy y siempre, las admiramos y las celebramos con todo el corazón!</strong> 💜</p>`,
-    date:      'Publicado el 8 de Marzo, 2025',
+    date:      'Publicado el 8 de Marzo, 2026',
     author:    'Gerencia General',
     dept:      'DistriVision LTDA',
     avatar:    '💜',
     bg:        'linear-gradient(135deg, #880e4f 0%, #c2185b 40%, #f06292 75%, #f8bbd0 100%)',
     icon:      '💜',
     bandLabel: '8 de Marzo',
-    /* Sin evento presencial — se borra el bloque eventDetails */
   },
 
   /* ── PRÓXIMA CELEBRACIÓN — descomenta cuando sea el momento ──
@@ -340,7 +332,7 @@ const CELEBRATIONS = [
     title:     'Título de la celebración',
     excerpt:   'Descripción corta visible en la tarjeta del feed.',
     body:      `<p>Texto completo del mensaje aquí.</p>`,
-    date:      'Publicado el DD de Mes, AAAA',
+    date:      'Publicado el DD de Mes, 2026',
     author:    'Quien lo publica',
     dept:      'Área o departamento',
     avatar:    '🎉',
@@ -365,44 +357,80 @@ const CELEBRATIONS = [
    ▸ type   : 'comunicado' | 'reunion' | 'logro'
    ▸ pinned : true  →  aparece con etiqueta 📌 Fijado
    ▸ eventDetails es opcional; quítalo si no hay evento.
+
+   ⚠️ REUNIONES y LOGROS están comentados temporalmente.
+      Descomenta el bloque cuando los haya.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const POSTS = [
+
+  /* ── COMUNICADOS ACTIVOS ─────────────────────────────────── */
   {
-    type:'reunion', pinned:true,
-    title:'Reunión General de Equipo – Marzo 2025',
-    excerpt:'Reunión mensual obligatoria para todos los colaboradores. Resultados de febrero, metas de marzo y nuevos procedimientos del área logística.',
-    body:`<p>Estimado equipo DistriVision,</p>
-    <p>Los convocamos a nuestra <strong>Reunión General de Equipo del mes de Marzo</strong>.</p>
-    <p><strong>Agenda:</strong><br>
-    1️⃣ Resultados de ventas y distribución – Febrero 2025<br>
-    2️⃣ Metas y compromisos para Marzo<br>
-    3️⃣ Nuevos procedimientos – Área Logística<br>
-    4️⃣ Reconocimientos del mes y espacio de preguntas</p>
-    <p><strong>La asistencia es obligatoria.</strong></p>`,
-    date:'Publicado el 5 de Marzo, 2025',
-    author:'Gerencia General', dept:'Dirección Ejecutiva', avatar:'👔',
-    bg:'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)', icon:'📅',
+    type:'comunicado',
+    title:'Horarios especiales Semana Santa 2026',
+    excerpt:'Cambios de horario durante la Semana Mayor para todas las áreas y turnos de trabajo.',
+    body:`<p>Estimados colaboradores,</p>
+    <p><strong>Horarios especiales Semana Santa 2026:</strong></p>
+    <p>📅 <b>Lun 30 Mar:</b> Día laboral normal<br>
+    📅 <b>Jue 2 Abr:</b> Hasta las 12:00 pm<br>
+    📅 <b>Vie 3 Abr:</b> Festivo – Sin operación<br>
+    📅 <b>Sáb 4 Abr:</b> Solo personal autorizado<br>
+    📅 <b>Lun 6 Abr:</b> Regreso normal a labores</p>
+    <p>Logística debe coordinar turnos con su jefe directo antes del <strong>25 de Marzo</strong>.</p>`,
+    date:'Publicado el 7 de Marzo, 2026',
+    author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
+    bg:'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon:'📢',
     eventDetails:{
-      date:'📅 Viernes 14 de Marzo, 2025',
-      time:'🕘 9:00 am – 11:00 am',
-      place:'📍 Salón Principal – Sede Neiva',
-      extra:'👥 Asistencia obligatoria para todos'
+      date:'📅 30 Mar al 5 Abr, 2026',
+      time:'⚠️ Aplica a todos los colaboradores',
+      place:'📍 Todas las sedes',
+      extra:'📌 Novedades antes del 25 de Marzo'
     }
   },
   {
-    type:'logro',
-    title:'¡Superamos la meta de ventas de febrero en un 112%!',
-    excerpt:'¡Gracias al esfuerzo de todo el equipo cerramos febrero con un resultado histórico! Este logro es de todos y cada uno de ustedes.',
-    body:`<p>¡Equipo DistriVision, tenemos razones para celebrar!</p>
-    <p>Cerramos <strong>febrero 2025 con el 112% de la meta de ventas</strong>.</p>
-    <p>🚚 Repartidores al 100%<br>
-    📊 Equipo comercial impecable<br>
-    📦 Bodega comprometida<br>
-    💼 Cartera y facturación rigurosa</p>
-    <p><strong>¡Este logro es de todos!</strong> Próximamente se anuncian reconocimientos individuales.</p>`,
-    date:'Publicado el 2 de Marzo, 2025',
-    author:'Dirección Comercial', dept:'Área Comercial', avatar:'🌟',
-    bg:'linear-gradient(135deg,#1b5e20,#2e7d32,#43a047)', icon:'🏆'
+    type:'comunicado',
+    title:'Actualización del Reglamento Interno de Trabajo 2026',
+    excerpt:'Obligatorio leer y firmar el acuse de recibo antes del 28 de marzo en la oficina de RR.HH.',
+    body:`<p>Estimados colaboradores,</p>
+    <p><strong>El Reglamento Interno fue actualizado</strong> conforme a la normatividad laboral vigente 2026.</p>
+    <p><strong>Artículos actualizados:</strong><br>
+    📌 Art. 12 – Horarios y flexibilidad<br>
+    📌 Art. 23 – Uso de dispositivos móviles<br>
+    📌 Art. 31 – Incapacidades y permisos<br>
+    📌 Art. 45 – Acoso y convivencia laboral</p>
+    <p>Leer, <strong>firmar y entregar en RR.HH. antes del 28 de Marzo</strong>. Disponible en la oficina en horario laboral.</p>`,
+    date:'Publicado el 7 de Marzo, 2026',
+    author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
+    bg:'linear-gradient(135deg,#1a4470,#255c95)', icon:'📝',
+    eventDetails:{
+      date:'📅 Disponible desde el 7 de Marzo, 2026',
+      time:'⚠️ Fecha límite: 28 de Marzo',
+      place:'📍 Oficina RR.HH. – Sede Neiva',
+      extra:'✍️ Obligatorio para todos los colaboradores'
+    }
+  },
+
+  /* ── REUNIONES — descomenta cuando haya una ─────────────────
+  {
+    type:'reunion', pinned:true,
+    title:'Reunión General de Equipo – [Mes] 2026',
+    excerpt:'Reunión mensual obligatoria para todos los colaboradores. Resultados del mes anterior, metas y nuevos procedimientos.',
+    body:`<p>Estimado equipo DistriVision,</p>
+    <p>Los convocamos a nuestra <strong>Reunión General de Equipo</strong>.</p>
+    <p><strong>Agenda:</strong><br>
+    1️⃣ Resultados de ventas y distribución<br>
+    2️⃣ Metas y compromisos del mes<br>
+    3️⃣ Nuevos procedimientos<br>
+    4️⃣ Reconocimientos y espacio de preguntas</p>
+    <p><strong>La asistencia es obligatoria.</strong></p>`,
+    date:'Publicado el DD de Mes, 2026',
+    author:'Gerencia General', dept:'Dirección Ejecutiva', avatar:'👔',
+    bg:'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)', icon:'📅',
+    eventDetails:{
+      date:'📅 Día y fecha del evento',
+      time:'🕘 Hora inicio – Hora fin',
+      place:'📍 Salón Principal – Sede Neiva',
+      extra:'👥 Asistencia obligatoria para todos'
+    }
   },
   {
     type:'reunion',
@@ -415,60 +443,36 @@ const POSTS = [
     📱 App obligatoria para registro de entregas<br>
     ⚠️ Revisión de incidentes del mes anterior</p>
     <p>Llegar puntual. Traer dispositivo móvil cargado.</p>`,
-    date:'Publicado el 3 de Marzo, 2025',
+    date:'Publicado el DD de Mes, 2026',
     author:'Jefe de Logística', dept:'Área de Logística', avatar:'🚚',
     bg:'linear-gradient(135deg,#bf360c,#e64a19,#ff7043)', icon:'🚚',
     eventDetails:{
-      date:'📅 Lunes 10 de Marzo, 2025',
-      time:'🕖 6:30 am – 8:00 am',
+      date:'📅 Día y fecha del evento',
+      time:'🕖 Hora inicio – Hora fin',
       place:'📍 Bodega Central – Sede Neiva',
       extra:'👥 Repartidores, auxiliares y supervisores'
     }
   },
+  ── */
+
+  /* ── LOGROS — descomenta cuando haya uno ─────────────────────
   {
-    type:'comunicado',
-    title:'Horarios especiales Semana Santa 2025',
-    excerpt:'Cambios de horario durante la Semana Mayor para todas las áreas y turnos de trabajo.',
-    body:`<p>Estimados colaboradores,</p>
-    <p><strong>Horarios especiales Semana Santa 2025:</strong></p>
-    <p>📅 <b>Lun 14 Abr:</b> Día laboral normal<br>
-    📅 <b>Jue 17 Abr:</b> Hasta las 12:00 pm<br>
-    📅 <b>Vie 18 Abr:</b> Festivo – Sin operación<br>
-    📅 <b>Sáb 19 Abr:</b> Solo personal autorizado<br>
-    📅 <b>Lun 21 Abr:</b> Regreso normal a labores</p>
-    <p>Logística debe coordinar turnos con su jefe directo antes del <strong>10 de Abril</strong>.</p>`,
-    date:'Publicado el 4 de Marzo, 2025',
-    author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
-    bg:'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon:'📢',
-    eventDetails:{
-      date:'📅 14 al 20 de Abril, 2025',
-      time:'⚠️ Aplica a todos los colaboradores',
-      place:'📍 Todas las sedes',
-      extra:'📌 Novedades antes del 10 de Abril'
-    }
+    type:'logro',
+    title:'¡Superamos la meta de ventas de [Mes] 2026!',
+    excerpt:'¡Gracias al esfuerzo de todo el equipo cerramos el mes con un resultado histórico! Este logro es de todos.',
+    body:`<p>¡Equipo DistriVision, tenemos razones para celebrar!</p>
+    <p>Cerramos <strong>[Mes] 2026 con el [X]% de la meta de ventas</strong>.</p>
+    <p>🚚 Repartidores al 100%<br>
+    📊 Equipo comercial impecable<br>
+    📦 Bodega comprometida<br>
+    💼 Cartera y facturación rigurosa</p>
+    <p><strong>¡Este logro es de todos!</strong> Próximamente se anuncian reconocimientos individuales.</p>`,
+    date:'Publicado el DD de Mes, 2026',
+    author:'Dirección Comercial', dept:'Área Comercial', avatar:'🌟',
+    bg:'linear-gradient(135deg,#1b5e20,#2e7d32,#43a047)', icon:'🏆'
   },
-  {
-    type:'comunicado',
-    title:'Actualización del Reglamento Interno de Trabajo 2025',
-    excerpt:'Obligatorio leer y firmar el acuse de recibo antes del 28 de marzo en la oficina de RR.HH.',
-    body:`<p>Estimados colaboradores,</p>
-    <p><strong>El Reglamento Interno fue actualizado</strong> conforme a la normatividad laboral vigente 2025.</p>
-    <p><strong>Artículos actualizados:</strong><br>
-    📌 Art. 12 – Horarios y flexibilidad<br>
-    📌 Art. 23 – Uso de dispositivos móviles<br>
-    📌 Art. 31 – Incapacidades y permisos<br>
-    📌 Art. 45 – Acoso y convivencia laboral</p>
-    <p>Leer, <strong>firmar y entregar en RR.HH. antes del 28 de Marzo</strong>. Disponible en la oficina en horario laboral.</p>`,
-    date:'Publicado el 27 de Febrero, 2025',
-    author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
-    bg:'linear-gradient(135deg,#1a4470,#255c95)', icon:'📝',
-    eventDetails:{
-      date:'📅 Disponible desde el 27 de Febrero',
-      time:'⚠️ Fecha límite: 28 de Marzo',
-      place:'📍 Oficina RR.HH. – Sede Neiva',
-      extra:'✍️ Obligatorio para todos los colaboradores'
-    }
-  }
+  ── */
+
 ];
 
 
@@ -478,9 +482,8 @@ const POSTS = [
    Agrega o quita eventos según el mes en curso.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const UPCOMING_EVENTS = [
-  { day:'10', mon:'Mar', title:'Reunión Logística & Despacho', time:'🕖 6:30 am · Bodega Central'   },
-  { day:'14', mon:'Mar', title:'Reunión General de Equipo',    time:'🕘 9:00 am · Salón Principal'  },
-  { day:'14', mon:'Abr', title:'Inicio Semana Santa',         time:'📅 Horario especial'            },
+  { day:'28', mon:'Mar', title:'Fecha límite Reglamento Interno', time:'📋 Firmar en RR.HH. antes de esta fecha' },
+  { day:'30', mon:'Mar', title:'Inicio Semana Santa',             time:'📅 Horario especial'                     },
 ];
 
 
@@ -492,23 +495,25 @@ const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
 const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun',
                       'Jul','Ago','Sep','Oct','Nov','Dic'];
 
-const now       = new Date();
-const TODAY_DAY = now.getDate();
-const TODAY_MON = now.getMonth() + 1;
+/* ✅ Fecha 100% dinámica — se actualiza sola al abrir la página */
+const now        = new Date();
+const TODAY_DAY  = now.getDate();
+const TODAY_MON  = now.getMonth() + 1;
+const TODAY_YEAR = now.getFullYear();
 
-/* Fecha hero */
+/* Hero: día y mes/año automáticos */
 document.getElementById('heroDay').textContent       = TODAY_DAY;
-document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON-1] + ' ' + now.getFullYear();
+document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON - 1] + ' ' + TODAY_YEAR;
 
 /* Cumpleaños del mes actual */
-const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a,b) => a.day - b.day);
+const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a, b) => a.day - b.day);
 const bdaysToday     = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
 
 /* Label sidebar */
-document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON-1];
+document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON - 1];
 
 /* Lista sidebar */
-(function(){
+(function () {
   const list = document.getElementById('bdaySidebarList');
   if (!bdaysThisMonth.length) {
     list.innerHTML = `<p style="font-family:'Lato',sans-serif;font-size:.82rem;color:var(--text-muted);padding:4px 0;">Sin cumpleaños este mes.</p>`;
@@ -516,7 +521,7 @@ document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + 
   }
   list.innerHTML = bdaysThisMonth.map(b => {
     const isToday = b.day === TODAY_DAY;
-    return `<div class="bday-item ${isToday?'is-today':''}">
+    return `<div class="bday-item ${isToday ? 'is-today' : ''}">
       <div class="bday-date-box"><div class="bd-day">${b.day}</div></div>
       <div class="bday-info">
         <div class="bday-name">${b.name}</div>
@@ -527,7 +532,7 @@ document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + 
 })();
 
 /* Próximos eventos sidebar */
-(function(){
+(function () {
   const wrap = document.getElementById('upcomingEvents');
   if (!UPCOMING_EVENTS.length) {
     wrap.innerHTML = `<p style="font-family:'Lato',sans-serif;font-size:.82rem;color:var(--text-muted);">Sin eventos próximos.</p>`;
@@ -547,10 +552,10 @@ document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + 
 })();
 
 /* ── Feed ── */
-const feed       = document.getElementById('portalFeed');
-const feedEmpty  = document.getElementById('feedEmpty');
-let   allCards   = [];
-let   MODAL_DATA = [];
+const feed      = document.getElementById('portalFeed');
+const feedEmpty = document.getElementById('feedEmpty');
+let allCards    = [];
+let MODAL_DATA  = [];
 
 function addCard(el, type) {
   feed.insertBefore(el, feedEmpty);
@@ -559,20 +564,13 @@ function addCard(el, type) {
 
 /* ① Tarjetas individuales de cumpleaños del DÍA */
 bdaysToday.forEach(b => {
-  MODAL_DATA.push({ _bday:true, person:b });
+  MODAL_DATA.push({ _bday: true, person: b });
   const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
-  card.className   = 'bday-today-card visible';
+  card.className    = 'bday-today-card visible';
   card.dataset.type = 'cumpleanos';
   card.onclick      = () => openModal(idx);
 
-  /*
-   * ── FOTO DEL CUMPLEAÑERO ────────────────────────────────
-   * 1. Guarda la foto en  img/empleados/nombre.jpg
-   * 2. En BIRTHDAYS pon:  photo: 'img/empleados/nombre.jpg'
-   * Tamaño ideal: 200 × 260 px · formatos: jpg, png, webp
-   * Si no hay foto se muestra el emoji 🎂 automáticamente.
-   * ────────────────────────────────────────────────────── */
   const photoHtml = b.photo
     ? `<img class="btc-photo" src="${b.photo}" alt="${b.name}"
            onerror="this.parentNode.innerHTML='<div class=\\'btc-photo-placeholder\\'><div class=\\'ph-emoji\\'>🎂</div><div class=\\'ph-hint\\'>Foto del<br>cumpleañero</div></div>'">`
@@ -600,8 +598,7 @@ bdaysToday.forEach(b => {
 
 /* ② Celebraciones */
 if (!CELEBRATIONS.length) {
-  /* Sin celebración → tarjeta genérica */
-  MODAL_DATA.push({ _generic:true });
+  MODAL_DATA.push({ _generic: true });
   const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
   card.className    = 'comm-card visible card-highlight';
@@ -625,7 +622,7 @@ if (!CELEBRATIONS.length) {
   addCard(card, 'celebracion');
 } else {
   CELEBRATIONS.forEach(cel => {
-    MODAL_DATA.push({ _cel:true, data:cel });
+    MODAL_DATA.push({ _cel: true, data: cel });
     const idx  = MODAL_DATA.length - 1;
     const card = document.createElement('div');
     card.className    = 'comm-card visible card-highlight';
@@ -634,7 +631,7 @@ if (!CELEBRATIONS.length) {
     card.innerHTML    = `
       <div class="cc-header"><span class="cc-type-badge badge-celebracion">🎉 Celebración</span></div>
       <div class="cc-body">
-        <div class="cc-band" data-label="${cel.bandLabel||''}" style="background:${cel.bg};">${cel.icon}</div>
+        <div class="cc-band" data-label="${cel.bandLabel || ''}" style="background:${cel.bg};">${cel.icon}</div>
         <h3 class="cc-title">${cel.title}</h3>
         <p class="cc-excerpt">${cel.excerpt}</p>
         ${cel.eventDetails ? `<div class="cc-event-details">
@@ -657,9 +654,9 @@ if (!CELEBRATIONS.length) {
 /* ③ Resumen cumpleaños del mes */
 if (bdaysThisMonth.length) {
   const listHtml = bdaysThisMonth
-    .map(b => `🎂 <b>${b.day} ${SHORT_MONTHS[TODAY_MON-1]}</b> — ${b.name}`)
+    .map(b => `🎂 <b>${b.day} ${SHORT_MONTHS[TODAY_MON - 1]}</b> — ${b.name}`)
     .join('<br>');
-  MODAL_DATA.push({ _bdayList:true, listHtml, month:MONTH_NAMES[TODAY_MON-1], total:bdaysThisMonth.length });
+  MODAL_DATA.push({ _bdayList: true, listHtml, month: MONTH_NAMES[TODAY_MON - 1], total: bdaysThisMonth.length });
   const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
   card.className    = 'comm-card visible card-highlight';
@@ -668,9 +665,9 @@ if (bdaysThisMonth.length) {
   card.innerHTML    = `
     <div class="cc-header"><span class="cc-type-badge badge-cumpleanos">🎂 Cumpleaños</span></div>
     <div class="cc-body">
-      <div class="cc-band" data-label="${MONTH_NAMES[TODAY_MON-1]}"
+      <div class="cc-band" data-label="${MONTH_NAMES[TODAY_MON - 1]}"
            style="background:linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc);">🎂</div>
-      <h3 class="cc-title">¡${bdaysThisMonth.length} cumpleaños en ${MONTH_NAMES[TODAY_MON-1]}! Felicitaciones a todos 🎉</h3>
+      <h3 class="cc-title">¡${bdaysThisMonth.length} cumpleaños en ${MONTH_NAMES[TODAY_MON - 1]}! Felicitaciones a todos 🎉</h3>
       <p class="cc-excerpt">Este mes celebramos a ${bdaysThisMonth.length} compañeros. Cuando sea su día, recuerda felicitarlos con todo el cariño de la familia DistriVision.</p>
     </div>
     <div class="cc-footer">
@@ -683,15 +680,15 @@ if (bdaysThisMonth.length) {
   addCard(card, 'cumpleanos');
 }
 
-/* ④ Posts: reuniones, comunicados, logros */
+/* ④ Posts activos (solo comunicados; reuniones y logros comentados arriba) */
 POSTS.forEach(p => {
-  MODAL_DATA.push({ _post:true, data:p });
+  MODAL_DATA.push({ _post: true, data: p });
   const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
   card.className    = 'comm-card visible';
   card.dataset.type = p.type;
   card.onclick      = () => openModal(idx);
-  const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
+  const bLabel = { reunion: '📅 Reunión', comunicado: '📢 Comunicado', logro: '🏆 Logro del Mes' }[p.type] || p.type;
   card.innerHTML = `
     <div class="cc-header">
       <span class="cc-type-badge badge-${p.type}">${bLabel}</span>
@@ -719,16 +716,16 @@ POSTS.forEach(p => {
 
 /* Contadores de tabs */
 const counts = {};
-allCards.forEach(c => counts[c.type] = (counts[c.type]||0)+1);
+allCards.forEach(c => counts[c.type] = (counts[c.type] || 0) + 1);
 document.getElementById('cnt-todos').textContent = allCards.length;
-['cumpleanos','reunion','celebracion','comunicado','logro'].forEach(t => {
-  const el = document.getElementById('cnt-'+t);
+['cumpleanos', 'reunion', 'celebracion', 'comunicado', 'logro'].forEach(t => {
+  const el = document.getElementById('cnt-' + t);
   if (el) el.textContent = counts[t] || 0;
 });
 
 /* Filtro de tabs */
 document.querySelectorAll('.ptab').forEach(tab => {
-  tab.addEventListener('click', function() {
+  tab.addEventListener('click', function () {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
     this.classList.add('active');
     const f = this.dataset.tab;
@@ -756,11 +753,10 @@ function openModal(idx) {
   const dept   = document.getElementById('cmmDept');
   const date   = document.getElementById('cmmDate');
 
-  band.className      = 'cmm-band';
+  band.className        = 'cmm-band';
   band.style.background = '';
-  band.innerHTML      = '';
+  band.innerHTML        = '';
 
-  /* cumpleaños del día */
   if (d._bday) {
     const b = d.person;
     if (b.photo) {
@@ -773,7 +769,7 @@ function openModal(idx) {
     }
     badge.textContent  = '🎂 ¡Cumpleaños Hoy!';
     badge.className    = 'cc-type-badge badge-cumpleanos';
-    date.textContent   = `📅 ${TODAY_DAY} de ${MONTH_NAMES[TODAY_MON-1]}`;
+    date.textContent   = `📅 ${TODAY_DAY} de ${MONTH_NAMES[TODAY_MON - 1]}`;
     title.textContent  = `¡Feliz Cumpleaños, ${b.name}!`;
     avatar.textContent = '🎈';
     author.textContent = 'Recursos Humanos';
@@ -787,8 +783,6 @@ function openModal(idx) {
       <p>¡No olvides felicitarle en persona hoy! 🎉</p>
     </div>`;
   }
-
-  /* lista del mes */
   else if (d._bdayList) {
     band.innerHTML        = '🎂';
     band.style.background = 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';
@@ -805,8 +799,6 @@ function openModal(idx) {
       <p>Cuando llegue su día, <strong>recuerda felicitarlos con todo el cariño</strong>. ¡Son parte especial de nuestra familia! 💙</p>
     </div>`;
   }
-
-  /* sin celebración (genérico) */
   else if (d._generic) {
     band.innerHTML        = '🎊';
     band.style.background = 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)';
@@ -823,8 +815,6 @@ function openModal(idx) {
       <p>¡Mantente atento al portal! 💙</p>
     </div>`;
   }
-
-  /* celebración real */
   else if (d._cel) {
     const c = d.data;
     band.innerHTML        = c.icon;
@@ -849,13 +839,11 @@ function openModal(idx) {
     }
     text.innerHTML = html;
   }
-
-  /* post genérico */
   else if (d._post) {
     const p = d.data;
     band.innerHTML        = p.icon;
     band.style.background = p.bg;
-    const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
+    const bLabel = { reunion: '📅 Reunión', comunicado: '📢 Comunicado', logro: '🏆 Logro del Mes' }[p.type] || p.type;
     badge.textContent  = bLabel;
     badge.className    = `cc-type-badge badge-${p.type}`;
     date.textContent   = p.date;
@@ -903,14 +891,14 @@ function selectMood(btn) {
 
 /* ── Cursor personalizado ── */
 const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-let mx=0, my=0, rx=0, ry=0;
+let mx = 0, my = 0, rx = 0, ry = 0;
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
-  dot.style.left = mx+'px'; dot.style.top = my+'px';
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
 });
 (function loop() {
-  rx += (mx-rx)*.12; ry += (my-ry)*.12;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  rx += (mx - rx) * .12; ry += (my - ry) * .12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
   requestAnimationFrame(loop);
 })();
 
@@ -918,11 +906,11 @@ document.addEventListener('mousemove', e => {
 const pb = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
   pb.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
-}, { passive:true });
+}, { passive: true });
 
 /* ── Nav ── */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), { passive:true });
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
 const hamb = document.getElementById('navHamburger');
 if (hamb) {
   hamb.addEventListener('click', () => navbar.classList.toggle('menu-open'));
@@ -933,13 +921,13 @@ if (hamb) {
 document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
-    btn.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;
+    btn.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * .18}px,${(e.clientY - (r.top + r.height / 2)) * .22}px)`;
   });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
 /* ── Chatbot ── */
-(function(){
+(function () {
   const helpBtn   = document.getElementById('dv-help-btn');
   const chatPanel = document.getElementById('dv-chat-panel');
   const chatBody  = document.getElementById('dvChatBody');
@@ -947,14 +935,14 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEa
   let isOpen = false, initialized = false;
 
   const OPTIONS = [
-    { icon:'📞', label:'Comunícate con nosotros',      sub:'Teléfono, WhatsApp o correo',   id:'contacto'    },
-    { icon:'📋', label:'Cómo obtener mi certificado',  sub:'Pasos del proceso explicados',  id:'certificado' },
-    { icon:'💼', label:'Vacantes y empleo',             sub:'Trabaja con DistriVision',      id:'vacantes'    }
+    { icon: '📞', label: 'Comunícate con nosotros',     sub: 'Teléfono, WhatsApp o correo',  id: 'contacto'    },
+    { icon: '📋', label: 'Cómo obtener mi certificado', sub: 'Pasos del proceso explicados', id: 'certificado' },
+    { icon: '💼', label: 'Vacantes y empleo',            sub: 'Trabaja con DistriVision',     id: 'vacantes'    }
   ];
   const ANSWERS = {
-    contacto:    { title:'📞 Contáctanos directamente',   html:'<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>' },
-    certificado: { title:'📋 Cómo obtener tu certificado', html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>' },
-    vacantes:    { title:'💼 Vacantes en DistriVision',    html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>' }
+    contacto:    { title: '📞 Contáctanos directamente',    html: '<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>' },
+    certificado: { title: '📋 Cómo obtener tu certificado', html: '<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>' },
+    vacantes:    { title: '💼 Vacantes en DistriVision',    html: '<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>' }
   };
 
   helpBtn.addEventListener('click', () => {
@@ -998,8 +986,8 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEa
       scrollBot();
     });
   }
-  function addBot(h)   { const e=document.createElement('div'); e.className='dv-bubble';      e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
-  function addUser(t)  { const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addBot(h)  { const e = document.createElement('div'); e.className = 'dv-bubble';      e.innerHTML = `<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addUser(t) { const e = document.createElement('div'); e.className = 'dv-bubble user'; e.innerHTML = `<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
   function addTyping(cb) {
     const e = document.createElement('div');
     e.className = 'dv-typing';
