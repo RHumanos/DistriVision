@@ -5,393 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Interno – DistriVision</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* ══════════════════════════════
-       PORTAL INTERNO EMPLEADOS
-    ══════════════════════════════ */
-
-    /* ── HERO INTERNO ── */
-    .portal-hero {
-      min-height: 46vh;
-      display: flex; flex-direction: column;
-      align-items: flex-start; justify-content: flex-end;
-      padding: 120px 6vw 52px;
-      position: relative; overflow: hidden;
-      background: linear-gradient(145deg, #1a4470 0%, #255c95 55%, #228fd2 100%);
-    }
-    .portal-hero .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .portal-hero .geo { position: absolute; border-radius: 50%; animation: floatGeo 12s ease-in-out infinite; }
-    .portal-hero .geo-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,255,255,.07) 0%, transparent 70%);
-      top: -200px; right: -120px;
-    }
-    .portal-hero .geo-2 {
-      width: 380px; height: 380px;
-      background: radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%);
-      bottom: -100px; left: 5%; animation-delay: -4s;
-    }
-    .portal-hero::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-
-    .portal-hero-content { position: relative; z-index: 1; max-width: 700px; }
-    .portal-hero .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.15); color: rgba(255,255,255,.9);
-      font-family: 'Lato', sans-serif;
-      font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
-      border: 1px solid rgba(255,255,255,.2);
-      opacity: 0; transform: translateY(20px);
-      animation: revealUp .7s .2s ease forwards;
-    }
-    .portal-hero .hero-eyebrow::before {
-      content: ''; width: 7px; height: 7px; border-radius: 50%;
-      background: #4ade80; animation: pulse 2s ease-in-out infinite;
-    }
-    .portal-hero h1 {
-      font-family: 'Lato', sans-serif;
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.1;
-      color: var(--white); margin-bottom: 16px;
-      opacity: 0; transform: translateY(30px);
-      animation: revealUp .8s .35s ease forwards;
-    }
-    .portal-hero h1 em { font-style: italic; color: rgba(255,255,255,.6); }
-    .portal-hero p {
-      font-size: 1rem; color: rgba(255,255,255,.65); line-height: 1.75;
-      max-width: 480px; font-weight: 400;
-      opacity: 0; transform: translateY(20px);
-      animation: revealUp .7s .5s ease forwards;
-    }
-
-    /* Fecha actual en hero */
-    .portal-date-badge {
-      position: absolute; top: 110px; right: 6vw; z-index: 2;
-      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-      border-radius: 20px; padding: 16px 24px; text-align: center;
-      backdrop-filter: blur(10px);
-      opacity: 0; animation: revealFade 1s .6s ease forwards;
-    }
-    .portal-date-badge .day {
-      font-family: 'Lato', sans-serif; font-size: 3rem; font-weight: 900;
-      color: var(--white); line-height: 1;
-    }
-    .portal-date-badge .month-year {
-      font-family: 'Lato', sans-serif; font-size: .72rem; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: rgba(255,255,255,.6); margin-top: 4px;
-    }
-
-    /* ── TABS DE CATEGORÍA ── */
-    .portal-tabs {
-      background: var(--white); padding: 0 6vw;
-      border-bottom: 1px solid rgba(37,92,149,.1);
-      display: flex; gap: 0; overflow-x: auto;
-      position: sticky; top: 76px; z-index: 50;
-      box-shadow: 0 4px 20px rgba(37,92,149,.07);
-    }
-    .portal-tabs::-webkit-scrollbar { display: none; }
-    .ptab {
-      display: flex; align-items: center; gap: 8px;
-      padding: 18px 24px; border: none; background: none;
-      font-family: 'Lato', sans-serif; font-size: .84rem; font-weight: 600;
-      color: var(--text-muted); cursor: pointer; white-space: nowrap;
-      border-bottom: 3px solid transparent; transition: all .25s;
-    }
-    .ptab:hover { color: var(--blue); }
-    .ptab.active { color: var(--blue); border-bottom-color: var(--blue); }
-    .ptab .tab-icon { font-size: 1rem; }
-    .ptab .tab-count {
-      background: var(--blue-light); color: var(--blue);
-      font-size: .65rem; font-weight: 700;
-      padding: 2px 8px; border-radius: 50px; min-width: 22px; text-align: center;
-    }
-    .ptab.active .tab-count { background: var(--blue); color: var(--white); }
-
-    /* ── BODY PRINCIPAL ── */
-    .portal-body {
-      display: grid; grid-template-columns: 1fr 320px;
-      gap: 32px; padding: 48px 6vw 80px;
-      background: var(--gray); align-items: start;
-    }
-
-    /* ── FEED PRINCIPAL ── */
-    .portal-feed { display: flex; flex-direction: column; gap: 20px; }
-
-    /* CARD COMUNICADO */
-    .comm-card {
-      background: var(--white); border-radius: 20px;
-      border: 1px solid rgba(37,92,149,.07);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden; cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition);
-      display: none; /* controlado por JS */
-    }
-    .comm-card.visible { display: block; }
-    .comm-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-
-    .cc-header {
-      padding: 22px 28px 0;
-      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
-    }
-    .cc-type-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
-      letter-spacing: 1.8px; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 50px; flex-shrink: 0;
-    }
-    .badge-reunion    { background: #fff3e0; color: #e65100; }
-    .badge-celebracion{ background: #fce4ec; color: #c62828; }
-    .badge-cumpleanos { background: #f3e5f5; color: #6a1b9a; }
-    .badge-comunicado { background: var(--blue-light); color: var(--blue); }
-    .badge-logro      { background: #e8f5e9; color: #2e7d32; }
-    .badge-capacitacion{ background: #e3f2fd; color: #1565c0; }
-    .badge-bienestar  { background: #fff8e1; color: #f57f17; }
-
-    .cc-pin {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
-      color: var(--accent); letter-spacing: .5px;
-    }
-
-    .cc-body { padding: 16px 28px 22px; }
-    .cc-title {
-      font-family: 'Lato', sans-serif; font-size: 1.12rem; font-weight: 700;
-      color: var(--blue-dark); line-height: 1.3; margin-bottom: 10px;
-    }
-    .cc-excerpt {
-      font-size: .88rem; color: var(--text-muted); line-height: 1.73;
-      font-weight: 400; margin-bottom: 18px;
-    }
-
-    /* Tarjeta especial: con imagen de fondo temática */
-    .comm-card.card-highlight .cc-band {
-      margin: 0 0 18px;
-      height: 140px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.5rem; position: relative; overflow: hidden;
-    }
-    .comm-card.card-highlight .cc-band::after {
-      content: attr(data-label);
-      position: absolute; bottom: 12px; right: 16px;
-      font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-    }
-
-    /* Detalles de evento (fecha/hora/lugar) */
-    .cc-event-details {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px;
-    }
-    .cc-detail-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--gray); border-radius: 50px;
-      padding: 6px 14px; font-family: 'Lato', sans-serif;
-      font-size: .76rem; color: var(--text-muted); font-weight: 600;
-    }
-    .cc-detail-pill span { font-size: .85rem; }
-
-    .cc-footer {
-      padding: 14px 28px 18px;
-      border-top: 1px solid rgba(37,92,149,.07);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .cc-meta-row { display: flex; align-items: center; gap: 10px; }
-    .cc-avatar {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: var(--blue-light); display: flex;
-      align-items: center; justify-content: center;
-      font-size: .82rem; flex-shrink: 0;
-    }
-    .cc-author { font-family: 'Lato', sans-serif; font-size: .76rem; color: var(--text-muted); font-weight: 600; }
-    .cc-date   { font-family: 'Lato', sans-serif; font-size: .72rem; color: var(--text-muted); }
-    .cc-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--blue-xlight); color: var(--blue);
-      border: none; border-radius: 50px; cursor: pointer;
-      font-family: 'Lato', sans-serif; font-size: .76rem; font-weight: 700;
-      padding: 7px 18px; transition: background .2s, gap .2s;
-    }
-    .cc-btn:hover { background: var(--blue-light); gap: 9px; }
-
-    /* ── SIDEBAR ── */
-    .portal-sidebar { display: flex; flex-direction: column; gap: 20px; }
-
-    .sidebar-widget {
-      background: var(--white); border-radius: 20px;
-      border: 1px solid rgba(37,92,149,.07);
-      box-shadow: var(--shadow-sm); overflow: hidden;
-    }
-    .sw-header {
-      padding: 18px 22px 14px;
-      border-bottom: 1px solid rgba(37,92,149,.07);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .sw-title {
-      font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700;
-      color: var(--blue-dark); display: flex; align-items: center; gap: 8px;
-    }
-    .sw-title span { font-size: 1rem; }
-    .sw-body { padding: 16px 22px 20px; }
-
-    /* Próximos eventos mini */
-    .event-mini {
-      display: flex; gap: 12px; align-items: flex-start;
-      padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
-    }
-    .event-mini:last-child { border-bottom: none; }
-    .em-date-box {
-      width: 42px; flex-shrink: 0; text-align: center;
-      background: var(--blue-light); border-radius: 10px; padding: 6px 0;
-    }
-    .em-day { font-family: 'Lato', sans-serif; font-size: 1.1rem; font-weight: 900; color: var(--blue); line-height: 1; }
-    .em-mon { font-family: 'Lato', sans-serif; font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
-    .em-info {}
-    .em-title { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; margin-bottom: 3px; }
-    .em-time  { font-family: 'Lato', sans-serif; font-size: .7rem; color: var(--text-muted); }
-
-    /* Cumpleaños del mes */
-    .bday-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
-    }
-    .bday-item:last-child { border-bottom: none; }
-    .bday-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .bday-info {}
-    .bday-name { font-family: 'Lato', sans-serif; font-size: .85rem; font-weight: 700; color: var(--blue-dark); }
-    .bday-date { font-family: 'Lato', sans-serif; font-size: .71rem; color: var(--text-muted); }
-    .bday-today {
-      margin-left: auto; background: #fce4ec; color: #c62828;
-      font-family: 'Lato', sans-serif; font-size: .6rem; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      padding: 3px 9px; border-radius: 50px;
-    }
-
-    /* Clima laboral mini */
-    .mood-widget { padding: 0; }
-    .mood-question { font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 16px; text-align: center; }
-    .mood-options { display: flex; justify-content: space-around; }
-    .mood-btn {
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      background: none; border: none; cursor: pointer; padding: 10px;
-      border-radius: 14px; transition: background .2s, transform .2s;
-    }
-    .mood-btn:hover { background: var(--gray); transform: scale(1.1); }
-    .mood-btn.selected { background: var(--blue-light); }
-    .mood-emoji { font-size: 1.8rem; }
-    .mood-label { font-family: 'Lato', sans-serif; font-size: .65rem; color: var(--text-muted); font-weight: 600; }
-    .mood-thanks { display: none; text-align: center; font-family: 'Lato', sans-serif; font-size: .85rem; color: var(--blue); font-weight: 700; padding: 8px 0; }
-
-    /* Links rápidos */
-    .quick-link {
-      display: flex; align-items: center; gap: 12px;
-      padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
-      text-decoration: none; transition: padding-left .2s;
-    }
-    .quick-link:last-child { border-bottom: none; }
-    .quick-link:hover { padding-left: 6px; }
-    .ql-icon {
-      width: 36px; height: 36px; border-radius: 10px;
-      background: var(--blue-light); display: flex; align-items: center; justify-content: center;
-      font-size: .95rem; flex-shrink: 0; transition: background .2s;
-    }
-    .quick-link:hover .ql-icon { background: var(--blue); filter: none; }
-    .quick-link:hover .ql-icon { color: white; }
-    .ql-text { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600; color: var(--blue-dark); }
-    .ql-arrow { margin-left: auto; font-size: .7rem; color: var(--text-muted); transition: transform .2s; }
-    .quick-link:hover .ql-arrow { transform: translateX(4px); }
-
-    /* ── MODAL COMUNICADO ── */
-    .comm-modal {
-      position: fixed; inset: 0; z-index: 400;
-      background: rgba(10,20,30,.92); backdrop-filter: blur(14px);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity .4s;
-      padding: 24px;
-    }
-    .comm-modal.open { opacity: 1; pointer-events: all; }
-    .comm-modal-box {
-      background: var(--white); border-radius: 24px; overflow: hidden;
-      max-width: 640px; width: 100%; max-height: 88vh; overflow-y: auto;
-      transform: scale(.92) translateY(20px);
-      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
-      position: relative;
-    }
-    .comm-modal.open .comm-modal-box { transform: scale(1) translateY(0); }
-    .cmm-close {
-      position: absolute; top: 18px; right: 18px; z-index: 10;
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(0,0,0,.08); border: none; cursor: pointer;
-      font-size: 1rem; display: flex; align-items: center; justify-content: center;
-      transition: background .2s, transform .2s;
-    }
-    .cmm-close:hover { background: rgba(0,0,0,.15); transform: rotate(90deg); }
-    .cmm-band {
-      height: 160px; display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; position: relative;
-    }
-    .cmm-body { padding: 28px 32px 36px; }
-    .cmm-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
-    .cmm-title {
-      font-family: 'Lato', sans-serif; font-size: 1.6rem; font-weight: 700;
-      color: var(--blue-dark); line-height: 1.25; margin-bottom: 16px;
-    }
-    .cmm-text { font-size: .92rem; line-height: 1.85; color: var(--text-muted); font-weight: 400; }
-    .cmm-text p { margin-bottom: 14px; }
-    .cmm-text strong { color: var(--text); }
-    .cmm-event-box {
-      background: var(--gray); border-radius: 14px; padding: 18px 20px;
-      margin: 20px 0; border-left: 4px solid var(--blue);
-    }
-    .cmm-event-box h6 {
-      font-family: 'Lato', sans-serif; font-size: .7rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
-      margin-bottom: 12px;
-    }
-    .cmm-event-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .cmm-event-detail {
-      display: flex; align-items: center; gap: 7px;
-      font-family: 'Lato', sans-serif; font-size: .82rem; color: var(--text-muted); font-weight: 600;
-    }
-    .cmm-divider { height: 1px; background: rgba(37,92,149,.08); margin: 22px 0; }
-    .cmm-footer-row { display: flex; align-items: center; gap: 12px; }
-    .cmm-footer-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--blue-light); display: flex; align-items: center;
-      justify-content: center; font-size: 1.2rem;
-    }
-    .cmm-footer-info h6 { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 2px; }
-    .cmm-footer-info p  { font-family: 'Lato', sans-serif; font-size: .71rem; color: var(--text-muted); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1100px) {
-      .portal-body { grid-template-columns: 1fr 280px; }
-    }
-    @media (max-width: 900px) {
-      .portal-body { grid-template-columns: 1fr; padding: 32px 5vw 60px; }
-      .portal-sidebar { order: -1; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-      .portal-tabs { top: 68px; padding: 0 5vw; }
-      .portal-hero { padding: 100px 5vw 48px; }
-      .portal-date-badge { display: none; }
-    }
-    @media (max-width: 640px) {
-      .portal-sidebar { grid-template-columns: 1fr; }
-      .cc-header { flex-wrap: wrap; }
-      .cc-event-details { gap: 8px; }
-      .cmm-body { padding: 20px 20px 28px; }
-      .cmm-title { font-size: 1.3rem; }
-      .cmm-event-row { flex-direction: column; gap: 10px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles6.css">
 </head>
 <body>
 
@@ -426,7 +40,7 @@
     <div class="geo geo-1"></div>
     <div class="geo geo-2"></div>
   </div>
-  <div class="portal-date-badge" id="dateBadge">
+  <div class="portal-date-badge">
     <div class="day" id="heroDay">—</div>
     <div class="month-year" id="heroMonthYear">—</div>
   </div>
@@ -441,225 +55,40 @@
 <div class="portal-tabs" id="portalTabs">
   <button class="ptab active" data-tab="todos">
     <span class="tab-icon">📋</span> Todos
-    <span class="tab-count" id="count-todos">8</span>
-  </button>
-  <button class="ptab" data-tab="reunion">
-    <span class="tab-icon">📅</span> Reuniones
-    <span class="tab-count" id="count-reunion">2</span>
-  </button>
-  <button class="ptab" data-tab="celebracion">
-    <span class="tab-icon">🎉</span> Celebraciones
-    <span class="tab-count" id="count-celebracion">2</span>
+    <span class="tab-count" id="cnt-todos">0</span>
   </button>
   <button class="ptab" data-tab="cumpleanos">
     <span class="tab-icon">🎂</span> Cumpleaños
-    <span class="tab-count" id="count-cumpleanos">1</span>
+    <span class="tab-count" id="cnt-cumpleanos">0</span>
+  </button>
+  <button class="ptab" data-tab="reunion">
+    <span class="tab-icon">📅</span> Reuniones
+    <span class="tab-count" id="cnt-reunion">0</span>
+  </button>
+  <button class="ptab" data-tab="celebracion">
+    <span class="tab-icon">🎉</span> Celebraciones
+    <span class="tab-count" id="cnt-celebracion">0</span>
   </button>
   <button class="ptab" data-tab="comunicado">
     <span class="tab-icon">📢</span> Comunicados
-    <span class="tab-count" id="count-comunicado">2</span>
+    <span class="tab-count" id="cnt-comunicado">0</span>
   </button>
   <button class="ptab" data-tab="logro">
     <span class="tab-icon">🏆</span> Logros
-    <span class="tab-count" id="count-logro">1</span>
+    <span class="tab-count" id="cnt-logro">0</span>
   </button>
 </div>
 
 <!-- ══════════════ CUERPO ══════════════ -->
 <div class="portal-body">
 
-  <!-- FEED -->
   <div class="portal-feed" id="portalFeed">
-
-    <!-- 1: REUNIÓN GENERAL -->
-    <div class="comm-card visible" data-type="reunion" data-idx="0">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-reunion">📅 Reunión</span>
-        <span class="cc-pin">📌 Fijado</span>
-      </div>
-      <div class="cc-body">
-        <h3 class="cc-title">Reunión General de Equipo – Marzo 2025</h3>
-        <p class="cc-excerpt">Este mes tenemos nuestra reunión mensual obligatoria para todos los colaboradores. Se revisarán resultados de febrero, metas de marzo y se presentarán los nuevos procedimientos del área logística.</p>
-        <div class="cc-event-details">
-          <span class="cc-detail-pill"><span>📅</span> Viernes 14 de Marzo</span>
-          <span class="cc-detail-pill"><span>🕘</span> 9:00 am – 11:00 am</span>
-          <span class="cc-detail-pill"><span>📍</span> Salón Principal – Sede Neiva</span>
-        </div>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">👔</div>
-          <span class="cc-author">Gerencia General</span>
-          <span class="cc-date">· Hace 2 días</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(0)">Ver más →</button>
-      </div>
+    <div class="feed-empty" id="feedEmpty">
+      <div class="fe-icon">📭</div>
+      <p>No hay publicaciones en esta categoría por el momento.</p>
     </div>
+  </div>
 
-    <!-- 2: CELEBRACIÓN DÍA DE LA MUJER -->
-    <div class="comm-card visible card-highlight" data-type="celebracion" data-idx="1">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-celebracion">🎉 Celebración</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-band" data-label="8 de Marzo" style="background:linear-gradient(135deg,#c2185b,#e91e63,#f06292);">💜</div>
-        <h3 class="cc-title">¡Celebramos el Día Internacional de la Mujer!</h3>
-        <p class="cc-excerpt">En DistriVision reconocemos y celebramos el invaluable aporte de todas nuestras compañeras. Las invitamos a una actividad especial preparada con todo el cariño del equipo.</p>
-        <div class="cc-event-details">
-          <span class="cc-detail-pill"><span>📅</span> Sábado 8 de Marzo</span>
-          <span class="cc-detail-pill"><span>🕑</span> 2:00 pm</span>
-          <span class="cc-detail-pill"><span>📍</span> Patio Central – Sede Neiva</span>
-        </div>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">💛</div>
-          <span class="cc-author">Bienestar Laboral</span>
-          <span class="cc-date">· Hace 1 día</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(1)">Ver más →</button>
-      </div>
-    </div>
-
-    <!-- 3: CUMPLEAÑOS -->
-    <div class="comm-card visible card-highlight" data-type="cumpleanos" data-idx="2">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-cumpleanos">🎂 Cumpleaños</span>
-        <span class="cc-pin" style="color:#6a1b9a;">🎊 ¡Hoy!</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-band" data-label="¡Feliz Cumpleaños!" style="background:linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc);">🎂</div>
-        <h3 class="cc-title">¡Este mes celebramos 13 cumpleaños en la familia DistriVision! 🎂</h3>
-        <p class="cc-excerpt">¡Marzo está lleno de celebraciones! Desde Juan Diego Oliveros el día 6 hasta Anyelo Stiven Ortiz el día 31, son 13 compañeros los que cumplen años este mes. ¡No olvides felicitarlos! 🎉</p>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">🎈</div>
-          <span class="cc-author">Recursos Humanos</span>
-          <span class="cc-date">· Hoy</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(2)">Ver más →</button>
-      </div>
-    </div>
-
-    <!-- 4: COMUNICADO HORARIO SEMANA SANTA -->
-    <div class="comm-card visible" data-type="comunicado" data-idx="3">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-comunicado">📢 Comunicado</span>
-      </div>
-      <div class="cc-body">
-        <h3 class="cc-title">Horarios especiales Semana Santa 2025</h3>
-        <p class="cc-excerpt">Informamos a todo el personal los cambios de horario durante la Semana Mayor. Por favor leer detenidamente las indicaciones para cada área y turno de trabajo.</p>
-        <div class="cc-event-details">
-          <span class="cc-detail-pill"><span>📅</span> Del 14 al 20 de Abril</span>
-          <span class="cc-detail-pill"><span>⚠️</span> Atención obligatoria</span>
-        </div>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">📋</div>
-          <span class="cc-author">RR.HH. DistriVision</span>
-          <span class="cc-date">· Hace 3 días</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(3)">Ver más →</button>
-      </div>
-    </div>
-
-    <!-- 5: LOGRO DEL MES -->
-    <div class="comm-card visible card-highlight" data-type="logro" data-idx="4">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-logro">🏆 Logro del Mes</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-band" data-label="Febrero 2025" style="background:linear-gradient(135deg,#1b5e20,#2e7d32,#43a047);">🏆</div>
-        <h3 class="cc-title">¡Superamos la meta de ventas de febrero en un 112%!</h3>
-        <p class="cc-excerpt">¡Gracias al esfuerzo de todo el equipo comercial y de distribución, cerramos febrero con un resultado histórico! Este logro es de todos y cada uno de ustedes.</p>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">🌟</div>
-          <span class="cc-author">Dirección Comercial</span>
-          <span class="cc-date">· Hace 5 días</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(4)">Ver más →</button>
-      </div>
-    </div>
-
-    <!-- 6: REUNIÓN ÁREA LOGÍSTICA -->
-    <div class="comm-card visible" data-type="reunion" data-idx="5">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-reunion">📅 Reunión</span>
-      </div>
-      <div class="cc-body">
-        <h3 class="cc-title">Reunión de coordinación – Área de Logística y Despacho</h3>
-        <p class="cc-excerpt">Reunión específica para el equipo de logística, repartidores y auxiliares de bodega. Se revisará la nueva ruta de distribución y el protocolo de devoluciones actualizado.</p>
-        <div class="cc-event-details">
-          <span class="cc-detail-pill"><span>📅</span> Lunes 10 de Marzo</span>
-          <span class="cc-detail-pill"><span>🕖</span> 6:30 am</span>
-          <span class="cc-detail-pill"><span>📍</span> Bodega Central</span>
-        </div>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">🚚</div>
-          <span class="cc-author">Jefe de Logística</span>
-          <span class="cc-date">· Hace 4 días</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(5)">Ver más →</button>
-      </div>
-    </div>
-
-    <!-- 7: CELEBRACIÓN ANIVERSARIO -->
-    <div class="comm-card visible card-highlight" data-type="celebracion" data-idx="6">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-celebracion">🎉 Celebración</span>
-      </div>
-      <div class="cc-body">
-        <div class="cc-band" data-label="30 Años" style="background:linear-gradient(135deg,#1a4470,#255c95,#228fd2);">🎊</div>
-        <h3 class="cc-title">¡DistriVision cumple 30 años! Gran celebración el 22 de Marzo</h3>
-        <p class="cc-excerpt">Este año celebramos tres décadas de excelencia en distribución. La empresa organizó una tarde de integración especial para todos los colaboradores y sus familias. ¡No te lo puedes perder!</p>
-        <div class="cc-event-details">
-          <span class="cc-detail-pill"><span>📅</span> Sábado 22 de Marzo</span>
-          <span class="cc-detail-pill"><span>🕐</span> 1:00 pm – 7:00 pm</span>
-          <span class="cc-detail-pill"><span>📍</span> Club Los Arrayanes, Neiva</span>
-        </div>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">🎂</div>
-          <span class="cc-author">Gerencia General</span>
-          <span class="cc-date">· Hace 1 semana</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(6)">Ver más →</button>
-      </div>
-    </div>
-
-    <!-- 8: COMUNICADO NORMAS -->
-    <div class="comm-card visible" data-type="comunicado" data-idx="7">
-      <div class="cc-header">
-        <span class="cc-type-badge badge-comunicado">📢 Comunicado</span>
-      </div>
-      <div class="cc-body">
-        <h3 class="cc-title">Actualización del reglamento interno de trabajo 2025</h3>
-        <p class="cc-excerpt">La empresa actualizó algunos artículos del Reglamento Interno de Trabajo. Es obligatorio que todo el personal lea y firme el acuse de recibo antes del 28 de marzo. Disponible en RR.HH.</p>
-        <div class="cc-event-details">
-          <span class="cc-detail-pill"><span>⚠️</span> Fecha límite: 28 Mar</span>
-          <span class="cc-detail-pill"><span>📍</span> Oficina RR.HH.</span>
-        </div>
-      </div>
-      <div class="cc-footer">
-        <div class="cc-meta-row">
-          <div class="cc-avatar">📋</div>
-          <span class="cc-author">RR.HH. DistriVision</span>
-          <span class="cc-date">· Hace 1 semana</span>
-        </div>
-        <button class="cc-btn" onclick="openComm(7)">Ver más →</button>
-      </div>
-    </div>
-
-  </div><!-- /feed -->
-
-  <!-- SIDEBAR -->
   <aside class="portal-sidebar">
 
     <!-- Próximos Eventos -->
@@ -667,125 +96,16 @@
       <div class="sw-header">
         <span class="sw-title"><span>📅</span> Próximos Eventos</span>
       </div>
-      <div class="sw-body">
-        <div class="event-mini">
-          <div class="em-date-box"><div class="em-day">08</div><div class="em-mon">Mar</div></div>
-          <div class="em-info"><div class="em-title">Día de la Mujer – Actividad especial</div><div class="em-time">🕑 2:00 pm · Patio Central</div></div>
-        </div>
-        <div class="event-mini">
-          <div class="em-date-box"><div class="em-day">10</div><div class="em-mon">Mar</div></div>
-          <div class="em-info"><div class="em-title">Reunión Logística & Despacho</div><div class="em-time">🕖 6:30 am · Bodega Central</div></div>
-        </div>
-        <div class="event-mini">
-          <div class="em-date-box"><div class="em-day">14</div><div class="em-mon">Mar</div></div>
-          <div class="em-info"><div class="em-title">Reunión General de Equipo</div><div class="em-time">🕘 9:00 am · Salón Principal</div></div>
-        </div>
-        <div class="event-mini">
-          <div class="em-date-box"><div class="em-day">22</div><div class="em-mon">Mar</div></div>
-          <div class="em-info"><div class="em-title">🎊 Aniversario 30 años DistriVision</div><div class="em-time">🕐 1:00 pm · Club Los Arrayanes</div></div>
-        </div>
-      </div>
+      <div class="sw-body" id="upcomingEvents"></div>
     </div>
 
     <!-- Cumpleaños del Mes -->
     <div class="sidebar-widget">
       <div class="sw-header">
-        <span class="sw-title"><span>🎂</span> Cumpleaños de Marzo</span>
-        <span style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-muted);">13 celebraciones</span>
+        <span class="sw-title"><span>🎂</span> Cumpleaños del Mes</span>
+        <span style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-muted);" id="bdayMonthLabel"></span>
       </div>
-      <div class="sw-body" id="bdayList" style="max-height:400px;overflow-y:auto;">
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Juan Diego Oliveros Orjuela</div>
-            <div class="bday-date">📅 6 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Evelio Esneid Llanos Rodríguez</div>
-            <div class="bday-date">📅 8 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Diego Fernando Núñez Scarpetta</div>
-            <div class="bday-date">📅 15 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Aderson Cárdenas Rojas</div>
-            <div class="bday-date">📅 17 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👩</div>
-          <div class="bday-info">
-            <div class="bday-name">Karen Stefanny Salazar Silva</div>
-            <div class="bday-date">📅 20 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Jhon Sebastian Sánchez Bailón</div>
-            <div class="bday-date">📅 21 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Herinson Losada Ramos</div>
-            <div class="bday-date">📅 22 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Juan José Barreto Pérez</div>
-            <div class="bday-date">📅 22 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Juan Camilo Trujillo Castañeda</div>
-            <div class="bday-date">📅 23 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👩</div>
-          <div class="bday-info">
-            <div class="bday-name">Karla Milena Osorio Amaya</div>
-            <div class="bday-date">📅 24 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👩</div>
-          <div class="bday-info">
-            <div class="bday-name">Lizeth Rojas Tovar</div>
-            <div class="bday-date">📅 27 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Flavio Abdel Córdoba Gordo</div>
-            <div class="bday-date">📅 29 de Marzo</div>
-          </div>
-        </div>
-        <div class="bday-item">
-          <div class="bday-avatar">👨</div>
-          <div class="bday-info">
-            <div class="bday-name">Anyelo Stiven Ortiz Casas</div>
-            <div class="bday-date">📅 31 de Marzo</div>
-          </div>
-        </div>
-      </div>
+      <div class="bday-scroll" id="bdaySidebarList" style="padding:8px 22px 14px;"></div>
     </div>
 
     <!-- Clima Laboral -->
@@ -796,58 +116,26 @@
       <div class="sw-body mood-widget">
         <p class="mood-question">Comparte cómo te sientes este día</p>
         <div class="mood-options" id="moodOptions">
-          <button class="mood-btn" data-mood="excelente" onclick="selectMood(this)">
-            <span class="mood-emoji">😄</span>
-            <span class="mood-label">Excelente</span>
-          </button>
-          <button class="mood-btn" data-mood="bien" onclick="selectMood(this)">
-            <span class="mood-emoji">🙂</span>
-            <span class="mood-label">Bien</span>
-          </button>
-          <button class="mood-btn" data-mood="regular" onclick="selectMood(this)">
-            <span class="mood-emoji">😐</span>
-            <span class="mood-label">Regular</span>
-          </button>
-          <button class="mood-btn" data-mood="cansado" onclick="selectMood(this)">
-            <span class="mood-emoji">😔</span>
-            <span class="mood-label">Cansado</span>
-          </button>
+          <button class="mood-btn" onclick="selectMood(this)"><span class="mood-emoji">😄</span><span class="mood-label">Excelente</span></button>
+          <button class="mood-btn" onclick="selectMood(this)"><span class="mood-emoji">🙂</span><span class="mood-label">Bien</span></button>
+          <button class="mood-btn" onclick="selectMood(this)"><span class="mood-emoji">😐</span><span class="mood-label">Regular</span></button>
+          <button class="mood-btn" onclick="selectMood(this)"><span class="mood-emoji">😔</span><span class="mood-label">Cansado</span></button>
         </div>
         <div class="mood-thanks" id="moodThanks">¡Gracias por compartir! 💙</div>
       </div>
     </div>
 
-    <!-- Links Rápidos -->
+    <!-- Accesos Rápidos -->
     <div class="sidebar-widget">
       <div class="sw-header">
         <span class="sw-title"><span>⚡</span> Accesos Rápidos</span>
       </div>
       <div class="sw-body" style="padding-top:8px;padding-bottom:8px;">
-        <a href="vacantes.html" class="quick-link">
-          <div class="ql-icon">💼</div>
-          <span class="ql-text">Vacantes Internas</span>
-          <span class="ql-arrow">›</span>
-        </a>
-        <a href="certificados.html" class="quick-link">
-          <div class="ql-icon">📋</div>
-          <span class="ql-text">Mis Certificados</span>
-          <span class="ql-arrow">›</span>
-        </a>
-        <a href="index.html#contacto" class="quick-link">
-          <div class="ql-icon">📞</div>
-          <span class="ql-text">Directorio Interno</span>
-          <span class="ql-arrow">›</span>
-        </a>
-        <a href="historia.html" class="quick-link">
-          <div class="ql-icon">📖</div>
-          <span class="ql-text">Historia de la Empresa</span>
-          <span class="ql-arrow">›</span>
-        </a>
-        <a href="contacto.html" class="quick-link">
-          <div class="ql-icon">✉️</div>
-          <span class="ql-text">Contáctanos</span>
-          <span class="ql-arrow">›</span>
-        </a>
+        <a href="vacantes.html"       class="quick-link"><div class="ql-icon">💼</div><span class="ql-text">Vacantes Internas</span><span class="ql-arrow">›</span></a>
+        <a href="certificados.html"   class="quick-link"><div class="ql-icon">📋</div><span class="ql-text">Mis Certificados</span><span class="ql-arrow">›</span></a>
+        <a href="index.html#contacto" class="quick-link"><div class="ql-icon">📞</div><span class="ql-text">Directorio Interno</span><span class="ql-arrow">›</span></a>
+        <a href="historia.html"       class="quick-link"><div class="ql-icon">📖</div><span class="ql-text">Historia de la Empresa</span><span class="ql-arrow">›</span></a>
+        <a href="contacto.html"       class="quick-link"><div class="ql-icon">✉️</div><span class="ql-text">Contáctanos</span><span class="ql-arrow">›</span></a>
       </div>
     </div>
 
@@ -860,14 +148,13 @@
     <div class="footer-brand">
       <img src="img/2.png" alt="DistriVision Logo" class="fp-logo-img">
       <div class="fp-name">Distri<span>Vision</span></div>
-      <p>Líderes en distribución y comercialización de productos de alta calidad, comprometidos con la excelencia y el servicio superior en cada entrega.</p>
+      <p>Líderes en distribución y comercialización de productos de alta calidad, comprometidos con la excelencia en cada entrega.</p>
     </div>
     <div class="footer-col">
       <h5>Empresa</h5>
       <ul>
         <li><a href="index.html#nosotros">Nosotros</a></li>
         <li><a href="historia.html">Historia</a></li>
-        <li><a href="index.html#mision">Misión &amp; Visión</a></li>
         <li><a href="index.html#servicios">Servicios</a></li>
         <li><a href="index.html#galeria">Galería</a></li>
       </ul>
@@ -887,24 +174,24 @@
   </div>
 </footer>
 
-<!-- ══════════════ MODAL COMUNICADO ══════════════ -->
+<!-- ══════════════ MODAL ══════════════ -->
 <div class="comm-modal" id="commModal">
   <div class="comm-modal-box">
     <button class="cmm-close" id="cmmClose">✕</button>
-    <div class="cmm-band" id="cmmBand">📋</div>
+    <div class="cmm-band" id="cmmBand"></div>
     <div class="cmm-body">
       <div class="cmm-meta">
         <span class="cc-type-badge" id="cmmBadge">Tipo</span>
-        <span class="cc-date" id="cmmDate">Fecha</span>
+        <span class="cc-date"       id="cmmDate">Fecha</span>
       </div>
       <h2 class="cmm-title" id="cmmTitle">Título</h2>
-      <div class="cmm-text" id="cmmText"></div>
+      <div id="cmmText"></div>
       <div class="cmm-divider"></div>
       <div class="cmm-footer-row">
         <div class="cmm-footer-avatar" id="cmmAvatar">👤</div>
         <div class="cmm-footer-info">
           <h6 id="cmmAuthor">Autor</h6>
-          <p id="cmmDept">Departamento</p>
+          <p  id="cmmDept">Departamento</p>
         </div>
       </div>
     </div>
@@ -942,284 +229,627 @@
 </div>
 
 <script>
-/* ── FECHA EN HERO ── */
-(function() {
-  const now = new Date();
-  const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  document.getElementById('heroDay').textContent = now.getDate();
-  document.getElementById('heroMonthYear').textContent = months[now.getMonth()] + ' ' + now.getFullYear();
+/* ════════════════════════════════════════════════════════════════
+   ████  ZONA DE CONFIGURACIÓN  ████
+   Todo lo que necesitas editar está en esta zona.
+   No modifiques nada fuera de ella salvo que sepas JS.
+════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════
+   1. CUMPLEAÑOS
+   ──────────────────────────────────────────────────────────────
+   Agrega una línea por persona:
+     { month: MES, day: DÍA, name: 'NOMBRE COMPLETO', photo: '' }
+
+   • month/day : número (mes 1=enero … 12=diciembre)
+   • photo     : ruta a la foto, p. ej. 'img/empleados/juan.jpg'
+                 Dejar '' si no tienes foto todavía.
+
+   PARA EL SIGUIENTE MES: agrega las entradas con el mes correcto.
+   El sistema muestra automáticamente solo el mes en curso.
+══════════════════════════════════════════════════════════════ */
+const BIRTHDAYS = [
+  /* ── MARZO ── */
+  { month:3, day:6,  name:'Juan Diego Oliveros Orjuela',    photo:'' },
+  { month:3, day:8,  name:'Evelio Esneid Llanos Rodríguez', photo:'' },
+  { month:3, day:15, name:'Diego Fernando Núñez Scarpetta', photo:'' },
+  { month:3, day:17, name:'Aderson Cárdenas Rojas',         photo:'' },
+  { month:3, day:20, name:'Karen Stefanny Salazar Silva',    photo:'' },
+  { month:3, day:21, name:'Jhon Sebastian Sánchez Bailón',  photo:'' },
+  { month:3, day:22, name:'Herinson Losada Ramos',          photo:'' },
+  { month:3, day:22, name:'Juan José Barreto Pérez',        photo:'' },
+  { month:3, day:23, name:'Juan Camilo Trujillo Castañeda', photo:'' },
+  { month:3, day:24, name:'Karla Milena Osorio Amaya',      photo:'' },
+  { month:3, day:27, name:'Lizeth Rojas Tovar',             photo:'' },
+  { month:3, day:29, name:'Flavio Abdel Córdoba Gordo',     photo:'' },
+  { month:3, day:31, name:'Anyelo Stiven Ortiz Casas',      photo:'' },
+
+  /* ── ABRIL ── (descomenta y completa cuando llegue el mes)
+  { month:4, day:1,  name:'Nombre Apellido', photo:'' },
+  */
+
+  /* ── MAYO ──
+  { month:5, day:1,  name:'Nombre Apellido', photo:'' },
+  */
+];
+
+/* ══════════════════════════════════════════════════════════════
+   2. CELEBRACIONES
+   ──────────────────────────────────────────────────────────────
+   Deja el array VACÍO [] cuando no haya celebración activa.
+   Al estar vacío, se muestra automáticamente un mensaje
+   genérico que dice "Sin celebraciones pendientes".
+
+   Para agregar una celebración, descomenta el bloque ejemplo
+   y rellena los campos. eventDetails es opcional; si no hay
+   evento con fecha/hora, elimina ese bloque completo.
+══════════════════════════════════════════════════════════════ */
+const CELEBRATIONS = [
+  /* EJEMPLO:
+  {
+    title:     'Nombre del evento',
+    excerpt:   'Descripción breve visible en la tarjeta.',
+    body:      '<p>Texto completo del comunicado.</p>',
+    date:      'Publicado el DD de Mes, AAAA',
+    author:    'Quien publica',
+    dept:      'Área o departamento',
+    avatar:    '🎉',
+    bg:        'linear-gradient(135deg,#1a4470,#255c95,#228fd2)',
+    icon:      '🎊',
+    bandLabel: 'Texto sobre la imagen (ej: "30 Años")',
+    eventDetails: {
+      date:  '📅 Sábado DD de Mes',
+      time:  '🕐 HH:MM pm',
+      place: '📍 Lugar',
+      extra: '👥 Nota adicional'
+    }
+  },
+  */
+];
+
+/* ══════════════════════════════════════════════════════════════
+   3. COMUNICADOS, REUNIONES Y LOGROS
+   ──────────────────────────────────────────────────────────────
+   type   : 'comunicado' | 'reunion' | 'logro'
+   pinned : true  →  aparece con etiqueta 📌 Fijado
+   eventDetails es opcional; quítalo si no hay evento.
+══════════════════════════════════════════════════════════════ */
+const POSTS = [
+  {
+    type:'reunion', pinned:true,
+    title:'Reunión General de Equipo – Marzo 2025',
+    excerpt:'Reunión mensual obligatoria para todos los colaboradores. Resultados de febrero, metas de marzo y nuevos procedimientos del área logística.',
+    body:`<p>Estimado equipo DistriVision,</p>
+    <p>Los convocamos a nuestra <strong>Reunión General de Equipo del mes de Marzo</strong>.</p>
+    <p><strong>Agenda:</strong><br>
+    1️⃣ Resultados de ventas y distribución – Febrero 2025<br>
+    2️⃣ Metas y compromisos para Marzo<br>
+    3️⃣ Nuevos procedimientos – Área Logística<br>
+    4️⃣ Reconocimientos del mes y espacio de preguntas</p>
+    <p><strong>La asistencia es obligatoria.</strong></p>`,
+    date:'Publicado el 5 de Marzo, 2025',
+    author:'Gerencia General', dept:'Dirección Ejecutiva', avatar:'👔',
+    bg:'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)', icon:'📅',
+    eventDetails:{
+      date:'📅 Viernes 14 de Marzo, 2025',
+      time:'🕘 9:00 am – 11:00 am',
+      place:'📍 Salón Principal – Sede Neiva',
+      extra:'👥 Asistencia obligatoria para todos'
+    }
+  },
+  {
+    type:'logro',
+    title:'¡Superamos la meta de ventas de febrero en un 112%!',
+    excerpt:'¡Gracias al esfuerzo de todo el equipo cerramos febrero con un resultado histórico! Este logro es de todos y cada uno de ustedes.',
+    body:`<p>¡Equipo DistriVision, tenemos razones para celebrar!</p>
+    <p>Cerramos <strong>febrero 2025 con el 112% de la meta de ventas</strong>.</p>
+    <p>🚚 Repartidores al 100% · 📊 Equipo comercial impecable<br>
+    📦 Bodega comprometida · 💼 Cartera y facturación rigurosa</p>
+    <p><strong>¡Este logro es de todos!</strong> Próximamente se anuncian reconocimientos individuales.</p>`,
+    date:'Publicado el 2 de Marzo, 2025',
+    author:'Dirección Comercial', dept:'Área Comercial', avatar:'🌟',
+    bg:'linear-gradient(135deg,#1b5e20,#2e7d32,#43a047)', icon:'🏆'
+  },
+  {
+    type:'reunion',
+    title:'Reunión de coordinación – Logística y Despacho',
+    excerpt:'Para el equipo de logística, repartidores y auxiliares. Se revisará la nueva ruta y el protocolo de devoluciones actualizado.',
+    body:`<p>Equipo de Logística y Despacho,</p>
+    <p>Los convocamos para socializar <strong>actualizaciones en nuestros procesos de distribución</strong>.</p>
+    <p>🗺️ Nueva ruta – Sector sur · 🔄 Protocolo de devoluciones<br>
+    📱 App obligatoria para registro de entregas · ⚠️ Revisión de incidentes</p>
+    <p>Llegar puntual. Traer dispositivo móvil cargado.</p>`,
+    date:'Publicado el 3 de Marzo, 2025',
+    author:'Jefe de Logística', dept:'Área de Logística', avatar:'🚚',
+    bg:'linear-gradient(135deg,#bf360c,#e64a19,#ff7043)', icon:'🚚',
+    eventDetails:{
+      date:'📅 Lunes 10 de Marzo, 2025',
+      time:'🕖 6:30 am – 8:00 am',
+      place:'📍 Bodega Central – Sede Neiva',
+      extra:'👥 Repartidores, auxiliares y supervisores'
+    }
+  },
+  {
+    type:'comunicado',
+    title:'Horarios especiales Semana Santa 2025',
+    excerpt:'Cambios de horario durante la Semana Mayor para todas las áreas y turnos de trabajo.',
+    body:`<p>Estimados colaboradores,</p>
+    <p><strong>Horarios especiales Semana Santa 2025:</strong></p>
+    <p>📅 <b>Lun 14 Abr:</b> Normal · <b>Jue 17 Abr:</b> Hasta 12:00 pm<br>
+    📅 <b>Vie 18 Abr:</b> Festivo (no hay operación)<br>
+    📅 <b>Sáb 19 Abr:</b> Solo personal autorizado<br>
+    📅 <b>Lun 21 Abr:</b> Regreso normal</p>
+    <p>Logística coordinar turnos con jefe directo antes del <strong>10 de Abril</strong>.</p>`,
+    date:'Publicado el 4 de Marzo, 2025',
+    author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
+    bg:'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon:'📢',
+    eventDetails:{
+      date:'📅 14 al 20 de Abril, 2025',
+      time:'⚠️ Todos los colaboradores',
+      place:'📍 Todas las sedes',
+      extra:'📌 Consultar novedades antes del 10 Abr'
+    }
+  },
+  {
+    type:'comunicado',
+    title:'Actualización del Reglamento Interno de Trabajo 2025',
+    excerpt:'Es obligatorio leer y firmar el acuse de recibo antes del 28 de marzo. Disponible en la oficina de RR.HH.',
+    body:`<p>Estimados colaboradores,</p>
+    <p><strong>El Reglamento Interno fue actualizado</strong> conforme a la normatividad laboral vigente.</p>
+    <p>📌 Art. 12 – Horarios y flexibilidad<br>
+    📌 Art. 23 – Uso de dispositivos móviles<br>
+    📌 Art. 31 – Incapacidades y permisos<br>
+    📌 Art. 45 – Acoso y convivencia laboral</p>
+    <p>Leer, <strong>firmar y entregar en RR.HH. antes del 28 de Marzo</strong>.</p>`,
+    date:'Publicado el 27 de Febrero, 2025',
+    author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
+    bg:'linear-gradient(135deg,#1a4470,#255c95)', icon:'📝',
+    eventDetails:{
+      date:'📅 Disponible desde el 27 Feb',
+      time:'⚠️ Fecha límite: 28 de Marzo',
+      place:'📍 Oficina RR.HH. – Sede Neiva',
+      extra:'✍️ Obligatorio para todos'
+    }
+  }
+];
+
+/* ══════════════════════════════════════════════════════════════
+   4. PRÓXIMOS EVENTOS (widget del sidebar)
+   ──────────────────────────────────────────────────────────────
+   Agrega o quita eventos según el mes.
+══════════════════════════════════════════════════════════════ */
+const UPCOMING_EVENTS = [
+  { day:'10', mon:'Mar', title:'Reunión Logística & Despacho',  time:'🕖 6:30 am · Bodega Central'  },
+  { day:'14', mon:'Mar', title:'Reunión General de Equipo',     time:'🕘 9:00 am · Salón Principal' },
+  { day:'14', mon:'Abr', title:'Inicio Semana Santa',          time:'📅 Horario especial'           },
+];
+
+/* ════════════════════════════════════════════════════════════
+   ── MOTOR DEL PORTAL (no modificar) ──
+════════════════════════════════════════════════════════════ */
+const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                      'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun',
+                      'Jul','Ago','Sep','Oct','Nov','Dic'];
+const now        = new Date();
+const TODAY_DAY  = now.getDate();
+const TODAY_MON  = now.getMonth() + 1;
+
+/* Fecha en hero */
+document.getElementById('heroDay').textContent       = TODAY_DAY;
+document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON-1] + ' ' + now.getFullYear();
+
+/* Cumpleaños del mes */
+const bdaysThisMonth = BIRTHDAYS
+  .filter(b => b.month === TODAY_MON)
+  .sort((a,b) => a.day - b.day);
+const bdaysToday = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
+
+/* Label sidebar */
+document.getElementById('bdayMonthLabel').textContent =
+  bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON-1];
+
+/* Lista sidebar */
+(function(){
+  const list = document.getElementById('bdaySidebarList');
+  if (!bdaysThisMonth.length) {
+    list.innerHTML = `<p style="font-family:'Lato',sans-serif;font-size:.82rem;color:var(--text-muted);padding:4px 0;">Sin cumpleaños este mes.</p>`;
+    return;
+  }
+  list.innerHTML = bdaysThisMonth.map(b => {
+    const isToday = b.day === TODAY_DAY;
+    return `<div class="bday-item ${isToday?'is-today':''}">
+      <div class="bday-date-box"><div class="bd-day">${b.day}</div></div>
+      <div class="bday-info">
+        <div class="bday-name">${b.name}</div>
+        ${isToday ? '<span class="bday-tag">¡Hoy! 🎉</span>' : ''}
+      </div>
+    </div>`;
+  }).join('');
 })();
 
-/* ── CURSOR ── */
-const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{ mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'; });
-(function loop(){ rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop); })();
+/* Próximos eventos sidebar */
+(function(){
+  const wrap = document.getElementById('upcomingEvents');
+  if (!UPCOMING_EVENTS.length) {
+    wrap.innerHTML = `<p style="font-family:'Lato',sans-serif;font-size:.82rem;color:var(--text-muted);">Sin eventos próximos.</p>`;
+    return;
+  }
+  wrap.innerHTML = UPCOMING_EVENTS.map(ev => `
+    <div class="event-mini">
+      <div class="em-date-box">
+        <div class="em-day">${ev.day}</div>
+        <div class="em-mon">${ev.mon}</div>
+      </div>
+      <div>
+        <div class="em-title">${ev.title}</div>
+        <div class="em-time">${ev.time}</div>
+      </div>
+    </div>`).join('');
+})();
 
-/* ── SCROLL PROGRESS ── */
-const pb = document.getElementById('scroll-progress');
-window.addEventListener('scroll',()=>{ pb.style.width=((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100)+'%'; },{passive:true});
+/* ── Construcción del feed ── */
+const feed      = document.getElementById('portalFeed');
+const feedEmpty = document.getElementById('feedEmpty');
+let   allCards  = [];
+let   MODAL_DATA = [];
 
-/* ── NAV ── */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
-const hamb = document.getElementById('navHamburger');
-if(hamb){ hamb.addEventListener('click',()=>navbar.classList.toggle('menu-open')); document.querySelectorAll('#navMenu a').forEach(l=>l.addEventListener('click',()=>navbar.classList.remove('menu-open'))); }
+function addCard(el, type) {
+  feed.insertBefore(el, feedEmpty);
+  allCards.push({ type, el });
+}
 
-/* ── TABS ── */
+/* ① Cumpleaños del DÍA */
+bdaysToday.forEach(b => {
+  MODAL_DATA.push({ _bday:true, person:b });
+  const idx = MODAL_DATA.length - 1;
+  const card = document.createElement('div');
+  card.className = 'bday-today-card visible';
+  card.dataset.type = 'cumpleanos';
+  card.onclick = () => openModal(idx);
+
+  /*
+   * ── FOTO DEL CUMPLEAÑERO ──────────────────────────────────
+   * Para agregar la foto de un empleado en su cumpleaños:
+   * 1. Coloca la imagen en   img/empleados/nombre.jpg
+   * 2. En el array BIRTHDAYS cambia  photo:''
+   *    por la ruta:           photo:'img/empleados/nombre.jpg'
+   *
+   * Tamaño ideal de foto: 200×260 px (retrato vertical)
+   * Formatos soportados: .jpg .png .webp
+   * ─────────────────────────────────────────────────────────
+   */
+  const photoHtml = b.photo
+    ? `<img class="btc-photo" src="${b.photo}" alt="Foto de ${b.name}"
+           onerror="this.parentNode.innerHTML='<div class=\\'btc-photo-placeholder\\'><div class=\\'ph-emoji\\'>🎂</div><div class=\\'ph-hint\\'>Foto del<br>cumpleañero</div></div>'">`
+    : `<div class="btc-photo-placeholder">
+         <div class="ph-emoji">🎂</div>
+         <div class="ph-hint">Foto del<br>cumpleañero</div>
+       </div>`;
+
+  card.innerHTML = `
+    <div class="btc-deco"></div>
+    <div class="btc-inner">
+      <div class="btc-photo-wrap">${photoHtml}</div>
+      <div class="btc-content">
+        <span class="btc-badge">🎂 ¡Cumpleaños Hoy!</span>
+        <div class="btc-name">${b.name}</div>
+        <p class="btc-msg">Hoy es un día muy especial. Toda la familia DistriVision te desea un feliz cumpleaños lleno de alegría, salud y muchas bendiciones. ¡Eres parte fundamental de este gran equipo! 💙</p>
+        <div class="btc-footer">
+          <span class="btc-from">Con cariño · Familia DistriVision</span>
+          <button class="btc-btn" onclick="openModal(${idx}); event.stopPropagation()">Ver más 🎉</button>
+        </div>
+      </div>
+    </div>`;
+  addCard(card, 'cumpleanos');
+});
+
+/* ② Celebraciones */
+if (!CELEBRATIONS.length) {
+  MODAL_DATA.push({ _generic:true });
+  const idx = MODAL_DATA.length - 1;
+  const card = document.createElement('div');
+  card.className = 'comm-card visible card-highlight';
+  card.dataset.type = 'celebracion';
+  card.onclick = () => openModal(idx);
+  card.innerHTML = `
+    <div class="cc-header"><span class="cc-type-badge badge-celebracion">🎉 Celebraciones</span></div>
+    <div class="cc-body">
+      <div class="cc-band" data-label="DistriVision"
+           style="background:linear-gradient(135deg,#1a4470,#255c95,#228fd2);">🎊</div>
+      <h3 class="cc-title">Sin celebraciones pendientes por el momento</h3>
+      <p class="cc-excerpt">Cuando haya un evento especial o una integración para el equipo, aparecerá aquí con todos los detalles. ¡Mantente atento al portal!</p>
+    </div>
+    <div class="cc-footer">
+      <div class="cc-meta-row">
+        <div class="cc-avatar">💛</div>
+        <span class="cc-author">Bienestar Laboral</span>
+      </div>
+      <button class="cc-btn" onclick="openModal(${idx}); event.stopPropagation()">Ver más →</button>
+    </div>`;
+  addCard(card, 'celebracion');
+} else {
+  CELEBRATIONS.forEach(cel => {
+    MODAL_DATA.push({ _cel:true, data:cel });
+    const idx = MODAL_DATA.length - 1;
+    const card = document.createElement('div');
+    card.className = 'comm-card visible card-highlight';
+    card.dataset.type = 'celebracion';
+    card.onclick = () => openModal(idx);
+    card.innerHTML = `
+      <div class="cc-header"><span class="cc-type-badge badge-celebracion">🎉 Celebración</span></div>
+      <div class="cc-body">
+        <div class="cc-band" data-label="${cel.bandLabel||''}" style="background:${cel.bg};">${cel.icon}</div>
+        <h3 class="cc-title">${cel.title}</h3>
+        <p class="cc-excerpt">${cel.excerpt}</p>
+        ${cel.eventDetails ? `<div class="cc-event-details">
+          <span class="cc-detail-pill">${cel.eventDetails.date}</span>
+          <span class="cc-detail-pill">${cel.eventDetails.time}</span>
+          <span class="cc-detail-pill">${cel.eventDetails.place}</span>
+        </div>` : ''}
+      </div>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">${cel.avatar}</div>
+          <span class="cc-author">${cel.author}</span>
+        </div>
+        <button class="cc-btn" onclick="openModal(${idx}); event.stopPropagation()">Ver más →</button>
+      </div>`;
+    addCard(card, 'celebracion');
+  });
+}
+
+/* ③ Resumen cumpleaños del mes */
+if (bdaysThisMonth.length) {
+  const listHtml = bdaysThisMonth
+    .map(b => `🎂 <b>${b.day} ${SHORT_MONTHS[TODAY_MON-1]}</b> — ${b.name}`)
+    .join('<br>');
+  MODAL_DATA.push({ _bdayList:true, listHtml, month:MONTH_NAMES[TODAY_MON-1], total:bdaysThisMonth.length });
+  const idx = MODAL_DATA.length - 1;
+  const card = document.createElement('div');
+  card.className = 'comm-card visible card-highlight';
+  card.dataset.type = 'cumpleanos';
+  card.onclick = () => openModal(idx);
+  card.innerHTML = `
+    <div class="cc-header"><span class="cc-type-badge badge-cumpleanos">🎂 Cumpleaños</span></div>
+    <div class="cc-body">
+      <div class="cc-band" data-label="${MONTH_NAMES[TODAY_MON-1]}"
+           style="background:linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc);">🎂</div>
+      <h3 class="cc-title">¡${bdaysThisMonth.length} cumpleaños en ${MONTH_NAMES[TODAY_MON-1]}! Felicitaciones a todos 🎉</h3>
+      <p class="cc-excerpt">Este mes celebramos a ${bdaysThisMonth.length} compañeros. Cuando sea su día, recuerda felicitarlos con todo el cariño de la familia DistriVision.</p>
+    </div>
+    <div class="cc-footer">
+      <div class="cc-meta-row">
+        <div class="cc-avatar">🎈</div>
+        <span class="cc-author">Recursos Humanos</span>
+      </div>
+      <button class="cc-btn" onclick="openModal(${idx}); event.stopPropagation()">Ver lista →</button>
+    </div>`;
+  addCard(card, 'cumpleanos');
+}
+
+/* ④ Posts (reuniones, comunicados, logros) */
+POSTS.forEach(p => {
+  MODAL_DATA.push({ _post:true, data:p });
+  const idx = MODAL_DATA.length - 1;
+  const card = document.createElement('div');
+  card.className = 'comm-card visible';
+  card.dataset.type = p.type;
+  card.onclick = () => openModal(idx);
+  const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
+  card.innerHTML = `
+    <div class="cc-header">
+      <span class="cc-type-badge badge-${p.type}">${bLabel}</span>
+      ${p.pinned ? '<span class="cc-pin">📌 Fijado</span>' : ''}
+    </div>
+    <div class="cc-body">
+      <h3 class="cc-title">${p.title}</h3>
+      <p class="cc-excerpt">${p.excerpt}</p>
+      ${p.eventDetails ? `<div class="cc-event-details">
+        <span class="cc-detail-pill">${p.eventDetails.date}</span>
+        <span class="cc-detail-pill">${p.eventDetails.time}</span>
+        <span class="cc-detail-pill">${p.eventDetails.place}</span>
+      </div>` : ''}
+    </div>
+    <div class="cc-footer">
+      <div class="cc-meta-row">
+        <div class="cc-avatar">${p.avatar}</div>
+        <span class="cc-author">${p.author}</span>
+        <span class="cc-date">· ${p.date}</span>
+      </div>
+      <button class="cc-btn" onclick="openModal(${idx}); event.stopPropagation()">Ver más →</button>
+    </div>`;
+  addCard(card, p.type);
+});
+
+/* Contadores de tabs */
+const counts = {};
+allCards.forEach(c => counts[c.type] = (counts[c.type]||0)+1);
+document.getElementById('cnt-todos').textContent = allCards.length;
+['cumpleanos','reunion','celebracion','comunicado','logro'].forEach(t => {
+  const el = document.getElementById('cnt-'+t);
+  if (el) el.textContent = counts[t] || 0;
+});
+
+/* Filtro de tabs */
 document.querySelectorAll('.ptab').forEach(tab => {
   tab.addEventListener('click', function() {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
     this.classList.add('active');
-    const filter = this.dataset.tab;
-    document.querySelectorAll('.comm-card').forEach(card => {
-      const match = filter === 'todos' || card.dataset.type === filter;
-      card.classList.toggle('visible', match);
+    const f = this.dataset.tab;
+    let vis = 0;
+    allCards.forEach(c => {
+      const show = f === 'todos' || c.type === f;
+      c.el.classList.toggle('visible', show);
+      if (show) vis++;
     });
+    feedEmpty.classList.toggle('visible', vis === 0);
   });
 });
 
-/* ── DATOS COMUNICADOS ── */
-const COMM_DATA = [
-  {
-    type: 'reunion', badge: 'badge-reunion', badgeLabel: '📅 Reunión',
-    bg: 'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)', icon: '📅',
-    date: 'Publicado el 5 de Marzo, 2025',
-    title: 'Reunión General de Equipo – Marzo 2025',
-    avatar: '👔', author: 'Gerencia General', dept: 'Dirección Ejecutiva',
-    hasEvent: true,
-    eventDate: '📅 Viernes 14 de Marzo, 2025',
-    eventTime: '🕘 9:00 am – 11:00 am',
-    eventPlace: '📍 Salón Principal – Sede Neiva',
-    eventExtra: '👥 Asistencia obligatoria para todos los colaboradores',
-    body: `<p>Estimado equipo DistriVision,</p>
-    <p>Los convocamos a nuestra <strong>Reunión General de Equipo del mes de Marzo</strong>, un espacio fundamental para mantenernos alineados con los objetivos de la empresa y compartir los resultados de nuestro trabajo.</p>
-    <p><strong>Agenda del día:</strong></p>
-    <p>1️⃣ Revisión de resultados de ventas y distribución – Febrero 2025<br>
-    2️⃣ Presentación de metas y compromisos para Marzo<br>
-    3️⃣ Socialización de nuevos procedimientos – Área Logística<br>
-    4️⃣ Espacio de preguntas y reconocimientos del mes<br>
-    5️⃣ Varios</p>
-    <p>Por favor llegar puntual. Se dispondrá de refrigerio al finalizar la reunión. <strong>La asistencia es obligatoria.</strong> En caso de imposibilidad, notificar previamente a su jefe directo.</p>`
-  },
-  {
-    type: 'celebracion', badge: 'badge-celebracion', badgeLabel: '🎉 Celebración',
-    bg: 'linear-gradient(135deg,#c2185b,#e91e63,#f06292)', icon: '💜',
-    date: 'Publicado el 6 de Marzo, 2025',
-    title: '¡Celebramos el Día Internacional de la Mujer!',
-    avatar: '💛', author: 'Comité de Bienestar', dept: 'Bienestar Laboral',
-    hasEvent: true,
-    eventDate: '📅 Sábado 8 de Marzo, 2025',
-    eventTime: '🕑 2:00 pm – 5:00 pm',
-    eventPlace: '📍 Patio Central – Sede Neiva',
-    eventExtra: '💜 Actividad especial para todas las mujeres DistriVision',
-    body: `<p>Queridas compañeras,</p>
-    <p>En DistriVision reconocemos y valoramos profundamente el aporte de <strong>cada una de las mujeres que hacen parte de nuestra familia</strong>. Hoy y siempre, su dedicación, talento y compromiso son el motor que nos impulsa.</p>
-    <p>Con mucho cariño, el comité de bienestar preparó una tarde especial que incluye:</p>
-    <p>🌸 Dinámica de reconocimiento entre compañeras<br>
-    🎁 Detalles especiales para todas<br>
-    🎶 Música y refrigerio compartido<br>
-    📸 Sesión fotográfica de recuerdo</p>
-    <p>¡Las esperamos con toda la alegría del mundo! Inviten a sus compañeras y no olviden compartir este mensaje.</p>`
-  },
-  {
-    type: 'cumpleanos', badge: 'badge-cumpleanos', badgeLabel: '🎂 Cumpleaños',
-    bg: 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)', icon: '🎂',
-    date: 'Hoy · 7 de Marzo, 2025',
-    title: '¡13 cumpleaños en Marzo – Familia DistriVision! 🎂',
-    avatar: '🎈', author: 'Recursos Humanos', dept: 'Gestión del Talento Humano',
-    hasEvent: false,
-    body: `<p>¡Marzo es un mes muy especial en DistriVision! <strong>Celebramos el cumpleaños de 13 compañeros</strong> a lo largo del mes. Cuando veas a alguno de ellos, ¡no dudes en felicitarlos!</p>
-    <p>🎂 <b>6 Mar</b> — Juan Diego Oliveros Orjuela<br>
-    🎂 <b>8 Mar</b> — Evelio Esneid Llanos Rodríguez<br>
-    🎂 <b>15 Mar</b> — Diego Fernando Núñez Scarpetta<br>
-    🎂 <b>17 Mar</b> — Aderson Cárdenas Rojas<br>
-    🎂 <b>20 Mar</b> — Karen Stefanny Salazar Silva<br>
-    🎂 <b>21 Mar</b> — Jhon Sebastian Sánchez Bailón<br>
-    🎂 <b>22 Mar</b> — Herinson Losada Ramos<br>
-    🎂 <b>22 Mar</b> — Juan José Barreto Pérez<br>
-    🎂 <b>23 Mar</b> — Juan Camilo Trujillo Castañeda<br>
-    🎂 <b>24 Mar</b> — Karla Milena Osorio Amaya<br>
-    🎂 <b>27 Mar</b> — Lizeth Rojas Tovar<br>
-    🎂 <b>29 Mar</b> — Flavio Abdel Córdoba Gordo<br>
-    🎂 <b>31 Mar</b> — Anyelo Stiven Ortiz Casas</p>
-    <p>Desde toda la familia DistriVision les deseamos un día lleno de alegría, salud y muchas bendiciones. <strong>¡Los queremos mucho! 💙</strong></p>`
-  },
-  {
-    type: 'comunicado', badge: 'badge-comunicado', badgeLabel: '📢 Comunicado',
-    bg: 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon: '📢',
-    date: 'Publicado el 4 de Marzo, 2025',
-    title: 'Horarios especiales Semana Santa 2025',
-    avatar: '📋', author: 'RR.HH. DistriVision', dept: 'Recursos Humanos',
-    hasEvent: true,
-    eventDate: '📅 Del 14 al 20 de Abril, 2025',
-    eventTime: '⚠️ Aplica a todos los colaboradores',
-    eventPlace: '📍 Todas las sedes',
-    eventExtra: '📌 Fecha límite para consultar novedades: 10 de Abril',
-    body: `<p>Estimados colaboradores,</p>
-    <p>Se informa a todo el personal los <strong>horarios y disposiciones especiales para la Semana Santa 2025</strong>:</p>
-    <p>📅 <strong>Lunes 14 de Abril (Lunes Santo):</strong> Día laboral normal<br>
-    📅 <strong>Jueves 17 de Abril (Jueves Santo):</strong> Medio día — Salida a las 12:00 pm<br>
-    📅 <strong>Viernes 18 de Abril (Viernes Santo):</strong> Festivo — No hay operación<br>
-    📅 <strong>Sábado 19 de Abril:</strong> Solo personal autorizado con programación especial<br>
-    📅 <strong>Lunes 21 de Abril:</strong> Regreso normal a labores</p>
-    <p>El área de logística deberá coordinar con su jefe directo los turnos de los días 17 y 19. Cualquier duda comunicarse con RR.HH. antes del <strong>10 de Abril</strong>.</p>`
-  },
-  {
-    type: 'logro', badge: 'badge-logro', badgeLabel: '🏆 Logro del Mes',
-    bg: 'linear-gradient(135deg,#1b5e20,#2e7d32,#43a047)', icon: '🏆',
-    date: 'Publicado el 2 de Marzo, 2025',
-    title: '¡Superamos la meta de ventas de febrero en un 112%!',
-    avatar: '🌟', author: 'Dirección Comercial', dept: 'Área Comercial',
-    hasEvent: false,
-    body: `<p>¡Equipo DistriVision, tenemos razones para celebrar!</p>
-    <p>Con enorme orgullo les comunicamos que <strong>cerramos el mes de febrero 2025 con el 112% de cumplimiento de la meta de ventas</strong>, superando en 12 puntos porcentuales el objetivo propuesto.</p>
-    <p>Este resultado histórico fue posible gracias a:</p>
-    <p>🚚 El compromiso del equipo de repartidores que cumplieron sus rutas al 100%<br>
-    📊 La gestión impecable del equipo comercial<br>
-    📦 El trabajo silencioso pero vital del equipo de bodega<br>
-    💼 El seguimiento riguroso de cartera y facturación</p>
-    <p><strong>¡Este logro es de todos y cada uno de ustedes!</strong> La gerencia quiere agradecerles personalmente su entrega y compromiso. Se anunciarán próximamente los reconocimientos individuales del mes.</p>`
-  },
-  {
-    type: 'reunion', badge: 'badge-reunion', badgeLabel: '📅 Reunión',
-    bg: 'linear-gradient(135deg,#bf360c,#e64a19,#ff7043)', icon: '🚚',
-    date: 'Publicado el 3 de Marzo, 2025',
-    title: 'Reunión de coordinación – Logística y Despacho',
-    avatar: '🚚', author: 'Jefe de Logística', dept: 'Área de Logística',
-    hasEvent: true,
-    eventDate: '📅 Lunes 10 de Marzo, 2025',
-    eventTime: '🕖 6:30 am – 8:00 am',
-    eventPlace: '📍 Bodega Central – Sede Neiva',
-    eventExtra: '👥 Repartidores, auxiliares de bodega y supervisores',
-    body: `<p>Equipo de Logística y Despacho,</p>
-    <p>Los convocamos a una reunión de coordinación para socializar <strong>actualizaciones importantes en nuestros procesos de distribución</strong> para el mes de marzo.</p>
-    <p><strong>Temas a tratar:</strong></p>
-    <p>🗺️ Nueva estructura de rutas de distribución – Sector sur<br>
-    🔄 Protocolo actualizado para devoluciones y reclamaciones<br>
-    📱 Uso obligatorio de la nueva app para registro de entregas<br>
-    ⚠️ Revisión de incidentes del mes anterior y planes de mejora</p>
-    <p>Por favor, llegar puntualmente a las <strong>6:30 am</strong> ya que el equipo debe salir a ruta antes de las 8:00 am. Traer su dispositivo móvil cargado para la demostración de la app.</p>`
-  },
-  {
-    type: 'celebracion', badge: 'badge-celebracion', badgeLabel: '🎉 Celebración',
-    bg: 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon: '🎊',
-    date: 'Publicado el 28 de Febrero, 2025',
-    title: '¡DistriVision cumple 30 años! Gran celebración el 22 de Marzo',
-    avatar: '🎂', author: 'Gerencia General', dept: 'Dirección Ejecutiva',
-    hasEvent: true,
-    eventDate: '📅 Sábado 22 de Marzo, 2025',
-    eventTime: '🕐 1:00 pm – 7:00 pm',
-    eventPlace: '📍 Club Los Arrayanes, Neiva',
-    eventExtra: '👨‍👩‍👧 Colaboradores y sus familias – Ingreso libre',
-    body: `<p>Querida familia DistriVision,</p>
-    <p>Con inmensa alegría les contamos que <strong>este 2025 nuestra empresa celebra 30 años de trayectoria, crecimiento y excelencia</strong> en la distribución de productos en el departamento del Huila.</p>
-    <p>Para celebrar este hito histórico, hemos organizado una <strong>tarde de integración familiar</strong> a la que están invitados todos los colaboradores junto a sus familias.</p>
-    <p>🎵 Música en vivo<br>
-    🍽️ Almuerzo y refrigerios<br>
-    🎮 Actividades para niños y adultos<br>
-    🏆 Reconocimiento a colaboradores con más años de antigüedad<br>
-    🎁 Sorpresas especiales para todos los asistentes</p>
-    <p><strong>¡Confirmar asistencia antes del 15 de Marzo en RR.HH.!</strong> Esto nos ayuda a garantizar un espacio adecuado para todos. Los esperamos con los brazos abiertos. 🎉</p>`
-  },
-  {
-    type: 'comunicado', badge: 'badge-comunicado', badgeLabel: '📢 Comunicado',
-    bg: 'linear-gradient(135deg,#1a4470,#255c95)', icon: '📝',
-    date: 'Publicado el 27 de Febrero, 2025',
-    title: 'Actualización del Reglamento Interno de Trabajo 2025',
-    avatar: '📋', author: 'RR.HH. DistriVision', dept: 'Recursos Humanos',
-    hasEvent: true,
-    eventDate: '📅 Disponible desde el 27 de Febrero',
-    eventTime: '⚠️ Fecha límite de firma: 28 de Marzo',
-    eventPlace: '📍 Oficina de RR.HH. – Sede Neiva',
-    eventExtra: '✍️ Obligatorio para todos los colaboradores activos',
-    body: `<p>Estimados colaboradores,</p>
-    <p>Les informamos que <strong>el Reglamento Interno de Trabajo fue actualizado</strong> en algunos de sus artículos para el año 2025, conforme a los cambios en la normatividad laboral colombiana vigente.</p>
-    <p><strong>Artículos actualizados:</strong></p>
-    <p>📌 Art. 12 – Horarios de trabajo y flexibilidad<br>
-    📌 Art. 23 – Política de uso de dispositivos móviles en horario laboral<br>
-    📌 Art. 31 – Protocolo para incapacidades y permisos<br>
-    📌 Art. 45 – Conductas de acoso y convivencia laboral</p>
-    <p>Cada colaborador debe <strong>leer el documento completo, firmar el acuse de recibo y entregarlo en RR.HH. antes del 28 de Marzo</strong>. El documento está disponible en la oficina de Recursos Humanos en horario laboral.</p>
-    <p>Para dudas o aclaraciones, comunicarse directamente con el área de RR.HH.</p>`
-  }
-];
+/* ══ MODAL ══ */
+function openModal(idx) {
+  const d = MODAL_DATA[idx]; if (!d) return;
+  const band   = document.getElementById('cmmBand');
+  const badge  = document.getElementById('cmmBadge');
+  const title  = document.getElementById('cmmTitle');
+  const text   = document.getElementById('cmmText');
+  const avatar = document.getElementById('cmmAvatar');
+  const author = document.getElementById('cmmAuthor');
+  const dept   = document.getElementById('cmmDept');
+  const date   = document.getElementById('cmmDate');
 
-function openComm(idx) {
-  const d = COMM_DATA[idx];
-  if (!d) return;
-  const band = document.getElementById('cmmBand');
-  band.style.background = d.bg;
-  band.textContent = d.icon;
-  const badge = document.getElementById('cmmBadge');
-  badge.textContent = d.badgeLabel;
-  badge.className = 'cc-type-badge ' + d.badge;
-  document.getElementById('cmmDate').textContent   = d.date;
-  document.getElementById('cmmTitle').textContent  = d.title;
-  document.getElementById('cmmAvatar').textContent = d.avatar;
-  document.getElementById('cmmAuthor').textContent = d.author;
-  document.getElementById('cmmDept').textContent   = d.dept;
+  band.className = 'cmm-band';
+  band.style.background = '';
+  band.innerHTML = '';
 
-  let html = '<div class="cmm-text">' + d.body + '</div>';
-  if (d.hasEvent) {
-    html += `<div class="cmm-event-box">
-      <h6>📌 Detalles del Evento</h6>
-      <div class="cmm-event-row">
-        <span class="cmm-event-detail">${d.eventDate}</span>
-        <span class="cmm-event-detail">${d.eventTime}</span>
-        <span class="cmm-event-detail">${d.eventPlace}</span>
-        <span class="cmm-event-detail">${d.eventExtra}</span>
-      </div>
+  if (d._bday) {
+    const b = d.person;
+    if (b.photo) {
+      band.className = 'cmm-band has-photo';
+      band.innerHTML = `<img src="${b.photo}" alt="${b.name}"
+        onerror="this.parentNode.className='cmm-band';this.parentNode.style.background='linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';this.parentNode.textContent='🎂'">`;
+    } else {
+      band.innerHTML = '🎂';
+      band.style.background = 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';
+    }
+    badge.textContent = '🎂 ¡Cumpleaños Hoy!';
+    badge.className   = 'cc-type-badge badge-cumpleanos';
+    date.textContent  = `📅 ${TODAY_DAY} de ${MONTH_NAMES[TODAY_MON-1]}`;
+    title.textContent = `¡Feliz Cumpleaños, ${b.name}!`;
+    avatar.textContent = '🎈'; author.textContent = 'Recursos Humanos'; dept.textContent = 'Talento Humano';
+    text.innerHTML = `<div class="cmm-text">
+      <p>Hoy es un día muy especial. <strong>¡Celebramos el cumpleaños de ${b.name}!</strong></p>
+      <p>Toda la familia DistriVision te desea:<br>
+      ✨ Un día lleno de amor y felicidad<br>
+      💙 Mucha salud y bendiciones<br>
+      🌟 Que todos tus sueños se cumplan</p>
+      <p>¡No olvides felicitarle en persona hoy! 🎉</p>
     </div>`;
   }
-  document.getElementById('cmmText').innerHTML = html;
+  else if (d._bdayList) {
+    band.innerHTML = '🎂';
+    band.style.background = 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';
+    badge.textContent = `🎂 Cumpleaños de ${d.month}`;
+    badge.className   = 'cc-type-badge badge-cumpleanos';
+    date.textContent  = `📅 ${d.total} celebraciones este mes`;
+    title.textContent = `Cumpleaños de ${d.month}`;
+    avatar.textContent = '🎈'; author.textContent = 'Recursos Humanos'; dept.textContent = 'Talento Humano';
+    text.innerHTML = `<div class="cmm-text">
+      <p>¡Felicitaciones a todos los compañeros que cumplen años este mes!</p>
+      <p>${d.listHtml}</p>
+      <p>Cuando llegue su día, <strong>recuerda felicitarlos con todo el cariño</strong>. ¡Son parte especial de nuestra familia! 💙</p>
+    </div>`;
+  }
+  else if (d._generic) {
+    band.innerHTML = '🎊';
+    band.style.background = 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)';
+    badge.textContent = '🎉 Celebraciones'; badge.className = 'cc-type-badge badge-celebracion';
+    date.textContent  = '';
+    title.textContent = 'Sin celebraciones pendientes';
+    avatar.textContent = '💛'; author.textContent = 'Bienestar Laboral'; dept.textContent = 'Talento Humano';
+    text.innerHTML = `<div class="cmm-text">
+      <p>En este momento no hay celebraciones ni eventos especiales programados.</p>
+      <p>Cuando la empresa organice una integración, una fecha especial o cualquier evento para el equipo, <strong>aparecerá aquí con todos los detalles</strong>.</p>
+      <p>¡Mantente atento al portal! 💙</p>
+    </div>`;
+  }
+  else if (d._cel) {
+    const c = d.data;
+    band.innerHTML = c.icon; band.style.background = c.bg;
+    badge.textContent = '🎉 Celebración'; badge.className = 'cc-type-badge badge-celebracion';
+    date.textContent = c.date; title.textContent = c.title;
+    avatar.textContent = c.avatar; author.textContent = c.author; dept.textContent = c.dept;
+    let html = `<div class="cmm-text">${c.body}</div>`;
+    if (c.eventDetails) {
+      const ev = c.eventDetails;
+      html += `<div class="cmm-event-box"><h6>📌 Detalles del Evento</h6>
+        <div class="cmm-event-row">
+          <span class="cmm-event-detail">${ev.date}</span>
+          <span class="cmm-event-detail">${ev.time}</span>
+          <span class="cmm-event-detail">${ev.place}</span>
+          <span class="cmm-event-detail">${ev.extra}</span>
+        </div></div>`;
+    }
+    text.innerHTML = html;
+  }
+  else if (d._post) {
+    const p = d.data;
+    band.innerHTML = p.icon; band.style.background = p.bg;
+    const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
+    badge.textContent = bLabel; badge.className = `cc-type-badge badge-${p.type}`;
+    date.textContent = p.date; title.textContent = p.title;
+    avatar.textContent = p.avatar; author.textContent = p.author; dept.textContent = p.dept;
+    let html = `<div class="cmm-text">${p.body}</div>`;
+    if (p.eventDetails) {
+      const ev = p.eventDetails;
+      html += `<div class="cmm-event-box"><h6>📌 Detalles del Evento</h6>
+        <div class="cmm-event-row">
+          <span class="cmm-event-detail">${ev.date}</span>
+          <span class="cmm-event-detail">${ev.time}</span>
+          <span class="cmm-event-detail">${ev.place}</span>
+          <span class="cmm-event-detail">${ev.extra}</span>
+        </div></div>`;
+    }
+    text.innerHTML = html;
+  }
 
   document.getElementById('commModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-document.getElementById('cmmClose').addEventListener('click', closeComm);
-document.getElementById('commModal').addEventListener('click', e => { if (e.target === document.getElementById('commModal')) closeComm(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeComm(); });
-function closeComm() { document.getElementById('commModal').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('cmmClose').addEventListener('click', closeModal);
+document.getElementById('commModal').addEventListener('click', e => { if (e.target===document.getElementById('commModal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+function closeModal(){ document.getElementById('commModal').classList.remove('open'); document.body.style.overflow=''; }
 
-/* ── MOOD ── */
-function selectMood(btn) {
-  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+/* ── Mood ── */
+function selectMood(btn){
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
-  setTimeout(() => {
-    document.getElementById('moodOptions').style.display = 'none';
-    document.getElementById('moodThanks').style.display = 'block';
-  }, 600);
+  setTimeout(()=>{document.getElementById('moodOptions').style.display='none';document.getElementById('moodThanks').style.display='block';},600);
 }
 
-/* ── BOTONES MAGNÉTICOS ── */
-document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    btn.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;
-  });
-  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+/* ── Cursor ── */
+const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function l(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(l);})();
+
+/* ── Scroll progress ── */
+const pb=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{pb.style.width=((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100)+'%';},{passive:true});
+
+/* ── Nav ── */
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+const hamb=document.getElementById('navHamburger');
+if(hamb){hamb.addEventListener('click',()=>navbar.classList.toggle('menu-open'));document.querySelectorAll('#navMenu a').forEach(l=>l.addEventListener('click',()=>navbar.classList.remove('menu-open')));}
+
+/* ── Botones magnéticos ── */
+document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;});
+  btn.addEventListener('mouseleave',()=>{btn.style.transform='';});
 });
 
-/* ── CHATBOT ── */
+/* ── Chatbot ── */
 (function(){
   const helpBtn=document.getElementById('dv-help-btn'),chatPanel=document.getElementById('dv-chat-panel'),chatBody=document.getElementById('dvChatBody'),dynamic=document.getElementById('dvDynamic');
   let isOpen=false,initialized=false;
   const OPTIONS=[{icon:'📞',label:'Comunícate con nosotros',sub:'Teléfono, WhatsApp o correo',id:'contacto'},{icon:'📋',label:'Cómo obtener mi certificado',sub:'Pasos del proceso explicados',id:'certificado'},{icon:'💼',label:'Vacantes y empleo',sub:'Trabaja con DistriVision',id:'vacantes'}];
   const ANSWERS={
-    contacto:{title:'📞 Contáctanos directamente',html:'<p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>'},
-    certificado:{title:'📋 Cómo obtener tu certificado',html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6 – 74, Neiva</p>'},
-    vacantes:{title:'💼 Vacantes en DistriVision',html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>'}
+    contacto:{title:'📞 Contáctanos',html:'<p>📍 CL 26 SUR No. 6–74, Neiva</p><p>📞 (8) 870 34 34</p><p>📱 <a href="https://wa.me/573105996169">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>'},
+    certificado:{title:'📋 Tu certificado',html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p>'},
+    vacantes:{title:'💼 Vacantes',html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>'}
   };
-  helpBtn.addEventListener('click',()=>{ isOpen=!isOpen; helpBtn.classList.toggle('open',isOpen); chatPanel.classList.toggle('open',isOpen); if(isOpen&&!initialized)initChat(); });
-  function initChat(){ initialized=true; addTyping(()=>{ addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?'); setTimeout(()=>showOptions(),400); }); }
-  function showOptions(){ dynamic.innerHTML='<div class="dv-options" id="dvOptions"></div>'; const c=document.getElementById('dvOptions'); OPTIONS.forEach((o,i)=>{ const b=document.createElement('button'); b.className='dv-option-btn'; b.style.animationDelay=(i*.08)+'s'; b.innerHTML=`<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`; b.addEventListener('click',()=>selectOption(o)); c.appendChild(b); }); scrollBot(); }
-  function selectOption(o){ addUser(o.icon+' '+o.label); dynamic.innerHTML=''; addTyping(()=>{ const a=ANSWERS[o.id]; dynamic.innerHTML=`<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`; document.getElementById('dvBackBtn').addEventListener('click',()=>{ addBot('¿Hay algo más en lo que pueda ayudarte?'); dynamic.innerHTML=''; setTimeout(()=>showOptions(),300); }); scrollBot(); }); }
-  function addBot(h){ const e=document.createElement('div'); e.className='dv-bubble'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
-  function addUser(t){ const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
-  function addTyping(cb){ const e=document.createElement('div'); e.className='dv-typing'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`; chatBody.appendChild(e); scrollBot(); setTimeout(()=>{ chatBody.removeChild(e); cb(); },950); }
-  function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
+  helpBtn.addEventListener('click',()=>{isOpen=!isOpen;helpBtn.classList.toggle('open',isOpen);chatPanel.classList.toggle('open',isOpen);if(isOpen&&!initialized)initChat();});
+  function initChat(){initialized=true;addTyping(()=>{addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?');setTimeout(()=>showOptions(),400);});}
+  function showOptions(){dynamic.innerHTML='<div class="dv-options" id="dvOptions"></div>';const c=document.getElementById('dvOptions');OPTIONS.forEach((o,i)=>{const b=document.createElement('button');b.className='dv-option-btn';b.style.animationDelay=(i*.08)+'s';b.innerHTML=`<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`;b.addEventListener('click',()=>selOpt(o));c.appendChild(b);});scrollBot();}
+  function selOpt(o){addUser(o.icon+' '+o.label);dynamic.innerHTML='';addTyping(()=>{const a=ANSWERS[o.id];dynamic.innerHTML=`<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`;document.getElementById('dvBackBtn').addEventListener('click',()=>{addBot('¿Hay algo más en lo que pueda ayudarte?');dynamic.innerHTML='';setTimeout(()=>showOptions(),300);});scrollBot();});}
+  function addBot(h){const e=document.createElement('div');e.className='dv-bubble';e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`;chatBody.appendChild(e);scrollBot();}
+  function addUser(t){const e=document.createElement('div');e.className='dv-bubble user';e.innerHTML=`<div class="dv-bubble-text">${t}</div>`;chatBody.appendChild(e);scrollBot();}
+  function addTyping(cb){const e=document.createElement('div');e.className='dv-typing';e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;chatBody.appendChild(e);scrollBot();setTimeout(()=>{chatBody.removeChild(e);cb();},950);}
+  function scrollBot(){setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50);}
 })();
 </script>
 </body>
