@@ -3,462 +3,398 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noticias – DistriVision</title>
+  <title>Portal Interno – DistriVision</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ══════════════════════════════
-       PAGE: NOTICIAS — Estilos propios
+       PORTAL INTERNO EMPLEADOS
     ══════════════════════════════ */
 
-    /* ── HERO NOTICIAS ── */
-    .news-hero {
-      min-height: 52vh;
+    /* ── HERO INTERNO ── */
+    .portal-hero {
+      min-height: 46vh;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 120px 6vw 70px;
+      align-items: flex-start; justify-content: flex-end;
+      padding: 120px 6vw 52px;
       position: relative; overflow: hidden;
-      background: linear-gradient(145deg, #f0f6ff 0%, #edf4fc 100%);
-      text-align: center;
+      background: linear-gradient(145deg, #1a4470 0%, #255c95 55%, #228fd2 100%);
     }
-    .news-hero .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-    .news-hero .geo { position: absolute; border-radius: 50%; animation: floatGeo 12s ease-in-out infinite; }
-    .news-hero .geo-1 {
-      width: 520px; height: 520px;
-      background: radial-gradient(circle, rgba(37,92,149,.1) 0%, transparent 70%);
-      top: -150px; right: -100px;
+    .portal-hero .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .portal-hero .geo { position: absolute; border-radius: 50%; animation: floatGeo 12s ease-in-out infinite; }
+    .portal-hero .geo-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,.07) 0%, transparent 70%);
+      top: -200px; right: -120px;
     }
-    .news-hero .geo-2 {
-      width: 340px; height: 340px;
-      background: radial-gradient(circle, rgba(34,143,210,.12) 0%, transparent 70%);
-      bottom: -80px; left: 10%; animation-delay: -4s;
+    .portal-hero .geo-2 {
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(255,255,255,.05) 0%, transparent 70%);
+      bottom: -100px; left: 5%; animation-delay: -4s;
     }
-    .news-hero .geo-3 {
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(37,92,149,.08) 0%, transparent 70%);
-      top: 40%; left: 40%; animation-delay: -8s;
-    }
-    @keyframes floatGeo {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      33%       { transform: translate(20px,-30px) scale(1.04); }
-      66%       { transform: translate(-15px,15px) scale(.97); }
+    .portal-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
     }
 
-    .news-hero-content { position: relative; z-index: 1; }
-    .news-hero .hero-eyebrow {
+    .portal-hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .portal-hero .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--blue-light); color: var(--blue);
-      font-size: .75rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
-      padding: 7px 18px; border-radius: 50px; margin-bottom: 24px;
+      background: rgba(255,255,255,.15); color: rgba(255,255,255,.9);
       font-family: 'Lato', sans-serif;
+      font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,.2);
       opacity: 0; transform: translateY(20px);
       animation: revealUp .7s .2s ease forwards;
     }
-    .news-hero .hero-eyebrow::before {
+    .portal-hero .hero-eyebrow::before {
       content: ''; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--blue); animation: pulse 2s ease-in-out infinite;
+      background: #4ade80; animation: pulse 2s ease-in-out infinite;
     }
-    .news-hero h1 {
-      font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 900; line-height: 1.08;
-      color: var(--blue-dark); margin-bottom: 20px;
+    .portal-hero h1 {
       font-family: 'Lato', sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.1;
+      color: var(--white); margin-bottom: 16px;
       opacity: 0; transform: translateY(30px);
       animation: revealUp .8s .35s ease forwards;
     }
-    .news-hero h1 em { font-style: italic; color: var(--accent); font-family: 'Lato', sans-serif; }
-    .news-hero p {
-      font-size: 1.05rem; line-height: 1.78; color: var(--text-muted);
-      max-width: 540px; margin: 0 auto;
+    .portal-hero h1 em { font-style: italic; color: rgba(255,255,255,.6); }
+    .portal-hero p {
+      font-size: 1rem; color: rgba(255,255,255,.65); line-height: 1.75;
+      max-width: 480px; font-weight: 400;
       opacity: 0; transform: translateY(20px);
       animation: revealUp .7s .5s ease forwards;
     }
 
-    /* ── FILTROS ── */
-    .news-filters {
-      background: var(--white); padding: 28px 6vw;
-      border-bottom: 1px solid rgba(37,92,149,.08);
-      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-      position: sticky; top: 76px; z-index: 50;
-      box-shadow: var(--shadow-sm);
+    /* Fecha actual en hero */
+    .portal-date-badge {
+      position: absolute; top: 110px; right: 6vw; z-index: 2;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px; padding: 16px 24px; text-align: center;
+      backdrop-filter: blur(10px);
+      opacity: 0; animation: revealFade 1s .6s ease forwards;
     }
-    .filter-label {
+    .portal-date-badge .day {
+      font-family: 'Lato', sans-serif; font-size: 3rem; font-weight: 900;
+      color: var(--white); line-height: 1;
+    }
+    .portal-date-badge .month-year {
       font-family: 'Lato', sans-serif; font-size: .72rem; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted);
-      margin-right: 8px;
-    }
-    .filter-btn {
-      background: none; border: 1.5px solid rgba(37,92,149,.18);
-      color: var(--text-muted); font-family: 'Lato', sans-serif;
-      font-size: .8rem; font-weight: 600; padding: 8px 20px;
-      border-radius: 50px; cursor: pointer;
-      transition: all .25s cubic-bezier(.25,.8,.25,1);
-    }
-    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .filter-btn.active {
-      background: var(--blue); border-color: var(--blue);
-      color: var(--white); box-shadow: 0 4px 14px rgba(37,92,149,.3);
-    }
-    .filter-search {
-      margin-left: auto; display: flex; align-items: center;
-      gap: 10px; background: var(--gray);
-      border: 1.5px solid rgba(37,92,149,.1); border-radius: 50px;
-      padding: 8px 18px; transition: border-color .2s;
-    }
-    .filter-search:focus-within { border-color: var(--accent); }
-    .filter-search input {
-      border: none; background: none; outline: none;
-      font-family: 'Lato', sans-serif; font-size: .82rem; color: var(--text);
-      width: 180px;
-    }
-    .filter-search span { font-size: 1rem; color: var(--text-muted); }
-
-    /* ── NOTICIAS BODY ── */
-    .news-body {
-      padding: 60px 6vw 96px;
-      background: var(--gray);
-      min-height: 60vh;
-    }
-
-    /* ── FEATURED NEWS (DESTACADA) ── */
-    .news-featured {
-      display: grid; grid-template-columns: 1.4fr 1fr;
-      gap: 28px; margin-bottom: 56px;
-    }
-    .news-featured-main {
-      background: var(--white); border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-      cursor: pointer; position: relative;
-    }
-    .news-featured-main:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-
-    .nf-img {
-      width: 100%; height: 300px; object-fit: cover;
-      background: linear-gradient(135deg, var(--blue-dark), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem; position: relative; overflow: hidden;
-    }
-    .nf-img-placeholder {
-      width: 100%; height: 300px;
-      background: linear-gradient(135deg, #1a4470 0%, #255c95 60%, #228fd2 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px; color: rgba(255,255,255,.6); font-family: 'Lato', sans-serif;
-    }
-    .nf-img-placeholder .ph-icon { font-size: 3.5rem; opacity: .7; }
-    .nf-img-placeholder .ph-label {
-      font-size: .72rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; opacity: .5;
-    }
-    .nf-featured-badge {
-      position: absolute; top: 18px; left: 18px; z-index: 2;
-      background: var(--accent); color: var(--white);
-      font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
       letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 50px;
-      box-shadow: 0 4px 14px rgba(34,143,210,.4);
+      color: rgba(255,255,255,.6); margin-top: 4px;
     }
-    .nf-body { padding: 28px 32px 32px; }
-    .nf-meta {
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 14px;
+
+    /* ── TABS DE CATEGORÍA ── */
+    .portal-tabs {
+      background: var(--white); padding: 0 6vw;
+      border-bottom: 1px solid rgba(37,92,149,.1);
+      display: flex; gap: 0; overflow-x: auto;
+      position: sticky; top: 76px; z-index: 50;
+      box-shadow: 0 4px 20px rgba(37,92,149,.07);
     }
-    .nf-cat {
-      font-family: 'Lato', sans-serif; font-size: .68rem; font-weight: 700;
+    .portal-tabs::-webkit-scrollbar { display: none; }
+    .ptab {
+      display: flex; align-items: center; gap: 8px;
+      padding: 18px 24px; border: none; background: none;
+      font-family: 'Lato', sans-serif; font-size: .84rem; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; white-space: nowrap;
+      border-bottom: 3px solid transparent; transition: all .25s;
+    }
+    .ptab:hover { color: var(--blue); }
+    .ptab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .ptab .tab-icon { font-size: 1rem; }
+    .ptab .tab-count {
+      background: var(--blue-light); color: var(--blue);
+      font-size: .65rem; font-weight: 700;
+      padding: 2px 8px; border-radius: 50px; min-width: 22px; text-align: center;
+    }
+    .ptab.active .tab-count { background: var(--blue); color: var(--white); }
+
+    /* ── BODY PRINCIPAL ── */
+    .portal-body {
+      display: grid; grid-template-columns: 1fr 320px;
+      gap: 32px; padding: 48px 6vw 80px;
+      background: var(--gray); align-items: start;
+    }
+
+    /* ── FEED PRINCIPAL ── */
+    .portal-feed { display: flex; flex-direction: column; gap: 20px; }
+
+    /* CARD COMUNICADO */
+    .comm-card {
+      background: var(--white); border-radius: 20px;
+      border: 1px solid rgba(37,92,149,.07);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden; cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+      display: none; /* controlado por JS */
+    }
+    .comm-card.visible { display: block; }
+    .comm-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .cc-header {
+      padding: 22px 28px 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+    }
+    .cc-type-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
       letter-spacing: 1.8px; text-transform: uppercase;
-      color: var(--accent); background: var(--accent-light);
-      padding: 4px 12px; border-radius: 50px;
+      padding: 5px 14px; border-radius: 50px; flex-shrink: 0;
     }
-    .nf-date { font-family: 'Lato', sans-serif; font-size: .75rem; color: var(--text-muted); }
-    .nf-title {
-      font-family: 'Lato', sans-serif; font-size: 1.4rem; font-weight: 700;
-      color: var(--blue-dark); line-height: 1.3; margin-bottom: 12px;
-    }
-    .news-featured-main .nf-title { font-size: 1.6rem; }
-    .nf-excerpt {
-      font-size: .9rem; color: var(--text-muted); line-height: 1.75;
-      font-weight: 400; margin-bottom: 22px;
-    }
-    .nf-read-more {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700;
-      color: var(--blue); text-decoration: none;
-      transition: gap .2s, color .2s;
-    }
-    .nf-read-more:hover { gap: 10px; color: var(--accent); }
+    .badge-reunion    { background: #fff3e0; color: #e65100; }
+    .badge-celebracion{ background: #fce4ec; color: #c62828; }
+    .badge-cumpleanos { background: #f3e5f5; color: #6a1b9a; }
+    .badge-comunicado { background: var(--blue-light); color: var(--blue); }
+    .badge-logro      { background: #e8f5e9; color: #2e7d32; }
+    .badge-capacitacion{ background: #e3f2fd; color: #1565c0; }
+    .badge-bienestar  { background: #fff8e1; color: #f57f17; }
 
-    /* Sidebar noticias destacadas */
-    .news-featured-side {
-      display: flex; flex-direction: column; gap: 16px;
+    .cc-pin {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
+      color: var(--accent); letter-spacing: .5px;
     }
-    .news-side-card {
-      background: var(--white); border-radius: 16px;
-      overflow: hidden; box-shadow: var(--shadow-sm);
-      display: flex; gap: 0; cursor: pointer;
-      transition: transform var(--transition), box-shadow var(--transition);
+
+    .cc-body { padding: 16px 28px 22px; }
+    .cc-title {
+      font-family: 'Lato', sans-serif; font-size: 1.12rem; font-weight: 700;
+      color: var(--blue-dark); line-height: 1.3; margin-bottom: 10px;
     }
-    .news-side-card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
-    .nsc-img {
-      width: 100px; min-width: 100px; height: auto;
-      background: linear-gradient(135deg, #1a4470, #255c95);
+    .cc-excerpt {
+      font-size: .88rem; color: var(--text-muted); line-height: 1.73;
+      font-weight: 400; margin-bottom: 18px;
+    }
+
+    /* Tarjeta especial: con imagen de fondo temática */
+    .comm-card.card-highlight .cc-band {
+      margin: 0 0 18px;
+      height: 140px; border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; flex-shrink: 0;
+      font-size: 3.5rem; position: relative; overflow: hidden;
     }
-    .nsc-body { padding: 14px 18px; flex: 1; }
-    .nsc-cat {
-      font-family: 'Lato', sans-serif; font-size: .62rem; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent);
-      margin-bottom: 6px; display: block;
-    }
-    .nsc-title {
-      font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700;
-      color: var(--blue-dark); line-height: 1.35; margin-bottom: 6px;
-    }
-    .nsc-date { font-family: 'Lato', sans-serif; font-size: .7rem; color: var(--text-muted); }
-
-    /* ── SECCIÓN TÍTULO + GRID ── */
-    .news-section-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
-    }
-    .news-section-header .section-title { margin-bottom: 0; }
-    .news-count {
-      font-family: 'Lato', sans-serif; font-size: .78rem; font-weight: 600;
-      color: var(--text-muted); background: var(--white);
-      padding: 6px 16px; border-radius: 50px;
-      border: 1.5px solid rgba(37,92,149,.1);
-    }
-
-    /* ── GRID DE NOTICIAS ── */
-    .news-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-      margin-bottom: 48px;
-    }
-    .news-card {
-      background: var(--white); border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(37,92,149,.06);
-      transition: transform var(--transition), box-shadow var(--transition);
-      cursor: pointer; display: flex; flex-direction: column;
-    }
-    .news-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-lg); }
-
-    .nc-img {
-      width: 100%; height: 190px;
-      background: linear-gradient(135deg, #1a4470 0%, #255c95 60%, #228fd2 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.8rem; position: relative; overflow: hidden; flex-shrink: 0;
-    }
-    .nc-img-inner {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 8px;
-    }
-    .nc-img-icon { font-size: 2.8rem; opacity: .75; }
-    .nc-img-label {
+    .comm-card.card-highlight .cc-band::after {
+      content: attr(data-label);
+      position: absolute; bottom: 12px; right: 16px;
       font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase;
-      color: rgba(255,255,255,.45);
+      color: rgba(255,255,255,.5);
     }
 
-    /* Estilos de color por categoría */
-    .nc-img.cat-logistica    { background: linear-gradient(135deg, #1a4470, #255c95); }
-    .nc-img.cat-productos    { background: linear-gradient(135deg, #0d5c46, #1a8a6a); }
-    .nc-img.cat-equipo       { background: linear-gradient(135deg, #5c1a1a, #953030); }
-    .nc-img.cat-innovacion   { background: linear-gradient(135deg, #3d2e70, #6745b5); }
-    .nc-img.cat-responsabilidad { background: linear-gradient(135deg, #2e5c1a, #5c9530); }
-    .nc-img.cat-comercial    { background: linear-gradient(135deg, #5c4a1a, #9c7d2a); }
+    /* Detalles de evento (fecha/hora/lugar) */
+    .cc-event-details {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px;
+    }
+    .cc-detail-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gray); border-radius: 50px;
+      padding: 6px 14px; font-family: 'Lato', sans-serif;
+      font-size: .76rem; color: var(--text-muted); font-weight: 600;
+    }
+    .cc-detail-pill span { font-size: .85rem; }
 
-    .nc-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
-    .nc-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-    .nc-cat {
-      font-family: 'Lato', sans-serif; font-size: .62rem; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--accent); background: var(--accent-light);
-      padding: 3px 10px; border-radius: 50px;
-    }
-    .nc-date { font-family: 'Lato', sans-serif; font-size: .71rem; color: var(--text-muted); }
-    .nc-title {
-      font-family: 'Lato', sans-serif; font-size: 1.02rem; font-weight: 700;
-      color: var(--blue-dark); line-height: 1.35; margin-bottom: 10px;
-    }
-    .nc-excerpt {
-      font-size: .84rem; color: var(--text-muted); line-height: 1.7;
-      font-weight: 400; flex: 1; margin-bottom: 18px;
-    }
-    .nc-footer {
+    .cc-footer {
+      padding: 14px 28px 18px;
+      border-top: 1px solid rgba(37,92,149,.07);
       display: flex; align-items: center; justify-content: space-between;
-      padding-top: 14px; border-top: 1px solid rgba(37,92,149,.07);
     }
-    .nc-author {
-      display: flex; align-items: center; gap: 8px;
+    .cc-meta-row { display: flex; align-items: center; gap: 10px; }
+    .cc-avatar {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--blue-light); display: flex;
+      align-items: center; justify-content: center;
+      font-size: .82rem; flex-shrink: 0;
     }
-    .nc-avatar {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: var(--blue-light); display: flex; align-items: center;
-      justify-content: center; font-size: .75rem; flex-shrink: 0;
+    .cc-author { font-family: 'Lato', sans-serif; font-size: .76rem; color: var(--text-muted); font-weight: 600; }
+    .cc-date   { font-family: 'Lato', sans-serif; font-size: .72rem; color: var(--text-muted); }
+    .cc-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blue-xlight); color: var(--blue);
+      border: none; border-radius: 50px; cursor: pointer;
+      font-family: 'Lato', sans-serif; font-size: .76rem; font-weight: 700;
+      padding: 7px 18px; transition: background .2s, gap .2s;
     }
-    .nc-author-name { font-family: 'Lato', sans-serif; font-size: .73rem; color: var(--text-muted); font-weight: 600; }
-    .nc-read {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-family: 'Lato', sans-serif; font-size: .75rem; font-weight: 700;
-      color: var(--accent); text-decoration: none; transition: gap .2s;
-    }
-    .nc-read:hover { gap: 8px; }
+    .cc-btn:hover { background: var(--blue-light); gap: 9px; }
 
-    /* ── PAGINACIÓN ── */
-    .news-pagination {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .pg-btn {
-      width: 42px; height: 42px; border-radius: 12px;
-      border: 1.5px solid rgba(37,92,149,.18);
-      background: var(--white); color: var(--text-muted);
-      font-family: 'Lato', sans-serif; font-size: .85rem; font-weight: 600;
-      cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center;
-    }
-    .pg-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .pg-btn.active {
-      background: var(--blue); border-color: var(--blue);
-      color: var(--white); box-shadow: 0 4px 14px rgba(37,92,149,.3);
-    }
-    .pg-btn.pg-arrow { width: auto; padding: 0 16px; gap: 6px; font-size: .8rem; }
-    .pg-dots { font-family: 'Lato', sans-serif; color: var(--text-muted); font-size: .85rem; }
+    /* ── SIDEBAR ── */
+    .portal-sidebar { display: flex; flex-direction: column; gap: 20px; }
 
-    /* ── NEWSLETTER BAND ── */
-    .newsletter-band {
-      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--accent) 100%);
-      padding: 72px 6vw; text-align: center; position: relative; overflow: hidden;
+    .sidebar-widget {
+      background: var(--white); border-radius: 20px;
+      border: 1px solid rgba(37,92,149,.07);
+      box-shadow: var(--shadow-sm); overflow: hidden;
     }
-    .newsletter-band::before {
-      content: ''; position: absolute; inset: 0;
-      background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255,255,255,.02) 20px, rgba(255,255,255,.02) 40px);
+    .sw-header {
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid rgba(37,92,149,.07);
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .newsletter-band-content { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
-    .newsletter-band .section-tag { color: rgba(255,255,255,.55); display: block; margin-bottom: 12px; }
-    .newsletter-band h2 {
-      font-family: 'Lato', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.2;
+    .sw-title {
+      font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700;
+      color: var(--blue-dark); display: flex; align-items: center; gap: 8px;
     }
-    .newsletter-band p {
-      color: rgba(255,255,255,.65); font-size: .95rem; line-height: 1.7;
-      margin-bottom: 32px; font-weight: 400;
-    }
-    .newsletter-form {
-      display: flex; gap: 12px; max-width: 460px; margin: 0 auto;
-    }
-    .newsletter-input {
-      flex: 1; background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.25);
-      color: var(--white); font-family: 'Lato', sans-serif; font-size: .88rem;
-      padding: 14px 20px; border-radius: 50px; outline: none;
-      transition: border-color .2s, background .2s;
-    }
-    .newsletter-input::placeholder { color: rgba(255,255,255,.45); }
-    .newsletter-input:focus { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.18); }
-    .newsletter-btn {
-      background: var(--white); color: var(--blue);
-      border: none; padding: 14px 28px; border-radius: 50px;
-      font-family: 'Lato', sans-serif; font-weight: 700; font-size: .88rem;
-      cursor: pointer; white-space: nowrap; flex-shrink: 0;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .newsletter-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+    .sw-title span { font-size: 1rem; }
+    .sw-body { padding: 16px 22px 20px; }
 
-    /* ── MODAL NOTICIA ── */
-    .news-modal {
+    /* Próximos eventos mini */
+    .event-mini {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
+    }
+    .event-mini:last-child { border-bottom: none; }
+    .em-date-box {
+      width: 42px; flex-shrink: 0; text-align: center;
+      background: var(--blue-light); border-radius: 10px; padding: 6px 0;
+    }
+    .em-day { font-family: 'Lato', sans-serif; font-size: 1.1rem; font-weight: 900; color: var(--blue); line-height: 1; }
+    .em-mon { font-family: 'Lato', sans-serif; font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); }
+    .em-info {}
+    .em-title { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; margin-bottom: 3px; }
+    .em-time  { font-family: 'Lato', sans-serif; font-size: .7rem; color: var(--text-muted); }
+
+    /* Cumpleaños del mes */
+    .bday-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
+    }
+    .bday-item:last-child { border-bottom: none; }
+    .bday-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .bday-info {}
+    .bday-name { font-family: 'Lato', sans-serif; font-size: .85rem; font-weight: 700; color: var(--blue-dark); }
+    .bday-date { font-family: 'Lato', sans-serif; font-size: .71rem; color: var(--text-muted); }
+    .bday-today {
+      margin-left: auto; background: #fce4ec; color: #c62828;
+      font-family: 'Lato', sans-serif; font-size: .6rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 50px;
+    }
+
+    /* Clima laboral mini */
+    .mood-widget { padding: 0; }
+    .mood-question { font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 16px; text-align: center; }
+    .mood-options { display: flex; justify-content: space-around; }
+    .mood-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      background: none; border: none; cursor: pointer; padding: 10px;
+      border-radius: 14px; transition: background .2s, transform .2s;
+    }
+    .mood-btn:hover { background: var(--gray); transform: scale(1.1); }
+    .mood-btn.selected { background: var(--blue-light); }
+    .mood-emoji { font-size: 1.8rem; }
+    .mood-label { font-family: 'Lato', sans-serif; font-size: .65rem; color: var(--text-muted); font-weight: 600; }
+    .mood-thanks { display: none; text-align: center; font-family: 'Lato', sans-serif; font-size: .85rem; color: var(--blue); font-weight: 700; padding: 8px 0; }
+
+    /* Links rápidos */
+    .quick-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
+      text-decoration: none; transition: padding-left .2s;
+    }
+    .quick-link:last-child { border-bottom: none; }
+    .quick-link:hover { padding-left: 6px; }
+    .ql-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--blue-light); display: flex; align-items: center; justify-content: center;
+      font-size: .95rem; flex-shrink: 0; transition: background .2s;
+    }
+    .quick-link:hover .ql-icon { background: var(--blue); filter: none; }
+    .quick-link:hover .ql-icon { color: white; }
+    .ql-text { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600; color: var(--blue-dark); }
+    .ql-arrow { margin-left: auto; font-size: .7rem; color: var(--text-muted); transition: transform .2s; }
+    .quick-link:hover .ql-arrow { transform: translateX(4px); }
+
+    /* ── MODAL COMUNICADO ── */
+    .comm-modal {
       position: fixed; inset: 0; z-index: 400;
-      background: rgba(10,20,30,.92); backdrop-filter: blur(12px);
+      background: rgba(10,20,30,.92); backdrop-filter: blur(14px);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none; transition: opacity .4s;
       padding: 24px;
     }
-    .news-modal.open { opacity: 1; pointer-events: all; }
-    .news-modal-box {
+    .comm-modal.open { opacity: 1; pointer-events: all; }
+    .comm-modal-box {
       background: var(--white); border-radius: 24px; overflow: hidden;
-      max-width: 680px; width: 100%; max-height: 85vh; overflow-y: auto;
-      transform: scale(.9) translateY(20px); transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+      max-width: 640px; width: 100%; max-height: 88vh; overflow-y: auto;
+      transform: scale(.92) translateY(20px);
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1);
       position: relative;
     }
-    .news-modal.open .news-modal-box { transform: scale(1) translateY(0); }
-    .news-modal-close {
-      position: absolute; top: 20px; right: 20px; z-index: 10;
-      width: 44px; height: 44px; border-radius: 50%;
+    .comm-modal.open .comm-modal-box { transform: scale(1) translateY(0); }
+    .cmm-close {
+      position: absolute; top: 18px; right: 18px; z-index: 10;
+      width: 40px; height: 40px; border-radius: 50%;
       background: rgba(0,0,0,.08); border: none; cursor: pointer;
-      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
       transition: background .2s, transform .2s;
     }
-    .news-modal-close:hover { background: rgba(0,0,0,.15); transform: rotate(90deg); }
-    .nm-header-img {
-      width: 100%; height: 240px;
-      background: linear-gradient(135deg, #1a4470, #255c95, #228fd2);
-      display: flex; align-items: center; justify-content: center; font-size: 4rem;
+    .cmm-close:hover { background: rgba(0,0,0,.15); transform: rotate(90deg); }
+    .cmm-band {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative;
     }
-    .nm-content { padding: 32px 36px 40px; }
-    .nm-meta { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
-    .nm-cat {
-      font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
-      letter-spacing: 1.8px; text-transform: uppercase;
-      color: var(--accent); background: var(--accent-light);
-      padding: 4px 12px; border-radius: 50px;
+    .cmm-body { padding: 28px 32px 36px; }
+    .cmm-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .cmm-title {
+      font-family: 'Lato', sans-serif; font-size: 1.6rem; font-weight: 700;
+      color: var(--blue-dark); line-height: 1.25; margin-bottom: 16px;
     }
-    .nm-date { font-family: 'Lato', sans-serif; font-size: .78rem; color: var(--text-muted); }
-    .nm-title {
-      font-family: 'Lato', sans-serif; font-size: 1.7rem; font-weight: 700;
-      color: var(--blue-dark); line-height: 1.25; margin-bottom: 18px;
+    .cmm-text { font-size: .92rem; line-height: 1.85; color: var(--text-muted); font-weight: 400; }
+    .cmm-text p { margin-bottom: 14px; }
+    .cmm-text strong { color: var(--text); }
+    .cmm-event-box {
+      background: var(--gray); border-radius: 14px; padding: 18px 20px;
+      margin: 20px 0; border-left: 4px solid var(--blue);
     }
-    .nm-body { font-size: .93rem; line-height: 1.85; color: var(--text-muted); font-weight: 400; }
-    .nm-body p { margin-bottom: 16px; }
-    .nm-body strong { color: var(--text); }
-    .nm-divider { height: 1px; background: rgba(37,92,149,.08); margin: 24px 0; }
-    .nm-author-row {
-      display: flex; align-items: center; gap: 12px;
+    .cmm-event-box h6 {
+      font-family: 'Lato', sans-serif; font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
+      margin-bottom: 12px;
     }
-    .nm-author-avatar {
+    .cmm-event-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cmm-event-detail {
+      display: flex; align-items: center; gap: 7px;
+      font-family: 'Lato', sans-serif; font-size: .82rem; color: var(--text-muted); font-weight: 600;
+    }
+    .cmm-divider { height: 1px; background: rgba(37,92,149,.08); margin: 22px 0; }
+    .cmm-footer-row { display: flex; align-items: center; gap: 12px; }
+    .cmm-footer-avatar {
       width: 44px; height: 44px; border-radius: 50%;
       background: var(--blue-light); display: flex; align-items: center;
-      justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+      justify-content: center; font-size: 1.2rem;
     }
-    .nm-author-info h6 {
-      font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700;
-      color: var(--blue-dark); margin-bottom: 2px;
-    }
-    .nm-author-info p {
-      font-family: 'Lato', sans-serif; font-size: .72rem; color: var(--text-muted);
-    }
+    .cmm-footer-info h6 { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 2px; }
+    .cmm-footer-info p  { font-family: 'Lato', sans-serif; font-size: .71rem; color: var(--text-muted); }
 
-    /* ── RESPONSIVE NOTICIAS ── */
-    @media (max-width: 1024px) {
-      .news-featured { grid-template-columns: 1fr; }
-      .news-featured-side { flex-direction: row; flex-wrap: wrap; }
-      .news-side-card { flex: 1 1 280px; flex-direction: column; }
-      .nsc-img { width: 100%; height: 100px; }
-      .news-grid { grid-template-columns: repeat(2, 1fr); }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .portal-body { grid-template-columns: 1fr 280px; }
     }
     @media (max-width: 900px) {
-      .news-filters { top: 68px; padding: 16px 5vw; }
-      .filter-search { width: 100%; margin-left: 0; }
-      .filter-search input { width: 100%; }
-      .news-body { padding: 40px 5vw 72px; }
-      .news-hero { padding: 100px 5vw 60px; }
+      .portal-body { grid-template-columns: 1fr; padding: 32px 5vw 60px; }
+      .portal-sidebar { order: -1; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .portal-tabs { top: 68px; padding: 0 5vw; }
+      .portal-hero { padding: 100px 5vw 48px; }
+      .portal-date-badge { display: none; }
     }
-    @media (max-width: 700px) {
-      .news-grid { grid-template-columns: 1fr; }
-      .news-featured-side { flex-direction: column; }
-      .news-side-card { flex-direction: row; }
-      .nsc-img { width: 90px; height: auto; }
-      .newsletter-form { flex-direction: column; }
-      .newsletter-input { border-radius: 14px; }
-      .newsletter-btn { border-radius: 14px; }
-      .nm-content { padding: 24px 20px 32px; }
-      .nm-title { font-size: 1.3rem; }
-    }
-    @media (max-width: 600px) {
-      .news-filters { gap: 8px; }
-      .filter-btn { padding: 7px 14px; font-size: .76rem; }
+    @media (max-width: 640px) {
+      .portal-sidebar { grid-template-columns: 1fr; }
+      .cc-header { flex-wrap: wrap; }
+      .cc-event-details { gap: 8px; }
+      .cmm-body { padding: 20px 20px 28px; }
+      .cmm-title { font-size: 1.3rem; }
+      .cmm-event-row { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════ CURSOR ══════════════ -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
@@ -484,276 +420,375 @@
   </button>
 </nav>
 
-<!-- ══════════════ HERO NOTICIAS ══════════════ -->
-<section class="news-hero">
+<!-- ══════════════ HERO ══════════════ -->
+<section class="portal-hero">
   <div class="hero-bg">
     <div class="geo geo-1"></div>
     <div class="geo geo-2"></div>
-    <div class="geo geo-3"></div>
   </div>
-  <div class="news-hero-content">
-    <span class="hero-eyebrow">Sala de Prensa</span>
-    <h1>Noticias &amp; <em>Novedades</em></h1>
-    <p>Mantente informado sobre los últimos avances, logros y novedades de DistriVision. Aquí encontrarás todo lo que acontece en nuestra empresa y el sector.</p>
+  <div class="portal-date-badge" id="dateBadge">
+    <div class="day" id="heroDay">—</div>
+    <div class="month-year" id="heroMonthYear">—</div>
+  </div>
+  <div class="portal-hero-content">
+    <span class="hero-eyebrow">Portal Interno</span>
+    <h1>¡Bienvenido,<br><em>Familia DistriVision!</em></h1>
+    <p>Aquí encontrarás todos los comunicados, eventos, celebraciones y novedades pensadas para ti. Mantente conectado con tu equipo.</p>
   </div>
 </section>
 
-<!-- ══════════════ FILTROS ══════════════ -->
-<div class="news-filters" id="newsFilters">
-  <span class="filter-label">Filtrar:</span>
-  <button class="filter-btn active" data-filter="todos">Todos</button>
-  <button class="filter-btn" data-filter="logistica">Logística</button>
-  <button class="filter-btn" data-filter="productos">Productos</button>
-  <button class="filter-btn" data-filter="equipo">Equipo</button>
-  <button class="filter-btn" data-filter="innovacion">Innovación</button>
-  <button class="filter-btn" data-filter="responsabilidad">Responsabilidad</button>
-  <button class="filter-btn" data-filter="comercial">Comercial</button>
-  <div class="filter-search">
-    <span>🔍</span>
-    <input type="text" id="searchInput" placeholder="Buscar noticias…">
-  </div>
+<!-- ══════════════ TABS ══════════════ -->
+<div class="portal-tabs" id="portalTabs">
+  <button class="ptab active" data-tab="todos">
+    <span class="tab-icon">📋</span> Todos
+    <span class="tab-count" id="count-todos">8</span>
+  </button>
+  <button class="ptab" data-tab="reunion">
+    <span class="tab-icon">📅</span> Reuniones
+    <span class="tab-count" id="count-reunion">2</span>
+  </button>
+  <button class="ptab" data-tab="celebracion">
+    <span class="tab-icon">🎉</span> Celebraciones
+    <span class="tab-count" id="count-celebracion">2</span>
+  </button>
+  <button class="ptab" data-tab="cumpleanos">
+    <span class="tab-icon">🎂</span> Cumpleaños
+    <span class="tab-count" id="count-cumpleanos">1</span>
+  </button>
+  <button class="ptab" data-tab="comunicado">
+    <span class="tab-icon">📢</span> Comunicados
+    <span class="tab-count" id="count-comunicado">2</span>
+  </button>
+  <button class="ptab" data-tab="logro">
+    <span class="tab-icon">🏆</span> Logros
+    <span class="tab-count" id="count-logro">1</span>
+  </button>
 </div>
 
-<!-- ══════════════ NOTICIAS BODY ══════════════ -->
-<main class="news-body">
+<!-- ══════════════ CUERPO ══════════════ -->
+<div class="portal-body">
 
-  <!-- DESTACADA -->
-  <section class="news-featured" id="featuredSection">
-    <div class="news-featured-main" onclick="openModal(0)">
-      <div class="nf-img">
-        <div class="nf-img-placeholder">
-          <div class="ph-icon">🚚</div>
-          <div class="ph-label">Logística</div>
-        </div>
-        <span class="nf-featured-badge">⭐ Destacado</span>
+  <!-- FEED -->
+  <div class="portal-feed" id="portalFeed">
+
+    <!-- 1: REUNIÓN GENERAL -->
+    <div class="comm-card visible" data-type="reunion" data-idx="0">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-reunion">📅 Reunión</span>
+        <span class="cc-pin">📌 Fijado</span>
       </div>
-      <div class="nf-body">
-        <div class="nf-meta">
-          <span class="nf-cat">Logística</span>
-          <span class="nf-date">📅 15 de Febrero, 2025</span>
+      <div class="cc-body">
+        <h3 class="cc-title">Reunión General de Equipo – Marzo 2025</h3>
+        <p class="cc-excerpt">Este mes tenemos nuestra reunión mensual obligatoria para todos los colaboradores. Se revisarán resultados de febrero, metas de marzo y se presentarán los nuevos procedimientos del área logística.</p>
+        <div class="cc-event-details">
+          <span class="cc-detail-pill"><span>📅</span> Viernes 14 de Marzo</span>
+          <span class="cc-detail-pill"><span>🕘</span> 9:00 am – 11:00 am</span>
+          <span class="cc-detail-pill"><span>📍</span> Salón Principal – Sede Neiva</span>
         </div>
-        <h2 class="nf-title">DistriVision amplía su flota de distribución con 12 nuevas unidades para toda la zona del Huila</h2>
-        <p class="nf-excerpt">En un importante paso hacia el fortalecimiento de nuestra capacidad operativa, DistriVision incorpora una nueva flota de vehículos refrigerados y de carga, garantizando entregas más rápidas, seguras y en perfecto estado en toda la zona asignada de Neiva y municipios aledaños.</p>
-        <a href="#" class="nf-read-more" onclick="openModal(0); return false;">Leer más →</a>
+      </div>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">👔</div>
+          <span class="cc-author">Gerencia General</span>
+          <span class="cc-date">· Hace 2 días</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(0)">Ver más →</button>
       </div>
     </div>
 
-    <!-- Sidebar -->
-    <div class="news-featured-side">
-      <div class="news-side-card" onclick="openModal(1)">
-        <div class="nsc-img" style="background:linear-gradient(135deg,#0d5c46,#1a8a6a)">📦</div>
-        <div class="nsc-body">
-          <span class="nsc-cat">Productos</span>
-          <p class="nsc-title">Nuevo portafolio 2025: más de 200 referencias para el consumidor huilense</p>
-          <span class="nsc-date">📅 3 de Febrero, 2025</span>
+    <!-- 2: CELEBRACIÓN DÍA DE LA MUJER -->
+    <div class="comm-card visible card-highlight" data-type="celebracion" data-idx="1">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-celebracion">🎉 Celebración</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-band" data-label="8 de Marzo" style="background:linear-gradient(135deg,#c2185b,#e91e63,#f06292);">💜</div>
+        <h3 class="cc-title">¡Celebramos el Día Internacional de la Mujer!</h3>
+        <p class="cc-excerpt">En DistriVision reconocemos y celebramos el invaluable aporte de todas nuestras compañeras. Las invitamos a una actividad especial preparada con todo el cariño del equipo.</p>
+        <div class="cc-event-details">
+          <span class="cc-detail-pill"><span>📅</span> Sábado 8 de Marzo</span>
+          <span class="cc-detail-pill"><span>🕑</span> 2:00 pm</span>
+          <span class="cc-detail-pill"><span>📍</span> Patio Central – Sede Neiva</span>
         </div>
       </div>
-      <div class="news-side-card" onclick="openModal(2)">
-        <div class="nsc-img" style="background:linear-gradient(135deg,#5c1a1a,#953030)">🏆</div>
-        <div class="nsc-body">
-          <span class="nsc-cat">Equipo</span>
-          <p class="nsc-title">DistriVision reconoce a sus mejores colaboradores del año 2024</p>
-          <span class="nsc-date">📅 20 de Enero, 2025</span>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">💛</div>
+          <span class="cc-author">Bienestar Laboral</span>
+          <span class="cc-date">· Hace 1 día</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(1)">Ver más →</button>
+      </div>
+    </div>
+
+    <!-- 3: CUMPLEAÑOS -->
+    <div class="comm-card visible card-highlight" data-type="cumpleanos" data-idx="2">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-cumpleanos">🎂 Cumpleaños</span>
+        <span class="cc-pin" style="color:#6a1b9a;">🎊 ¡Hoy!</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-band" data-label="¡Feliz Cumpleaños!" style="background:linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc);">🎂</div>
+        <h3 class="cc-title">¡Hoy cumple años nuestra compañera María Elena Torres!</h3>
+        <p class="cc-excerpt">María Elena, del área de Cartera, celebra hoy su cumpleaños. ¡Desde toda la familia DistriVision le deseamos un día lleno de alegría, salud y muchas bendiciones! 🎉</p>
+      </div>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">🎈</div>
+          <span class="cc-author">Recursos Humanos</span>
+          <span class="cc-date">· Hoy</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(2)">Ver más →</button>
+      </div>
+    </div>
+
+    <!-- 4: COMUNICADO HORARIO SEMANA SANTA -->
+    <div class="comm-card visible" data-type="comunicado" data-idx="3">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-comunicado">📢 Comunicado</span>
+      </div>
+      <div class="cc-body">
+        <h3 class="cc-title">Horarios especiales Semana Santa 2025</h3>
+        <p class="cc-excerpt">Informamos a todo el personal los cambios de horario durante la Semana Mayor. Por favor leer detenidamente las indicaciones para cada área y turno de trabajo.</p>
+        <div class="cc-event-details">
+          <span class="cc-detail-pill"><span>📅</span> Del 14 al 20 de Abril</span>
+          <span class="cc-detail-pill"><span>⚠️</span> Atención obligatoria</span>
         </div>
       </div>
-      <div class="news-side-card" onclick="openModal(3)">
-        <div class="nsc-img" style="background:linear-gradient(135deg,#3d2e70,#6745b5)">💡</div>
-        <div class="nsc-body">
-          <span class="nsc-cat">Innovación</span>
-          <p class="nsc-title">Implementamos sistema digital de gestión de rutas en tiempo real</p>
-          <span class="nsc-date">📅 10 de Enero, 2025</span>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">📋</div>
+          <span class="cc-author">RR.HH. DistriVision</span>
+          <span class="cc-date">· Hace 3 días</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(3)">Ver más →</button>
+      </div>
+    </div>
+
+    <!-- 5: LOGRO DEL MES -->
+    <div class="comm-card visible card-highlight" data-type="logro" data-idx="4">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-logro">🏆 Logro del Mes</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-band" data-label="Febrero 2025" style="background:linear-gradient(135deg,#1b5e20,#2e7d32,#43a047);">🏆</div>
+        <h3 class="cc-title">¡Superamos la meta de ventas de febrero en un 112%!</h3>
+        <p class="cc-excerpt">¡Gracias al esfuerzo de todo el equipo comercial y de distribución, cerramos febrero con un resultado histórico! Este logro es de todos y cada uno de ustedes.</p>
+      </div>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">🌟</div>
+          <span class="cc-author">Dirección Comercial</span>
+          <span class="cc-date">· Hace 5 días</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(4)">Ver más →</button>
+      </div>
+    </div>
+
+    <!-- 6: REUNIÓN ÁREA LOGÍSTICA -->
+    <div class="comm-card visible" data-type="reunion" data-idx="5">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-reunion">📅 Reunión</span>
+      </div>
+      <div class="cc-body">
+        <h3 class="cc-title">Reunión de coordinación – Área de Logística y Despacho</h3>
+        <p class="cc-excerpt">Reunión específica para el equipo de logística, repartidores y auxiliares de bodega. Se revisará la nueva ruta de distribución y el protocolo de devoluciones actualizado.</p>
+        <div class="cc-event-details">
+          <span class="cc-detail-pill"><span>📅</span> Lunes 10 de Marzo</span>
+          <span class="cc-detail-pill"><span>🕖</span> 6:30 am</span>
+          <span class="cc-detail-pill"><span>📍</span> Bodega Central</span>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">🚚</div>
+          <span class="cc-author">Jefe de Logística</span>
+          <span class="cc-date">· Hace 4 días</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(5)">Ver más →</button>
+      </div>
+    </div>
+
+    <!-- 7: CELEBRACIÓN ANIVERSARIO -->
+    <div class="comm-card visible card-highlight" data-type="celebracion" data-idx="6">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-celebracion">🎉 Celebración</span>
+      </div>
+      <div class="cc-body">
+        <div class="cc-band" data-label="30 Años" style="background:linear-gradient(135deg,#1a4470,#255c95,#228fd2);">🎊</div>
+        <h3 class="cc-title">¡DistriVision cumple 30 años! Gran celebración el 22 de Marzo</h3>
+        <p class="cc-excerpt">Este año celebramos tres décadas de excelencia en distribución. La empresa organizó una tarde de integración especial para todos los colaboradores y sus familias. ¡No te lo puedes perder!</p>
+        <div class="cc-event-details">
+          <span class="cc-detail-pill"><span>📅</span> Sábado 22 de Marzo</span>
+          <span class="cc-detail-pill"><span>🕐</span> 1:00 pm – 7:00 pm</span>
+          <span class="cc-detail-pill"><span>📍</span> Club Los Arrayanes, Neiva</span>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">🎂</div>
+          <span class="cc-author">Gerencia General</span>
+          <span class="cc-date">· Hace 1 semana</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(6)">Ver más →</button>
+      </div>
+    </div>
+
+    <!-- 8: COMUNICADO NORMAS -->
+    <div class="comm-card visible" data-type="comunicado" data-idx="7">
+      <div class="cc-header">
+        <span class="cc-type-badge badge-comunicado">📢 Comunicado</span>
+      </div>
+      <div class="cc-body">
+        <h3 class="cc-title">Actualización del reglamento interno de trabajo 2025</h3>
+        <p class="cc-excerpt">La empresa actualizó algunos artículos del Reglamento Interno de Trabajo. Es obligatorio que todo el personal lea y firme el acuse de recibo antes del 28 de marzo. Disponible en RR.HH.</p>
+        <div class="cc-event-details">
+          <span class="cc-detail-pill"><span>⚠️</span> Fecha límite: 28 Mar</span>
+          <span class="cc-detail-pill"><span>📍</span> Oficina RR.HH.</span>
+        </div>
+      </div>
+      <div class="cc-footer">
+        <div class="cc-meta-row">
+          <div class="cc-avatar">📋</div>
+          <span class="cc-author">RR.HH. DistriVision</span>
+          <span class="cc-date">· Hace 1 semana</span>
+        </div>
+        <button class="cc-btn" onclick="openComm(7)">Ver más →</button>
+      </div>
+    </div>
+
+  </div><!-- /feed -->
+
+  <!-- SIDEBAR -->
+  <aside class="portal-sidebar">
+
+    <!-- Próximos Eventos -->
+    <div class="sidebar-widget">
+      <div class="sw-header">
+        <span class="sw-title"><span>📅</span> Próximos Eventos</span>
+      </div>
+      <div class="sw-body">
+        <div class="event-mini">
+          <div class="em-date-box"><div class="em-day">08</div><div class="em-mon">Mar</div></div>
+          <div class="em-info"><div class="em-title">Día de la Mujer – Actividad especial</div><div class="em-time">🕑 2:00 pm · Patio Central</div></div>
+        </div>
+        <div class="event-mini">
+          <div class="em-date-box"><div class="em-day">10</div><div class="em-mon">Mar</div></div>
+          <div class="em-info"><div class="em-title">Reunión Logística & Despacho</div><div class="em-time">🕖 6:30 am · Bodega Central</div></div>
+        </div>
+        <div class="event-mini">
+          <div class="em-date-box"><div class="em-day">14</div><div class="em-mon">Mar</div></div>
+          <div class="em-info"><div class="em-title">Reunión General de Equipo</div><div class="em-time">🕘 9:00 am · Salón Principal</div></div>
+        </div>
+        <div class="event-mini">
+          <div class="em-date-box"><div class="em-day">22</div><div class="em-mon">Mar</div></div>
+          <div class="em-info"><div class="em-title">🎊 Aniversario 30 años DistriVision</div><div class="em-time">🕐 1:00 pm · Club Los Arrayanes</div></div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- TODAS LAS NOTICIAS -->
-  <div class="news-section-header">
-    <div>
-      <span class="section-tag">Últimas Publicaciones</span>
-      <h2 class="section-title">Todas las Noticias</h2>
+    <!-- Cumpleaños del Mes -->
+    <div class="sidebar-widget">
+      <div class="sw-header">
+        <span class="sw-title"><span>🎂</span> Cumpleaños de Marzo</span>
+      </div>
+      <div class="sw-body">
+        <div class="bday-item">
+          <div class="bday-avatar">👩</div>
+          <div class="bday-info">
+            <div class="bday-name">María Elena Torres</div>
+            <div class="bday-date">📅 7 de Marzo · Cartera</div>
+          </div>
+          <span class="bday-today">¡Hoy! 🎉</span>
+        </div>
+        <div class="bday-item">
+          <div class="bday-avatar">👨</div>
+          <div class="bday-info">
+            <div class="bday-name">Carlos Andrés Perdomo</div>
+            <div class="bday-date">📅 12 de Marzo · Logística</div>
+          </div>
+        </div>
+        <div class="bday-item">
+          <div class="bday-avatar">👩</div>
+          <div class="bday-info">
+            <div class="bday-name">Luisa Fernanda Ortiz</div>
+            <div class="bday-date">📅 19 de Marzo · Ventas</div>
+          </div>
+        </div>
+        <div class="bday-item">
+          <div class="bday-avatar">👨</div>
+          <div class="bday-info">
+            <div class="bday-name">Jhon Edinson Vargas</div>
+            <div class="bday-date">📅 25 de Marzo · Bodega</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <span class="news-count" id="newsCountLabel">Mostrando 6 noticias</span>
-  </div>
 
-  <div class="news-grid" id="newsGrid">
-
-    <!-- Card 1 -->
-    <article class="news-card" data-cat="responsabilidad" onclick="openModal(4)">
-      <div class="nc-img cat-responsabilidad">
-        <div class="nc-img-inner">
-          <span class="nc-img-icon">🌱</span>
-          <span class="nc-img-label">Responsabilidad</span>
-        </div>
+    <!-- Clima Laboral -->
+    <div class="sidebar-widget">
+      <div class="sw-header">
+        <span class="sw-title"><span>💬</span> ¿Cómo estás hoy?</span>
       </div>
-      <div class="nc-body">
-        <div class="nc-meta">
-          <span class="nc-cat">Responsabilidad Social</span>
-          <span class="nc-date">📅 28 Feb 2025</span>
+      <div class="sw-body mood-widget">
+        <p class="mood-question">Comparte cómo te sientes este día</p>
+        <div class="mood-options" id="moodOptions">
+          <button class="mood-btn" data-mood="excelente" onclick="selectMood(this)">
+            <span class="mood-emoji">😄</span>
+            <span class="mood-label">Excelente</span>
+          </button>
+          <button class="mood-btn" data-mood="bien" onclick="selectMood(this)">
+            <span class="mood-emoji">🙂</span>
+            <span class="mood-label">Bien</span>
+          </button>
+          <button class="mood-btn" data-mood="regular" onclick="selectMood(this)">
+            <span class="mood-emoji">😐</span>
+            <span class="mood-label">Regular</span>
+          </button>
+          <button class="mood-btn" data-mood="cansado" onclick="selectMood(this)">
+            <span class="mood-emoji">😔</span>
+            <span class="mood-label">Cansado</span>
+          </button>
         </div>
-        <h3 class="nc-title">Jornada de reforestación: DistriVision planta 500 árboles en el sur del Huila</h3>
-        <p class="nc-excerpt">Nuestro equipo se unió a la iniciativa ambiental regional, aportando al cuidado del ecosistema huilense como parte de nuestro compromiso con la sostenibilidad.</p>
-        <div class="nc-footer">
-          <div class="nc-author">
-            <div class="nc-avatar">👤</div>
-            <span class="nc-author-name">Equipo DistriVision</span>
-          </div>
-          <a href="#" class="nc-read" onclick="openModal(4); return false;">Leer →</a>
-        </div>
+        <div class="mood-thanks" id="moodThanks">¡Gracias por compartir! 💙</div>
       </div>
-    </article>
-
-    <!-- Card 2 -->
-    <article class="news-card" data-cat="comercial" onclick="openModal(5)">
-      <div class="nc-img cat-comercial">
-        <div class="nc-img-inner">
-          <span class="nc-img-icon">📈</span>
-          <span class="nc-img-label">Comercial</span>
-        </div>
-      </div>
-      <div class="nc-body">
-        <div class="nc-meta">
-          <span class="nc-cat">Comercial</span>
-          <span class="nc-date">📅 20 Feb 2025</span>
-        </div>
-        <h3 class="nc-title">Cerramos el 2024 con un crecimiento del 18% en ventas en la zona asignada</h3>
-        <p class="nc-excerpt">Gracias a la confianza de nuestros clientes y el trabajo de nuestro equipo comercial, logramos superar todas las metas propuestas para el año 2024.</p>
-        <div class="nc-footer">
-          <div class="nc-author">
-            <div class="nc-avatar">📊</div>
-            <span class="nc-author-name">Área Comercial</span>
-          </div>
-          <a href="#" class="nc-read" onclick="openModal(5); return false;">Leer →</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Card 3 -->
-    <article class="news-card" data-cat="equipo" onclick="openModal(6)">
-      <div class="nc-img cat-equipo">
-        <div class="nc-img-inner">
-          <span class="nc-img-icon">🤝</span>
-          <span class="nc-img-label">Equipo</span>
-        </div>
-      </div>
-      <div class="nc-body">
-        <div class="nc-meta">
-          <span class="nc-cat">Equipo</span>
-          <span class="nc-date">📅 12 Feb 2025</span>
-        </div>
-        <h3 class="nc-title">Programa de capacitación: 80 colaboradores reciben formación en servicio al cliente</h3>
-        <p class="nc-excerpt">Con el apoyo de expertos en atención al cliente, lanzamos nuestro plan de formación 2025 que busca llevar la experiencia del consumidor al más alto nivel.</p>
-        <div class="nc-footer">
-          <div class="nc-author">
-            <div class="nc-avatar">📚</div>
-            <span class="nc-author-name">RR.HH. DistriVision</span>
-          </div>
-          <a href="#" class="nc-read" onclick="openModal(6); return false;">Leer →</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Card 4 -->
-    <article class="news-card" data-cat="innovacion" onclick="openModal(7)">
-      <div class="nc-img cat-innovacion">
-        <div class="nc-img-inner">
-          <span class="nc-img-icon">📱</span>
-          <span class="nc-img-label">Innovación</span>
-        </div>
-      </div>
-      <div class="nc-body">
-        <div class="nc-meta">
-          <span class="nc-cat">Innovación</span>
-          <span class="nc-date">📅 5 Feb 2025</span>
-        </div>
-        <h3 class="nc-title">Lanzamos nuestra app interna para pedidos y seguimiento de rutas en tiempo real</h3>
-        <p class="nc-excerpt">La nueva aplicación permite a nuestros vendedores gestionar pedidos, consultar inventarios y hacer seguimiento de sus rutas desde cualquier dispositivo móvil.</p>
-        <div class="nc-footer">
-          <div class="nc-author">
-            <div class="nc-avatar">💻</div>
-            <span class="nc-author-name">Sistemas & TI</span>
-          </div>
-          <a href="#" class="nc-read" onclick="openModal(7); return false;">Leer →</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Card 5 -->
-    <article class="news-card" data-cat="logistica" onclick="openModal(8)">
-      <div class="nc-img cat-logistica">
-        <div class="nc-img-inner">
-          <span class="nc-img-icon">🏭</span>
-          <span class="nc-img-label">Logística</span>
-        </div>
-      </div>
-      <div class="nc-body">
-        <div class="nc-meta">
-          <span class="nc-cat">Logística</span>
-          <span class="nc-date">📅 28 Ene 2025</span>
-        </div>
-        <h3 class="nc-title">Remodelación del almacén central: mayor capacidad y mejor organización</h3>
-        <p class="nc-excerpt">Nuestras instalaciones de almacenamiento en Neiva fueron completamente renovadas para optimizar el flujo de mercancías y garantizar las mejores condiciones de conservación.</p>
-        <div class="nc-footer">
-          <div class="nc-author">
-            <div class="nc-avatar">🏗️</div>
-            <span class="nc-author-name">Área Operativa</span>
-          </div>
-          <a href="#" class="nc-read" onclick="openModal(8); return false;">Leer →</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Card 6 -->
-    <article class="news-card" data-cat="productos" onclick="openModal(9)">
-      <div class="nc-img cat-productos">
-        <div class="nc-img-inner">
-          <span class="nc-img-icon">⭐</span>
-          <span class="nc-img-label">Productos</span>
-        </div>
-      </div>
-      <div class="nc-body">
-        <div class="nc-meta">
-          <span class="nc-cat">Productos</span>
-          <span class="nc-date">📅 15 Ene 2025</span>
-        </div>
-        <h3 class="nc-title">Renovamos acuerdo de distribución exclusiva con nuestras marcas representadas</h3>
-        <p class="nc-excerpt">DistriVision firmó la renovación de sus contratos de distribución exclusiva, asegurando la continuidad y expansión de nuestro portafolio de productos para 2025 y 2026.</p>
-        <div class="nc-footer">
-          <div class="nc-author">
-            <div class="nc-avatar">📝</div>
-            <span class="nc-author-name">Gerencia General</span>
-          </div>
-          <a href="#" class="nc-read" onclick="openModal(9); return false;">Leer →</a>
-        </div>
-      </div>
-    </article>
-
-  </div>
-
-  <!-- PAGINACIÓN -->
-  <div class="news-pagination">
-    <button class="pg-btn pg-arrow">← Anterior</button>
-    <button class="pg-btn active">1</button>
-    <button class="pg-btn">2</button>
-    <button class="pg-btn">3</button>
-    <span class="pg-dots">…</span>
-    <button class="pg-btn">7</button>
-    <button class="pg-btn pg-arrow">Siguiente →</button>
-  </div>
-
-</main>
-
-<!-- ══════════════ NEWSLETTER BAND ══════════════ -->
-<div class="newsletter-band">
-  <div class="newsletter-band-content">
-    <span class="section-tag">Mantente Informado</span>
-    <h2>Suscríbete a nuestro boletín de noticias</h2>
-    <p>Recibe en tu correo las últimas novedades, logros y actualizaciones de DistriVision directamente en tu bandeja de entrada.</p>
-    <div class="newsletter-form">
-      <input class="newsletter-input" type="email" placeholder="tucorreo@empresa.com">
-      <button class="newsletter-btn" id="newsletterBtn">Suscribirme →</button>
     </div>
-  </div>
+
+    <!-- Links Rápidos -->
+    <div class="sidebar-widget">
+      <div class="sw-header">
+        <span class="sw-title"><span>⚡</span> Accesos Rápidos</span>
+      </div>
+      <div class="sw-body" style="padding-top:8px;padding-bottom:8px;">
+        <a href="vacantes.html" class="quick-link">
+          <div class="ql-icon">💼</div>
+          <span class="ql-text">Vacantes Internas</span>
+          <span class="ql-arrow">›</span>
+        </a>
+        <a href="certificados.html" class="quick-link">
+          <div class="ql-icon">📋</div>
+          <span class="ql-text">Mis Certificados</span>
+          <span class="ql-arrow">›</span>
+        </a>
+        <a href="index.html#contacto" class="quick-link">
+          <div class="ql-icon">📞</div>
+          <span class="ql-text">Directorio Interno</span>
+          <span class="ql-arrow">›</span>
+        </a>
+        <a href="historia.html" class="quick-link">
+          <div class="ql-icon">📖</div>
+          <span class="ql-text">Historia de la Empresa</span>
+          <span class="ql-arrow">›</span>
+        </a>
+        <a href="contacto.html" class="quick-link">
+          <div class="ql-icon">✉️</div>
+          <span class="ql-text">Contáctanos</span>
+          <span class="ql-arrow">›</span>
+        </a>
+      </div>
+    </div>
+
+  </aside>
 </div>
 
 <!-- ══════════════ FOOTER ══════════════ -->
@@ -772,17 +807,14 @@
         <li><a href="index.html#mision">Misión &amp; Visión</a></li>
         <li><a href="index.html#servicios">Servicios</a></li>
         <li><a href="index.html#galeria">Galería</a></li>
-        <li><a href="index.html#contacto">Contacto</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5>Servicios</h5>
+      <h5>Empleados</h5>
       <ul>
-        <li><a href="index.html#servicios">Distribución Directa</a></li>
-        <li><a href="index.html#servicios">Asesoría Comercial</a></li>
-        <li><a href="index.html#servicios">Portafolio de Productos</a></li>
-        <li><a href="index.html#servicios">Servicio Premium</a></li>
-        <li><a href="index.html#servicios">Innovación Continua</a></li>
+        <li><a href="certificados.html">Mis Certificados</a></li>
+        <li><a href="vacantes.html">Vacantes</a></li>
+        <li><a href="contacto.html">Contáctanos</a></li>
       </ul>
     </div>
   </div>
@@ -792,24 +824,24 @@
   </div>
 </footer>
 
-<!-- ══════════════ MODAL NOTICIA ══════════════ -->
-<div class="news-modal" id="newsModal">
-  <div class="news-modal-box">
-    <button class="news-modal-close" id="modalClose">✕</button>
-    <div class="nm-header-img" id="modalImg">📰</div>
-    <div class="nm-content">
-      <div class="nm-meta">
-        <span class="nm-cat" id="modalCat">Categoría</span>
-        <span class="nm-date" id="modalDate">Fecha</span>
+<!-- ══════════════ MODAL COMUNICADO ══════════════ -->
+<div class="comm-modal" id="commModal">
+  <div class="comm-modal-box">
+    <button class="cmm-close" id="cmmClose">✕</button>
+    <div class="cmm-band" id="cmmBand">📋</div>
+    <div class="cmm-body">
+      <div class="cmm-meta">
+        <span class="cc-type-badge" id="cmmBadge">Tipo</span>
+        <span class="cc-date" id="cmmDate">Fecha</span>
       </div>
-      <h2 class="nm-title" id="modalTitle">Título</h2>
-      <div class="nm-body" id="modalBody"></div>
-      <div class="nm-divider"></div>
-      <div class="nm-author-row">
-        <div class="nm-author-avatar" id="modalAvatar">👤</div>
-        <div class="nm-author-info">
-          <h6 id="modalAuthor">Autor</h6>
-          <p id="modalRole">DistriVision</p>
+      <h2 class="cmm-title" id="cmmTitle">Título</h2>
+      <div class="cmm-text" id="cmmText"></div>
+      <div class="cmm-divider"></div>
+      <div class="cmm-footer-row">
+        <div class="cmm-footer-avatar" id="cmmAvatar">👤</div>
+        <div class="cmm-footer-info">
+          <h6 id="cmmAuthor">Autor</h6>
+          <p id="cmmDept">Departamento</p>
         </div>
       </div>
     </div>
@@ -833,7 +865,6 @@
     <line x1="6" y1="6" x2="18" y2="18"/>
   </svg>
 </button>
-
 <div id="dv-chat-panel" role="dialog" aria-label="Asistente DistriVision">
   <div class="dv-chat-header">
     <div class="dv-bot-avatar">🤖</div>
@@ -847,360 +878,276 @@
   <div class="dv-chat-footer">Potenciado por <span>DistriVision</span> · Neiva, Colombia</div>
 </div>
 
-<!-- ══════════════ SCRIPTS ══════════════ -->
 <script>
-/* ── CURSOR ── */
-const dot  = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
-});
-(function animateRing() {
-  ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
-  ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
-  requestAnimationFrame(animateRing);
+/* ── FECHA EN HERO ── */
+(function() {
+  const now = new Date();
+  const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  document.getElementById('heroDay').textContent = now.getDate();
+  document.getElementById('heroMonthYear').textContent = months[now.getMonth()] + ' ' + now.getFullYear();
 })();
 
+/* ── CURSOR ── */
+const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{ mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'; });
+(function loop(){ rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop); })();
+
 /* ── SCROLL PROGRESS ── */
-const progressBar = document.getElementById('scroll-progress');
-window.addEventListener('scroll', () => {
-  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  progressBar.style.width = pct + '%';
-}, { passive: true });
+const pb = document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{ pb.style.width=((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100)+'%'; },{passive:true});
 
 /* ── NAV ── */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
-const hambBtn = document.getElementById('navHamburger');
-if (hambBtn) {
-  hambBtn.addEventListener('click', () => navbar.classList.toggle('menu-open'));
-  document.querySelectorAll('#navMenu a').forEach(link =>
-    link.addEventListener('click', () => navbar.classList.remove('menu-open'))
-  );
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+const hamb = document.getElementById('navHamburger');
+if(hamb){ hamb.addEventListener('click',()=>navbar.classList.toggle('menu-open')); document.querySelectorAll('#navMenu a').forEach(l=>l.addEventListener('click',()=>navbar.classList.remove('menu-open'))); }
+
+/* ── TABS ── */
+document.querySelectorAll('.ptab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.tab;
+    document.querySelectorAll('.comm-card').forEach(card => {
+      const match = filter === 'todos' || card.dataset.type === filter;
+      card.classList.toggle('visible', match);
+    });
+  });
+});
+
+/* ── DATOS COMUNICADOS ── */
+const COMM_DATA = [
+  {
+    type: 'reunion', badge: 'badge-reunion', badgeLabel: '📅 Reunión',
+    bg: 'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)', icon: '📅',
+    date: 'Publicado el 5 de Marzo, 2025',
+    title: 'Reunión General de Equipo – Marzo 2025',
+    avatar: '👔', author: 'Gerencia General', dept: 'Dirección Ejecutiva',
+    hasEvent: true,
+    eventDate: '📅 Viernes 14 de Marzo, 2025',
+    eventTime: '🕘 9:00 am – 11:00 am',
+    eventPlace: '📍 Salón Principal – Sede Neiva',
+    eventExtra: '👥 Asistencia obligatoria para todos los colaboradores',
+    body: `<p>Estimado equipo DistriVision,</p>
+    <p>Los convocamos a nuestra <strong>Reunión General de Equipo del mes de Marzo</strong>, un espacio fundamental para mantenernos alineados con los objetivos de la empresa y compartir los resultados de nuestro trabajo.</p>
+    <p><strong>Agenda del día:</strong></p>
+    <p>1️⃣ Revisión de resultados de ventas y distribución – Febrero 2025<br>
+    2️⃣ Presentación de metas y compromisos para Marzo<br>
+    3️⃣ Socialización de nuevos procedimientos – Área Logística<br>
+    4️⃣ Espacio de preguntas y reconocimientos del mes<br>
+    5️⃣ Varios</p>
+    <p>Por favor llegar puntual. Se dispondrá de refrigerio al finalizar la reunión. <strong>La asistencia es obligatoria.</strong> En caso de imposibilidad, notificar previamente a su jefe directo.</p>`
+  },
+  {
+    type: 'celebracion', badge: 'badge-celebracion', badgeLabel: '🎉 Celebración',
+    bg: 'linear-gradient(135deg,#c2185b,#e91e63,#f06292)', icon: '💜',
+    date: 'Publicado el 6 de Marzo, 2025',
+    title: '¡Celebramos el Día Internacional de la Mujer!',
+    avatar: '💛', author: 'Comité de Bienestar', dept: 'Bienestar Laboral',
+    hasEvent: true,
+    eventDate: '📅 Sábado 8 de Marzo, 2025',
+    eventTime: '🕑 2:00 pm – 5:00 pm',
+    eventPlace: '📍 Patio Central – Sede Neiva',
+    eventExtra: '💜 Actividad especial para todas las mujeres DistriVision',
+    body: `<p>Queridas compañeras,</p>
+    <p>En DistriVision reconocemos y valoramos profundamente el aporte de <strong>cada una de las mujeres que hacen parte de nuestra familia</strong>. Hoy y siempre, su dedicación, talento y compromiso son el motor que nos impulsa.</p>
+    <p>Con mucho cariño, el comité de bienestar preparó una tarde especial que incluye:</p>
+    <p>🌸 Dinámica de reconocimiento entre compañeras<br>
+    🎁 Detalles especiales para todas<br>
+    🎶 Música y refrigerio compartido<br>
+    📸 Sesión fotográfica de recuerdo</p>
+    <p>¡Las esperamos con toda la alegría del mundo! Inviten a sus compañeras y no olviden compartir este mensaje.</p>`
+  },
+  {
+    type: 'cumpleanos', badge: 'badge-cumpleanos', badgeLabel: '🎂 Cumpleaños',
+    bg: 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)', icon: '🎂',
+    date: 'Hoy · 7 de Marzo, 2025',
+    title: '¡Feliz Cumpleaños, María Elena Torres!',
+    avatar: '🎈', author: 'Recursos Humanos', dept: 'Gestión del Talento Humano',
+    hasEvent: false,
+    body: `<p>Hoy es un día especial en la familia DistriVision. <strong>¡Nuestra querida compañera María Elena Torres, del área de Cartera, celebra su cumpleaños!</strong></p>
+    <p>María Elena lleva <strong>6 años</strong> siendo parte fundamental de nuestro equipo, siempre con una sonrisa, disposición y entrega total en cada tarea que realiza.</p>
+    <p>🎉 Desde toda la familia DistriVision le deseamos:<br>
+    ✨ Un día lleno de amor y felicidad<br>
+    💙 Mucha salud y bendiciones<br>
+    🌟 Que todos sus sueños se cumplan</p>
+    <p>Si ves a María Elena hoy, no olvides darle un abrazo y felicitarla en persona. ¡Ella lo merece!</p>`
+  },
+  {
+    type: 'comunicado', badge: 'badge-comunicado', badgeLabel: '📢 Comunicado',
+    bg: 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon: '📢',
+    date: 'Publicado el 4 de Marzo, 2025',
+    title: 'Horarios especiales Semana Santa 2025',
+    avatar: '📋', author: 'RR.HH. DistriVision', dept: 'Recursos Humanos',
+    hasEvent: true,
+    eventDate: '📅 Del 14 al 20 de Abril, 2025',
+    eventTime: '⚠️ Aplica a todos los colaboradores',
+    eventPlace: '📍 Todas las sedes',
+    eventExtra: '📌 Fecha límite para consultar novedades: 10 de Abril',
+    body: `<p>Estimados colaboradores,</p>
+    <p>Se informa a todo el personal los <strong>horarios y disposiciones especiales para la Semana Santa 2025</strong>:</p>
+    <p>📅 <strong>Lunes 14 de Abril (Lunes Santo):</strong> Día laboral normal<br>
+    📅 <strong>Jueves 17 de Abril (Jueves Santo):</strong> Medio día — Salida a las 12:00 pm<br>
+    📅 <strong>Viernes 18 de Abril (Viernes Santo):</strong> Festivo — No hay operación<br>
+    📅 <strong>Sábado 19 de Abril:</strong> Solo personal autorizado con programación especial<br>
+    📅 <strong>Lunes 21 de Abril:</strong> Regreso normal a labores</p>
+    <p>El área de logística deberá coordinar con su jefe directo los turnos de los días 17 y 19. Cualquier duda comunicarse con RR.HH. antes del <strong>10 de Abril</strong>.</p>`
+  },
+  {
+    type: 'logro', badge: 'badge-logro', badgeLabel: '🏆 Logro del Mes',
+    bg: 'linear-gradient(135deg,#1b5e20,#2e7d32,#43a047)', icon: '🏆',
+    date: 'Publicado el 2 de Marzo, 2025',
+    title: '¡Superamos la meta de ventas de febrero en un 112%!',
+    avatar: '🌟', author: 'Dirección Comercial', dept: 'Área Comercial',
+    hasEvent: false,
+    body: `<p>¡Equipo DistriVision, tenemos razones para celebrar!</p>
+    <p>Con enorme orgullo les comunicamos que <strong>cerramos el mes de febrero 2025 con el 112% de cumplimiento de la meta de ventas</strong>, superando en 12 puntos porcentuales el objetivo propuesto.</p>
+    <p>Este resultado histórico fue posible gracias a:</p>
+    <p>🚚 El compromiso del equipo de repartidores que cumplieron sus rutas al 100%<br>
+    📊 La gestión impecable del equipo comercial<br>
+    📦 El trabajo silencioso pero vital del equipo de bodega<br>
+    💼 El seguimiento riguroso de cartera y facturación</p>
+    <p><strong>¡Este logro es de todos y cada uno de ustedes!</strong> La gerencia quiere agradecerles personalmente su entrega y compromiso. Se anunciarán próximamente los reconocimientos individuales del mes.</p>`
+  },
+  {
+    type: 'reunion', badge: 'badge-reunion', badgeLabel: '📅 Reunión',
+    bg: 'linear-gradient(135deg,#bf360c,#e64a19,#ff7043)', icon: '🚚',
+    date: 'Publicado el 3 de Marzo, 2025',
+    title: 'Reunión de coordinación – Logística y Despacho',
+    avatar: '🚚', author: 'Jefe de Logística', dept: 'Área de Logística',
+    hasEvent: true,
+    eventDate: '📅 Lunes 10 de Marzo, 2025',
+    eventTime: '🕖 6:30 am – 8:00 am',
+    eventPlace: '📍 Bodega Central – Sede Neiva',
+    eventExtra: '👥 Repartidores, auxiliares de bodega y supervisores',
+    body: `<p>Equipo de Logística y Despacho,</p>
+    <p>Los convocamos a una reunión de coordinación para socializar <strong>actualizaciones importantes en nuestros procesos de distribución</strong> para el mes de marzo.</p>
+    <p><strong>Temas a tratar:</strong></p>
+    <p>🗺️ Nueva estructura de rutas de distribución – Sector sur<br>
+    🔄 Protocolo actualizado para devoluciones y reclamaciones<br>
+    📱 Uso obligatorio de la nueva app para registro de entregas<br>
+    ⚠️ Revisión de incidentes del mes anterior y planes de mejora</p>
+    <p>Por favor, llegar puntualmente a las <strong>6:30 am</strong> ya que el equipo debe salir a ruta antes de las 8:00 am. Traer su dispositivo móvil cargado para la demostración de la app.</p>`
+  },
+  {
+    type: 'celebracion', badge: 'badge-celebracion', badgeLabel: '🎉 Celebración',
+    bg: 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon: '🎊',
+    date: 'Publicado el 28 de Febrero, 2025',
+    title: '¡DistriVision cumple 30 años! Gran celebración el 22 de Marzo',
+    avatar: '🎂', author: 'Gerencia General', dept: 'Dirección Ejecutiva',
+    hasEvent: true,
+    eventDate: '📅 Sábado 22 de Marzo, 2025',
+    eventTime: '🕐 1:00 pm – 7:00 pm',
+    eventPlace: '📍 Club Los Arrayanes, Neiva',
+    eventExtra: '👨‍👩‍👧 Colaboradores y sus familias – Ingreso libre',
+    body: `<p>Querida familia DistriVision,</p>
+    <p>Con inmensa alegría les contamos que <strong>este 2025 nuestra empresa celebra 30 años de trayectoria, crecimiento y excelencia</strong> en la distribución de productos en el departamento del Huila.</p>
+    <p>Para celebrar este hito histórico, hemos organizado una <strong>tarde de integración familiar</strong> a la que están invitados todos los colaboradores junto a sus familias.</p>
+    <p>🎵 Música en vivo<br>
+    🍽️ Almuerzo y refrigerios<br>
+    🎮 Actividades para niños y adultos<br>
+    🏆 Reconocimiento a colaboradores con más años de antigüedad<br>
+    🎁 Sorpresas especiales para todos los asistentes</p>
+    <p><strong>¡Confirmar asistencia antes del 15 de Marzo en RR.HH.!</strong> Esto nos ayuda a garantizar un espacio adecuado para todos. Los esperamos con los brazos abiertos. 🎉</p>`
+  },
+  {
+    type: 'comunicado', badge: 'badge-comunicado', badgeLabel: '📢 Comunicado',
+    bg: 'linear-gradient(135deg,#1a4470,#255c95)', icon: '📝',
+    date: 'Publicado el 27 de Febrero, 2025',
+    title: 'Actualización del Reglamento Interno de Trabajo 2025',
+    avatar: '📋', author: 'RR.HH. DistriVision', dept: 'Recursos Humanos',
+    hasEvent: true,
+    eventDate: '📅 Disponible desde el 27 de Febrero',
+    eventTime: '⚠️ Fecha límite de firma: 28 de Marzo',
+    eventPlace: '📍 Oficina de RR.HH. – Sede Neiva',
+    eventExtra: '✍️ Obligatorio para todos los colaboradores activos',
+    body: `<p>Estimados colaboradores,</p>
+    <p>Les informamos que <strong>el Reglamento Interno de Trabajo fue actualizado</strong> en algunos de sus artículos para el año 2025, conforme a los cambios en la normatividad laboral colombiana vigente.</p>
+    <p><strong>Artículos actualizados:</strong></p>
+    <p>📌 Art. 12 – Horarios de trabajo y flexibilidad<br>
+    📌 Art. 23 – Política de uso de dispositivos móviles en horario laboral<br>
+    📌 Art. 31 – Protocolo para incapacidades y permisos<br>
+    📌 Art. 45 – Conductas de acoso y convivencia laboral</p>
+    <p>Cada colaborador debe <strong>leer el documento completo, firmar el acuse de recibo y entregarlo en RR.HH. antes del 28 de Marzo</strong>. El documento está disponible en la oficina de Recursos Humanos en horario laboral.</p>
+    <p>Para dudas o aclaraciones, comunicarse directamente con el área de RR.HH.</p>`
+  }
+];
+
+function openComm(idx) {
+  const d = COMM_DATA[idx];
+  if (!d) return;
+  const band = document.getElementById('cmmBand');
+  band.style.background = d.bg;
+  band.textContent = d.icon;
+  const badge = document.getElementById('cmmBadge');
+  badge.textContent = d.badgeLabel;
+  badge.className = 'cc-type-badge ' + d.badge;
+  document.getElementById('cmmDate').textContent   = d.date;
+  document.getElementById('cmmTitle').textContent  = d.title;
+  document.getElementById('cmmAvatar').textContent = d.avatar;
+  document.getElementById('cmmAuthor').textContent = d.author;
+  document.getElementById('cmmDept').textContent   = d.dept;
+
+  let html = '<div class="cmm-text">' + d.body + '</div>';
+  if (d.hasEvent) {
+    html += `<div class="cmm-event-box">
+      <h6>📌 Detalles del Evento</h6>
+      <div class="cmm-event-row">
+        <span class="cmm-event-detail">${d.eventDate}</span>
+        <span class="cmm-event-detail">${d.eventTime}</span>
+        <span class="cmm-event-detail">${d.eventPlace}</span>
+        <span class="cmm-event-detail">${d.eventExtra}</span>
+      </div>
+    </div>`;
+  }
+  document.getElementById('cmmText').innerHTML = html;
+
+  document.getElementById('commModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+document.getElementById('cmmClose').addEventListener('click', closeComm);
+document.getElementById('commModal').addEventListener('click', e => { if (e.target === document.getElementById('commModal')) closeComm(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeComm(); });
+function closeComm() { document.getElementById('commModal').classList.remove('open'); document.body.style.overflow = ''; }
+
+/* ── MOOD ── */
+function selectMood(btn) {
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  setTimeout(() => {
+    document.getElementById('moodOptions').style.display = 'none';
+    document.getElementById('moodThanks').style.display = 'block';
+  }, 600);
 }
 
 /* ── BOTONES MAGNÉTICOS ── */
-document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.newsletter-btn').forEach(btn => {
+document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
-    const dx = e.clientX - (r.left + r.width/2);
-    const dy = e.clientY - (r.top  + r.height/2);
-    btn.style.transform = `translate(${dx*.18}px,${dy*.22}px)`;
+    btn.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;
   });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
-/* ── DATOS DE NOTICIAS ── */
-const NEWS_DATA = [
-  {
-    cat: 'Logística', date: '15 de Febrero, 2025', icon: '🚚',
-    bg: 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)',
-    title: 'DistriVision amplía su flota con 12 nuevas unidades para toda la zona del Huila',
-    author: 'Área Operativa', role: 'Logística & Distribución',
-    avatar: '🚛',
-    body: `<p>En un importante paso hacia el fortalecimiento de nuestra capacidad operativa, <strong>DistriVision incorpora una nueva flota de 12 vehículos</strong> entre refrigerados y de carga seca, garantizando entregas más rápidas, seguras y en perfecto estado en toda la zona asignada de Neiva y municipios aledaños.</p>
-    <p>Esta inversión representa el compromiso continuo de la empresa con sus clientes y marcas representadas, asegurando que cada producto llegue en las mejores condiciones y en el tiempo pactado.</p>
-    <p>Los nuevos vehículos cuentan con sistema de GPS, control de temperatura y plataforma de seguimiento en tiempo real, lo que representa un salto tecnológico significativo para nuestra operación logística.</p>
-    <p><strong>"Esta inversión nos permite responder mejor a la demanda creciente de nuestros clientes y fortalecer nuestra posición como distribuidores de referencia en el Huila"</strong>, afirmó la Gerencia General.</p>`
-  },
-  {
-    cat: 'Productos', date: '3 de Febrero, 2025', icon: '📦',
-    bg: 'linear-gradient(135deg,#0d5c46,#1a8a6a)',
-    title: 'Nuevo portafolio 2025: más de 200 referencias para el consumidor huilense',
-    author: 'Área Comercial', role: 'Gestión de Productos',
-    avatar: '📦',
-    body: `<p>DistriVision presenta con orgullo su <strong>catálogo de productos 2025</strong>, que supera por primera vez las 200 referencias activas disponibles para todos nuestros puntos de venta en la región.</p>
-    <p>El nuevo portafolio incluye líneas ampliadas en categorías de alimentos, bebidas, productos de aseo personal y hogar, con especial énfasis en marcas líderes del mercado nacional.</p>
-    <p>Esta renovación responde directamente a los estudios de mercado realizados durante 2024, donde se identificaron las preferencias y necesidades del consumidor huilense, permitiéndonos ajustar nuestra oferta de manera más precisa.</p>`
-  },
-  {
-    cat: 'Equipo', date: '20 de Enero, 2025', icon: '🏆',
-    bg: 'linear-gradient(135deg,#5c1a1a,#953030)',
-    title: 'DistriVision reconoce a sus mejores colaboradores del año 2024',
-    author: 'RR.HH. DistriVision', role: 'Recursos Humanos',
-    avatar: '🏆',
-    body: `<p>En una emotiva ceremonia celebrada en nuestras instalaciones de Neiva, <strong>DistriVision rindió homenaje a los colaboradores más destacados de 2024</strong>, reconociendo su dedicación, compromiso y aporte al crecimiento de la empresa.</p>
-    <p>Se entregaron reconocimientos en categorías como: Mejor Vendedor del Año, Mayor Innovación en Procesos, Compromiso con el Cliente y Liderazgo en Equipo.</p>
-    <p>Este tipo de reconocimientos hace parte de nuestra cultura organizacional, que valora el talento humano como el motor principal de nuestra operación y crecimiento sostenible.</p>`
-  },
-  {
-    cat: 'Innovación', date: '10 de Enero, 2025', icon: '💡',
-    bg: 'linear-gradient(135deg,#3d2e70,#6745b5)',
-    title: 'Implementamos sistema digital de gestión de rutas en tiempo real',
-    author: 'Sistemas & TI', role: 'Tecnología e Innovación',
-    avatar: '💻',
-    body: `<p>DistriVision da un gran paso en su transformación digital con la <strong>implementación de un sistema avanzado de gestión de rutas</strong> que permite el seguimiento en tiempo real de toda la flota de distribución.</p>
-    <p>El nuevo sistema integra inteligencia artificial para optimizar recorridos, reducir tiempos de entrega y disminuir el consumo de combustible, resultando en una operación más eficiente y sostenible.</p>
-    <p>Los primeros resultados tras un mes de implementación muestran una reducción del 22% en tiempos de entrega y una mejora del 15% en la satisfacción de los clientes.</p>`
-  },
-  {
-    cat: 'Responsabilidad Social', date: '28 de Febrero, 2025', icon: '🌱',
-    bg: 'linear-gradient(135deg,#2e5c1a,#5c9530)',
-    title: 'Jornada de reforestación: DistriVision planta 500 árboles en el sur del Huila',
-    author: 'Comité de RSE', role: 'Responsabilidad Social',
-    avatar: '🌿',
-    body: `<p>Como parte de nuestro <strong>Plan de Responsabilidad Social Empresarial 2025</strong>, DistriVision lideró una masiva jornada de reforestación en zonas rurales del sur del Huila, donde más de 60 colaboradores voluntarios participaron activamente.</p>
-    <p>Se sembraron 500 árboles nativos de la región, contribuyendo a la restauración de ecosistemas estratégicos para las fuentes hídricas que abastecen comunidades cercanas a Neiva.</p>
-    <p>Esta iniciativa se enmarca en nuestro compromiso de generar un impacto positivo no solo económico, sino también ambiental y social en la región donde operamos.</p>`
-  },
-  {
-    cat: 'Comercial', date: '20 de Febrero, 2025', icon: '📈',
-    bg: 'linear-gradient(135deg,#5c4a1a,#9c7d2a)',
-    title: 'Cerramos el 2024 con un crecimiento del 18% en ventas en la zona asignada',
-    author: 'Área Comercial', role: 'Dirección Comercial',
-    avatar: '📊',
-    body: `<p>Con gran satisfacción, DistriVision anuncia el <strong>cierre del año 2024 con un crecimiento del 18% en ventas</strong>, superando todas las proyecciones establecidas a inicio del año y consolidando nuestra posición como distribuidor líder en la región.</p>
-    <p>Este resultado fue posible gracias a la combinación de estrategias comerciales innovadoras, el fortalecimiento del equipo de ventas y la fidelización de más de 500 clientes activos en toda la zona asignada.</p>
-    <p>Para 2025, las proyecciones apuntan a mantener este crecimiento sostenido, con especial foco en la expansión hacia nuevos municipios y el desarrollo de canales de distribución alternativos.</p>`
-  },
-  {
-    cat: 'Equipo', date: '12 de Febrero, 2025', icon: '🤝',
-    bg: 'linear-gradient(135deg,#5c1a1a,#953030)',
-    title: 'Programa de capacitación: 80 colaboradores reciben formación en servicio al cliente',
-    author: 'RR.HH. DistriVision', role: 'Desarrollo del Talento',
-    avatar: '📚',
-    body: `<p>DistriVision lanzó su <strong>Programa de Capacitación Integral 2025</strong>, con el que más de 80 colaboradores de diferentes áreas recibirán formación especializada en servicio al cliente, manejo de objeciones y técnicas de fidelización.</p>
-    <p>El programa, que se extenderá durante tres meses, está diseñado por expertos en desarrollo organizacional y se desarrolla en modalidad mixta, combinando sesiones presenciales y plataformas digitales de aprendizaje.</p>
-    <p>Esta inversión en el talento humano refleja nuestro convencimiento de que la excelencia en el servicio comienza con colaboradores altamente calificados y motivados.</p>`
-  },
-  {
-    cat: 'Innovación', date: '5 de Febrero, 2025', icon: '📱',
-    bg: 'linear-gradient(135deg,#3d2e70,#6745b5)',
-    title: 'Lanzamos nuestra app interna para pedidos y seguimiento de rutas en tiempo real',
-    author: 'Sistemas & TI', role: 'Tecnología & Desarrollo',
-    avatar: '📱',
-    body: `<p>DistriVision presenta <strong>DistriApp</strong>, nuestra aplicación móvil interna que revoluciona la forma en que nuestros vendedores y repartidores trabajan en campo.</p>
-    <p>La herramienta permite gestionar pedidos desde cualquier punto, verificar disponibilidad de inventario en tiempo real, planificar rutas optimizadas y reportar novedades directamente desde el dispositivo móvil.</p>
-    <p>Tras un piloto exitoso con 15 usuarios, la app ya está disponible para todos nuestros colaboradores de campo, con actualizaciones programadas cada dos semanas según las necesidades identificadas.</p>`
-  },
-  {
-    cat: 'Logística', date: '28 de Enero, 2025', icon: '🏭',
-    bg: 'linear-gradient(135deg,#1a4470,#255c95)',
-    title: 'Remodelación del almacén central: mayor capacidad y mejor organización',
-    author: 'Área Operativa', role: 'Infraestructura & Logística',
-    avatar: '🏗️',
-    body: `<p>DistriVision completó la <strong>remodelación integral de su almacén central</strong> en Neiva, una inversión significativa que aumenta en un 35% la capacidad de almacenamiento y mejora sustancialmente los procesos de picking y despacho.</p>
-    <p>El nuevo diseño incorpora sistemas de estantería dinámica, iluminación LED de bajo consumo, cámaras de temperatura controlada para productos especiales y señalización de seguridad actualizada bajo normas NTC.</p>
-    <p>La modernización del almacén nos permite atender con mayor agilidad los pedidos de nuestros clientes y asegurar que los productos se conserven en óptimas condiciones hasta el momento de su entrega.</p>`
-  },
-  {
-    cat: 'Productos', date: '15 de Enero, 2025', icon: '⭐',
-    bg: 'linear-gradient(135deg,#0d5c46,#1a8a6a)',
-    title: 'Renovamos acuerdo de distribución exclusiva con nuestras marcas representadas',
-    author: 'Gerencia General', role: 'Dirección Estratégica',
-    avatar: '📝',
-    body: `<p>DistriVision tiene el orgullo de anunciar la <strong>renovación y ampliación de sus contratos de distribución exclusiva</strong>, asegurando la continuidad y expansión de nuestro portafolio de productos de consumo masivo para el período 2025-2026.</p>
-    <p>Los nuevos acuerdos contemplan metas de crecimiento compartidas, mayores incentivos por volumen y un plan conjunto de actividades de mercadeo y punto de venta que fortalecerá la presencia de las marcas en toda la región.</p>
-    <p>Esta renovación es el resultado de años de trabajo comprometido y resultados consistentes, que nos posicionan como el socio estratégico preferido por las grandes marcas para la distribución en el departamento del Huila.</p>`
-  }
-];
-
-/* ── MODAL ── */
-function openModal(idx) {
-  const n = NEWS_DATA[idx];
-  if (!n) return;
-  document.getElementById('modalCat').textContent    = n.cat;
-  document.getElementById('modalDate').textContent   = '📅 ' + n.date;
-  document.getElementById('modalTitle').textContent  = n.title;
-  document.getElementById('modalBody').innerHTML     = n.body;
-  document.getElementById('modalAuthor').textContent = n.author;
-  document.getElementById('modalRole').textContent   = n.role;
-  document.getElementById('modalAvatar').textContent = n.avatar;
-  const img = document.getElementById('modalImg');
-  img.style.background = n.bg;
-  img.textContent = n.icon;
-  const modal = document.getElementById('newsModal');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('newsModal').addEventListener('click', e => {
-  if (e.target === document.getElementById('newsModal')) closeModal();
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-function closeModal() {
-  document.getElementById('newsModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-/* ── FILTROS ── */
-const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.news-card');
-const countLabel = document.getElementById('newsCountLabel');
-let currentFilter = 'todos';
-let searchVal = '';
-
-function applyFilters() {
-  let visible = 0;
-  cards.forEach(card => {
-    const cat = card.dataset.cat || '';
-    const title = card.querySelector('.nc-title')?.textContent.toLowerCase() || '';
-    const excerpt = card.querySelector('.nc-excerpt')?.textContent.toLowerCase() || '';
-    const matchFilter = currentFilter === 'todos' || cat === currentFilter;
-    const matchSearch = !searchVal || title.includes(searchVal) || excerpt.includes(searchVal);
-    if (matchFilter && matchSearch) {
-      card.style.display = '';
-      card.style.animation = 'none';
-      void card.offsetWidth;
-      card.style.animation = '';
-      visible++;
-    } else {
-      card.style.display = 'none';
-    }
-  });
-  countLabel.textContent = `Mostrando ${visible} noticia${visible !== 1 ? 's' : ''}`;
-}
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    applyFilters();
-  });
-});
-
-document.getElementById('searchInput').addEventListener('input', e => {
-  searchVal = e.target.value.toLowerCase().trim();
-  applyFilters();
-});
-
-/* ── NEWSLETTER ── */
-document.getElementById('newsletterBtn').addEventListener('click', function() {
-  const input = document.querySelector('.newsletter-input');
-  if (!input.value || !input.value.includes('@')) {
-    input.style.borderColor = 'rgba(255,100,100,.6)';
-    setTimeout(() => input.style.borderColor = '', 1500);
-    return;
-  }
-  this.textContent = '✓ ¡Suscrito!';
-  this.style.background = '#4ade80';
-  input.value = '';
-  setTimeout(() => {
-    this.textContent = 'Suscribirme →';
-    this.style.background = '';
-  }, 3000);
-});
-
-/* ── PAGINACIÓN ── */
-document.querySelectorAll('.pg-btn:not(.pg-arrow)').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.pg-btn:not(.pg-arrow)').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
 /* ── CHATBOT ── */
 (function(){
-  const helpBtn   = document.getElementById('dv-help-btn');
-  const chatPanel = document.getElementById('dv-chat-panel');
-  const chatBody  = document.getElementById('dvChatBody');
-  const dynamic   = document.getElementById('dvDynamic');
-  let isOpen = false, initialized = false;
-
-  const OPTIONS = [
-    { icon:'📞', label:'Comunícate con nosotros',     sub:'Teléfono, WhatsApp o correo', id:'contacto'    },
-    { icon:'📋', label:'Cómo obtener mi certificado', sub:'Pasos del proceso explicados', id:'certificado' },
-    { icon:'💼', label:'Vacantes y empleo',           sub:'Trabaja con DistriVision',     id:'vacantes'    }
-  ];
-
-  const ANSWERS = {
-    contacto: {
-      title:'📞 Contáctanos directamente',
-      html:`
-        <p>Puedes comunicarte con nosotros por cualquiera de estos medios:</p><br>
-        <p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p>
-        <p>📞 <b>Teléfono:</b> (8) 870 34 34</p>
-        <p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p>
-        <p>✉️ <b>RR.HH.:</b> <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>✉️ <b>General:</b> <a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></p>
-      `
-    },
-    certificado: {
-      title:'📋 Cómo obtener tu certificado',
-      html:`
-        <p><b>Sigue estos 3 sencillos pasos:</b></p><br>
-        <p><b>1️⃣ Descarga e imprime</b> el formato desde la carpeta de Drive en esta página.</p>
-        <p><b>2️⃣ Diligencia</b> todos los campos con letra clara y legible.</p>
-        <p><b>3️⃣ Preséntalo</b> en Recursos Humanos para firma y sello oficial.</p><br>
-        <p>📍 <b>RR.HH.:</b> CL 26 SUR No. 6 – 74, Neiva</p>
-      `
-    },
-    vacantes: {
-      title:'💼 Vacantes en DistriVision',
-      html:`
-        <p>¿Quieres ser parte de nuestro equipo?</p><br>
-        <p>👉 <a href="vacantes.html">Ver vacantes disponibles →</a></p><br>
-        <p>O envía tu hoja de vida a:</p>
-        <p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>📱 <a href="https://wa.me/573105996169" target="_blank">WhatsApp: 310 599 6169</a></p>
-      `
-    }
+  const helpBtn=document.getElementById('dv-help-btn'),chatPanel=document.getElementById('dv-chat-panel'),chatBody=document.getElementById('dvChatBody'),dynamic=document.getElementById('dvDynamic');
+  let isOpen=false,initialized=false;
+  const OPTIONS=[{icon:'📞',label:'Comunícate con nosotros',sub:'Teléfono, WhatsApp o correo',id:'contacto'},{icon:'📋',label:'Cómo obtener mi certificado',sub:'Pasos del proceso explicados',id:'certificado'},{icon:'💼',label:'Vacantes y empleo',sub:'Trabaja con DistriVision',id:'vacantes'}];
+  const ANSWERS={
+    contacto:{title:'📞 Contáctanos directamente',html:'<p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>'},
+    certificado:{title:'📋 Cómo obtener tu certificado',html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6 – 74, Neiva</p>'},
+    vacantes:{title:'💼 Vacantes en DistriVision',html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>'}
   };
-
-  helpBtn.addEventListener('click', ()=>{
-    isOpen = !isOpen;
-    helpBtn.classList.toggle('open', isOpen);
-    chatPanel.classList.toggle('open', isOpen);
-    if(isOpen && !initialized) initChat();
-  });
-
-  function initChat(){
-    initialized = true;
-    addTyping(()=>{
-      addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte hoy?');
-      setTimeout(()=>showOptions(), 400);
-    });
-  }
-
-  function showOptions(){
-    dynamic.innerHTML = '<div class="dv-options" id="dvOptions"></div>';
-    const container = document.getElementById('dvOptions');
-    OPTIONS.forEach((opt,i)=>{
-      const b = document.createElement('button');
-      b.className = 'dv-option-btn';
-      b.style.animationDelay = (i*.08)+'s';
-      b.innerHTML = `
-        <div class="opt-icon">${opt.icon}</div>
-        <div class="opt-label">
-          <div>${opt.label}</div>
-          <div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${opt.sub}</div>
-        </div>
-        <span class="opt-arrow">›</span>
-      `;
-      b.addEventListener('click', ()=>selectOption(opt));
-      container.appendChild(b);
-    });
-    scrollBot();
-  }
-
-  function selectOption(opt){
-    addUser(opt.icon+' '+opt.label);
-    dynamic.innerHTML = '';
-    addTyping(()=>{
-      const ans = ANSWERS[opt.id];
-      dynamic.innerHTML = `
-        <div class="dv-answer">
-          <div class="dv-answer-card"><strong>${ans.title}</strong>${ans.html}</div>
-          <button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button>
-        </div>`;
-      document.getElementById('dvBackBtn').addEventListener('click',()=>{
-        addBot('¿Hay algo más en lo que pueda ayudarte?');
-        dynamic.innerHTML = '';
-        setTimeout(()=>showOptions(), 300);
-      });
-      scrollBot();
-    });
-  }
-
-  function addBot(html){ const el=document.createElement('div'); el.className='dv-bubble'; el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${html}</div>`; chatBody.appendChild(el); scrollBot(); }
-  function addUser(text){ const el=document.createElement('div'); el.className='dv-bubble user'; el.innerHTML=`<div class="dv-bubble-text">${text}</div>`; chatBody.appendChild(el); scrollBot(); }
-  function addTyping(cb){ const el=document.createElement('div'); el.className='dv-typing'; el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`; chatBody.appendChild(el); scrollBot(); setTimeout(()=>{chatBody.removeChild(el);cb();},950); }
+  helpBtn.addEventListener('click',()=>{ isOpen=!isOpen; helpBtn.classList.toggle('open',isOpen); chatPanel.classList.toggle('open',isOpen); if(isOpen&&!initialized)initChat(); });
+  function initChat(){ initialized=true; addTyping(()=>{ addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?'); setTimeout(()=>showOptions(),400); }); }
+  function showOptions(){ dynamic.innerHTML='<div class="dv-options" id="dvOptions"></div>'; const c=document.getElementById('dvOptions'); OPTIONS.forEach((o,i)=>{ const b=document.createElement('button'); b.className='dv-option-btn'; b.style.animationDelay=(i*.08)+'s'; b.innerHTML=`<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`; b.addEventListener('click',()=>selectOption(o)); c.appendChild(b); }); scrollBot(); }
+  function selectOption(o){ addUser(o.icon+' '+o.label); dynamic.innerHTML=''; addTyping(()=>{ const a=ANSWERS[o.id]; dynamic.innerHTML=`<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`; document.getElementById('dvBackBtn').addEventListener('click',()=>{ addBot('¿Hay algo más en lo que pueda ayudarte?'); dynamic.innerHTML=''; setTimeout(()=>showOptions(),300); }); scrollBot(); }); }
+  function addBot(h){ const e=document.createElement('div'); e.className='dv-bubble'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addUser(t){ const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addTyping(cb){ const e=document.createElement('div'); e.className='dv-typing'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`; chatBody.appendChild(e); scrollBot(); setTimeout(()=>{ chatBody.removeChild(e); cb(); },950); }
   function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
 })();
 </script>
