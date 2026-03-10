@@ -65,7 +65,6 @@
   animation: revealUp .7s .5s ease forwards;
 }
 
-/* Badge de fecha (esquina superior derecha del hero) */
 .portal-date-badge {
   position: absolute; top: 110px; right: 6vw; z-index: 2;
   background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
@@ -126,7 +125,6 @@
 ══════════════════════════════ */
 .portal-feed { display: flex; flex-direction: column; gap: 20px; }
 
-/* Estado vacío del feed */
 .feed-empty {
   background: var(--white); border-radius: 20px;
   border: 1px dashed rgba(37,92,149,.2);
@@ -136,7 +134,6 @@
 .feed-empty .fe-icon { font-size: 3rem; margin-bottom: 12px; opacity: .5; }
 .feed-empty p { font-family: 'Lato', sans-serif; font-size: .9rem; color: var(--text-muted); }
 
-/* Tarjeta de comunicado */
 .comm-card {
   background: var(--white); border-radius: 20px;
   border: 1px solid rgba(37,92,149,.07);
@@ -148,13 +145,11 @@
 .comm-card.visible { display: block; }
 .comm-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
-/* Cabecera de la tarjeta */
 .cc-header {
   padding: 22px 28px 0;
   display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
 }
 
-/* Badges de tipo */
 .cc-type-badge {
   display: inline-flex; align-items: center; gap: 7px;
   font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
@@ -168,14 +163,12 @@
 .badge-logro       { background: #e8f5e9; color: #2e7d32; }
 .badge-capacitacion{ background: #e3f2fd; color: #1565c0; }
 
-/* Etiqueta "fijado" */
 .cc-pin {
   display: inline-flex; align-items: center; gap: 5px;
   font-family: 'Lato', sans-serif; font-size: .65rem; font-weight: 700;
   color: var(--accent); letter-spacing: .5px;
 }
 
-/* Cuerpo de la tarjeta */
 .cc-body { padding: 16px 28px 22px; }
 
 .cc-title {
@@ -187,7 +180,6 @@
   font-weight: 400; margin-bottom: 18px;
 }
 
-/* Banda visual en tarjetas destacadas */
 .comm-card.card-highlight .cc-band {
   margin: 0 0 18px; height: 140px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
@@ -201,7 +193,6 @@
   color: rgba(255,255,255,.5);
 }
 
-/* Píldoras de detalles de evento */
 .cc-event-details { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
 .cc-detail-pill {
   display: inline-flex; align-items: center; gap: 6px;
@@ -211,7 +202,6 @@
 }
 .cc-detail-pill span { font-size: .85rem; }
 
-/* Pie de la tarjeta */
 .cc-footer {
   padding: 14px 28px 18px;
   border-top: 1px solid rgba(37,92,149,.07);
@@ -236,9 +226,7 @@
 .cc-btn:hover { background: var(--blue-light); gap: 9px; }
 
 /* ══════════════════════════════
-   TARJETA ESPECIAL: CUMPLEAÑOS DEL DÍA
-   Se muestra automáticamente cuando hay
-   un cumpleañero hoy. Incluye espacio para foto.
+   TARJETA ESPECIAL: CUMPLEAÑOS
 ══════════════════════════════ */
 .bday-today-card {
   background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 55%, #ab47bc 100%);
@@ -250,7 +238,6 @@
 .bday-today-card.visible { display: block; }
 .bday-today-card:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(74,20,140,.4); }
 
-/* Partículas decorativas */
 .btc-deco {
   position: absolute; inset: 0; pointer-events: none; overflow: hidden;
 }
@@ -278,11 +265,6 @@
   display: flex; gap: 0; align-items: stretch;
 }
 
-/* ── ESPACIO PARA FOTO DEL CUMPLEAÑERO ──
-   Reemplazar el src de <img id="btcPhoto">
-   en el HTML con la ruta real de la foto.
-   Tamaño recomendado: 200x260px o similar.
-   Si no hay foto, se muestra el emoji por defecto. */
 .btc-photo-wrap {
   width: 180px; min-width: 180px; flex-shrink: 0;
   background: rgba(0,0,0,.2);
@@ -371,7 +353,6 @@
 .sw-title span { font-size: 1rem; }
 .sw-body { padding: 16px 22px 20px; }
 
-/* Scroll suave en la lista de cumpleaños */
 .bday-scroll {
   max-height: 360px; overflow-y: auto;
   scrollbar-width: thin; scrollbar-color: var(--blue-light) transparent;
@@ -379,14 +360,12 @@
 .bday-scroll::-webkit-scrollbar { width: 4px; }
 .bday-scroll::-webkit-scrollbar-thumb { background: var(--blue-light); border-radius: 4px; }
 
-/* Ítem de cumpleaños en sidebar */
 .bday-item {
   display: flex; align-items: center; gap: 12px;
   padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
   transition: background .15s; border-radius: 8px;
 }
 .bday-item:last-child { border-bottom: none; }
-
 .bday-item.is-today { background: #f3e5f5; margin: 0 -4px; padding: 10px 4px; border-radius: 10px; border-bottom: none; }
 
 .bday-date-box {
@@ -412,7 +391,6 @@
   padding: 2px 8px; border-radius: 50px; margin-top: 2px;
 }
 
-/* Próximos eventos mini */
 .event-mini {
   display: flex; gap: 12px; align-items: flex-start;
   padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
@@ -427,7 +405,6 @@
 .em-title { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; margin-bottom: 3px; }
 .em-time  { font-family: 'Lato', sans-serif; font-size: .7rem; color: var(--text-muted); }
 
-/* Widget clima laboral */
 .mood-widget { padding: 0; }
 .mood-question { font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 16px; text-align: center; }
 .mood-options { display: flex; justify-content: space-around; }
@@ -442,7 +419,6 @@
 .mood-label { font-family: 'Lato', sans-serif; font-size: .65rem; color: var(--text-muted); font-weight: 600; }
 .mood-thanks { display: none; text-align: center; font-family: 'Lato', sans-serif; font-size: .85rem; color: var(--blue); font-weight: 700; padding: 8px 0; }
 
-/* Links rápidos */
 .quick-link {
   display: flex; align-items: center; gap: 12px;
   padding: 10px 0; border-bottom: 1px solid rgba(37,92,149,.06);
@@ -495,7 +471,6 @@
   font-size: 4rem; position: relative;
 }
 
-/* Espacio para foto en el modal de cumpleaños */
 .cmm-band.has-photo { height: auto; padding: 0; }
 .cmm-band.has-photo img {
   width: 100%; max-height: 260px;
@@ -536,6 +511,225 @@
 .cmm-footer-info h6 { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 2px; }
 .cmm-footer-info p  { font-family: 'Lato', sans-serif; font-size: .71rem; color: var(--text-muted); }
 
+
+/* ══════════════════════════════════════════════
+   VISTA CALENDARIO
+══════════════════════════════════════════════ */
+.calendar-view {
+  grid-column: 1 / -1;            /* ocupa todo el ancho del grid */
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  animation: revealUp .4s ease forwards;
+}
+
+/* ── Wrapper principal del grid de días ── */
+.cal-wrapper {
+  flex: 1;
+  background: var(--white);
+  border-radius: 24px;
+  border: 1px solid rgba(37,92,149,.08);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Cabecera mes/año + flechas */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 32px 20px;
+  background: linear-gradient(135deg, #1a4470 0%, #255c95 60%, #228fd2 100%);
+}
+.cal-header-center { text-align: center; }
+.cal-month-name {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.65rem; font-weight: 900;
+  color: var(--white); line-height: 1;
+  text-transform: uppercase; letter-spacing: 2px;
+}
+.cal-year-name {
+  font-family: 'Lato', sans-serif;
+  font-size: .8rem; font-weight: 600;
+  color: rgba(255,255,255,.55);
+  letter-spacing: 3px; margin-top: 4px;
+}
+.cal-nav-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.12);
+  color: var(--white); font-size: 1.8rem; line-height: 1;
+  cursor: pointer; transition: background .2s, transform .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.cal-nav-btn:hover { background: rgba(255,255,255,.25); transform: scale(1.08); }
+
+/* Días de la semana */
+.cal-weekdays {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  padding: 14px 20px 6px;
+  border-bottom: 1px solid rgba(37,92,149,.07);
+}
+.cal-weekdays span {
+  text-align: center;
+  font-family: 'Lato', sans-serif; font-size: .68rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Grid de celdas */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 8px 20px 20px;
+  gap: 4px;
+}
+
+.cal-cell {
+  min-height: 74px;
+  border-radius: 14px;
+  padding: 8px 6px 6px;
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer;
+  transition: background .18s, transform .15s, box-shadow .18s;
+  position: relative;
+  border: 2px solid transparent;
+}
+.cal-cell:hover {
+  background: var(--blue-xlight);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(37,92,149,.12);
+}
+.cal-cell.other-month { opacity: .3; pointer-events: none; }
+
+.cal-cell.is-today {
+  background: var(--blue-light);
+  border-color: var(--blue);
+}
+.cal-cell.is-today .cal-day-num {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.cal-cell.selected {
+  background: #e8f4ff;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37,92,149,.15);
+}
+
+.cal-day-num {
+  font-family: 'Lato', sans-serif;
+  font-size: .92rem; font-weight: 700;
+  color: var(--blue-dark);
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .18s, color .18s;
+  flex-shrink: 0;
+}
+
+/* Puntos de colores debajo del número */
+.cal-dots {
+  display: flex; gap: 3px; flex-wrap: wrap;
+  justify-content: center; margin-top: 5px;
+}
+.cal-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-birthday    { background: #ab47bc; }
+.dot-celebracion { background: #e91e63; }
+.dot-reunion     { background: #ef6c00; }
+.dot-comunicado  { background: var(--blue); }
+
+/* Leyenda inferior */
+.cal-legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  padding: 14px 32px 20px;
+  border-top: 1px solid rgba(37,92,149,.07);
+  justify-content: center;
+}
+.leg-item {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'Lato', sans-serif; font-size: .72rem; font-weight: 600;
+  color: var(--text-muted);
+}
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.leg-birthday    { background: #ab47bc; }
+.leg-reunion     { background: #ef6c00; }
+.leg-celebracion { background: #e91e63; }
+.leg-comunicado  { background: var(--blue); }
+
+/* ── Panel lateral de eventos del día ── */
+.cal-day-panel {
+  width: 300px; flex-shrink: 0;
+  background: var(--white);
+  border-radius: 24px;
+  border: 1px solid rgba(37,92,149,.08);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  position: sticky; top: 140px;
+}
+
+.cdp-header {
+  background: linear-gradient(135deg, #1a4470, #255c95);
+  padding: 24px 24px 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.cdp-day-num {
+  font-family: 'Lato', sans-serif;
+  font-size: 3rem; font-weight: 900;
+  color: var(--white); line-height: 1;
+}
+.cdp-day-label {
+  font-family: 'Lato', sans-serif;
+  font-size: .82rem; font-weight: 700;
+  color: rgba(255,255,255,.65); line-height: 1.4;
+}
+
+.cdp-events {
+  padding: 16px 20px 20px;
+  max-height: 480px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.cdp-events::-webkit-scrollbar { width: 4px; }
+.cdp-events::-webkit-scrollbar-thumb { background: var(--blue-light); border-radius: 4px; }
+
+.cdp-empty {
+  text-align: center; padding: 32px 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.cdp-empty span { font-size: 2.2rem; opacity: .4; }
+.cdp-empty p {
+  font-family: 'Lato', sans-serif; font-size: .82rem;
+  color: var(--text-muted); line-height: 1.55;
+}
+
+.cdp-event {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border-left: 4px solid transparent;
+  transition: transform .15s, box-shadow .15s;
+}
+.cdp-event:hover { transform: translateX(2px); box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+
+.cdp-ev-birthday    { background: #f3e5f5; border-color: #ab47bc; }
+.cdp-ev-celebracion { background: #fce4ec; border-color: #e91e63; }
+.cdp-ev-reunion     { background: #fff3e0; border-color: #ef6c00; }
+.cdp-ev-comunicado  { background: var(--blue-xlight); border-color: var(--blue); }
+
+.cdp-ev-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+.cdp-ev-body { flex: 1; min-width: 0; }
+.cdp-ev-title {
+  font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700;
+  color: var(--blue-dark); line-height: 1.35;
+}
+.cdp-ev-hint {
+  font-family: 'Lato', sans-serif; font-size: .68rem;
+  color: var(--text-muted); margin-top: 3px;
+}
+
 /* ══════════════════════════════
    RESPONSIVE
 ══════════════════════════════ */
@@ -550,6 +744,9 @@
   .portal-hero { padding: 100px 5vw 48px; }
   .portal-date-badge { display: none; }
   .btc-photo-wrap { width: 130px; min-width: 130px; }
+
+  .calendar-view { flex-direction: column; }
+  .cal-day-panel { width: 100%; position: static; }
 }
 
 @media (max-width: 640px) {
@@ -562,4 +759,13 @@
   .btc-inner { flex-direction: column; }
   .btc-photo-wrap { width: 100%; min-width: unset; height: 180px; }
   .btc-content { padding: 20px 20px 18px; }
+
+  .cal-grid { padding: 8px 8px 16px; gap: 2px; }
+  .cal-cell { min-height: 52px; padding: 5px 2px 4px; border-radius: 10px; }
+  .cal-day-num { font-size: .78rem; width: 26px; height: 26px; }
+  .cal-header { padding: 20px 18px 16px; }
+  .cal-month-name { font-size: 1.2rem; }
+  .cal-weekdays { padding: 10px 8px 4px; }
+  .cal-legend { padding: 12px 16px 16px; gap: 12px; }
+  .cdp-events { max-height: 320px; }
 }
