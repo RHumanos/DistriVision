@@ -42,8 +42,6 @@
 
 <!-- ══════════════════════════════════════
      HERO
-     ✅ La fecha se actualiza AUTOMÁTICAMENTE
-        con new Date() — no editar manualmente.
 ══════════════════════════════════════ -->
 <section class="portal-hero">
   <div class="hero-bg">
@@ -85,9 +83,8 @@
     <span class="tab-icon">📢</span> Comunicados
     <span class="tab-count" id="cnt-comunicado">0</span>
   </button>
-  <button class="ptab" data-tab="logro">
-    <span class="tab-icon">🏆</span> Logros
-    <span class="tab-count" id="cnt-logro">0</span>
+  <button class="ptab" data-tab="calendario">
+    <span class="tab-icon">🗓️</span> Calendario
   </button>
 </div>
 
@@ -104,8 +101,56 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════
+       VISTA CALENDARIO (oculta por defecto)
+  ══════════════════════════════════════ -->
+  <div class="calendar-view" id="calendarView" style="display:none;">
+    <div class="cal-wrapper">
+      <!-- Cabecera del calendario -->
+      <div class="cal-header">
+        <button class="cal-nav-btn" id="calPrev">&#8249;</button>
+        <div class="cal-header-center">
+          <div class="cal-month-name" id="calMonthName">—</div>
+          <div class="cal-year-name"  id="calYearName">—</div>
+        </div>
+        <button class="cal-nav-btn" id="calNext">&#8250;</button>
+      </div>
+
+      <!-- Días de la semana -->
+      <div class="cal-weekdays">
+        <span>Dom</span><span>Lun</span><span>Mar</span><span>Mié</span>
+        <span>Jue</span><span>Vie</span><span>Sáb</span>
+      </div>
+
+      <!-- Grid de días -->
+      <div class="cal-grid" id="calGrid"></div>
+
+      <!-- Leyenda -->
+      <div class="cal-legend">
+        <span class="leg-item"><span class="leg-dot leg-birthday"></span>Cumpleaños</span>
+        <span class="leg-item"><span class="leg-dot leg-reunion"></span>Reunión</span>
+        <span class="leg-item"><span class="leg-dot leg-celebracion"></span>Celebración</span>
+        <span class="leg-item"><span class="leg-dot leg-comunicado"></span>Comunicado</span>
+      </div>
+    </div>
+
+    <!-- Panel lateral de eventos del día seleccionado -->
+    <div class="cal-day-panel" id="calDayPanel">
+      <div class="cdp-header">
+        <div class="cdp-day-num" id="cdpDayNum">—</div>
+        <div class="cdp-day-label" id="cdpDayLabel">Selecciona un día</div>
+      </div>
+      <div class="cdp-events" id="cdpEvents">
+        <div class="cdp-empty">
+          <span>📅</span>
+          <p>Haz clic en un día para ver sus eventos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Sidebar -->
-  <aside class="portal-sidebar">
+  <aside class="portal-sidebar" id="portalSidebar">
 
     <div class="sidebar-widget">
       <div class="sw-header">
@@ -253,15 +298,6 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    1. CUMPLEAÑOS
-   ─────────────────────────────────────────────────────────────
-   Una línea por empleado:
-     { month: MES, day: DÍA, name: 'Nombre Apellido', photo: '' }
-
-   ▸ month / day → número  (1 = Enero … 12 = Diciembre)
-   ▸ photo       → ruta de la foto del cumpleañero, p.ej.:
-                   'img/empleados/juan_diego.jpg'
-                   Dejar '' si no hay foto todavía.
-                   Tamaño ideal: 200 × 260 px (vertical)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const BIRTHDAYS = [
 
@@ -280,38 +316,19 @@ const BIRTHDAYS = [
   { month:3, day:29, name:'Flavio Abdel Córdoba Gordo',     photo:'' },
   { month:3, day:31, name:'Anyelo Stiven Ortiz Casas',      photo:'' },
 
-  /* ── ABRIL ── descomenta y completa cuando llegue el mes
-  { month:4, day:1,  name:'Nombre Apellido', photo:'' },
-  { month:4, day:10, name:'Nombre Apellido', photo:'' },
-  */
-
-  /* ── MAYO ──
-  { month:5, day:1,  name:'Nombre Apellido', photo:'' },
-  */
 ];
 
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    2. CELEBRACIÓN ACTIVA
-   ─────────────────────────────────────────────────────────────
-   ▸ Cuando NO hay celebración → deja el array vacío: []
-   ▸ Cuando SÍ hay una → rellena el bloque con los datos.
-
-   Colores disponibles para bg:
-     Rosa   → 'linear-gradient(135deg,#880e4f,#c2185b,#f06292,#f8bbd0)'
-     Azul   → 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)'
-     Verde  → 'linear-gradient(135deg,#1b5e20,#2e7d32,#66bb6a)'
-     Morado → 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)'
-     Naranja→ 'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)'
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const CELEBRATIONS = [
 
-  /* ── CELEBRACIÓN ACTIVA ─────────────────────────────────── */
   {
     title:     '💜 ¡Celebremos el mes de las MUJERES!',
-    excerpt:   'Hoy celebramos y honramos a todas las mujeres que hacen grande a DistriVision. Su fuerza, talento y dedicació  n nos inspiran cada día.',
+    excerpt:   'Hoy celebramos y honramos a todas las mujeres que hacen grande a DistriVision. Su fuerza, talento y dedicación nos inspiran cada día.',
     body:      `<p>Queridas compañeras,</p>
-    <p>Hoy, <strong> Marzo</strong>, el mundo entero celebra el <strong>Día Internacional de la Mujer</strong> y en DistriVision queremos dedicar este día especialmente a cada una de ustedes.</p>
+    <p>Hoy, <strong>Marzo</strong>, el mundo entero celebra el <strong>Día Internacional de la Mujer</strong> y en DistriVision queremos dedicar este día especialmente a cada una de ustedes.</p>
     <p>Gracias por su fuerza inquebrantable, su talento extraordinario y su entrega diaria que hace posible que esta empresa siga creciendo. Cada sonrisa, cada esfuerzo y cada logro suyo es el motor de nuestro equipo.</p>
     <p>💜 A las que llegan primero y se van de últimas.<br>
     💜 A las que dan todo en el trabajo y aún más en casa.<br>
@@ -325,45 +342,20 @@ const CELEBRATIONS = [
     bg:        'linear-gradient(135deg, #880e4f 0%, #c2185b 40%, #f06292 75%, #f8bbd0 100%)',
     icon:      '💜',
     bandLabel: '8 de Marzo',
+    /* calDay / calMonth → para que aparezca en el calendario */
+    calDay: 8, calMonth: 3, calYear: 2026,
   },
-
-  /* ── PRÓXIMA CELEBRACIÓN — descomenta cuando sea el momento ──
-  {
-    title:     'Título de la celebración',
-    excerpt:   'Descripción corta visible en la tarjeta del feed.',
-    body:      `<p>Texto completo del mensaje aquí.</p>`,
-    date:      'Publicado el DD de Mes, 2026',
-    author:    'Quien lo publica',
-    dept:      'Área o departamento',
-    avatar:    '🎉',
-    bg:        'linear-gradient(135deg,#1a4470,#255c95,#228fd2)',
-    icon:      '🎊',
-    bandLabel: 'Texto visual en la banda (ej: "30 Años")',
-    eventDetails: {
-      date:  '📅 Día y fecha del evento',
-      time:  '🕐 Hora inicio – Hora fin',
-      place: '📍 Lugar del evento',
-      extra: '👥 Nota adicional o invitados'
-    }
-  },
-  ── */
 
 ];
 
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   3. COMUNICADOS, REUNIONES Y LOGROS
-   ─────────────────────────────────────────────────────────────
-   ▸ type   : 'comunicado' | 'reunion' | 'logro'
-   ▸ pinned : true  →  aparece con etiqueta 📌 Fijado
-   ▸ eventDetails es opcional; quítalo si no hay evento.
-
-   ⚠️ REUNIONES y LOGROS están comentados temporalmente.
-      Descomenta el bloque cuando los haya.
+   3. COMUNICADOS, REUNIONES
+   ▸ Para que un post aparezca en el calendario,
+     agrega: calDay, calMonth, calYear
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const POSTS = [
 
-  /* ── COMUNICADOS ACTIVOS ─────────────────────────────────── */
   {
     type:'comunicado',
     title:'Horarios especiales Semana Santa 2026',
@@ -379,6 +371,7 @@ const POSTS = [
     date:'Publicado el 7 de Marzo, 2026',
     author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
     bg:'linear-gradient(135deg,#1a4470,#255c95,#228fd2)', icon:'📢',
+    calDay:30, calMonth:3, calYear:2026,
     eventDetails:{
       date:'📅 30 Mar al 5 Abr, 2026',
       time:'⚠️ Aplica a todos los colaboradores',
@@ -401,6 +394,7 @@ const POSTS = [
     date:'Publicado el 7 de Marzo, 2026',
     author:'RR.HH. DistriVision', dept:'Recursos Humanos', avatar:'📋',
     bg:'linear-gradient(135deg,#1a4470,#255c95)', icon:'📝',
+    calDay:28, calMonth:3, calYear:2026,
     eventDetails:{
       date:'📅 Disponible desde el 7 de Marzo, 2026',
       time:'⚠️ Fecha límite: 28 de Marzo',
@@ -409,77 +403,11 @@ const POSTS = [
     }
   },
 
-  /* ── REUNIONES — descomenta cuando haya una ─────────────────
-  {
-    type:'reunion', pinned:true,
-    title:'Reunión General de Equipo – [Mes] 2026',
-    excerpt:'Reunión mensual obligatoria para todos los colaboradores. Resultados del mes anterior, metas y nuevos procedimientos.',
-    body:`<p>Estimado equipo DistriVision,</p>
-    <p>Los convocamos a nuestra <strong>Reunión General de Equipo</strong>.</p>
-    <p><strong>Agenda:</strong><br>
-    1️⃣ Resultados de ventas y distribución<br>
-    2️⃣ Metas y compromisos del mes<br>
-    3️⃣ Nuevos procedimientos<br>
-    4️⃣ Reconocimientos y espacio de preguntas</p>
-    <p><strong>La asistencia es obligatoria.</strong></p>`,
-    date:'Publicado el DD de Mes, 2026',
-    author:'Gerencia General', dept:'Dirección Ejecutiva', avatar:'👔',
-    bg:'linear-gradient(135deg,#e65100,#ef6c00,#ffa726)', icon:'📅',
-    eventDetails:{
-      date:'📅 Día y fecha del evento',
-      time:'🕘 Hora inicio – Hora fin',
-      place:'📍 Salón Principal – Sede Neiva',
-      extra:'👥 Asistencia obligatoria para todos'
-    }
-  },
-  {
-    type:'reunion',
-    title:'Reunión de coordinación – Logística y Despacho',
-    excerpt:'Para repartidores, auxiliares y supervisores. Nueva ruta sector sur y protocolo de devoluciones actualizado.',
-    body:`<p>Equipo de Logística y Despacho,</p>
-    <p>Los convocamos para socializar <strong>actualizaciones en nuestros procesos de distribución</strong>.</p>
-    <p>🗺️ Nueva ruta – Sector sur<br>
-    🔄 Protocolo de devoluciones actualizado<br>
-    📱 App obligatoria para registro de entregas<br>
-    ⚠️ Revisión de incidentes del mes anterior</p>
-    <p>Llegar puntual. Traer dispositivo móvil cargado.</p>`,
-    date:'Publicado el DD de Mes, 2026',
-    author:'Jefe de Logística', dept:'Área de Logística', avatar:'🚚',
-    bg:'linear-gradient(135deg,#bf360c,#e64a19,#ff7043)', icon:'🚚',
-    eventDetails:{
-      date:'📅 Día y fecha del evento',
-      time:'🕖 Hora inicio – Hora fin',
-      place:'📍 Bodega Central – Sede Neiva',
-      extra:'👥 Repartidores, auxiliares y supervisores'
-    }
-  },
-  ── */
-
-  /* ── LOGROS — descomenta cuando haya uno ─────────────────────
-  {
-    type:'logro',
-    title:'¡Superamos la meta de ventas de [Mes] 2026!',
-    excerpt:'¡Gracias al esfuerzo de todo el equipo cerramos el mes con un resultado histórico! Este logro es de todos.',
-    body:`<p>¡Equipo DistriVision, tenemos razones para celebrar!</p>
-    <p>Cerramos <strong>[Mes] 2026 con el [X]% de la meta de ventas</strong>.</p>
-    <p>🚚 Repartidores al 100%<br>
-    📊 Equipo comercial impecable<br>
-    📦 Bodega comprometida<br>
-    💼 Cartera y facturación rigurosa</p>
-    <p><strong>¡Este logro es de todos!</strong> Próximamente se anuncian reconocimientos individuales.</p>`,
-    date:'Publicado el DD de Mes, 2026',
-    author:'Dirección Comercial', dept:'Área Comercial', avatar:'🌟',
-    bg:'linear-gradient(135deg,#1b5e20,#2e7d32,#43a047)', icon:'🏆'
-  },
-  ── */
-
 ];
 
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    4. PRÓXIMOS EVENTOS — widget del sidebar
-   ─────────────────────────────────────────────────────────────
-   Agrega o quita eventos según el mes en curso.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const UPCOMING_EVENTS = [
   { day:'28', mon:'Mar', title:'Fecha límite Reglamento Interno', time:'📋 Firmar en RR.HH. antes de esta fecha' },
@@ -495,24 +423,19 @@ const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
 const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun',
                       'Jul','Ago','Sep','Oct','Nov','Dic'];
 
-/* ✅ Fecha 100% dinámica — se actualiza sola al abrir la página */
 const now        = new Date();
 const TODAY_DAY  = now.getDate();
 const TODAY_MON  = now.getMonth() + 1;
 const TODAY_YEAR = now.getFullYear();
 
-/* Hero: día y mes/año automáticos */
 document.getElementById('heroDay').textContent       = TODAY_DAY;
 document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON - 1] + ' ' + TODAY_YEAR;
 
-/* Cumpleaños del mes actual */
 const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a, b) => a.day - b.day);
 const bdaysToday     = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
 
-/* Label sidebar */
 document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON - 1];
 
-/* Lista sidebar */
 (function () {
   const list = document.getElementById('bdaySidebarList');
   if (!bdaysThisMonth.length) {
@@ -531,7 +454,6 @@ document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + 
   }).join('');
 })();
 
-/* Próximos eventos sidebar */
 (function () {
   const wrap = document.getElementById('upcomingEvents');
   if (!UPCOMING_EVENTS.length) {
@@ -562,7 +484,7 @@ function addCard(el, type) {
   allCards.push({ type, el });
 }
 
-/* ① Tarjetas individuales de cumpleaños del DÍA */
+/* ① Tarjetas de cumpleaños del DÍA */
 bdaysToday.forEach(b => {
   MODAL_DATA.push({ _bday: true, person: b });
   const idx  = MODAL_DATA.length - 1;
@@ -680,7 +602,7 @@ if (bdaysThisMonth.length) {
   addCard(card, 'cumpleanos');
 }
 
-/* ④ Posts activos (solo comunicados; reuniones y logros comentados arriba) */
+/* ④ Posts activos */
 POSTS.forEach(p => {
   MODAL_DATA.push({ _post: true, data: p });
   const idx  = MODAL_DATA.length - 1;
@@ -718,7 +640,7 @@ POSTS.forEach(p => {
 const counts = {};
 allCards.forEach(c => counts[c.type] = (counts[c.type] || 0) + 1);
 document.getElementById('cnt-todos').textContent = allCards.length;
-['cumpleanos', 'reunion', 'celebracion', 'comunicado', 'logro'].forEach(t => {
+['cumpleanos', 'reunion', 'celebracion', 'comunicado'].forEach(t => {
   const el = document.getElementById('cnt-' + t);
   if (el) el.textContent = counts[t] || 0;
 });
@@ -729,6 +651,23 @@ document.querySelectorAll('.ptab').forEach(tab => {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
     this.classList.add('active');
     const f = this.dataset.tab;
+
+    const calView    = document.getElementById('calendarView');
+    const feedEl     = document.getElementById('portalFeed');
+    const sidebarEl  = document.getElementById('portalSidebar');
+
+    if (f === 'calendario') {
+      feedEl.style.display    = 'none';
+      calView.style.display   = 'flex';
+      sidebarEl.style.display = 'none';
+      renderCalendar(calViewYear, calViewMonth);
+      return;
+    }
+
+    feedEl.style.display    = '';
+    calView.style.display   = 'none';
+    sidebarEl.style.display = '';
+
     let vis = 0;
     allCards.forEach(c => {
       const show = f === 'todos' || c.type === f;
@@ -878,6 +817,185 @@ function closeModal() {
   document.getElementById('commModal').classList.remove('open');
   document.body.style.overflow = '';
 }
+
+/* ════════════════════════════════════════
+   CALENDARIO INTERACTIVO
+════════════════════════════════════════ */
+let calViewMonth = TODAY_MON;
+let calViewYear  = TODAY_YEAR;
+let calSelected  = null;
+
+/* Construye el mapa de eventos: { "YYYY-M-D": [...eventos] } */
+function buildCalendarEvents() {
+  const map = {};
+
+  function addEv(year, month, day, ev) {
+    const key = `${year}-${month}-${day}`;
+    if (!map[key]) map[key] = [];
+    map[key].push(ev);
+  }
+
+  /* Cumpleaños: aparecen todos los años en su mes/día */
+  BIRTHDAYS.forEach(b => {
+    addEv(calViewYear, b.month, b.day, {
+      type: 'birthday',
+      icon: '🎂',
+      title: `Cumpleaños: ${b.name}`,
+      modalIdx: null,
+      _bday: b,
+    });
+  });
+
+  /* Celebraciones con fecha */
+  CELEBRATIONS.forEach((cel, i) => {
+    if (cel.calDay && cel.calMonth) {
+      const yr = cel.calYear || calViewYear;
+      addEv(yr, cel.calMonth, cel.calDay, {
+        type: 'celebracion',
+        icon: cel.icon || '🎉',
+        title: cel.title,
+        modalIdx: MODAL_DATA.findIndex(d => d._cel && d.data === cel),
+      });
+    }
+  });
+
+  /* Posts (comunicados / reuniones) con fecha */
+  POSTS.forEach(p => {
+    if (p.calDay && p.calMonth) {
+      const yr = p.calYear || calViewYear;
+      addEv(yr, p.calMonth, p.calDay, {
+        type: p.type,
+        icon: p.icon || '📢',
+        title: p.title,
+        modalIdx: MODAL_DATA.findIndex(d => d._post && d.data === p),
+      });
+    }
+  });
+
+  return map;
+}
+
+function renderCalendar(year, month) {
+  calViewYear  = year;
+  calViewMonth = month;
+
+  document.getElementById('calMonthName').textContent = MONTH_NAMES[month - 1];
+  document.getElementById('calYearName').textContent  = year;
+
+  const evMap    = buildCalendarEvents();
+  const grid     = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  const firstDay    = new Date(year, month - 1, 1).getDay(); // 0=Dom
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const prevDays    = new Date(year, month - 1, 0).getDate();
+
+  /* Celdas del mes anterior (grises) */
+  for (let i = firstDay - 1; i >= 0; i--) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell other-month';
+    cell.innerHTML = `<span class="cal-day-num">${prevDays - i}</span>`;
+    grid.appendChild(cell);
+  }
+
+  /* Días del mes actual */
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key    = `${year}-${month}-${d}`;
+    const events = evMap[key] || [];
+    const isToday = d === TODAY_DAY && month === TODAY_MON && year === TODAY_YEAR;
+
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell' + (isToday ? ' is-today' : '') + (events.length ? ' has-events' : '');
+
+    let dotsHtml = '';
+    const dotTypes = [...new Set(events.map(e => e.type))];
+    dotTypes.slice(0, 4).forEach(t => {
+      dotsHtml += `<span class="cal-dot dot-${t}"></span>`;
+    });
+
+    cell.innerHTML = `
+      <span class="cal-day-num">${d}</span>
+      ${events.length ? `<div class="cal-dots">${dotsHtml}</div>` : ''}
+    `;
+
+    cell.addEventListener('click', () => selectCalDay(d, month, year, events));
+    grid.appendChild(cell);
+  }
+
+  /* Relleno final */
+  const total = firstDay + daysInMonth;
+  const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+  for (let i = 1; i <= remaining; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell other-month';
+    cell.innerHTML = `<span class="cal-day-num">${i}</span>`;
+    grid.appendChild(cell);
+  }
+
+  /* Si hay un día seleccionado, restaurar highlight */
+  if (calSelected && calSelected.month === month && calSelected.year === year) {
+    const cells = grid.querySelectorAll('.cal-cell:not(.other-month)');
+    const idx   = calSelected.day - 1;
+    if (cells[idx]) cells[idx].classList.add('selected');
+  }
+}
+
+function selectCalDay(day, month, year, events) {
+  /* quitar selección anterior */
+  document.querySelectorAll('.cal-cell.selected').forEach(c => c.classList.remove('selected'));
+  /* marcar nueva */
+  const cells = document.querySelectorAll('#calGrid .cal-cell:not(.other-month)');
+  if (cells[day - 1]) cells[day - 1].classList.add('selected');
+
+  calSelected = { day, month, year };
+
+  const panel    = document.getElementById('cdpDayPanel');
+  const numEl    = document.getElementById('cdpDayNum');
+  const labelEl  = document.getElementById('cdpDayLabel');
+  const eventsEl = document.getElementById('cdpEvents');
+
+  numEl.textContent   = day;
+  labelEl.textContent = `${MONTH_NAMES[month - 1]} ${year}`;
+
+  if (!events.length) {
+    eventsEl.innerHTML = `<div class="cdp-empty"><span>🗓️</span><p>Sin eventos este día.</p></div>`;
+    return;
+  }
+
+  eventsEl.innerHTML = events.map(ev => {
+    const colorClass = {
+      birthday:    'cdp-ev-birthday',
+      celebracion: 'cdp-ev-celebracion',
+      reunion:     'cdp-ev-reunion',
+      comunicado:  'cdp-ev-comunicado',
+    }[ev.type] || 'cdp-ev-comunicado';
+
+    const clickAttr = ev.modalIdx !== null && ev.modalIdx >= 0
+      ? `onclick="openModal(${ev.modalIdx})"` : '';
+
+    return `<div class="cdp-event ${colorClass}" ${clickAttr} style="${clickAttr ? 'cursor:pointer;' : ''}">
+      <div class="cdp-ev-icon">${ev.icon}</div>
+      <div class="cdp-ev-body">
+        <div class="cdp-ev-title">${ev.title}</div>
+        ${ev.modalIdx !== null && ev.modalIdx >= 0 ? '<div class="cdp-ev-hint">Toca para ver detalles →</div>' : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* Navegación mes anterior / siguiente */
+document.getElementById('calPrev').addEventListener('click', () => {
+  calSelected = null;
+  let m = calViewMonth - 1, y = calViewYear;
+  if (m < 1) { m = 12; y--; }
+  renderCalendar(y, m);
+});
+document.getElementById('calNext').addEventListener('click', () => {
+  calSelected = null;
+  let m = calViewMonth + 1, y = calViewYear;
+  if (m > 12) { m = 1; y++; }
+  renderCalendar(y, m);
+});
 
 /* ── Mood ── */
 function selectMood(btn) {
