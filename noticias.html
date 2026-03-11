@@ -9,251 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="styles6.css">
-  <style>
-  /* ══════════════════════════════════════════════
-     CALENDARIO INLINE — no depende de variables externas
-  ══════════════════════════════════════════════ */
-
-  /* Variables propias del calendario */
-  :root {
-    --cal-blue:       #255c95;
-    --cal-blue-dark:  #1a4470;
-    --cal-blue-light: #dbeafe;
-    --cal-blue-xlt:   #f0f7ff;
-    --cal-white:      #ffffff;
-    --cal-gray:       #f4f6f9;
-    --cal-muted:      #6b7a8d;
-    --cal-text:       #1e293b;
-    --cal-shadow:     0 2px 12px rgba(37,92,149,.10);
-    --cal-shadow-md:  0 8px 32px rgba(37,92,149,.16);
-  }
-
-  /* ── Contenedor principal ── */
-  .calendar-view {
-    display: none;                /* oculto por defecto */
-    grid-column: 1 / -1;
-    gap: 28px;
-    align-items: flex-start;
-    animation: calReveal .35s ease forwards;
-  }
-  .calendar-view.cal-active { display: flex; }
-  @keyframes calReveal {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Wrapper del grid ── */
-  .cal-wrapper {
-    flex: 1; min-width: 0;
-    background: var(--cal-white);
-    border-radius: 24px;
-    border: 1px solid rgba(37,92,149,.10);
-    box-shadow: var(--cal-shadow);
-    overflow: hidden;
-  }
-
-  /* ── Cabecera mes/año ── */
-  .cal-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 28px 32px 22px;
-    background: linear-gradient(135deg, #1a4470 0%, #255c95 60%, #228fd2 100%);
-  }
-  .cal-header-center { text-align: center; }
-  .cal-month-name {
-    font-family: 'Lato', sans-serif;
-    font-size: 1.65rem; font-weight: 900;
-    color: #fff; line-height: 1;
-    text-transform: uppercase; letter-spacing: 2px;
-  }
-  .cal-year-name {
-    font-family: 'Lato', sans-serif;
-    font-size: .8rem; font-weight: 600;
-    color: rgba(255,255,255,.55);
-    letter-spacing: 3px; margin-top: 4px;
-  }
-  .cal-nav-btn {
-    width: 44px; height: 44px; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.25);
-    background: rgba(255,255,255,.12);
-    color: #fff; font-size: 1.8rem; line-height: 1;
-    cursor: pointer; transition: background .2s, transform .15s;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0;
-  }
-  .cal-nav-btn:hover { background: rgba(255,255,255,.28); transform: scale(1.08); }
-
-  /* ── Nombres de días ── */
-  .cal-weekdays {
-    display: grid; grid-template-columns: repeat(7,1fr);
-    padding: 14px 20px 6px;
-    border-bottom: 1px solid rgba(37,92,149,.07);
-  }
-  .cal-weekdays span {
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    font-size: .68rem; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--cal-muted);
-  }
-
-  /* ── Grid de celdas ── */
-  .cal-grid {
-    display: grid; grid-template-columns: repeat(7,1fr);
-    padding: 8px 20px 20px; gap: 4px;
-  }
-  .cal-cell {
-    min-height: 74px; border-radius: 14px;
-    padding: 8px 6px 6px;
-    display: flex; flex-direction: column; align-items: center;
-    cursor: pointer;
-    transition: background .18s, transform .15s, box-shadow .18s;
-    border: 2px solid transparent;
-    background: transparent;
-  }
-  .cal-cell:not(.other-month):hover {
-    background: var(--cal-blue-xlt);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(37,92,149,.12);
-  }
-  .cal-cell.other-month { opacity: .28; pointer-events: none; }
-
-  /* Hoy */
-  .cal-cell.is-today { background: var(--cal-blue-light); border-color: var(--cal-blue); }
-  .cal-cell.is-today .cal-day-num { background: var(--cal-blue); color: #fff; }
-
-  /* Día seleccionado */
-  .cal-cell.selected {
-    background: #e8f4ff !important;
-    border-color: var(--cal-blue) !important;
-    box-shadow: 0 0 0 3px rgba(37,92,149,.18) !important;
-  }
-
-  /* Número del día */
-  .cal-day-num {
-    font-family: 'Lato', sans-serif;
-    font-size: .92rem; font-weight: 700;
-    color: var(--cal-text);
-    width: 30px; height: 30px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: background .18s, color .18s;
-    flex-shrink: 0;
-  }
-
-  /* Puntos de eventos */
-  .cal-dots {
-    display: flex; gap: 3px; flex-wrap: wrap;
-    justify-content: center; margin-top: 5px;
-  }
-  .cal-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .dot-birthday    { background: #ab47bc; }
-  .dot-celebracion { background: #e91e63; }
-  .dot-reunion     { background: #ef6c00; }
-  .dot-comunicado  { background: var(--cal-blue); }
-
-  /* ── Leyenda ── */
-  .cal-legend {
-    display: flex; gap: 20px; flex-wrap: wrap;
-    padding: 14px 32px 20px;
-    border-top: 1px solid rgba(37,92,149,.07);
-    justify-content: center;
-  }
-  .leg-item {
-    display: flex; align-items: center; gap: 6px;
-    font-family: 'Lato', sans-serif; font-size: .72rem; font-weight: 600;
-    color: var(--cal-muted);
-  }
-  .leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .leg-birthday    { background: #ab47bc; }
-  .leg-reunion     { background: #ef6c00; }
-  .leg-celebracion { background: #e91e63; }
-  .leg-comunicado  { background: var(--cal-blue); }
-
-  /* ══════════════════════════════
-     Panel lateral eventos del día
-  ══════════════════════════════ */
-  .cal-day-panel {
-    width: 300px; flex-shrink: 0;
-    background: var(--cal-white);
-    border-radius: 24px;
-    border: 1px solid rgba(37,92,149,.10);
-    box-shadow: var(--cal-shadow);
-    overflow: hidden;
-    position: sticky; top: 140px;
-  }
-  .cdp-header {
-    background: linear-gradient(135deg, #1a4470, #255c95);
-    padding: 24px 24px 20px;
-    display: flex; align-items: center; gap: 14px;
-  }
-  .cdp-day-num {
-    font-family: 'Lato', sans-serif;
-    font-size: 3rem; font-weight: 900;
-    color: #fff; line-height: 1;
-  }
-  .cdp-day-label {
-    font-family: 'Lato', sans-serif;
-    font-size: .82rem; font-weight: 700;
-    color: rgba(255,255,255,.65); line-height: 1.4;
-  }
-  .cdp-events {
-    padding: 16px 20px 20px;
-    max-height: 480px; overflow-y: auto;
-    display: flex; flex-direction: column; gap: 10px;
-    scrollbar-width: thin; scrollbar-color: var(--cal-blue-light) transparent;
-  }
-  .cdp-events::-webkit-scrollbar { width: 4px; }
-  .cdp-events::-webkit-scrollbar-thumb { background: var(--cal-blue-light); border-radius: 4px; }
-
-  .cdp-empty {
-    text-align: center; padding: 32px 16px;
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-  }
-  .cdp-empty span { font-size: 2.2rem; opacity: .4; }
-  .cdp-empty p {
-    font-family: 'Lato', sans-serif; font-size: .82rem;
-    color: var(--cal-muted); line-height: 1.55;
-  }
-
-  /* Tarjeta de evento en el panel */
-  .cdp-event {
-    display: flex; gap: 12px; align-items: flex-start;
-    padding: 12px 14px; border-radius: 14px;
-    border-left: 4px solid transparent;
-    transition: transform .15s, box-shadow .15s;
-  }
-  .cdp-event:hover { transform: translateX(3px); box-shadow: 0 2px 10px rgba(0,0,0,.07); }
-  .cdp-ev-birthday    { background: #f3e5f5; border-color: #ab47bc; }
-  .cdp-ev-celebracion { background: #fce4ec; border-color: #e91e63; }
-  .cdp-ev-reunion     { background: #fff3e0; border-color: #ef6c00; }
-  .cdp-ev-comunicado  { background: var(--cal-blue-xlt); border-color: var(--cal-blue); }
-
-  .cdp-ev-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
-  .cdp-ev-body { flex: 1; min-width: 0; }
-  .cdp-ev-title {
-    font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700;
-    color: var(--cal-text); line-height: 1.35;
-  }
-  .cdp-ev-hint {
-    font-family: 'Lato', sans-serif; font-size: .68rem;
-    color: var(--cal-muted); margin-top: 3px;
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 900px) {
-    .calendar-view { flex-direction: column; }
-    .cal-day-panel { width: 100%; position: static; }
-  }
-  @media (max-width: 640px) {
-    .cal-grid  { padding: 6px 8px 14px; gap: 2px; }
-    .cal-cell  { min-height: 52px; padding: 5px 2px 4px; border-radius: 10px; }
-    .cal-day-num { font-size: .78rem; width: 26px; height: 26px; }
-    .cal-header { padding: 20px 18px 16px; }
-    .cal-month-name { font-size: 1.2rem; }
-    .cal-weekdays { padding: 10px 8px 4px; }
-    .cal-legend { padding: 12px 16px 16px; gap: 12px; }
-    .cdp-events { max-height: 300px; }
-  }
-  </style>
 </head>
 <body>
 
@@ -261,9 +16,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
-<!-- ══════════════════════════════════════
-     NAV
-══════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="img/1 (3).png" alt="DistriVision" class="logo-img">
@@ -285,9 +38,7 @@
   </button>
 </nav>
 
-<!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
+<!-- HERO -->
 <section class="portal-hero">
   <div class="hero-bg">
     <div class="geo geo-1"></div>
@@ -304,9 +55,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     TABS
-══════════════════════════════════════ -->
+<!-- TABS -->
 <div class="portal-tabs" id="portalTabs">
   <button class="ptab active" data-tab="todos">
     <span class="tab-icon">📋</span> Todos
@@ -333,9 +82,7 @@
   </button>
 </div>
 
-<!-- ══════════════════════════════════════
-     CUERPO PRINCIPAL
-══════════════════════════════════════ -->
+<!-- CUERPO PRINCIPAL -->
 <div class="portal-body">
 
   <!-- Feed -->
@@ -346,19 +93,20 @@
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       VISTA CALENDARIO (oculta por defecto)
-  ══════════════════════════════════════ -->
-  <div class="calendar-view" id="calendarView" style="display:none;">
+  <!-- VISTA CALENDARIO — sin display:none inline, controlado 100% por clase CSS -->
+  <div class="calendar-view" id="calendarView">
+
+    <!-- Columna izquierda: grid del mes -->
     <div class="cal-wrapper">
-      <!-- Cabecera del calendario -->
+
+      <!-- Cabecera -->
       <div class="cal-header">
-        <button class="cal-nav-btn" id="calPrev">&#8249;</button>
+        <button class="cal-nav-btn" id="calPrev" aria-label="Mes anterior">&#8249;</button>
         <div class="cal-header-center">
           <div class="cal-month-name" id="calMonthName">—</div>
           <div class="cal-year-name"  id="calYearName">—</div>
         </div>
-        <button class="cal-nav-btn" id="calNext">&#8250;</button>
+        <button class="cal-nav-btn" id="calNext" aria-label="Mes siguiente">&#8250;</button>
       </div>
 
       <!-- Días de la semana -->
@@ -379,20 +127,24 @@
       </div>
     </div>
 
-    <!-- Panel lateral de eventos del día seleccionado -->
+    <!-- Panel lateral: eventos del día seleccionado -->
     <div class="cal-day-panel" id="calDayPanel">
       <div class="cdp-header">
-        <div class="cdp-day-num" id="cdpDayNum">—</div>
-        <div class="cdp-day-label" id="cdpDayLabel">Selecciona un día</div>
+        <div class="cdp-icon-wrap">📅</div>
+        <div>
+          <div class="cdp-day-num" id="cdpDayNum">—</div>
+          <div class="cdp-day-label" id="cdpDayLabel">Selecciona un día</div>
+        </div>
       </div>
       <div class="cdp-events" id="cdpEvents">
         <div class="cdp-empty">
-          <span>📅</span>
+          <span>🗓️</span>
           <p>Haz clic en un día para ver sus eventos</p>
         </div>
       </div>
     </div>
-  </div>
+
+  </div><!-- /calendar-view -->
 
   <!-- Sidebar -->
   <aside class="portal-sidebar" id="portalSidebar">
@@ -444,9 +196,7 @@
   </aside>
 </div>
 
-<!-- ══════════════════════════════════════
-     FOOTER
-══════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -478,9 +228,7 @@
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════
-     MODAL COMUNICADO
-══════════════════════════════════════ -->
+<!-- MODAL COMUNICADO -->
 <div class="comm-modal" id="commModal">
   <div class="comm-modal-box">
     <button class="cmm-close" id="cmmClose">✕</button>
@@ -504,9 +252,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     CHATBOT
-══════════════════════════════════════ -->
+<!-- CHATBOT -->
 <button id="dv-help-btn" aria-label="Abrir asistente">
   <svg class="icon-bot" width="26" height="26" viewBox="0 0 24 24" fill="none">
     <rect x="3" y="8" width="18" height="12" rx="4" fill="white" opacity=".9"/>
@@ -536,17 +282,16 @@
   <div class="dv-chat-footer">Potenciado por <span>DistriVision</span> · Neiva, Colombia</div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════
-     ████████████  ZONA DE DATOS — SOLO EDITAR AQUÍ  ████████████
-══════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════════
+     ZONA DE DATOS — SOLO EDITAR AQUÍ
+════════════════════════════════════════════════════════════════ -->
 <script>
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    1. CUMPLEAÑOS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+   Agrega o elimina objetos sin tocar nada más.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const BIRTHDAYS = [
-
-  /* ── MARZO ── */
   { month:3, day:6,  name:'Juan Diego Oliveros Orjuela',    photo:'' },
   { month:3, day:8,  name:'Evelio Esneid Llanos Rodríguez', photo:'' },
   { month:3, day:15, name:'Diego Fernando Núñez Scarpetta', photo:'' },
@@ -560,21 +305,19 @@ const BIRTHDAYS = [
   { month:3, day:27, name:'Lizeth Rojas Tovar',             photo:'' },
   { month:3, day:29, name:'Flavio Abdel Córdoba Gordo',     photo:'' },
   { month:3, day:31, name:'Anyelo Stiven Ortiz Casas',      photo:'' },
-
 ];
 
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   2. CELEBRACIÓN ACTIVA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2. CELEBRACIONES
+   Para mostrar en calendario agrega: calDay, calMonth, calYear
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const CELEBRATIONS = [
-
   {
     title:     '💜 ¡Celebremos el mes de las MUJERES!',
-    excerpt:   'Hoy celebramos y honramos a todas las mujeres que hacen grande a DistriVision. Su fuerza, talento y dedicación nos inspiran cada día.',
+    excerpt:   'Hoy celebramos y honramos a todas las mujeres que hacen grande a DistriVision.',
     body:      `<p>Queridas compañeras,</p>
     <p>Hoy, <strong>Marzo</strong>, el mundo entero celebra el <strong>Día Internacional de la Mujer</strong> y en DistriVision queremos dedicar este día especialmente a cada una de ustedes.</p>
-    <p>Gracias por su fuerza inquebrantable, su talento extraordinario y su entrega diaria que hace posible que esta empresa siga creciendo. Cada sonrisa, cada esfuerzo y cada logro suyo es el motor de nuestro equipo.</p>
+    <p>Gracias por su fuerza inquebrantable, su talento extraordinario y su entrega diaria que hace posible que esta empresa siga creciendo.</p>
     <p>💜 A las que llegan primero y se van de últimas.<br>
     💜 A las que dan todo en el trabajo y aún más en casa.<br>
     💜 A las que levantan a los demás con su ejemplo.<br>
@@ -587,20 +330,15 @@ const CELEBRATIONS = [
     bg:        'linear-gradient(135deg, #880e4f 0%, #c2185b 40%, #f06292 75%, #f8bbd0 100%)',
     icon:      '💜',
     bandLabel: '8 de Marzo',
-    /* calDay / calMonth → para que aparezca en el calendario */
     calDay: 8, calMonth: 3, calYear: 2026,
   },
-
 ];
 
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   3. COMUNICADOS, REUNIONES
-   ▸ Para que un post aparezca en el calendario,
-     agrega: calDay, calMonth, calYear
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3. COMUNICADOS Y REUNIONES
+   Para mostrar en calendario agrega: calDay, calMonth, calYear
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const POSTS = [
-
   {
     type:'comunicado',
     title:'Horarios especiales Semana Santa 2026',
@@ -629,8 +367,8 @@ const POSTS = [
     title:'Reglamento Interno de Trabajo 2026',
     excerpt:'Obligatorio leer y firmar el acuse de recibo en la oficina de RR.HH.',
     body:`<p>Estimados colaboradores,</p>
-    <p><strong>Leer EL Reglamento Interno </strong> conforme a la normatividad laboral vigente 2026.</p>
-    <p><strong>Artículos:</strong><br>
+    <p><strong>Leer el Reglamento Interno</strong> conforme a la normatividad laboral vigente 2026.</p>
+    <p><strong>Artículos destacados:</strong><br>
     📌 Art. 12 – Horarios y flexibilidad<br>
     📌 Art. 23 – Uso de dispositivos móviles<br>
     📌 Art. 31 – Incapacidades y permisos<br>
@@ -647,26 +385,24 @@ const POSTS = [
       extra:'✍️ Obligatorio para todos los colaboradores'
     }
   },
-
 ];
 
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   4. PRÓXIMOS EVENTOS — widget del sidebar
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4. PRÓXIMOS EVENTOS (widget sidebar)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const UPCOMING_EVENTS = [
   { day:'28', mon:'Mar', title:'Fecha límite Reglamento Interno', time:'📋 Firmar en RR.HH. antes de esta fecha' },
   { day:'30', mon:'Mar', title:'Inicio Semana Santa',             time:'📅 Horario especial'                     },
 ];
 
-
-/* ════════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    MOTOR DEL PORTAL — no modificar nada debajo de esta línea
-════════════════════════════════════════════════════════════════ */
+═══════════════════════════════════════════════════════════════ */
 const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                       'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun',
                       'Jul','Ago','Sep','Oct','Nov','Dic'];
+const DAY_NAMES    = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
 
 const now        = new Date();
 const TODAY_DAY  = now.getDate();
@@ -676,11 +412,12 @@ const TODAY_YEAR = now.getFullYear();
 document.getElementById('heroDay').textContent       = TODAY_DAY;
 document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON - 1] + ' ' + TODAY_YEAR;
 
-const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a, b) => a.day - b.day);
+const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a,b) => a.day - b.day);
 const bdaysToday     = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
 
 document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON - 1];
 
+/* Sidebar: lista de cumpleaños del mes */
 (function () {
   const list = document.getElementById('bdaySidebarList');
   if (!bdaysThisMonth.length) {
@@ -699,6 +436,7 @@ document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + 
   }).join('');
 })();
 
+/* Sidebar: próximos eventos */
 (function () {
   const wrap = document.getElementById('upcomingEvents');
   if (!UPCOMING_EVENTS.length) {
@@ -855,7 +593,7 @@ POSTS.forEach(p => {
   card.className    = 'comm-card visible';
   card.dataset.type = p.type;
   card.onclick      = () => openModal(idx);
-  const bLabel = { reunion: '📅 Reunión', comunicado: '📢 Comunicado', logro: '🏆 Logro del Mes' }[p.type] || p.type;
+  const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
   card.innerHTML = `
     <div class="cc-header">
       <span class="cc-type-badge badge-${p.type}">${bLabel}</span>
@@ -885,33 +623,33 @@ POSTS.forEach(p => {
 const counts = {};
 allCards.forEach(c => counts[c.type] = (counts[c.type] || 0) + 1);
 document.getElementById('cnt-todos').textContent = allCards.length;
-['cumpleanos', 'reunion', 'celebracion', 'comunicado'].forEach(t => {
+['cumpleanos','reunion','celebracion','comunicado'].forEach(t => {
   const el = document.getElementById('cnt-' + t);
   if (el) el.textContent = counts[t] || 0;
 });
 
-/* Filtro de tabs */
+/* ── Filtro de tabs ── */
 document.querySelectorAll('.ptab').forEach(tab => {
   tab.addEventListener('click', function () {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
     this.classList.add('active');
     const f = this.dataset.tab;
 
-    const calView    = document.getElementById('calendarView');
-    const feedEl     = document.getElementById('portalFeed');
-    const sidebarEl  = document.getElementById('portalSidebar');
+    const calView   = document.getElementById('calendarView');
+    const feedEl    = document.getElementById('portalFeed');
+    const sidebarEl = document.getElementById('portalSidebar');
 
     if (f === 'calendario') {
-      feedEl.style.display    = 'none';
+      feedEl.classList.add('hidden');
+      sidebarEl.classList.add('hidden');
       calView.classList.add('cal-active');
-      sidebarEl.style.display = 'none';
       renderCalendar(calViewYear, calViewMonth);
       return;
     }
 
-    feedEl.style.display    = '';
+    feedEl.classList.remove('hidden');
+    sidebarEl.classList.remove('hidden');
     calView.classList.remove('cal-active');
-    sidebarEl.style.display = '';
 
     let vis = 0;
     allCards.forEach(c => {
@@ -1027,7 +765,7 @@ function openModal(idx) {
     const p = d.data;
     band.innerHTML        = p.icon;
     band.style.background = p.bg;
-    const bLabel = { reunion: '📅 Reunión', comunicado: '📢 Comunicado', logro: '🏆 Logro del Mes' }[p.type] || p.type;
+    const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
     badge.textContent  = bLabel;
     badge.className    = `cc-type-badge badge-${p.type}`;
     date.textContent   = p.date;
@@ -1087,12 +825,11 @@ function buildCalendarEvents() {
       icon: '🎂',
       title: `Cumpleaños: ${b.name}`,
       modalIdx: null,
-      _bday: b,
     });
   });
 
   /* Celebraciones con fecha */
-  CELEBRATIONS.forEach((cel, i) => {
+  CELEBRATIONS.forEach(cel => {
     if (cel.calDay && cel.calMonth) {
       const yr = cel.calYear || calViewYear;
       addEv(yr, cel.calMonth, cel.calDay, {
@@ -1104,7 +841,7 @@ function buildCalendarEvents() {
     }
   });
 
-  /* Posts (comunicados / reuniones) con fecha */
+  /* Posts con fecha */
   POSTS.forEach(p => {
     if (p.calDay && p.calMonth) {
       const yr = p.calYear || calViewYear;
@@ -1131,11 +868,11 @@ function renderCalendar(year, month) {
   const grid     = document.getElementById('calGrid');
   grid.innerHTML = '';
 
-  const firstDay    = new Date(year, month - 1, 1).getDay(); // 0=Dom
+  const firstDay    = new Date(year, month - 1, 1).getDay();
   const daysInMonth = new Date(year, month, 0).getDate();
   const prevDays    = new Date(year, month - 1, 0).getDate();
 
-  /* Celdas del mes anterior (grises) */
+  /* Celdas mes anterior */
   for (let i = firstDay - 1; i >= 0; i--) {
     const cell = document.createElement('div');
     cell.className = 'cal-cell other-month';
@@ -1150,13 +887,14 @@ function renderCalendar(year, month) {
     const isToday = d === TODAY_DAY && month === TODAY_MON && year === TODAY_YEAR;
 
     const cell = document.createElement('div');
-    cell.className = 'cal-cell' + (isToday ? ' is-today' : '') + (events.length ? ' has-events' : '');
+    let classes = 'cal-cell';
+    if (isToday)        classes += ' is-today';
+    if (events.length)  classes += ' has-events';
+    cell.className = classes;
 
-    let dotsHtml = '';
-    const dotTypes = [...new Set(events.map(e => e.type))];
-    dotTypes.slice(0, 4).forEach(t => {
-      dotsHtml += `<span class="cal-dot dot-${t}"></span>`;
-    });
+    /* Puntos de colores: máx. 4, únicos por tipo */
+    const dotTypes = [...new Set(events.map(e => e.type))].slice(0, 4);
+    const dotsHtml = dotTypes.map(t => `<span class="cal-dot dot-${t}"></span>`).join('');
 
     cell.innerHTML = `
       <span class="cal-day-num">${d}</span>
@@ -1168,7 +906,7 @@ function renderCalendar(year, month) {
   }
 
   /* Relleno final */
-  const total = firstDay + daysInMonth;
+  const total     = firstDay + daysInMonth;
   const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
   for (let i = 1; i <= remaining; i++) {
     const cell = document.createElement('div');
@@ -1177,37 +915,40 @@ function renderCalendar(year, month) {
     grid.appendChild(cell);
   }
 
-  /* Si hay un día seleccionado, restaurar highlight */
+  /* Restaurar selección si existe */
   if (calSelected && calSelected.month === month && calSelected.year === year) {
     const cells = grid.querySelectorAll('.cal-cell:not(.other-month)');
-    const idx   = calSelected.day - 1;
-    if (cells[idx]) cells[idx].classList.add('selected');
+    if (cells[calSelected.day - 1]) cells[calSelected.day - 1].classList.add('selected');
   }
 }
 
 function selectCalDay(day, month, year, events) {
-  /* quitar selección anterior */
   document.querySelectorAll('.cal-cell.selected').forEach(c => c.classList.remove('selected'));
-  /* marcar nueva */
   const cells = document.querySelectorAll('#calGrid .cal-cell:not(.other-month)');
   if (cells[day - 1]) cells[day - 1].classList.add('selected');
-
   calSelected = { day, month, year };
 
-  const panel    = document.getElementById('cdpDayPanel');
-  const numEl    = document.getElementById('cdpDayNum');
-  const labelEl  = document.getElementById('cdpDayLabel');
-  const eventsEl = document.getElementById('cdpEvents');
+  const numEl   = document.getElementById('cdpDayNum');
+  const labelEl = document.getElementById('cdpDayLabel');
+  const evEl    = document.getElementById('cdpEvents');
+  const iconEl  = document.querySelector('.cdp-icon-wrap');
 
   numEl.textContent   = day;
-  labelEl.textContent = `${MONTH_NAMES[month - 1]} ${year}`;
+  labelEl.textContent = `${DAY_NAMES[new Date(year, month-1, day).getDay()]}, ${MONTH_NAMES[month-1]} ${year}`;
 
   if (!events.length) {
-    eventsEl.innerHTML = `<div class="cdp-empty"><span>🗓️</span><p>Sin eventos este día.</p></div>`;
+    if (iconEl) iconEl.textContent = '🗓️';
+    evEl.innerHTML = `<div class="cdp-empty"><span>☀️</span><p>Sin eventos este día.</p></div>`;
     return;
   }
 
-  eventsEl.innerHTML = events.map(ev => {
+  /* Ícono del panel según tipo dominante */
+  const typeOrder = ['birthday','celebracion','reunion','comunicado'];
+  const dominant  = typeOrder.find(t => events.some(e => e.type === t)) || 'comunicado';
+  const panelIcon = { birthday:'🎂', celebracion:'🎉', reunion:'📅', comunicado:'📢' }[dominant];
+  if (iconEl) iconEl.textContent = panelIcon;
+
+  evEl.innerHTML = events.map(ev => {
     const colorClass = {
       birthday:    'cdp-ev-birthday',
       celebracion: 'cdp-ev-celebracion',
@@ -1215,14 +956,13 @@ function selectCalDay(day, month, year, events) {
       comunicado:  'cdp-ev-comunicado',
     }[ev.type] || 'cdp-ev-comunicado';
 
-    const clickAttr = ev.modalIdx !== null && ev.modalIdx >= 0
-      ? `onclick="openModal(${ev.modalIdx})"` : '';
-
-    return `<div class="cdp-event ${colorClass}" ${clickAttr} style="${clickAttr ? 'cursor:pointer;' : ''}">
+    const hasModal = ev.modalIdx !== null && ev.modalIdx >= 0;
+    return `<div class="cdp-event ${colorClass}${hasModal ? ' is-clickable' : ''}"
+              ${hasModal ? `onclick="openModal(${ev.modalIdx})"` : ''}>
       <div class="cdp-ev-icon">${ev.icon}</div>
       <div class="cdp-ev-body">
         <div class="cdp-ev-title">${ev.title}</div>
-        ${ev.modalIdx !== null && ev.modalIdx >= 0 ? '<div class="cdp-ev-hint">Toca para ver detalles →</div>' : ''}
+        ${hasModal ? '<div class="cdp-ev-hint">Toca para ver detalles →</div>' : ''}
       </div>
     </div>`;
   }).join('');
@@ -1234,13 +974,24 @@ document.getElementById('calPrev').addEventListener('click', () => {
   let m = calViewMonth - 1, y = calViewYear;
   if (m < 1) { m = 12; y--; }
   renderCalendar(y, m);
+  resetDayPanel();
 });
 document.getElementById('calNext').addEventListener('click', () => {
   calSelected = null;
   let m = calViewMonth + 1, y = calViewYear;
   if (m > 12) { m = 1; y++; }
   renderCalendar(y, m);
+  resetDayPanel();
 });
+
+function resetDayPanel() {
+  document.getElementById('cdpDayNum').textContent   = '—';
+  document.getElementById('cdpDayLabel').textContent = 'Selecciona un día';
+  const iconEl = document.querySelector('.cdp-icon-wrap');
+  if (iconEl) iconEl.textContent = '📅';
+  document.getElementById('cdpEvents').innerHTML =
+    `<div class="cdp-empty"><span>🗓️</span><p>Haz clic en un día para ver sus eventos</p></div>`;
+}
 
 /* ── Mood ── */
 function selectMood(btn) {
@@ -1284,7 +1035,7 @@ if (hamb) {
 document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
-    btn.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * .18}px,${(e.clientY - (r.top + r.height / 2)) * .22}px)`;
+    btn.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;
   });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
@@ -1298,14 +1049,14 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEa
   let isOpen = false, initialized = false;
 
   const OPTIONS = [
-    { icon: '📞', label: 'Comunícate con nosotros',     sub: 'Teléfono, WhatsApp o correo',  id: 'contacto'    },
-    { icon: '📋', label: 'Cómo obtener mi certificado', sub: 'Pasos del proceso explicados', id: 'certificado' },
-    { icon: '💼', label: 'Vacantes y empleo',            sub: 'Trabaja con DistriVision',     id: 'vacantes'    }
+    { icon:'📞', label:'Comunícate con nosotros',     sub:'Teléfono, WhatsApp o correo',  id:'contacto'    },
+    { icon:'📋', label:'Cómo obtener mi certificado', sub:'Pasos del proceso explicados', id:'certificado' },
+    { icon:'💼', label:'Vacantes y empleo',            sub:'Trabaja con DistriVision',     id:'vacantes'    }
   ];
   const ANSWERS = {
-    contacto:    { title: '📞 Contáctanos directamente',    html: '<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>' },
-    certificado: { title: '📋 Cómo obtener tu certificado', html: '<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>' },
-    vacantes:    { title: '💼 Vacantes en DistriVision',    html: '<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>' }
+    contacto:    { title:'📞 Contáctanos directamente',    html:'<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>' },
+    certificado: { title:'📋 Cómo obtener tu certificado', html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>' },
+    vacantes:    { title:'💼 Vacantes en DistriVision',    html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>' }
   };
 
   helpBtn.addEventListener('click', () => {
@@ -1349,16 +1100,16 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEa
       scrollBot();
     });
   }
-  function addBot(h)  { const e = document.createElement('div'); e.className = 'dv-bubble';      e.innerHTML = `<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
-  function addUser(t) { const e = document.createElement('div'); e.className = 'dv-bubble user'; e.innerHTML = `<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addBot(h)  { const e=document.createElement('div'); e.className='dv-bubble';      e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addUser(t) { const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
   function addTyping(cb) {
-    const e = document.createElement('div');
-    e.className = 'dv-typing';
-    e.innerHTML = `<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
+    const e=document.createElement('div');
+    e.className='dv-typing';
+    e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
     chatBody.appendChild(e); scrollBot();
-    setTimeout(() => { chatBody.removeChild(e); cb(); }, 950);
+    setTimeout(()=>{ chatBody.removeChild(e); cb(); }, 950);
   }
-  function scrollBot() { setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 50); }
+  function scrollBot() { setTimeout(()=> chatBody.scrollTop=chatBody.scrollHeight, 50); }
 })();
 </script>
 </body>
