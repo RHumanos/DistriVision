@@ -644,9 +644,33 @@ if (hambBtn) {
   }
   function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
 })();
+  /* ── SCROLL REVEAL — pegar dentro del <script> final, antes de })(); ──
+   Observa .mv-card, .service-card, .stat-item, .info-item, .gallery-item
+   y añade la clase .revealed cuando entran en el viewport               */
+(function initScrollReveal() {
+  const targets = document.querySelectorAll(
+    '.mv-card, .service-card, .stat-item, .info-item, .gallery-item'
+  );
+  if (!targets.length) return;
+ 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target); // solo una vez
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+ 
+  targets.forEach(el => observer.observe(el));
+})();
 </script>
 </body>
 </html>
+
 
 
 
