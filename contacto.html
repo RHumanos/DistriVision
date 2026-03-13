@@ -107,28 +107,60 @@ nav ul a.active::after{transform:scaleX(1);}
 .nav-cta::after{display:none!important;}
 .nav-hamburger{display:none;}
 
-/* ══ HERO ══ */
+/* ══ HERO BANNER CON IMAGEN ══ */
 .page-hero{
-  min-height:46vh;display:flex;align-items:center;
+  min-height:58vh;
+  display:flex;align-items:center;
   padding:100px 6vw 70px;
-  background:linear-gradient(145deg,#f0f6ff 0%,#edf4fc 100%);
   position:relative;overflow:hidden;
+  background:#0d2340;
 }
-.page-hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+
+/* Imagen de fondo */
+.page-hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:url('p20.jpg');
+  background-size:cover;
+  background-position:center 30%;
+  background-repeat:no-repeat;
+  opacity:.45;
+  transition:transform 8s ease;
+  animation:heroZoom 12s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.06);}
+}
+
+/* Overlay degradado */
+.page-hero::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(
+    110deg,
+    rgba(26,68,112,.82) 0%,
+    rgba(37,92,149,.65) 45%,
+    rgba(34,143,210,.35) 80%,
+    rgba(13,35,64,.6) 100%
+  );
+}
+
+.page-hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
 .ph-geo{position:absolute;border-radius:50%;animation:floatGeo 12s ease-in-out infinite;}
 .ph-geo-1{
   width:520px;height:520px;
-  background:radial-gradient(circle,rgba(37,92,149,.1) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);
   top:-150px;right:-100px;
 }
 .ph-geo-2{
   width:340px;height:340px;
-  background:radial-gradient(circle,rgba(34,143,210,.12) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(34,143,210,.1) 0%,transparent 70%);
   bottom:-80px;left:10%;animation-delay:-4s;
 }
 .ph-geo-3{
   width:200px;height:200px;
-  background:radial-gradient(circle,rgba(37,92,149,.08) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);
   top:40%;left:40%;animation-delay:-8s;
 }
 @keyframes floatGeo{
@@ -142,16 +174,20 @@ nav ul a.active::after{transform:scaleX(1);}
 }
 @keyframes particleFloat{
   0%{transform:translateY(0) translateX(0) rotate(0deg);opacity:.1;}
-  25%{opacity:.25;}
-  50%{transform:translateY(-80px) translateX(40px) rotate(180deg);opacity:.15;}
-  75%{opacity:.2;}
+  25%{opacity:.3;}
+  50%{transform:translateY(-80px) translateX(40px) rotate(180deg);opacity:.2;}
+  75%{opacity:.25;}
   100%{transform:translateY(0) translateX(0) rotate(360deg);opacity:.1;}
 }
-.page-hero-content{position:relative;z-index:1;max-width:660px;}
+
+.page-hero-content{position:relative;z-index:2;max-width:660px;}
 
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
-  background:var(--blue-light);color:var(--blue);
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;
   font-size:.75rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
   padding:7px 18px;border-radius:50px;margin-bottom:24px;
   opacity:0;transform:translateY(20px);
@@ -159,24 +195,59 @@ nav ul a.active::after{transform:scaleX(1);}
 }
 .hero-eyebrow::before{
   content:'';width:7px;height:7px;border-radius:50%;
-  background:var(--blue);animation:pulse 2s ease-in-out infinite;
+  background:#fff;animation:pulse 2s ease-in-out infinite;
 }
-.hero-eyebrow a{color:var(--blue);text-decoration:none;}
+.hero-eyebrow a{color:rgba(255,255,255,.85);text-decoration:none;}
+.hero-eyebrow a:hover{color:#fff;}
 .hero-eyebrow .sep{opacity:.5;}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.6);opacity:.5;}}
 
 .page-hero h1{
-  font-size:clamp(2.4rem,5vw,4.4rem);font-weight:900;line-height:1.06;
-  color:var(--blue-dark);margin-bottom:20px;
+  font-size:clamp(2.6rem,5vw,4.8rem);font-weight:900;line-height:1.05;
+  color:#ffffff;margin-bottom:22px;
+  text-shadow:0 4px 30px rgba(0,0,0,.3);
   opacity:0;transform:translateY(30px);
   animation:revealUp .8s .35s ease forwards;
 }
-.page-hero h1 em{font-style:italic;color:var(--accent);font-family:'Lato',sans-serif;}
+.page-hero h1 em{
+  font-style:italic;
+  color:#7dd3fc;
+  font-family:'Lato',sans-serif;
+}
 .page-hero p{
-  font-size:1rem;color:var(--text-muted);line-height:1.78;max-width:500px;
+  font-size:1.05rem;color:rgba(255,255,255,.78);line-height:1.78;max-width:500px;
+  text-shadow:0 2px 12px rgba(0,0,0,.2);
   opacity:0;transform:translateY(20px);
   animation:revealUp .7s .5s ease forwards;
 }
+
+/* Línea decorativa horizontal */
+.hero-divider{
+  width:80px;height:3px;
+  background:linear-gradient(90deg,#7dd3fc,rgba(255,255,255,0));
+  border-radius:2px;margin:22px 0;
+  opacity:0;animation:revealUp .6s .65s ease forwards;
+}
+
+/* Badges de info rápida en el hero */
+.hero-badges{
+  display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;
+  opacity:0;animation:revealUp .7s .75s ease forwards;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.9);
+  font-family:'Lato',sans-serif;
+  font-size:.78rem;font-weight:600;
+  padding:8px 16px;border-radius:50px;
+  transition:background .2s,transform .2s;
+}
+.hero-badge:hover{background:rgba(255,255,255,.22);transform:translateY(-2px);}
+.hero-badge span{font-size:1rem;}
+
 @keyframes revealUp{to{opacity:1;transform:translateY(0);}}
 
 /* ══ SHARED ══ */
@@ -545,8 +616,9 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
   nav.menu-open .nav-hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   nav.menu-open .nav-hamburger span:nth-child(2){opacity:0;}
   nav.menu-open .nav-hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-  .page-hero{padding:90px 5vw 56px;min-height:auto;}
+  .page-hero{padding:90px 5vw 56px;min-height:52vh;}
   .page-hero h1{font-size:clamp(2rem,5.5vw,2.8rem);}
+  .hero-badges{gap:8px;}
   .contact-main{grid-template-columns:1fr;padding:50px 5vw 70px;gap:28px;}
   .form-card{padding:32px 28px;}
   .form-row{grid-template-columns:1fr 1fr;}
@@ -561,9 +633,11 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
   nav.menu-open ul{top:62px;}
   .logo-img{height:42px;}
   .brand-name{font-size:1.25rem;}
-  .page-hero{padding:80px 4vw 50px;}
+  .page-hero{padding:80px 4vw 50px;min-height:auto;}
   .page-hero h1{font-size:clamp(1.9rem,7vw,2.4rem);}
   .page-hero p{font-size:.92rem;}
+  .hero-badges{gap:6px;}
+  .hero-badge{font-size:.72rem;padding:6px 12px;}
   .contact-main{padding:36px 4vw 56px;gap:20px;}
   .contact-sidebar{flex-direction:column;gap:16px;}
   .sidebar-card{padding:24px 20px;border-radius:16px;}
@@ -661,7 +735,7 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
   </button>
 </nav>
 
-<!-- HERO -->
+<!-- HERO BANNER CON IMAGEN p20.jpg -->
 <section class="page-hero">
   <div class="page-hero-bg">
     <div class="ph-geo ph-geo-1"></div>
@@ -675,7 +749,13 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
       Contacto
     </span>
     <h1>Hablemos sobre<br>su <em>necesidad</em></h1>
+    <div class="hero-divider"></div>
     <p>Complete el formulario y nuestro equipo de Recursos Humanos le responderá a la brevedad. Estamos listos para atenderle.</p>
+    <div class="hero-badges">
+      <span class="hero-badge"><span>📍</span> Neiva, Huila</span>
+      <span class="hero-badge"><span>⏱️</span> Respuesta en 24h</span>
+      <span class="hero-badge"><span>💬</span> WhatsApp disponible</span>
+    </div>
   </div>
 </section>
 
@@ -883,11 +963,11 @@ if(hambBtn){
 /* ── PARTÍCULAS ── */
 (function(){
   const bg=document.querySelector('.page-hero-bg');if(!bg)return;
-  const colors=['#255c95','#228fd2','#ffffff'];
-  for(let i=0;i<18;i++){
+  const colors=['rgba(255,255,255,.6)','rgba(125,211,252,.5)','rgba(186,230,253,.4)'];
+  for(let i=0;i<22;i++){
     const p=document.createElement('div');p.className='particle';
-    const s=Math.random()*8+4;
-    Object.assign(p.style,{width:s+'px',height:s+'px',left:(Math.random()*100)+'%',top:(Math.random()*100)+'%',animationDelay:'-'+(Math.random()*12)+'s',animationDuration:(Math.random()*10+10)+'s',background:colors[Math.floor(Math.random()*colors.length)],opacity:(Math.random()*.15+.05).toString()});
+    const s=Math.random()*7+3;
+    Object.assign(p.style,{width:s+'px',height:s+'px',left:(Math.random()*100)+'%',top:(Math.random()*100)+'%',animationDelay:'-'+(Math.random()*14)+'s',animationDuration:(Math.random()*10+10)+'s',background:colors[Math.floor(Math.random()*colors.length)],opacity:(Math.random()*.18+.04).toString()});
     bg.appendChild(p);
   }
 })();
@@ -979,21 +1059,13 @@ ${data.email}${data.telefono ? '\n' + data.telefono : ''}`;
 
 function buildGmailURL(data) {
   const { subject, body } = buildEmailContent(data);
-  const params = new URLSearchParams({
-    to: DESTINO,
-    su: subject,
-    body: body
-  });
+  const params = new URLSearchParams({ to: DESTINO, su: subject, body: body });
   return `https://mail.google.com/mail/?view=cm&fs=1&${params.toString()}`;
 }
 
 function buildHotmailURL(data) {
   const { subject, body } = buildEmailContent(data);
-  const params = new URLSearchParams({
-    to: DESTINO,
-    subject: subject,
-    body: body
-  });
+  const params = new URLSearchParams({ to: DESTINO, subject: subject, body: body });
   return `https://outlook.live.com/mail/0/deeplink/compose?${params.toString()}`;
 }
 
@@ -1008,22 +1080,16 @@ const btnGmail   = document.getElementById('btnGmail');
 const btnHotmail = document.getElementById('btnHotmail');
 const btnMailto  = document.getElementById('btnMailto');
 const modalSkip  = document.getElementById('modalSkip');
-
 let currentFormData = null;
 
 function openEmailModal(data) {
   currentFormData = data;
   const provider = detectEmailProvider(data.email);
-
-  // Set URLs
   btnGmail.href   = buildGmailURL(data);
   btnHotmail.href = buildHotmailURL(data);
   btnMailto.href  = buildMailtoURL(data);
-
-  // Highlight the detected provider
   btnGmail.style.opacity   = '1';
   btnHotmail.style.opacity = '1';
-
   if (provider === 'gmail') {
     btnGmail.style.boxShadow = '0 0 0 3px #EA4335, 0 8px 28px rgba(234,67,53,.45)';
     btnGmail.innerHTML = `<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="8" fill="white" fill-opacity="0.15"/><path d="M6 14l18 13L42 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> ✨ Abrir con Gmail (recomendado)`;
@@ -1031,7 +1097,6 @@ function openEmailModal(data) {
     btnHotmail.style.boxShadow = '0 0 0 3px #0072C6, 0 8px 28px rgba(0,114,198,.45)';
     btnHotmail.innerHTML = `<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="8" fill="white" fill-opacity="0.15"/><path d="M6 14l18 13L42 14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg> ✨ Abrir con Outlook (recomendado)`;
   }
-
   emailModal.classList.add('show');
   document.body.style.overflow = 'hidden';
 }
@@ -1043,11 +1108,8 @@ function closeEmailModal() {
 
 modalSkip.addEventListener('click', closeEmailModal);
 emailModal.addEventListener('click', e => { if(e.target === emailModal) closeEmailModal(); });
-
 [btnGmail, btnHotmail, btnMailto].forEach(btn => {
-  btn.addEventListener('click', () => {
-    setTimeout(closeEmailModal, 400);
-  });
+  btn.addEventListener('click', () => { setTimeout(closeEmailModal, 400); });
 });
 
 /* ── AI RESPONSE ── */
@@ -1066,7 +1128,6 @@ form.addEventListener('submit', async (e) => {
     showResult('error','⚠️','Acepta la política de privacidad','Por favor marque la casilla de tratamiento de datos para continuar.');
     return;
   }
-
   const data = {
     nombre:   document.getElementById('nombre').value.trim(),
     apellido: document.getElementById('apellido').value.trim(),
@@ -1075,38 +1136,26 @@ form.addEventListener('submit', async (e) => {
     asunto:   document.getElementById('asunto').value,
     mensaje:  document.getElementById('mensaje').value.trim()
   };
-
   submitBtn.disabled = true;
   submitBtn.classList.add('loading');
   formResult.classList.remove('show');
   aiWrap.classList.remove('show');
-
   try {
     await new Promise(r => setTimeout(r, 800));
-
-    // Show success message
     showResult('success','✅','¡Mensaje listo para enviar!',
       `Gracias ${data.nombre}. Haga clic en su proveedor de correo para enviar el mensaje a ${DESTINO}.`);
-
-    // Show AI response
     aiWrap.classList.add('show');
     aiTyping.style.display = 'flex';
     aiText.style.display   = 'none';
     aiWrap.scrollIntoView({behavior:'smooth', block:'nearest'});
-
-    // Open email modal
     setTimeout(() => openEmailModal(data), 600);
-
-    // Get AI response in parallel
     const msg = await getAIResponse(data);
     aiTyping.style.display = 'none';
     aiText.style.display   = 'block';
     aiText.textContent     = msg;
-
     form.reset();
     submitBtn.disabled = false;
     submitBtn.classList.remove('loading');
-
   } catch(err) {
     submitBtn.disabled = false;
     submitBtn.classList.remove('loading');
