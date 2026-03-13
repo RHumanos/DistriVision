@@ -1143,4 +1143,11 @@ form.addEventListener('submit', async (e) => {
     aiWrap.classList.add('show');
     aiTyping.style.display = 'none';
     aiText.style.display   = 'block';
-    aiText.textContent     = 'Hemos preparado su mensaje con
+    aiText.textContent     = 'Hemos preparado su mensaje con éxito. Por favor seleccione su proveedor de correo para enviarlo a nuestro equipo de Recursos Humanos. Si necesita atención inmediata puede llamarnos al (8) 870 34 34.';
+    setTimeout(() => openEmailModal(data), 600);
+    form.reset();
+  }
+});
+</script>
+</body>
+</html>
