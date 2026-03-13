@@ -29,7 +29,7 @@ html{scroll-behavior:smooth;}
 body{
   font-family:'Playfair Display',serif;
   color:var(--text);background:var(--white);
-  overflow-x:hidden;cursor:none;
+  overflow-x:hidden;
 }
 h1,h2,h3,h4,h5,h6,
 .brand-name,.stat-num,.svc-number,
@@ -40,21 +40,7 @@ label,.nav-cta,.btn-primary,.btn-outline,.btn-white,.btn-submit{
   font-family:'Lato',sans-serif;
 }
 
-/* CURSOR */
-.cursor-dot,.cursor-ring{
-  position:fixed;top:0;left:0;border-radius:50%;
-  pointer-events:none;z-index:99999;transform:translate(-50%,-50%);
-  transition:opacity .3s;
-  will-change:left,top;
-}
-.cursor-dot{width:8px;height:8px;background:var(--blue);}
-.cursor-ring{
-  width:36px;height:36px;
-  border:2px solid rgba(37,92,149,.5);
-  transition:transform .15s ease,width .2s,height .2s,border-color .2s;
-}
-body:has(a:hover) .cursor-ring,
-body:has(button:hover) .cursor-ring{width:56px;height:56px;border-color:var(--accent);}
+
 
 /* SCROLL PROGRESS */
 #scroll-progress{
@@ -591,8 +577,6 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
   .form-card{padding:36px 32px;}
 }
 @media(max-width:900px){
-  body{cursor:auto;}
-  .cursor-dot,.cursor-ring{display:none;}
   nav{padding:0 5vw;height:68px;}
   nav ul{display:none;}
   .nav-hamburger{
@@ -687,8 +671,6 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
 </head>
 <body>
 
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
 <!-- EMAIL REDIRECT MODAL -->
@@ -942,18 +924,7 @@ footer{background:var(--blue-dark);padding:56px 6vw 28px;}
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ── CURSOR ── */
-const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
-let mx=-200,my=-200,rx=-200,ry=-200;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX; my=e.clientY;
-  dot.style.left=mx+'px'; dot.style.top=my+'px';
-});
-(function loop(){
-  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
-  ring.style.left=rx+'px'; ring.style.top=ry+'px';
-  requestAnimationFrame(loop);
-})();
+
 
 /* ── SCROLL PROGRESS ── */
 const pb=document.getElementById('scroll-progress');
