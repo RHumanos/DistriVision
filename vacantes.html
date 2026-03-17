@@ -4,151 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DistriVision – Vacantes</title>
-  <link rel="stylesheet" href="styles4.css">
-  <style>
-    /* ══════════════════════════════════════════
-       FORMULARIO DE DATOS PERSONALES
-    ══════════════════════════════════════════ */
-    .form-solicitud-wrap {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 36px 40px;
-      box-shadow: 0 8px 36px rgba(37,92,149,.11);
-      border: 1px solid rgba(37,92,149,.09);
-      margin-bottom: 36px;
-      position: relative;
-      overflow: hidden;
-    }
-    .form-solicitud-wrap::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue), var(--accent));
-    }
-    .form-solicitud-title {
-      font-family: 'Lato', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--blue-dark);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .form-solicitud-title span {
-      font-size: 1.15rem;
-    }
-    .form-solicitud-sub {
-      font-family: 'Lato', sans-serif;
-      font-size: .82rem;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-    .form-solicitud-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 18px;
-    }
-    .fs-group {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-    .fs-label {
-      font-family: 'Lato', sans-serif;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      color: var(--blue-dark);
-    }
-    .fs-label em {
-      color: #e53e3e;
-      font-style: normal;
-      margin-left: 2px;
-    }
-    .fs-input {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid rgba(37,92,149,.18);
-      border-radius: 12px;
-      font-family: 'Lato', sans-serif;
-      font-size: .9rem;
-      color: var(--text);
-      background: var(--white);
-      transition: border-color .2s, box-shadow .2s, background .2s;
-      outline: none;
-    }
-    .fs-input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 4px rgba(37,92,149,.1);
-      background: var(--blue-xlight);
-    }
-    .fs-input::placeholder {
-      color: rgba(90,107,128,.4);
-    }
-    .fs-input.fs-error {
-      border-color: #e53e3e;
-      box-shadow: 0 0 0 4px rgba(229,62,62,.09);
-    }
-    .fs-error-msg {
-      font-family: 'Lato', sans-serif;
-      font-size: .72rem;
-      color: #e53e3e;
-      display: none;
-      align-items: center;
-      gap: 4px;
-    }
-    .fs-error-msg.show {
-      display: flex;
-    }
-    .fs-hint {
-      font-family: 'Lato', sans-serif;
-      font-size: .7rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-      opacity: .75;
-    }
-    /* Preview del correo */
-    .fs-preview {
-      margin-top: 22px;
-      background: var(--blue-xlight);
-      border: 1px solid var(--blue-light);
-      border-left: 4px solid var(--blue);
-      border-radius: 12px;
-      padding: 14px 18px;
-      display: none;
-      animation: revealUp .35s ease both;
-    }
-    .fs-preview.show { display: block; }
-    .fs-preview-label {
-      font-family: 'Lato', sans-serif;
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 8px;
-      display: block;
-    }
-    .fs-preview-text {
-      font-family: 'Lato', sans-serif;
-      font-size: .8rem;
-      color: var(--text);
-      line-height: 1.65;
-    }
-    .fs-preview-text strong { color: var(--blue-dark); }
-
-    @media (max-width: 768px) {
-      .form-solicitud-grid { grid-template-columns: 1fr; gap: 14px; }
-      .form-solicitud-wrap { padding: 28px 22px; }
-    }
-    @media (max-width: 480px) {
-      .form-solicitud-wrap { padding: 22px 16px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles4.css"
 </head>
 <body>
 
@@ -156,7 +12,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
-<!-- ══════════════ NAV ══════════════ -->
+<!-- ══════════════ NAV (original styles4.css) ══════════════ -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="img/1 (3).png" alt="DistriVision Logo" class="logo-img">
@@ -180,13 +36,14 @@
 
 <!-- ══════════════ HERO VACANTES ══════════════ -->
 <section class="page-hero">
-  <div class="hero-bg">
-    <div class="geo geo-1"></div>
-    <div class="geo geo-2"></div>
-    <div class="geo geo-3"></div>
-  </div>
+  <div class="hero-geo hero-geo-1"></div>
+  <div class="hero-geo hero-geo-2"></div>
+  <div class="hero-geo hero-geo-3"></div>
   <div class="page-hero-content">
-    <span class="hero-eyebrow">Únete a nuestro equipo</span>
+    <span class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Únete a nuestro equipo
+    </span>
     <h1>Vacantes<br><em>DistriVision</em></h1>
     <p class="hero-desc">Forma parte de la empresa líder en distribución y comercialización. Buscamos talentos comprometidos con la excelencia y el servicio superior.</p>
   </div>
@@ -203,11 +60,22 @@
   <div class="pdf-container">
     <div class="pdf-toolbar">
       <div class="pdf-info">
-        <span class="pdf-icon">📄</span>
+        <svg class="pdf-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="2" width="16" height="22" rx="2" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/>
+          <rect x="8" y="6" width="8" height="1.5" rx=".75" fill="rgba(255,255,255,.5)"/>
+          <rect x="8" y="10" width="8" height="1.5" rx=".75" fill="rgba(255,255,255,.5)"/>
+          <rect x="8" y="14" width="5" height="1.5" rx=".75" fill="rgba(255,255,255,.5)"/>
+          <circle cx="21" cy="21" r="5" fill="#e53e3e"/>
+          <path d="M21 18v6M18 21h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
         <span class="pdf-name">Vacantes DistriVision 2025</span>
       </div>
       <a href="vacantes.pdf" download class="pdf-download-btn">
-        <span>⬇</span> Descargar PDF
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2v9M4 8l4 4 4-4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 13h12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        Descargar PDF
       </a>
     </div>
 
@@ -237,6 +105,8 @@
 
 <!-- ══════════════ SECCIÓN: ENVIAR SOLICITUD ══════════════ -->
 <section class="solicitud-section" id="enviar-solicitud">
+  <div class="solicitud-blob solicitud-blob-1"></div>
+  <div class="solicitud-blob solicitud-blob-2"></div>
   <div class="solicitud-inner">
 
     <div class="solicitud-header">
@@ -278,7 +148,7 @@
         <div class="paso-num">4</div>
         <div class="paso-body">
           <h4>Ajusta el asunto del correo</h4>
-          <p>El asunto se generará como: <strong>"Solicitud de Vacante – [Nombre del Cargo]"</strong>. Una vez abierto el correo, reemplaza <em>[Nombre del Cargo]</em> con el cargo exacto que viste en el PDF.</p>
+          <p>El asunto se generará como: <strong>"Solicitud de Vacante – [Nombre del Cargo]"</strong>. Una vez abierto el correo, reemplaza <em style="color:var(--accent);font-style:italic">[Nombre del Cargo]</em> con el cargo exacto que viste en el PDF.</p>
         </div>
       </div>
 
@@ -294,14 +164,14 @@
         <div class="paso-num">6</div>
         <div class="paso-body">
           <h4>Adjunta los documentos y envía</h4>
-          <p>Adjunta tu <strong>hoja de vida</strong> y la <strong>captura de la vacante</strong> al correo. Verifica que todo esté correcto y presiona enviar. ¡Tu solicitud llegará directamente a Recursos Humanos de DistriVision!</p>
+          <p>Adjunta tu <strong>hoja de vida</strong> y la <strong>captura de la vacante</strong> al correo. Verifica que todo esté correcto y presiona enviar. ¡Tu solicitud llegará directamente a Recursos Humanos!</p>
           <span class="paso-pill">✉️ recurso.humano@distrivision.com.co</span>
         </div>
       </div>
 
     </div>
 
-    <!-- NOTA INFORMATIVA -->
+    <!-- NOTA -->
     <div class="solicitud-nota">
       <span class="nota-icon">💡</span>
       <p><strong>Importante:</strong> Completa el formulario con tus datos personales antes de hacer clic en el botón. Tu nombre, cédula y teléfono se incluirán automáticamente en el cuerpo del correo. Solo deberás ajustar el nombre del cargo en el asunto y adjuntar los dos documentos solicitados antes de enviar.</p>
@@ -310,7 +180,11 @@
     <!-- ══ FORMULARIO DE DATOS PERSONALES ══ -->
     <div class="form-solicitud-wrap">
       <div class="form-solicitud-title">
-        <span>📝</span> Tus datos personales
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="2" width="14" height="12" rx="2" stroke="var(--blue)" stroke-width="1.4"/>
+          <path d="M4 6h8M4 9h5" stroke="var(--blue)" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        Tus datos personales
       </div>
       <p class="form-solicitud-sub">
         Completa los campos a continuación. Esta información se insertará automáticamente en el correo que se enviará a Recursos Humanos.
@@ -320,60 +194,33 @@
 
         <div class="fs-group">
           <label class="fs-label" for="fs-nombre">Nombre completo <em>*</em></label>
-          <input
-            class="fs-input"
-            type="text"
-            id="fs-nombre"
-            placeholder="Ej: Carlos Andrés Pérez"
-            autocomplete="name"
-            maxlength="80"
-          >
+          <input class="fs-input" type="text" id="fs-nombre" placeholder="Ej: Carlos Andrés Pérez" autocomplete="name" maxlength="80">
           <span class="fs-error-msg" id="err-nombre">⚠ Por favor ingresa tu nombre completo.</span>
         </div>
 
         <div class="fs-group">
           <label class="fs-label" for="fs-cedula">Número de cédula <em>*</em></label>
-          <input
-            class="fs-input"
-            type="text"
-            id="fs-cedula"
-            placeholder="Ej: 1075834920"
-            inputmode="numeric"
-            maxlength="15"
-          >
+          <input class="fs-input" type="text" id="fs-cedula" placeholder="Ej: 1075834920" inputmode="numeric" maxlength="15">
           <span class="fs-error-msg" id="err-cedula">⚠ Por favor ingresa tu número de cédula.</span>
         </div>
 
         <div class="fs-group">
           <label class="fs-label" for="fs-telefono">Teléfono de contacto <em>*</em></label>
-          <input
-            class="fs-input"
-            type="tel"
-            id="fs-telefono"
-            placeholder="Ej: 310 599 6169"
-            autocomplete="tel"
-            maxlength="15"
-          >
+          <input class="fs-input" type="tel" id="fs-telefono" placeholder="Ej: 310 599 6169" autocomplete="tel" maxlength="15">
           <span class="fs-error-msg" id="err-telefono">⚠ Por favor ingresa tu teléfono de contacto.</span>
         </div>
 
       </div>
 
-      <!-- Vista previa del mensaje -->
       <div class="fs-preview" id="fsPreview">
         <span class="fs-preview-label">✅ Vista previa — así aparecerá tu información en el correo</span>
         <div class="fs-preview-text" id="fsPreviewText"></div>
       </div>
     </div>
-    <!-- FIN FORMULARIO -->
 
-    <!-- BOTÓN ENVIAR SOLICITUD -->
+    <!-- BOTÓN -->
     <div class="solicitud-cta-wrap">
-      <button
-        class="btn-solicitud"
-        id="btnSolicitud"
-        type="button"
-      >
+      <button class="btn-solicitud" id="btnSolicitud" type="button">
         <span class="btn-solicitud-icon">✉️</span>
         <span class="btn-solicitud-texts">
           <span class="btn-solicitud-label">Enviar Solicitud</span>
@@ -382,7 +229,10 @@
         <span class="btn-solicitud-arrow">→</span>
       </button>
       <span class="solicitud-email-hint">
-        <span class="hint-icon">📧</span>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="3" width="14" height="10" rx="2" stroke="var(--text-muted)" stroke-width="1.3"/>
+          <path d="M1 5l7 5 7-5" stroke="var(--text-muted)" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
         Dirigido a: <strong>recurso.humano@distrivision.com.co</strong>
       </span>
     </div>
@@ -469,17 +319,13 @@
 const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
 document.addEventListener('mousemove', e => {
   mouseX = e.clientX; mouseY = e.clientY;
-  dot.style.left = mouseX + 'px';
-  dot.style.top  = mouseY + 'px';
+  dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
 });
 (function animateRing() {
-  ringX += (mouseX - ringX) * 0.12;
-  ringY += (mouseY - ringY) * 0.12;
-  ring.style.left = ringX + 'px';
-  ring.style.top  = ringY + 'px';
+  ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
   requestAnimationFrame(animateRing);
 })();
 
@@ -499,66 +345,57 @@ window.addEventListener('scroll', () => {
 /* ── HAMBURGUESA ── */
 const hambBtn = document.getElementById('navHamburger');
 if (hambBtn) {
-  hambBtn.addEventListener('click', () => { navbar.classList.toggle('menu-open'); });
-  document.querySelectorAll('#navMenu a').forEach(link => {
-    link.addEventListener('click', () => { navbar.classList.remove('menu-open'); });
-  });
+  hambBtn.addEventListener('click', () => navbar.classList.toggle('menu-open'));
+  document.querySelectorAll('#navMenu a').forEach(link =>
+    link.addEventListener('click', () => navbar.classList.remove('menu-open'))
+  );
 }
 
 /* ── PARTÍCULAS HERO ── */
 (function createParticles() {
-  const heroBg = document.querySelector('.hero-bg');
+  const heroBg = document.querySelector('.page-hero');
   if (!heroBg) return;
-  const colors = ['#255c95', '#228fd2', '#ffffff'];
-  for (let i = 0; i < 22; i++) {
+  const colors = ['rgba(255,255,255,.15)', 'rgba(34,143,210,.3)', 'rgba(37,92,149,.4)'];
+  for (let i = 0; i < 18; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
-    const size = Math.random() * 8 + 4;
+    const size = Math.random() * 6 + 3;
     Object.assign(p.style, {
-      width:             size + 'px',
-      height:            size + 'px',
-      left:              (Math.random() * 100) + '%',
-      top:               (Math.random() * 100) + '%',
-      animationDelay:    '-' + (Math.random() * 12) + 's',
+      width: size + 'px', height: size + 'px',
+      left: (Math.random() * 100) + '%', top: (Math.random() * 100) + '%',
+      animationDelay: '-' + (Math.random() * 12) + 's',
       animationDuration: (Math.random() * 10 + 10) + 's',
-      background:        colors[Math.floor(Math.random() * colors.length)],
-      opacity:           (Math.random() * 0.15 + 0.05).toString()
+      background: colors[Math.floor(Math.random() * colors.length)],
+      position: 'absolute', borderRadius: '50%', pointerEvents: 'none',
+      animation: 'particleFloat ' + (Math.random() * 10 + 10) + 's ease-in-out infinite',
+      opacity: (Math.random() * 0.2 + 0.05).toString()
     });
     heroBg.appendChild(p);
   }
 })();
 
 /* ── BOTONES MAGNÉTICOS ── */
-(function magneticButtons() {
-  document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-download-btn,.btn-solicitud').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r  = btn.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width  / 2);
-      const dy = e.clientY - (r.top  + r.height / 2);
-      btn.style.transform = `translate(${dx * 0.18}px,${dy * 0.22}px)`;
-    });
-    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-download-btn,.btn-solicitud').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    btn.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;
   });
-})();
+  btn.addEventListener('mouseleave', () => btn.style.transform = '');
+});
 
 /* ── ANIMACIÓN SCROLL PASOS ── */
-(function animatePasos() {
+(function() {
   const cards = document.querySelectorAll('.paso-card');
   if (!cards.length) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('paso-visible');
-        }, (entry.target.dataset.index || 0) * 120);
-        observer.unobserve(entry.target);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('paso-visible'), (e.target.dataset.index || 0) * 120);
+        obs.unobserve(e.target);
       }
     });
   }, { threshold: 0.15 });
-  cards.forEach((card, i) => {
-    card.dataset.index = i;
-    observer.observe(card);
-  });
+  cards.forEach((card, i) => { card.dataset.index = i; obs.observe(card); });
 })();
 
 /* ════════════════════════════════════════════════
@@ -575,202 +412,82 @@ if (hambBtn) {
   const previewText   = document.getElementById('fsPreviewText');
   const btnSolicitud  = document.getElementById('btnSolicitud');
 
-  /* Solo permite números en cédula */
-  inputCedula.addEventListener('input', () => {
-    inputCedula.value = inputCedula.value.replace(/\D/g, '');
-  });
+  inputCedula.addEventListener('input', () => inputCedula.value = inputCedula.value.replace(/\D/g, ''));
+  inputTelefono.addEventListener('input', () => inputTelefono.value = inputTelefono.value.replace(/[^\d\s+\-()]/g, ''));
 
-  /* Solo permite números y espacios en teléfono */
-  inputTelefono.addEventListener('input', () => {
-    inputTelefono.value = inputTelefono.value.replace(/[^\d\s+\-()]/g, '');
-  });
-
-  /* Actualizar vista previa en tiempo real */
   function updatePreview() {
-    const nombre   = inputNombre.value.trim();
-    const cedula   = inputCedula.value.trim();
-    const telefono = inputTelefono.value.trim();
-
-    if (nombre || cedula || telefono) {
-      previewText.innerHTML = `
-        <strong>Nombre:</strong> ${nombre  || '<em style="color:#aaa">pendiente</em>'}<br>
-        <strong>Cédula:</strong> ${cedula  || '<em style="color:#aaa">pendiente</em>'}<br>
-        <strong>Teléfono:</strong> ${telefono || '<em style="color:#aaa">pendiente</em>'}
-      `;
+    const n = inputNombre.value.trim(), c = inputCedula.value.trim(), t = inputTelefono.value.trim();
+    if (n || c || t) {
+      previewText.innerHTML = `<strong>Nombre:</strong> ${n||'<em style="color:#aaa">pendiente</em>'}<br><strong>Cédula:</strong> ${c||'<em style="color:#aaa">pendiente</em>'}<br><strong>Teléfono:</strong> ${t||'<em style="color:#aaa">pendiente</em>'}`;
       preview.classList.add('show');
-    } else {
-      preview.classList.remove('show');
-    }
+    } else { preview.classList.remove('show'); }
   }
+  [inputNombre, inputCedula, inputTelefono].forEach(i => i.addEventListener('input', updatePreview));
 
-  inputNombre.addEventListener('input',   updatePreview);
-  inputCedula.addEventListener('input',   updatePreview);
-  inputTelefono.addEventListener('input', updatePreview);
+  [[inputNombre,errNombre],[inputCedula,errCedula],[inputTelefono,errTelefono]].forEach(([i,e]) =>
+    i.addEventListener('input', () => { i.classList.remove('fs-error'); e.classList.remove('show'); })
+  );
 
-  /* Limpiar error al escribir */
-  function clearError(input, errEl) {
-    input.addEventListener('input', () => {
-      input.classList.remove('fs-error');
-      errEl.classList.remove('show');
-    });
-  }
-  clearError(inputNombre,   errNombre);
-  clearError(inputCedula,   errCedula);
-  clearError(inputTelefono, errTelefono);
-
-  /* Clic en el botón: validar y abrir Gmail o Hotmail */
   btnSolicitud.addEventListener('click', () => {
-    const nombre   = inputNombre.value.trim();
-    const cedula   = inputCedula.value.trim();
-    const telefono = inputTelefono.value.trim();
-
+    const n = inputNombre.value.trim(), c = inputCedula.value.trim(), t = inputTelefono.value.trim();
     let valid = true;
-    if (!nombre)   { inputNombre.classList.add('fs-error');   errNombre.classList.add('show');   valid = false; }
-    if (!cedula)   { inputCedula.classList.add('fs-error');   errCedula.classList.add('show');   valid = false; }
-    if (!telefono) { inputTelefono.classList.add('fs-error'); errTelefono.classList.add('show'); valid = false; }
-
-    if (!valid) {
-      document.querySelector('.form-solicitud-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
+    if (!n) { inputNombre.classList.add('fs-error');   errNombre.classList.add('show');   valid = false; }
+    if (!c) { inputCedula.classList.add('fs-error');   errCedula.classList.add('show');   valid = false; }
+    if (!t) { inputTelefono.classList.add('fs-error'); errTelefono.classList.add('show'); valid = false; }
+    if (!valid) { document.querySelector('.form-solicitud-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     const destinatario = 'recurso.humano@distrivision.com.co';
     const asunto       = 'Solicitud de Vacante - [Nombre del Cargo]';
-
     const lineas = [
-      'Estimado equipo de Recursos Humanos de DistriVision,',
-      '',
-      'Me dirijo a ustedes con el fin de postularme formalmente al cargo de [Nombre del Cargo], publicado en el documento de Vacantes DistriVision 2025.',
-      '',
-      'Considero que mi perfil profesional, experiencia y habilidades se alinean con los requisitos de la posicion. Me motiva unirme a una empresa comprometida con la excelencia, el servicio superior y el crecimiento continuo como DistriVision.',
-      '',
-      'Adjunto a este correo:',
-      '- Hoja de vida actualizada (PDF o Word).',
-      '- Captura de pantalla de la vacante de mi interes.',
-      '',
-      'Mis datos de contacto:',
-      'Nombre completo : ' + nombre,
-      'Cedula          : ' + cedula,
-      'Telefono        : ' + telefono,
-      '',
-      'Quedo atento/a a cualquier informacion adicional que requieran y agradezco de antemano la consideracion a mi solicitud.',
-      '',
-      'Cordialmente,',
-      nombre
+      'Estimado equipo de Recursos Humanos de DistriVision,','',
+      'Me dirijo a ustedes con el fin de postularme formalmente al cargo de [Nombre del Cargo], publicado en el documento de Vacantes DistriVision 2025.','',
+      'Considero que mi perfil profesional, experiencia y habilidades se alinean con los requisitos de la posicion. Me motiva unirme a una empresa comprometida con la excelencia, el servicio superior y el crecimiento continuo como DistriVision.','',
+      'Adjunto a este correo:','- Hoja de vida actualizada (PDF o Word).','- Captura de pantalla de la vacante de mi interes.','',
+      'Mis datos de contacto:','Nombre completo : '+n,'Cedula          : '+c,'Telefono        : '+t,'',
+      'Quedo atento/a a cualquier informacion adicional que requieran y agradezco de antemano la consideracion a mi solicitud.','',
+      'Cordialmente,', n
     ];
     const cuerpo = lineas.join('\n');
 
-    /* ── Detectar plataforma ── */
-    const ua        = navigator.userAgent;
-    const esAndroid = /Android/i.test(ua);
-    const esIOS     = /iPhone|iPad|iPod/i.test(ua);
-    const esMobil   = esAndroid || esIOS;
+    const ua = navigator.userAgent;
+    const esMovil = /Android|iPhone|iPad|iPod/i.test(ua);
+    const gmailURL   = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(destinatario) + '&su=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+    const hotmailURL = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + encodeURIComponent(destinatario) + '&subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+    const mailtoFallback = 'mailto:' + destinatario + '?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
 
-    /* En móvil: mostrar modal con botones de app nativa (intent links) */
-    /* En escritorio: mostrar modal con Gmail web / Hotmail web          */
-    if (esMobil) {
-      /* Intent links — abren directamente la APP instalada */
-      const gmailAppAndroid = 'googlegmail://co'
-        + '?to='      + encodeURIComponent(destinatario)
-        + '&subject=' + encodeURIComponent(asunto)
-        + '&body='    + encodeURIComponent(cuerpo);
-
-      const gmailAppIOS = 'googlegmail:///co'
-        + '?to='      + encodeURIComponent(destinatario)
-        + '&subject=' + encodeURIComponent(asunto)
-        + '&body='    + encodeURIComponent(cuerpo);
-
-      const outlookApp = 'ms-outlook://compose'
-        + '?to='      + encodeURIComponent(destinatario)
-        + '&subject=' + encodeURIComponent(asunto)
-        + '&body='    + encodeURIComponent(cuerpo);
-
-      const mailtoFallback = 'mailto:' + destinatario
-        + '?subject=' + encodeURIComponent(asunto)
-        + '&body='    + encodeURIComponent(cuerpo);
-
-      const gmailIntentURL = esAndroid ? gmailAppAndroid : gmailAppIOS;
-
-      /* Modal móvil */
-      const overlayM = document.createElement('div');
-      overlayM.id = 'mailModalOverlay';
-      overlayM.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,20,40,.82);backdrop-filter:blur(10px);display:flex;align-items:flex-end;justify-content:center;animation:mFadeIn .22s ease both';
-
-      overlayM.innerHTML = [
-        '<style>',
-        '@keyframes mFadeIn{from{opacity:0}to{opacity:1}}',
-        '@keyframes mSlideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}',
-        '#mailBox{animation:mSlideUp .35s cubic-bezier(.25,.8,.25,1) both}',
-        '.mc-btn{-webkit-tap-highlight-color:rgba(0,0,0,0);active:opacity:.85}',
-        '</style>',
-        '<div id="mailBox" style="background:#fff;border-radius:28px 28px 0 0;padding:28px 22px 40px;width:100%;max-width:520px;box-shadow:0 -16px 60px rgba(37,92,149,.22)">',
-          /* Handle bar */
-          '<div style="width:40px;height:4px;background:#dde3eb;border-radius:4px;margin:0 auto 24px"></div>',
-          '<div style="font-size:2rem;margin-bottom:10px;text-align:center">✉️</div>',
-          '<h3 style="font-family:Lato,sans-serif;font-size:1.08rem;font-weight:700;color:#1a4470;margin-bottom:6px;text-align:center">¡Tu solicitud está lista!</h3>',
-          '<p style="font-family:Lato,sans-serif;font-size:.79rem;color:#5a6b80;line-height:1.5;margin-bottom:22px;text-align:center">El mensaje ya incluye tus datos.<br>Toca el botón para enviarlo desde tu correo.</p>',
-          '<div style="display:flex;flex-direction:column;gap:11px;margin-bottom:16px">',
-
-            /* Enviar correo — abre la app de correo predeterminada */
-            '<a href="' + mailtoFallback + '" class="mc-btn" style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#255c95,#228fd2);color:#fff;padding:18px 22px;border-radius:16px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:1rem;box-shadow:0 6px 22px rgba(37,92,149,.35)">',
-              '<svg width="24" height="24" viewBox="0 0 48 48" fill="none"><rect x="2" y="8" width="44" height="32" rx="4" fill="rgba(255,255,255,.2)"/><path d="M2 14l22 14 22-14" stroke="white" stroke-width="2.8" stroke-linecap="round"/></svg>',
-              '<span style="flex:1">Enviar solicitud por correo</span>',
-              '<span style="opacity:.8;font-size:.95rem">→</span>',
-            '</a>',
-
-          '</div>',
-          '<button id="mcClose" style="width:100%;background:none;border:1.5px solid #e2e8f0;cursor:pointer;font-family:Lato,sans-serif;font-size:.88rem;color:#5a6b80;padding:13px;border-radius:14px;font-weight:600">Cancelar</button>',
-        '</div>'
-      ].join('');
-
-      document.body.appendChild(overlayM);
-      overlayM.addEventListener('click', e => { if (e.target === overlayM) overlayM.remove(); });
-      overlayM.querySelector('#mcClose').addEventListener('click', () => overlayM.remove());
-      return;
-    }
-
-    /* ── Desktop: modal selector Gmail / Hotmail web ── */
-    const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1'
-      + '&to='   + encodeURIComponent(destinatario)
-      + '&su='   + encodeURIComponent(asunto)
-      + '&body=' + encodeURIComponent(cuerpo);
-
-    const hotmailURL = 'https://outlook.live.com/mail/0/deeplink/compose'
-      + '?to='      + encodeURIComponent(destinatario)
-      + '&subject=' + encodeURIComponent(asunto)
-      + '&body='    + encodeURIComponent(cuerpo);
-
-    /* Modal selector */
     const overlay = document.createElement('div');
     overlay.id = 'mailModalOverlay';
-    overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,20,40,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;animation:mFadeIn .22s ease both';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,20,40,.8);backdrop-filter:blur(10px);display:flex;align-items:' + (esMovil ? 'flex-end' : 'center') + ';justify-content:center;animation:mFadeIn .22s ease both';
 
-    overlay.innerHTML = [
-      '<style>',
-      '@keyframes mFadeIn{from{opacity:0}to{opacity:1}}',
-      '@keyframes mSlideUp{from{transform:translateY(30px) scale(.95);opacity:0}to{transform:none;opacity:1}}',
-      '#mailBox{animation:mSlideUp .32s cubic-bezier(.34,1.56,.64,1) both}',
-      '.mc-btn{transition:transform .22s,box-shadow .22s !important}',
-      '.mc-btn:hover{transform:translateY(-3px) !important}',
-      '</style>',
-      '<div id="mailBox" style="background:#fff;border-radius:24px;padding:40px 36px 34px;max-width:400px;width:92%;text-align:center;box-shadow:0 32px 80px rgba(37,92,149,.28);border:1px solid rgba(37,92,149,.1)">',
-        '<div style="font-size:2.4rem;margin-bottom:14px">✉️</div>',
-        '<h3 style="font-family:Lato,sans-serif;font-size:1.12rem;font-weight:700;color:#1a4470;margin-bottom:8px">¿Con qué correo deseas enviar?</h3>',
-        '<p style="font-family:Lato,sans-serif;font-size:.81rem;color:#5a6b80;line-height:1.55;margin-bottom:28px">El mensaje ya está listo con tus datos.<br>Solo elige tu cliente de correo.</p>',
-        '<div style="display:flex;flex-direction:column;gap:13px;margin-bottom:18px">',
-          '<a href="' + gmailURL + '" target="_blank" class="mc-btn" style="display:flex;align-items:center;gap:13px;background:linear-gradient(135deg,#ea4335,#d93025);color:#fff;padding:15px 22px;border-radius:14px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:.92rem;box-shadow:0 6px 22px rgba(234,67,53,.38)">',
-            '<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><path d="M44 8H4a2 2 0 00-2 2v28a2 2 0 002 2h40a2 2 0 002-2V10a2 2 0 00-2-2z" fill="rgba(255,255,255,.18)"/><path d="M2 10l22 16L46 10" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>',
-            'Abrir en Gmail<span style="margin-left:auto;opacity:.75">→</span>',
-          '</a>',
-          '<a href="' + hotmailURL + '" target="_blank" class="mc-btn" style="display:flex;align-items:center;gap:13px;background:linear-gradient(135deg,#0078d4,#005a9e);color:#fff;padding:15px 22px;border-radius:14px;text-decoration:none;font-family:Lato,sans-serif;font-weight:700;font-size:.92rem;box-shadow:0 6px 22px rgba(0,120,212,.38)">',
-            '<svg width="22" height="22" viewBox="0 0 48 48" fill="none"><rect x="2" y="8" width="44" height="32" rx="4" fill="rgba(255,255,255,.18)" stroke="white" stroke-width="2.5"/><path d="M2 14l22 14 22-14" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>',
-            'Abrir en Hotmail / Outlook<span style="margin-left:auto;opacity:.75">→</span>',
-          '</a>',
-        '</div>',
-        '<button id="mcClose" style="background:none;border:none;cursor:pointer;font-family:Lato,sans-serif;font-size:.82rem;color:#5a6b80;padding:7px 18px;border-radius:8px">Cancelar</button>',
-      '</div>'
-    ].join('');
+    const mobileBox = `
+      <div id="mailBox" style="background:#fff;border-radius:24px 24px 0 0;padding:26px 20px 38px;width:100%;max-width:480px;box-shadow:0 -12px 50px rgba(37,92,149,.2)">
+        <div style="width:36px;height:3px;background:#e2e8f0;border-radius:3px;margin:0 auto 20px"></div>
+        <div style="text-align:center;font-size:1.8rem;margin-bottom:8px">✉️</div>
+        <h3 style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;color:#1a4470;text-align:center;margin-bottom:6px">¡Tu solicitud está lista!</h3>
+        <p style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:#6b7d90;text-align:center;line-height:1.55;margin-bottom:20px">El mensaje ya incluye tus datos.<br>Toca el botón para enviarlo.</p>
+        <a href="${mailtoFallback}" style="display:flex;align-items:center;gap:12px;background:#1a4470;color:#fff;padding:16px 20px;border-radius:14px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;box-shadow:0 5px 18px rgba(26,68,112,.35);margin-bottom:10px">
+          <span style="font-size:1.1rem">📧</span><span style="flex:1">Enviar solicitud por correo</span><span>→</span>
+        </a>
+        <button id="mcClose" style="width:100%;background:none;border:1.5px solid #e2e8f0;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.86rem;color:#6b7d90;padding:12px;border-radius:12px;font-weight:600">Cancelar</button>
+      </div>`;
 
+    const desktopBox = `
+      <div id="mailBox" style="background:#fff;border-radius:20px;padding:36px 32px 28px;max-width:380px;width:90%;text-align:center;box-shadow:0 28px 70px rgba(37,92,149,.25);border:1px solid rgba(37,92,149,.08)">
+        <div style="font-size:2.2rem;margin-bottom:12px">✉️</div>
+        <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:700;color:#1a4470;margin-bottom:7px">¿Con qué correo deseas enviar?</h3>
+        <p style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#6b7d90;line-height:1.55;margin-bottom:24px">El mensaje ya está listo con tus datos.<br>Solo elige tu cliente de correo.</p>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:16px">
+          <a href="${gmailURL}" target="_blank" style="display:flex;align-items:center;gap:12px;background:#ea4335;color:#fff;padding:14px 20px;border-radius:12px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;box-shadow:0 4px 16px rgba(234,67,53,.35)">
+            <span>📮</span><span style="flex:1">Abrir en Gmail</span><span style="opacity:.7">→</span>
+          </a>
+          <a href="${hotmailURL}" target="_blank" style="display:flex;align-items:center;gap:12px;background:#0078d4;color:#fff;padding:14px 20px;border-radius:12px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;box-shadow:0 4px 16px rgba(0,120,212,.35)">
+            <span>📧</span><span style="flex:1">Abrir en Hotmail / Outlook</span><span style="opacity:.7">→</span>
+          </a>
+        </div>
+        <button id="mcClose" style="background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.8rem;color:#6b7d90;padding:6px 16px">Cancelar</button>
+      </div>`;
+
+    overlay.innerHTML = '<style>@keyframes mFadeIn{from{opacity:0}to{opacity:1}}</style>' + (esMovil ? mobileBox : desktopBox);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
     overlay.querySelector('#mcClose').addEventListener('click', () => overlay.remove());
@@ -792,116 +509,57 @@ if (hambBtn) {
     { icon:'📋', label:'Cómo obtener mi certificado', sub:'Pasos del proceso explicados', id:'certificado' },
     { icon:'💼', label:'Vacantes y empleo',           sub:'Trabaja con DistriVision',     id:'vacantes'    }
   ];
-
   const ANSWERS = {
-    contacto: {
-      title:'📞 Contáctanos directamente',
-      html:`
-        <p>Puedes comunicarte con nosotros por cualquiera de estos medios:</p><br>
-        <p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p>
-        <p>📞 <b>Teléfono:</b> (8) 870 34 34</p>
-        <p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p>
-        <p>✉️ <b>RR.HH.:</b> <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>✉️ <b>General:</b> <a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></p>
-      `
-    },
-    certificado: {
-      title:'📋 Cómo obtener tu certificado',
-      html:`
-        <p><b>Sigue estos 3 sencillos pasos:</b></p><br>
-        <p><b>1️⃣ Descarga e imprime</b> el formato desde la carpeta de Drive en esta página.</p>
-        <p><b>2️⃣ Diligencia</b> todos los campos con letra clara y legible.</p>
-        <p><b>3️⃣ Preséntalo</b> en Recursos Humanos para firma y sello oficial.</p><br>
-        <p>📍 <b>RR.HH.:</b> CL 26 SUR No. 6 – 74, Neiva</p>
-      `
-    },
-    vacantes: {
-      title:'💼 Vacantes en DistriVision',
-      html:`
-        <p>¿Quieres ser parte de nuestro equipo?</p><br>
-        <p>👉 <a href="vacantes.html">Ver vacantes disponibles →</a></p><br>
-        <p>O envía tu hoja de vida a:</p>
-        <p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>📱 <a href="https://wa.me/573105996169" target="_blank">WhatsApp: 310 599 6169</a></p>
-      `
-    }
+    contacto: { title:'📞 Contáctanos directamente', html:`<p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <b>RR.HH.:</b> <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>✉️ <b>General:</b> <a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></p>` },
+    certificado: { title:'📋 Cómo obtener tu certificado', html:`<p><b>1️⃣ Descarga e imprime</b> el formato desde la carpeta de Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos con letra clara.</p><p><b>3️⃣ Preséntalo</b> en Recursos Humanos para firma y sello oficial.</p><p>📍 <b>RR.HH.:</b> CL 26 SUR No. 6 – 74, Neiva</p>` },
+    vacantes: { title:'💼 Vacantes en DistriVision', html:`<p>¿Quieres ser parte de nuestro equipo?</p><p>👉 <a href="vacantes.html">Ver vacantes disponibles →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169" target="_blank">WhatsApp: 310 599 6169</a></p>` }
   };
 
-  helpBtn.addEventListener('click', ()=>{
+  helpBtn.addEventListener('click', () => {
     isOpen = !isOpen;
     helpBtn.classList.toggle('open', isOpen);
     chatPanel.classList.toggle('open', isOpen);
-    if(isOpen && !initialized) initChat();
+    if (isOpen && !initialized) initChat();
   });
 
-  function initChat(){
+  function initChat() {
     initialized = true;
-    addTyping(()=>{
+    addTyping(() => {
       addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte hoy?');
-      setTimeout(()=>showOptions(), 400);
+      setTimeout(() => showOptions(), 400);
     });
   }
-
-  function showOptions(){
+  function showOptions() {
     dynamic.innerHTML = '<div class="dv-options" id="dvOptions"></div>';
     const container = document.getElementById('dvOptions');
-    OPTIONS.forEach((opt,i)=>{
+    OPTIONS.forEach((opt, i) => {
       const b = document.createElement('button');
       b.className = 'dv-option-btn';
-      b.style.animationDelay = (i*.08)+'s';
-      b.innerHTML = `
-        <div class="opt-icon">${opt.icon}</div>
-        <div class="opt-label">
-          <div>${opt.label}</div>
-          <div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${opt.sub}</div>
-        </div>
-        <span class="opt-arrow">›</span>
-      `;
-      b.addEventListener('click', ()=>selectOption(opt));
+      b.style.animationDelay = (i * .08) + 's';
+      b.innerHTML = `<div class="opt-icon">${opt.icon}</div><div class="opt-label"><div>${opt.label}</div><div style="font-weight:400;font-size:.73rem;color:#6b7d90;margin-top:1px">${opt.sub}</div></div><span class="opt-arrow">›</span>`;
+      b.addEventListener('click', () => selectOption(opt));
       container.appendChild(b);
     });
     scrollBot();
   }
-
-  function selectOption(opt){
-    addUser(opt.icon+' '+opt.label);
+  function selectOption(opt) {
+    addUser(opt.icon + ' ' + opt.label);
     dynamic.innerHTML = '';
-    addTyping(()=>{
+    addTyping(() => {
       const ans = ANSWERS[opt.id];
-      dynamic.innerHTML = `
-        <div class="dv-answer">
-          <div class="dv-answer-card"><strong>${ans.title}</strong>${ans.html}</div>
-          <button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button>
-        </div>`;
-      document.getElementById('dvBackBtn').addEventListener('click',()=>{
+      dynamic.innerHTML = `<div class="dv-answer"><div class="dv-answer-card"><strong>${ans.title}</strong>${ans.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`;
+      document.getElementById('dvBackBtn').addEventListener('click', () => {
         addBot('¿Hay algo más en lo que pueda ayudarte?');
         dynamic.innerHTML = '';
-        setTimeout(()=>showOptions(), 300);
+        setTimeout(() => showOptions(), 300);
       });
       scrollBot();
     });
   }
-
-  function addBot(html){
-    const el=document.createElement('div');
-    el.className='dv-bubble';
-    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${html}</div>`;
-    chatBody.appendChild(el);scrollBot();
-  }
-  function addUser(text){
-    const el=document.createElement('div');
-    el.className='dv-bubble user';
-    el.innerHTML=`<div class="dv-bubble-text">${text}</div>`;
-    chatBody.appendChild(el);scrollBot();
-  }
-  function addTyping(cb){
-    const el=document.createElement('div');
-    el.className='dv-typing';
-    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
-    chatBody.appendChild(el);scrollBot();
-    setTimeout(()=>{chatBody.removeChild(el);cb();},950);
-  }
-  function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
+  function addBot(html) { const el = document.createElement('div'); el.className='dv-bubble'; el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${html}</div>`; chatBody.appendChild(el); scrollBot(); }
+  function addUser(text) { const el = document.createElement('div'); el.className='dv-bubble user'; el.innerHTML=`<div class="dv-bubble-text">${text}</div>`; chatBody.appendChild(el); scrollBot(); }
+  function addTyping(cb) { const el = document.createElement('div'); el.className='dv-typing'; el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`; chatBody.appendChild(el); scrollBot(); setTimeout(() => { chatBody.removeChild(el); cb(); }, 950); }
+  function scrollBot() { setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 50); }
 })();
 </script>
 </body>
