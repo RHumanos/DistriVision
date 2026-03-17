@@ -1500,3 +1500,559 @@ footer { background: var(--blue-dark); padding: 60px 6vw 32px; }
   #dv-help-btn { bottom: 10px; right: 10px; width: 46px; height: 46px; }
   .dv-bubble-text { max-width: calc(100vw - 80px); }
 }
+/* ═══════════════════════════════════════════════════════════════
+   DistriVision — styles-vacantes.css
+   Estilos exclusivos de la página vacantes.html
+   Complementa styles4.css (no lo reemplaza)
+   Fuentes: DM Sans + DM Serif Display
+═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+/* ──────────────────────────────────────────────
+   VARIABLES ADICIONALES (extienden styles4.css)
+────────────────────────────────────────────── */
+:root {
+  --blue-deeper: #0f2d50;
+  --blue-mid:    #3a7bc8;
+  --off-white:   #f8fafd;
+  --gray-100:    #f1f5f9;
+  --gray-200:    #e2eaf4;
+  --text:        #0f1e30;
+  --text-mid:    #3a4a5c;
+  --text-muted:  #6b7d90;
+  --radius-sm:   10px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+}
+
+/* ──────────────────────────────────────────────
+   FUENTES — override para esta página
+────────────────────────────────────────────── */
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.page-hero h1,
+.page-hero-content h1,
+.cta-band h2 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+}
+
+.section-tag,
+.hero-eyebrow,
+.paso-body h4,
+.form-solicitud-title,
+.fs-label,
+.pdf-name,
+.btn-solicitud-label,
+.btn-solicitud-sub,
+.dv-chat-header-name,
+.dv-chat-header-status,
+.dv-bubble-text,
+.dv-option-btn,
+.dv-answer-card,
+.dv-back-btn,
+.dv-chat-footer,
+label, button, a.btn-white,
+a.btn-primary, a.btn-outline,
+a.pdf-download-btn {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ──────────────────────────────────────────────
+   HERO — rediseño con fondo oscuro
+────────────────────────────────────────────── */
+.page-hero {
+  min-height: 56vh;
+  display: flex;
+  align-items: center;
+  padding: 130px 5vw 88px;
+  position: relative;
+  overflow: hidden;
+  background: var(--blue-deeper);
+}
+
+/* Mesh gradient */
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(37,92,149,.9) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(34,143,210,.35) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 60% 80%, rgba(26,68,112,.6) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grid overlay */
+.page-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-hero-content {
+  position: relative; z-index: 1;
+  max-width: 680px;
+}
+
+/* Círculos flotantes del hero */
+.hero-geo {
+  position: absolute; border-radius: 50%;
+  animation: vGeoFloat 14s ease-in-out infinite;
+  pointer-events: none; z-index: 0;
+}
+.hero-geo-1 {
+  width: 480px; height: 480px;
+  border: 1px solid rgba(255,255,255,.06);
+  top: -160px; right: -80px;
+}
+.hero-geo-2 {
+  width: 280px; height: 280px;
+  border: 1px solid rgba(255,255,255,.08);
+  bottom: -60px; right: 20%;
+  animation-delay: -5s;
+}
+.hero-geo-3 {
+  width: 160px; height: 160px;
+  background: rgba(34,143,210,.08);
+  top: 30%; left: 55%;
+  animation-delay: -9s;
+}
+@keyframes vGeoFloat {
+  0%,100% { transform: translate(0,0) rotate(0deg); }
+  33%      { transform: translate(18px,-24px) rotate(5deg); }
+  66%      { transform: translate(-12px,14px) rotate(-3deg); }
+}
+
+/* Hero eyebrow */
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.16);
+  color: rgba(255,255,255,.85);
+  font-size: .72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 50px; margin-bottom: 28px;
+  opacity: 0; transform: translateY(16px);
+  animation: revealUp .7s .2s ease forwards;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Hero heading */
+.page-hero h1,
+.page-hero-content h1 {
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 22px;
+  opacity: 0; transform: translateY(28px);
+  animation: revealUp .8s .35s ease forwards;
+}
+.page-hero h1 em,
+.page-hero-content h1 em {
+  font-style: italic;
+  background: linear-gradient(135deg, #7ec8f5, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero desc */
+.hero-desc,
+.page-hero p {
+  font-size: 1.05rem; line-height: 1.8;
+  color: rgba(255,255,255,.6);
+  max-width: 480px; font-weight: 400;
+  opacity: 0; transform: translateY(16px);
+  animation: revealUp .7s .5s ease forwards;
+}
+
+/* ──────────────────────────────────────────────
+   SECCIONES — SHARED HELPERS
+────────────────────────────────────────────── */
+.section-tag {
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px; display: block;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--blue-dark); line-height: 1.15; margin-bottom: 14px;
+}
+.section-desc { color: var(--text-muted); font-size: .95rem; line-height: 1.8; }
+
+/* ──────────────────────────────────────────────
+   PDF SECTION
+────────────────────────────────────────────── */
+.pdf-section {
+  padding: 88px 4vw 96px;
+  background: var(--off-white);
+}
+.pdf-header { text-align: center; max-width: 580px; margin: 0 auto 52px; }
+
+.pdf-container {
+  max-width: 1360px; margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 60px rgba(37,92,149,.1), 0 1px 3px rgba(37,92,149,.06);
+  overflow: hidden;
+  border: 1px solid rgba(37,92,149,.08);
+}
+.pdf-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--blue-deeper);
+}
+.pdf-info { display: flex; align-items: center; gap: 12px; }
+.pdf-icon-svg { width: 28px; height: 28px; flex-shrink: 0; }
+.pdf-name { font-size: .88rem; font-weight: 500; color: rgba(255,255,255,.8); }
+
+.pdf-download-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--accent); color: var(--white);
+  padding: 9px 20px; border-radius: 50px;
+  font-weight: 600; font-size: .82rem; text-decoration: none;
+  transition: background .2s, transform .2s;
+  box-shadow: 0 3px 12px rgba(34,143,210,.4);
+  position: relative; z-index: 1;
+}
+.pdf-download-btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+.pdf-viewer-wrapper { width: 100%; height: 90vh; min-height: 720px; }
+.pdf-viewer-wrapper iframe { width: 100%; height: 100%; border: none; display: block; }
+
+.pdf-mobile-alt {
+  padding: 13px 22px; text-align: center;
+  border-top: 1px solid var(--gray-200);
+}
+.pdf-mobile-alt p { font-size: .82rem; color: var(--text-muted); }
+.pdf-mobile-alt a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.pdf-mobile-alt a:hover { color: var(--accent-dark); }
+
+/* ──────────────────────────────────────────────
+   SOLICITUD SECTION
+────────────────────────────────────────────── */
+.solicitud-section {
+  padding: 100px 5vw 112px;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.solicitud-section::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue-light), transparent);
+}
+
+.solicitud-blob {
+  position: absolute; pointer-events: none; z-index: 0; border-radius: 50%;
+}
+.solicitud-blob-1 {
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(34,143,210,.06) 0%, transparent 60%);
+}
+.solicitud-blob-2 {
+  bottom: -180px; left: -160px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(37,92,149,.05) 0%, transparent 60%);
+}
+
+.solicitud-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 1; }
+
+.solicitud-header { text-align: center; margin-bottom: 72px; }
+.solicitud-header p {
+  color: var(--text-muted); font-size: .98rem; line-height: 1.8;
+  max-width: 580px; margin: 0 auto;
+}
+
+/* ──────────────────────────────────────────────
+   PASOS GRID
+────────────────────────────────────────────── */
+.pasos-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 18px; margin-bottom: 52px;
+}
+.paso-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  display: flex; gap: 18px; align-items: flex-start;
+  position: relative; overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s;
+  opacity: 0; transform: translateY(24px);
+}
+.paso-card.paso-visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity .5s ease, transform .5s ease, box-shadow .3s ease, border-color .3s;
+}
+.paso-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(37,92,149,.1);
+  border-color: rgba(37,92,149,.2);
+}
+.paso-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--accent));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease; pointer-events: none;
+}
+.paso-card:hover::before { transform: scaleX(1); }
+
+.paso-num {
+  flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--blue-xlight);
+  color: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700; font-size: 1rem;
+  transition: background .3s, color .3s, transform .3s;
+  border: 1px solid var(--blue-light);
+}
+.paso-card:hover .paso-num {
+  background: var(--blue); color: var(--white);
+  transform: scale(1.06) rotate(-4deg);
+}
+.paso-body h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: .95rem; color: var(--blue-dark);
+  margin-bottom: 7px; line-height: 1.35;
+}
+.paso-body p { font-size: .85rem; line-height: 1.7; color: var(--text-muted); }
+.paso-body p strong { color: var(--blue); font-weight: 600; }
+.paso-pill {
+  display: inline-block; background: var(--blue-xlight); color: var(--blue);
+  font-size: .7rem; font-weight: 600; padding: 3px 11px;
+  border-radius: 50px; margin-top: 9px;
+  border: 1px solid var(--blue-light);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ──────────────────────────────────────────────
+   NOTA
+────────────────────────────────────────────── */
+.solicitud-nota {
+  background: var(--off-white);
+  border: 1px solid var(--gray-200);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 20px 24px; margin-bottom: 56px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.nota-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+.solicitud-nota p { font-size: .86rem; line-height: 1.74; color: var(--text-muted); }
+.solicitud-nota p strong { color: var(--blue-dark); font-weight: 600; }
+
+/* ──────────────────────────────────────────────
+   FORMULARIO
+────────────────────────────────────────────── */
+.form-solicitud-wrap {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 32px rgba(37,92,149,.07);
+  position: relative; overflow: hidden;
+}
+.form-solicitud-wrap::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--accent));
+}
+.form-solicitud-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem; font-weight: 600; color: var(--blue-dark);
+  margin-bottom: 5px; display: flex; align-items: center; gap: 8px;
+}
+.form-solicitud-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .8rem; color: var(--text-muted);
+  margin-bottom: 26px; line-height: 1.55;
+}
+.form-solicitud-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px;
+}
+.fs-group { display: flex; flex-direction: column; gap: 6px; }
+.fs-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .7rem; font-weight: 700; letter-spacing: .5px;
+  text-transform: uppercase; color: var(--blue-dark);
+}
+.fs-label em { color: #e53e3e; font-style: normal; margin-left: 2px; }
+.fs-input {
+  width: 100%; padding: 12px 15px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif; font-size: .9rem;
+  color: var(--text); background: var(--white);
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  outline: none;
+}
+.fs-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37,92,149,.1);
+  background: var(--blue-xlight);
+}
+.fs-input::placeholder { color: rgba(107,125,144,.4); }
+.fs-input.fs-error { border-color: #e53e3e; box-shadow: 0 0 0 3px rgba(229,62,62,.08); }
+.fs-error-msg {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .7rem; color: #e53e3e;
+  display: none; align-items: center; gap: 4px;
+}
+.fs-error-msg.show { display: flex; }
+
+.fs-preview {
+  margin-top: 20px;
+  background: var(--blue-xlight); border: 1px solid var(--blue-light);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  display: none;
+  animation: revealUp .3s ease both;
+}
+.fs-preview.show { display: block; }
+.fs-preview-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 7px; display: block;
+}
+.fs-preview-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .8rem; color: var(--text); line-height: 1.65;
+}
+.fs-preview-text strong { color: var(--blue-dark); }
+
+/* ──────────────────────────────────────────────
+   BOTÓN SOLICITUD
+────────────────────────────────────────────── */
+.solicitud-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+
+.btn-solicitud {
+  display: inline-flex; align-items: center; gap: 16px;
+  background: var(--blue-dark);
+  color: var(--white); padding: 20px 48px 20px 36px; border-radius: 60px;
+  border: none; cursor: pointer;
+  box-shadow: 0 8px 30px rgba(26,68,112,.35), inset 0 1px 0 rgba(255,255,255,.12);
+  transition: transform .3s ease, box-shadow .3s ease;
+  position: relative; overflow: hidden;
+}
+.btn-solicitud::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, transparent 60%);
+  opacity: 0; transition: opacity .3s; pointer-events: none;
+}
+.btn-solicitud:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 20px 55px rgba(26,68,112,.4), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.btn-solicitud:hover::after { opacity: 1; }
+.btn-solicitud:active { transform: translateY(0) scale(.98); }
+
+.btn-solicitud-icon {
+  font-size: 1.4rem; flex-shrink: 0;
+  animation: iconBounce 3s ease-in-out infinite;
+}
+@keyframes iconBounce {
+  0%,100% { transform: translateY(0) rotate(0); }
+  40%      { transform: translateY(-4px) rotate(-6deg); }
+  60%      { transform: translateY(-2px) rotate(3deg); }
+}
+.btn-solicitud-texts { display: flex; flex-direction: column; gap: 2px; line-height: 1.2; }
+.btn-solicitud-label { font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: .3px; }
+.btn-solicitud-sub   { font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 400; opacity: .65; }
+.btn-solicitud-arrow { font-size: 1.1rem; opacity: .7; flex-shrink: 0; transition: transform .3s, opacity .3s; }
+.btn-solicitud:hover .btn-solicitud-arrow { transform: translateX(4px); opacity: 1; }
+
+.solicitud-email-hint {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .81rem; color: var(--text-muted);
+  display: flex; align-items: center; gap: 6px;
+}
+.solicitud-email-hint strong { color: var(--blue); font-weight: 600; }
+
+/* ──────────────────────────────────────────────
+   CTA BAND — override
+────────────────────────────────────────────── */
+.cta-band {
+  background: var(--blue-deeper);
+}
+.cta-band::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background: none; /* reset styles4 stripe pattern */
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.cta-band::after {
+  content: '';
+  position: absolute; right: -100px; top: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,143,210,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-band h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+
+/* ──────────────────────────────────────────────
+   FOOTER — override
+────────────────────────────────────────────── */
+footer { background: var(--blue-deeper); }
+.fp-name span { color: #7ec8f5; }
+
+/* ──────────────────────────────────────────────
+   CHATBOT — override estilos
+────────────────────────────────────────────── */
+#dv-chat-panel { border: 1px solid rgba(37,92,149,.08); }
+.dv-chat-header { background: var(--blue-deeper); }
+.dv-bubble-text { font-family: 'DM Sans', sans-serif; }
+.dv-option-btn  { font-family: 'DM Sans', sans-serif; }
+.dv-answer-card { font-family: 'DM Sans', sans-serif; }
+.dv-back-btn    { font-family: 'DM Sans', sans-serif; }
+.dv-chat-footer { font-family: 'DM Sans', sans-serif; }
+
+/* ──────────────────────────────────────────────
+   RESPONSIVE
+────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .page-hero  { padding: 100px 5vw 60px; min-height: auto; }
+  .pasos-grid { grid-template-columns: 1fr; }
+  .pdf-section { padding: 60px 5vw 72px; }
+  .pdf-toolbar { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .pdf-viewer-wrapper { height: 68vh; min-height: 480px; }
+  .solicitud-section { padding: 72px 5vw 80px; }
+  .form-solicitud-grid { grid-template-columns: 1fr; }
+  .form-solicitud-wrap { padding: 26px 20px; }
+}
+@media (max-width: 600px) {
+  .page-hero h1,
+  .page-hero-content h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .hero-desc, .page-hero p { font-size: .95rem; }
+  .btn-solicitud {
+    padding: 18px 28px; width: 100%;
+    max-width: 340px; justify-content: center;
+  }
+  .solicitud-section { padding: 60px 5vw 72px; }
+  .solicitud-nota { flex-direction: column; gap: 10px; }
+  .solicitud-email-hint { flex-direction: column; text-align: center; gap: 4px; }
+}
