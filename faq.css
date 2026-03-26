@@ -601,17 +601,20 @@
 }
 
 /* ══════════════════════════════
-   BARRA DE PREGUNTAS
+   BARRA DE PREGUNTAS — FIJA EN LA PARTE INFERIOR
 ══════════════════════════════ */
 .fcw-questions-bar {
   background: linear-gradient(180deg, #f5f9ff, #eef4fc);
   border-top: 1px solid rgba(120,180,230,.3);
   padding: 14px 28px 16px;
-  flex-shrink: 0;
   max-height: 200px;
   overflow-y: auto;
   box-shadow: 0 -3px 14px rgba(37,92,149,.07);
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  left: 300px; /* Ancho del sidebar */
+  right: 0;
+  z-index: 100;
 }
 .fcw-questions-bar::before {       /* tope metálico */
   content: '';
@@ -675,14 +678,17 @@
 }
 
 /* ══════════════════════════════
-   BUSCADOR
+   BUSCADOR — FIJO EN LA PARTE INFERIOR
 ══════════════════════════════ */
 .fcw-input-area {
   background: linear-gradient(180deg, #eef4fc, #e8f0f9);
   border-top: 1px solid rgba(120,180,230,.25);
   padding: 14px 28px 16px;
-  flex-shrink: 0;
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  left: 300px; /* Ancho del sidebar */
+  right: 0;
+  z-index: 101;
 }
 .fcw-input-area::before {
   content: '';
@@ -740,18 +746,37 @@
   box-shadow: 0 8px 24px rgba(37,92,149,.4), var(--glow-blue);
 }
 
+/* Espacio para los elementos fijos en el chat */
+.faq-chat-window {
+  padding-bottom: 80px; /* Espacio para el input fijo */
+}
+
+.fcw-messages {
+  padding-bottom: 100px; /* Espacio adicional para scroll */
+}
+
 /* ══════════════════════════════
    RESPONSIVE — 1200px
 ══════════════════════════════ */
 @media (max-width: 1200px) {
   .faq-chat-section { grid-template-columns: 260px 1fr; }
+  .fcw-questions-bar,
+  .fcw-input-area {
+    left: 260px;
+  }
 }
 
 /* ── 960px ── */
 @media (max-width: 960px) {
   .faq-chat-section { grid-template-columns: 220px 1fr; }
   .fcw-messages { padding: 20px 20px; }
-  .fcw-header, .fcw-questions-bar, .fcw-input-area { padding-left: 18px; padding-right: 18px; }
+  .fcw-header { padding-left: 18px; padding-right: 18px; }
+  .fcw-questions-bar,
+  .fcw-input-area {
+    left: 220px;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
   .faq-cat-btn { font-size: .8rem; padding: 10px 11px; }
 }
 
@@ -808,11 +833,20 @@
   .faq-chat-window {
     height: auto;
     min-height: 65vh;
+    padding-bottom: 80px;
   }
-  .fcw-messages { max-height: 50vh; padding: 16px 14px; }
+  .fcw-messages { max-height: 50vh; padding: 16px 14px; padding-bottom: 100px; }
   .fcw-header { padding: 13px 16px; }
-  .fcw-questions-bar { padding: 12px 14px; max-height: 160px; }
-  .fcw-input-area { padding: 12px 14px; }
+  
+  /* Botones fijos ocupan todo el ancho en móvil */
+  .fcw-questions-bar,
+  .fcw-input-area {
+    left: 0;
+    padding: 12px 14px;
+  }
+  .fcw-questions-bar {
+    max-height: 160px;
+  }
 
   /* Hero */
   .faq-hero { padding: 110px 5vw 60px; }
