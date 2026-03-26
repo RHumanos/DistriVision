@@ -650,6 +650,242 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEa
   });
   b.addEventListener('mouseleave', () => { b.style.transform = ''; });
 });
+  /* ══════════════════════════════
+   LÓGICA DEL CHAT
+   Auto-borrado: 30s, excepto saludo inicial
+══════════════════════════════ */
+(function () {
+  const messages  = document.getElementById('fcwMessages');
+  const questBar  = document.getElementById('fcwQuestionsBar');
+  const catBtns   = document.querySelectorAll('.faq-cat-btn');
+  let activeCat   = null;
+  let isTyping    = false;
+
+  const AUTO_DELETE_MS = 30_000;   // 30 segundos
+
+  // Hora actual en el saludo
+  const wt = document.getElementById('welcomeTime');
+  if (wt) {
+    const d = new Date();
+    wt.textContent = d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  }
+
+  /* ── Utilidades ── */
+  function now() {
+    const d = new Date();
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  }
+
+  function scrollBottom() {
+    setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 60);
+  }
+
+  /**
+   * Programa el borrado suave de un elemento después de AUTO_DELETE_MS.
+   * Añade clase fade-out → espera la transición → elimina del DOM.
+   * El saludo inicial (.intro-msg) queda excluido.
+   */
+  function scheduleDelete(el) {
+    if (!el || el.classList.contains('intro-msg')) return;
+
+    setTimeout(() => {
+      // Evita borrar si ya fue removido manualmente
+      if (!el.parentNode) return;
+
+      el.style.transition = 'opacity .5s ease, transform .5s ease, max-height .5s ease, margin .5s ease, padding .5s ease';
+      el.style.opacity    = '0';
+      el.style.transform  = 'translateY(-6px) scale(.97)';
+      el.style.maxHeight  = el.offsetHeight + 'px';   // punto de partida para colapso
+      el.style.overflow   = 'hidden';
+
+      // Siguiente frame: colapsar altura
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.style.maxHeight = '0';
+          el.style.marginBottom = '0';
+          el.style.paddingTop   = '0';
+          el.style.paddingBottom = '0';
+        });
+      });
+
+      setTimeout(() => { el.remove(); }, 520);
+    }, AUTO_DELETE_MS);
+  }
+
+  /* Muestra indicador de escritura, devuelve promesa */
+  function showTyping(ms = 850) {
+    return new Promise(resolve => {
+      isTyping = true;
+      const el = document.createElement('div');
+      el.className = 'fcw-msg bot typing-indicator';
+      el.innerHTML = `
+        <div class="fcw-msg-avatar">🤖</div>
+        <div class="fcw-msg-bubble typing-bubble">
+          <span></span><span></span><span></span>
+        </div>`;
+      messages.appendChild(el);
+      scrollBottom();
+      setTimeout(() => {
+        el.remove();
+        isTyping = false;
+        resolve();
+      }, ms);
+    });
+  }
+
+  /* Burbuja del bot */
+  function addBot(html) {
+    const el = document.createElement('div');
+    el.className = 'fcw-msg bot';
+    el.innerHTML = `
+      <div class="fcw-msg-avatar">🤖</div>
+      <div class="fcw-msg-bubble">${html}</div>
+      <span class="fcw-msg-time">${now()}</span>`;
+    messages.appendChild(el);
+    scrollBottom();
+    scheduleDelete(el);          // ← programa borrado
+    return el;
+  }
+
+  /* Burbuja del usuario */
+  function addUser(text) {
+    const el = document.createElement('div');
+    el.className = 'fcw-msg user';
+    el.innerHTML = `
+      <div class="fcw-msg-bubble">${text}</div>
+      <div class="fcw-msg-avatar user-av">👤</div>`;
+    messages.appendChild(el);
+    scrollBottom();
+    scheduleDelete(el);          // ← programa borrado
+    return el;
+  }
+
+  /* Separador de sección */
+  function addSeparator(label) {
+    const el = document.createElement('div');
+    el.className = 'fcat-label-row';
+    el.innerHTML = `<span class="fcat-separator">${label}</span>`;
+    messages.appendChild(el);
+    scheduleDelete(el);          // ← también se borra
+  }
+
+  /* ── Renderiza la barra de botones de preguntas ── */
+  function renderBar(catKey) {
+    const cat = FAQ_DATA[catKey];
+    questBar.innerHTML = '';
+
+    const hint = document.createElement('p');
+    hint.className = 'fqb-hint';
+    hint.textContent = `${cat.label} — Elige una pregunta:`;
+    questBar.appendChild(hint);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'fqb-buttons';
+
+    cat.questions.forEach((item, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'fqb-btn';
+      btn.style.animationDelay = (idx * 0.055) + 's';
+      btn.textContent = item.q;
+      btn.addEventListener('click', () => {
+        if (isTyping || btn.disabled) return;
+        askQuestion(catKey, idx, btn);
+      });
+      wrap.appendChild(btn);
+    });
+
+    questBar.appendChild(wrap);
+  }
+
+  /* ── El usuario hace clic en una pregunta ── */
+  async function askQuestion(catKey, idx, btn) {
+    setBarDisabled(true);
+    btn.classList.add('used');
+
+    const item = FAQ_DATA[catKey].questions[idx];
+    addUser(item.q);
+    await showTyping(820);
+    addBot(item.a);
+
+    setBarDisabled(false);
+  }
+
+  function setBarDisabled(state) {
+    questBar.querySelectorAll('.fqb-btn').forEach(b => {
+      if (!b.classList.contains('used')) b.disabled = state;
+    });
+  }
+
+  /* ── Clic en categoría del sidebar ── */
+  async function selectCategory(catKey) {
+    if (catKey === activeCat || isTyping) return;
+    activeCat = catKey;
+
+    catBtns.forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-cat="${catKey}"]`).classList.add('active');
+
+    addSeparator(FAQ_DATA[catKey].label);
+    await showTyping(700);
+    addBot(`Perfecto, estás en <strong>${FAQ_DATA[catKey].label}</strong>. ¿Sobre qué te puedo ayudar?`);
+    renderBar(catKey);
+  }
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => selectCategory(btn.dataset.cat));
+  });
+
+  /* ── Búsqueda ── */
+  function doSearch() {
+    const term = document.getElementById('faqSearch').value.trim().toLowerCase();
+    if (!term) return;
+
+    let found = null, foundCat = null, foundIdx = -1;
+
+    outer: for (const [key, cat] of Object.entries(FAQ_DATA)) {
+      for (let i = 0; i < cat.questions.length; i++) {
+        const item = cat.questions[i];
+        if (item.q.toLowerCase().includes(term) || item.a.toLowerCase().includes(term)) {
+          found = item; foundCat = key; foundIdx = i;
+          break outer;
+        }
+      }
+    }
+
+    document.getElementById('faqSearch').value = '';
+
+    if (!found) {
+      const input = document.getElementById('faqSearch');
+      input.classList.add('search-error');
+      setTimeout(() => input.classList.remove('search-error'), 900);
+      return;
+    }
+
+    if (foundCat !== activeCat) {
+      selectCategory(foundCat).then(() => {
+        setTimeout(() => fireSearchBtn(foundIdx), 1400);
+      });
+    } else {
+      fireSearchBtn(foundIdx);
+    }
+  }
+
+  function fireSearchBtn(idx) {
+    const btns = questBar.querySelectorAll('.fqb-btn');
+    const btn  = btns[idx];
+    if (!btn || btn.disabled || btn.classList.contains('used')) return;
+    btn.classList.add('search-highlight');
+    setTimeout(() => {
+      btn.classList.remove('search-highlight');
+      askQuestion(activeCat, idx, btn);
+    }, 400);
+  }
+
+  document.getElementById('faqSearchBtn').addEventListener('click', doSearch);
+  document.getElementById('faqSearch').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+
+})();
 </script>
 </body>
 </html>
