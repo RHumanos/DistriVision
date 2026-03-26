@@ -7,18 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- En producción: <link rel="stylesheet" href="styles.css"> -->
   <link rel="stylesheet" href="styles6.css">
+  <link rel="stylesheet" href="portal-fixes.css">
 
 <style>
-/*
-  NOTA PARA INTEGRACIÓN:
-  Reemplaza el <style> del portal con styles6_mejorado.css
-  El resto del HTML es idéntico al original.
-  Solo se actualizan estilos visuales — lógica JS intacta.
-*/
-
-/* Variables base (normalmente en styles.css) */
+/* Variables base */
 :root {
   --blue:       #255c95;
   --blue-dark:  #1a3d5c;
@@ -33,8 +26,6 @@
   --shadow-md:  0 8px 32px rgba(37,92,149,.14);
   --transition: .28s ease;
 }
-
-/* Reset base mínimo */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: 'Lato', sans-serif;
@@ -43,7 +34,7 @@ body {
 }
 img { max-width: 100%; }
 
-/* ── Cursor (de styles.css) ── */
+/* ── Cursor ── */
 .cursor-dot, .cursor-ring {
   position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%;
   transform: translate(-50%,-50%);
@@ -64,7 +55,7 @@ img { max-width: 100%; }
   box-shadow: 0 0 8px rgba(34,143,210,.4);
 }
 
-/* ── Navbar (de styles.css — sin cambios) ── */
+/* ── Navbar ── */
 #navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
@@ -74,9 +65,7 @@ img { max-width: 100%; }
   border-bottom: 1px solid rgba(37,92,149,.1);
   transition: box-shadow .3s;
 }
-#navbar.scrolled {
-  box-shadow: 0 4px 24px rgba(37,92,149,.12);
-}
+#navbar.scrolled { box-shadow: 0 4px 24px rgba(37,92,149,.12); }
 .nav-logo { display: flex; align-items: center; text-decoration: none; }
 .logo-img  { height: 42px; width: auto; }
 #navMenu   { display: flex; align-items: center; gap: 0; list-style: none; }
@@ -97,10 +86,7 @@ img { max-width: 100%; }
 .nav-hamburger { display: none; }
 
 /* ── Footer ── */
-footer {
-  background: #0f2642;
-  font-family: 'Lato', sans-serif;
-}
+footer { background: #0f2642; font-family: 'Lato', sans-serif; }
 .footer-top {
   display: grid; grid-template-columns: 2fr 1fr 1fr;
   gap: 48px; padding: 52px 6vw 44px;
@@ -111,14 +97,11 @@ footer {
   line-height: 1.7; max-width: 280px; margin-top: 12px;
 }
 .fp-logo-img { height: 36px; width: auto; margin-bottom: 10px; }
-.fp-name {
-  font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: -0.5px;
-}
+.fp-name { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
 .fp-name span { color: #228fd2; }
 .footer-col h5 {
   font-size: .7rem; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: rgba(255,255,255,.35);
-  margin-bottom: 16px;
+  text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 16px;
 }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
@@ -174,9 +157,7 @@ footer {
   display: flex; flex-direction: column; gap: 10px;
   max-height: 320px;
 }
-.dv-bubble {
-  display: flex; gap: 8px; align-items: flex-start;
-}
+.dv-bubble { display: flex; gap: 8px; align-items: flex-start; }
 .dv-bubble-avatar {
   width: 28px; height: 28px; background: var(--blue-light);
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -251,8 +232,7 @@ footer {
   }
   .nav-hamburger span {
     display: block; width: 24px; height: 2px;
-    background: var(--text); border-radius: 2px;
-    transition: .25s;
+    background: var(--text); border-radius: 2px; transition: .25s;
   }
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
 }
@@ -264,7 +244,7 @@ footer {
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
-<!-- NAV — sin cambios -->
+<!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="img/1 (3).png" alt="DistriVision" class="logo-img">
@@ -286,7 +266,7 @@ footer {
   </button>
 </nav>
 
-<!-- HERO — más profundo y atmosférico -->
+<!-- HERO -->
 <section class="portal-hero">
   <div class="hero-bg">
     <div class="geo geo-1"></div>
@@ -303,7 +283,7 @@ footer {
   </div>
 </section>
 
-<!-- TABS — sin cambios -->
+<!-- TABS -->
 <div class="portal-tabs" id="portalTabs">
   <button class="ptab active" data-tab="todos">
     <span class="tab-icon">📋</span> Todos
@@ -331,7 +311,7 @@ footer {
 </div>
 
 <!-- CUERPO PRINCIPAL -->
-<div class="portal-body">
+<div class="portal-body" id="portalBody">
 
   <div class="portal-feed" id="portalFeed">
     <div class="feed-empty" id="feedEmpty">
@@ -428,7 +408,7 @@ footer {
     </div>
 
   </aside>
-</div>
+</div><!-- /.portal-body -->
 
 <!-- FOOTER -->
 <footer>
@@ -626,7 +606,7 @@ const UPCOMING_EVENTS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   MOTOR DEL PORTAL — no modificar nada debajo de esta línea
+   MOTOR DEL PORTAL
 ═══════════════════════════════════════════════════════════════ */
 const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
@@ -895,32 +875,40 @@ document.getElementById('cnt-todos').textContent = allCards.length;
   if (el) el.textContent = counts[t] || 0;
 });
 
-/* ── Filtro de tabs ── */
+/* ── Filtro de tabs — CORREGIDO ── */
 document.querySelectorAll('.ptab').forEach(tab => {
   tab.addEventListener('click', function () {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
     this.classList.add('active');
     const f = this.dataset.tab;
+
     const calView   = document.getElementById('calendarView');
     const feedEl    = document.getElementById('portalFeed');
     const sidebarEl = document.getElementById('portalSidebar');
+    const bodyEl    = document.getElementById('portalBody');
+
     if (f === 'calendario') {
-      feedEl.classList.add('hidden');
-      sidebarEl.classList.add('hidden');
+      feedEl.style.display    = 'none';
+      sidebarEl.style.display = 'none';
       calView.classList.add('cal-active');
+      bodyEl.classList.add('cal-mode');
       renderCalendar(calViewYear, calViewMonth);
       return;
     }
-    feedEl.classList.remove('hidden');
-    sidebarEl.classList.remove('hidden');
+
+    /* Volver a modo feed */
+    feedEl.style.display    = '';
+    sidebarEl.style.display = '';
     calView.classList.remove('cal-active');
+    bodyEl.classList.remove('cal-mode');
+
     let vis = 0;
     allCards.forEach(c => {
       const show = f === 'todos' || c.type === f;
       c.el.classList.toggle('visible', show);
       if (show) vis++;
     });
-    feedEmpty.classList.toggle('visible', vis === 0);
+    feedEmpty.style.display = vis === 0 ? 'block' : 'none';
   });
 });
 
