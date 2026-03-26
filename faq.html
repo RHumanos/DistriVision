@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes – DistriVision</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="faq.css">
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="scroll-progress"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="img/1 (3).png" alt="DistriVision Logo" class="logo-img">
+  </a>
+  <ul id="navMenu">
+    <li><a href="index.html#nosotros">Nosotros</a></li>
+    <li><a href="index.html#mision">Misión &amp; Visión</a></li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#galeria">Galería</a></li>
+    <li><a href="historia.html">Historia</a></li>
+    <li><a href="noticias.html">Noticias</a></li>
+    <li><a href="certificados.html">Certificados</a></li>
+    <li><a href="vacantes.html">Vacantes</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+    <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════ HERO FAQ ══════════════ -->
+<section class="faq-hero">
+  <div class="faq-hero-bg">
+    <div class="fhg fhg-1"></div>
+    <div class="fhg fhg-2"></div>
+    <div class="fhg fhg-3"></div>
+  </div>
+  <div class="faq-hero-content">
+    <span class="hero-eyebrow">Centro de Ayuda</span>
+    <h1>Preguntas<br><em>Frecuentes</em></h1>
+    <p class="faq-hero-desc">Todo lo que necesitas saber sobre DistriVision. Selecciona una pregunta y nuestro asistente te responderá al instante.</p>
+    <div class="faq-hero-stats">
+      <div class="fhs-item"><span class="fhs-num">24</span><span class="fhs-lbl">Preguntas respondidas</span></div>
+      <div class="fhs-item"><span class="fhs-num">100%</span><span class="fhs-lbl">Respuesta inmediata</span></div>
+      <div class="fhs-item"><span class="fhs-num">30+</span><span class="fhs-lbl">Años de experiencia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CHAT GIGANTE ══════════════ -->
+<section class="faq-chat-section">
+
+  <!-- Barra lateral de categorías -->
+  <aside class="faq-sidebar">
+    <div class="faq-sidebar-header">
+      <div class="fsb-avatar">🤖</div>
+      <div>
+        <div class="fsb-name">Asistente DistriVision</div>
+        <div class="fsb-status"><span class="fsb-dot"></span> En línea</div>
+      </div>
+    </div>
+    <p class="fsb-intro">Hola 👋 Selecciona una categoría para ver las preguntas frecuentes.</p>
+    <nav class="faq-cats">
+      <button class="faq-cat-btn active" data-cat="general">
+        <span class="fcat-icon">🏢</span>
+        <span>General</span>
+        <span class="fcat-count">6</span>
+      </button>
+      <button class="faq-cat-btn" data-cat="servicios">
+        <span class="fcat-icon">🚚</span>
+        <span>Servicios</span>
+        <span class="fcat-count">5</span>
+      </button>
+      <button class="faq-cat-btn" data-cat="productos">
+        <span class="fcat-icon">📦</span>
+        <span>Productos</span>
+        <span class="fcat-count">4</span>
+      </button>
+      <button class="faq-cat-btn" data-cat="empleo">
+        <span class="fcat-icon">💼</span>
+        <span>Empleo</span>
+        <span class="fcat-count">4</span>
+      </button>
+      <button class="faq-cat-btn" data-cat="certificados">
+        <span class="fcat-icon">📋</span>
+        <span>Certificados</span>
+        <span class="fcat-count">3</span>
+      </button>
+      <button class="faq-cat-btn" data-cat="contacto">
+        <span class="fcat-icon">📞</span>
+        <span>Contacto</span>
+        <span class="fcat-count">2</span>
+      </button>
+    </nav>
+    <div class="fsb-cta">
+      <p>¿No encontraste tu respuesta?</p>
+      <a href="contacto.html" class="btn-primary" style="display:block;text-align:center;font-size:.82rem;padding:12px 20px;">Contáctanos directamente →</a>
+    </div>
+  </aside>
+
+  <!-- Ventana del chat -->
+  <div class="faq-chat-window">
+
+    <!-- Cabecera del chat -->
+    <div class="fcw-header">
+      <div class="fcw-header-left">
+        <div class="fcw-avatar">🤖</div>
+        <div>
+          <div class="fcw-name">Asistente DistriVision</div>
+          <div class="fcw-status"><span class="fsb-dot"></span> Respuesta inmediata</div>
+        </div>
+      </div>
+      <div class="fcw-header-right">
+        <span class="fcw-badge">FAQ Interactivo</span>
+      </div>
+    </div>
+
+    <!-- Área de mensajes -->
+    <div class="fcw-messages" id="fcwMessages">
+
+      <!-- Mensaje de bienvenida del bot -->
+      <div class="fcw-msg bot intro-msg">
+        <div class="fcw-msg-avatar">🤖</div>
+        <div class="fcw-msg-bubble">
+          <p>¡Bienvenido al centro de ayuda de <strong>DistriVision</strong>! 👋</p>
+          <p style="margin-top:8px">Soy tu asistente virtual. Aquí encontrarás respuesta a todas las preguntas frecuentes sobre nuestra empresa, servicios, productos y más.</p>
+          <p style="margin-top:8px">Selecciona una categoría en el panel izquierdo o haz clic en cualquier pregunta para obtener la respuesta al instante.</p>
+        </div>
+        <span class="fcw-msg-time">Ahora</span>
+      </div>
+
+      <!-- Preguntas y respuestas por categoría -->
+      <div class="faq-category-block active" id="cat-general">
+        <div class="fcat-label-row">
+          <span class="fcat-separator">🏢 General</span>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="g1">
+            <div class="fcw-msg-bubble">¿Qué es DistriVision?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-g1">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p><strong>DistriVision LTDA</strong> es una empresa líder en la distribución y comercialización de productos de alta calidad y consumo masivo, ubicada en Neiva, Huila, Colombia.</p>
+              <p style="margin-top:8px">Contamos con más de <strong>30 años de experiencia</strong> en el sector, atendiendo a más de <strong>500 clientes satisfechos</strong> en nuestra zona asignada con un portafolio de más de <strong>1,000 productos</strong>.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="g2">
+            <div class="fcw-msg-bubble">¿Dónde están ubicados?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-g2">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Nuestra sede principal se encuentra en:</p>
+              <div class="faq-info-card">
+                <div class="fic-row">📍 <strong>Dirección:</strong> CL 26 SUR No. 6 – 74, Neiva, Huila</div>
+                <div class="fic-row">📞 <strong>Teléfono:</strong> (8) 870 34 34 | 310 599 6169</div>
+                <div class="fic-row">🕐 <strong>Horario:</strong> Lunes – Viernes: 8:00 am – 6:00 pm</div>
+              </div>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="g3">
+            <div class="fcw-msg-bubble">¿Cuántos años de experiencia tienen?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-g3">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>DistriVision cuenta con más de <strong>30 años de trayectoria</strong> en el sector de distribución y comercialización en Colombia. A lo largo de este tiempo hemos consolidado relaciones sólidas con nuestros clientes y socios comerciales, posicionándonos como referente de excelencia en la región.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="g4">
+            <div class="fcw-msg-bubble">¿Cuál es la misión de DistriVision?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-g4">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Nuestra misión es <strong>ser la empresa líder en la distribución y comercialización de productos de alta calidad y consumo masivo</strong>, ofreciendo un superior servicio para satisfacer las necesidades de la zona asignada.</p>
+              <p style="margin-top:8px">Brindamos mayor asesoramiento al cliente consumidor, contribuyendo así a la continuidad del excelente posicionamiento de la marca representada.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="g5">
+            <div class="fcw-msg-bubble">¿Cuál es la visión de la empresa?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-g5">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Nuestra visión es <strong>lograr el reconocimiento como distribuidor de referencia</strong>, alcanzando la lealtad de los clientes mediante:</p>
+              <ul class="faq-list">
+                <li>✓ Excelente servicio al cliente</li>
+                <li>✓ Innovación en esquemas y métodos de trabajo</li>
+                <li>✓ Portafolio atractivo y diversificado</li>
+                <li>✓ Asesoría especializada al Cliente-Consumidor</li>
+                <li>✓ Infraestructura acorde con las necesidades</li>
+                <li>✓ Trabajo en equipo de alto rendimiento</li>
+              </ul>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="g6">
+            <div class="fcw-msg-bubble">¿Qué zona geográfica cubren?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-g6">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>DistriVision opera con <strong>100% de cobertura de zona asignada</strong> en el departamento del Huila, Colombia. Nuestra logística garantiza distribución oportuna y eficiente en toda el área de operación, asegurando que los productos lleguen en perfecto estado y a tiempo.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICIOS -->
+      <div class="faq-category-block" id="cat-servicios">
+        <div class="fcat-label-row">
+          <span class="fcat-separator">🚚 Servicios</span>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="s1">
+            <div class="fcw-msg-bubble">¿Qué servicios ofrece DistriVision?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-s1">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Ofrecemos un portafolio completo de servicios:</p>
+              <ul class="faq-list">
+                <li>🚚 <strong>Distribución Directa:</strong> entrega oportuna en toda la zona</li>
+                <li>⭐ <strong>Servicio Premium:</strong> atención personalizada y seguimiento</li>
+                <li>📊 <strong>Asesoría Comercial:</strong> orientación experta para maximizar ventas</li>
+                <li>📦 <strong>Portafolio Completo:</strong> catálogo amplio de productos</li>
+                <li>🔄 <strong>Innovación Continua:</strong> métodos de trabajo de vanguardia</li>
+                <li>🤝 <strong>Trabajo en Equipo:</strong> equipo humano comprometido</li>
+              </ul>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="s2">
+            <div class="fcw-msg-bubble">¿Cómo funciona la distribución directa?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-s2">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Nuestra <strong>distribución directa</strong> funciona mediante una flota de vehículos modernos y equipados que cubren rutas estratégicas en la zona asignada.</p>
+              <p style="margin-top:8px">Contamos con sistemas avanzados de gestión logística que optimizan rutas y garantizan que cada entrega llegue puntualmente y en perfectas condiciones. Los pedidos son coordinados directamente con nuestro equipo comercial.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="s3">
+            <div class="fcw-msg-bubble">¿Ofrecen asesoría comercial gratuita?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-s3">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Sí. La <strong>asesoría comercial</strong> hace parte de nuestro servicio integral. Nuestros asesores brindan orientación experta para maximizar el potencial de ventas y fortalecer el posicionamiento de la marca en el mercado local.</p>
+              <p style="margin-top:8px">Para agendar una asesoría, contáctanos al <strong>(8) 870 34 34</strong> o escríbenos a nuestro correo.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="s4">
+            <div class="fcw-msg-bubble">¿Cuáles son los horarios de entrega?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-s4">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Las entregas se realizan en el marco de nuestro horario de atención:</p>
+              <div class="faq-info-card">
+                <div class="fic-row">📅 <strong>Días:</strong> Lunes a Viernes</div>
+                <div class="fic-row">⏰ <strong>Horario:</strong> 8:00 am – 6:00 pm</div>
+              </div>
+              <p style="margin-top:8px">Para pedidos especiales o urgentes, contáctanos directamente y buscaremos la mejor solución para tu necesidad.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="s5">
+            <div class="fcw-msg-bubble">¿Tienen servicio de seguimiento de pedidos?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-s5">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Sí. Como parte de nuestro <strong>Servicio Premium</strong>, brindamos seguimiento continuo a cada pedido. Nuestro equipo comercial está disponible durante el horario laboral para informarte sobre el estado de tus entregas.</p>
+              <p style="margin-top:8px">Puedes comunicarte al <strong>310 599 6169</strong> (WhatsApp y llamadas) para consultar cualquier novedad.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCTOS -->
+      <div class="faq-category-block" id="cat-productos">
+        <div class="fcat-label-row">
+          <span class="fcat-separator">📦 Productos</span>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="p1">
+            <div class="fcw-msg-bubble">¿Qué tipo de productos distribuyen?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-p1">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Distribuimos un amplio portafolio de <strong>productos de alta calidad y consumo masivo</strong> que satisfacen las demandas del mercado actual.</p>
+              <p style="margin-top:8px">Nuestro catálogo cuenta con más de <strong>1,000 productos</strong> en diversas categorías, todos seleccionados bajo rigurosos estándares de calidad para garantizar la satisfacción del cliente final.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="p2">
+            <div class="fcw-msg-bubble">¿Cómo garantizan la calidad de los productos?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-p2">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Contamos con <strong>rigurosos procesos de control de calidad</strong> en cada etapa:</p>
+              <ul class="faq-list">
+                <li>✓ Almacén de última generación para conservación óptima</li>
+                <li>✓ Verificación en recepción de mercancía</li>
+                <li>✓ Control de inventario y trazabilidad</li>
+                <li>✓ Revisión en despacho antes de cada entrega</li>
+                <li>✓ Flota de distribución adecuada para cada tipo de producto</li>
+              </ul>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="p3">
+            <div class="fcw-msg-bubble">¿Cómo solicito el catálogo de productos?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-p3">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Puedes solicitar nuestro catálogo completo de productos a través de los siguientes canales:</p>
+              <div class="faq-info-card">
+                <div class="fic-row">✉️ <strong>Correo:</strong> distribuciones_vision@hotmail.com</div>
+                <div class="fic-row">📱 <strong>WhatsApp:</strong> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></div>
+                <div class="fic-row">📞 <strong>Teléfono:</strong> (8) 870 34 34</div>
+              </div>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="p4">
+            <div class="fcw-msg-bubble">¿Tienen pedido mínimo de compra?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-p4">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Las condiciones comerciales, incluyendo pedidos mínimos, dependen del tipo de cliente y la zona de distribución. Para conocer las condiciones específicas aplicables a tu negocio, te recomendamos contactar directamente a nuestro equipo comercial.</p>
+              <p style="margin-top:8px">📞 <strong>(8) 870 34 34</strong> | 📱 <strong>310 599 6169</strong></p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMPLEO -->
+      <div class="faq-category-block" id="cat-empleo">
+        <div class="fcat-label-row">
+          <span class="fcat-separator">💼 Empleo</span>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="e1">
+            <div class="fcw-msg-bubble">¿Cómo puedo aplicar a una vacante?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-e1">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Puedes aplicar a nuestras vacantes de las siguientes maneras:</p>
+              <ul class="faq-list">
+                <li>📋 Visita nuestra página de <a href="vacantes.html"><strong>Vacantes</strong></a></li>
+                <li>✉️ Envía tu hoja de vida a <strong>recurso.humano@distrivision.com.co</strong></li>
+                <li>📱 Escríbenos por WhatsApp al <strong>310 599 6169</strong></li>
+                <li>📍 Preséntate en nuestras oficinas: CL 26 SUR No. 6 – 74, Neiva</li>
+              </ul>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="e2">
+            <div class="fcw-msg-bubble">¿Qué perfiles buscan frecuentemente?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-e2">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>En DistriVision frecuentemente buscamos perfiles relacionados con:</p>
+              <ul class="faq-list">
+                <li>🚚 Conductores y auxiliares de distribución</li>
+                <li>📊 Asesores comerciales y vendedores</li>
+                <li>📦 Auxiliares de bodega y logística</li>
+                <li>💼 Personal administrativo y contable</li>
+                <li>🤝 Coordinadores de servicio al cliente</li>
+              </ul>
+              <p style="margin-top:8px">Consulta las vacantes actuales en <a href="vacantes.html"><strong>nuestra página de empleo</strong></a>.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="e3">
+            <div class="fcw-msg-bubble">¿Cuánto demora el proceso de selección?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-e3">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>El proceso de selección varía según el cargo y la urgencia de la vacante. Generalmente incluye:</p>
+              <ul class="faq-list">
+                <li>1️⃣ Revisión de hoja de vida (1–3 días hábiles)</li>
+                <li>2️⃣ Entrevista inicial con Recursos Humanos</li>
+                <li>3️⃣ Entrevista técnica o con el área</li>
+                <li>4️⃣ Verificación de referencias y documentos</li>
+                <li>5️⃣ Notificación de resultado</li>
+              </ul>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="e4">
+            <div class="fcw-msg-bubble">¿Tienen programa de prácticas o pasantías?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-e4">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Sí. DistriVision apoya la formación de nuevos talentos. Para consultar disponibilidad de prácticas o pasantías, comunícate directamente con nuestro departamento de Recursos Humanos:</p>
+              <div class="faq-info-card">
+                <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
+                <div class="fic-row">📞 (8) 870 34 34</div>
+              </div>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CERTIFICADOS -->
+      <div class="faq-category-block" id="cat-certificados">
+        <div class="fcat-label-row">
+          <span class="fcat-separator">📋 Certificados</span>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="c1">
+            <div class="fcw-msg-bubble">¿Cómo obtengo un certificado laboral?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-c1">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Para obtener tu certificado laboral, sigue estos 3 pasos:</p>
+              <ul class="faq-list">
+                <li>1️⃣ <strong>Descarga e imprime</strong> el formato desde la sección de <a href="certificados.html">Certificados</a> en nuestra página.</li>
+                <li>2️⃣ <strong>Diligencia</strong> todos los campos con letra clara y legible.</li>
+                <li>3️⃣ <strong>Preséntalo</strong> en Recursos Humanos para firma y sello oficial.</li>
+              </ul>
+              <div class="faq-info-card" style="margin-top:12px">
+                <div class="fic-row">📍 <strong>RR.HH.:</strong> CL 26 SUR No. 6 – 74, Neiva</div>
+                <div class="fic-row">⏰ Lunes – Viernes: 8:00 am – 6:00 pm</div>
+              </div>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="c2">
+            <div class="fcw-msg-bubble">¿Cuánto demora la expedición de un certificado?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-c2">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Una vez presentado el formato diligenciado en nuestras oficinas de Recursos Humanos, el certificado es emitido generalmente el <strong>mismo día o en un máximo de 1 día hábil</strong>, dependiendo de la carga de trabajo del área.</p>
+              <p style="margin-top:8px">Para mayor información llama al <strong>(8) 870 34 34</strong>.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="c3">
+            <div class="fcw-msg-bubble">¿Puedo solicitar el certificado por correo?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-c3">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Para consultar la posibilidad de tramitar tu certificado de forma remota, comunícate directamente con el área de Recursos Humanos:</p>
+              <div class="faq-info-card">
+                <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
+                <div class="fic-row">📞 (8) 870 34 34</div>
+                <div class="fic-row">📱 310 599 6169 (WhatsApp)</div>
+              </div>
+              <p style="margin-top:8px">Ellos te indicarán el procedimiento según tu caso específico.</p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACTO -->
+      <div class="faq-category-block" id="cat-contacto">
+        <div class="fcat-label-row">
+          <span class="fcat-separator">📞 Contacto</span>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="ct1">
+            <div class="fcw-msg-bubble">¿Cuáles son todos los medios de contacto?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-ct1">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Puedes contactarnos por cualquiera de estos medios:</p>
+              <div class="faq-info-card">
+                <div class="fic-row">📍 CL 26 SUR No. 6 – 74, Neiva, Huila</div>
+                <div class="fic-row">📞 (8) 870 34 34</div>
+                <div class="fic-row">📱 <a href="https://wa.me/573105996169" target="_blank">310 599 6169 (WhatsApp)</a></div>
+                <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
+                <div class="fic-row">✉️ distribuciones_vision@hotmail.com</div>
+                <div class="fic-row">🕐 Lun–Vie: 8:00 am – 6:00 pm</div>
+              </div>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+
+        <div class="faq-qa-pair">
+          <div class="fcw-msg user faq-question" data-id="ct2">
+            <div class="fcw-msg-bubble">¿Tienen atención por WhatsApp?</div>
+            <div class="fcw-msg-avatar user-av">👤</div>
+          </div>
+          <div class="fcw-msg bot faq-answer" id="ans-ct2">
+            <div class="fcw-msg-avatar">🤖</div>
+            <div class="fcw-msg-bubble">
+              <p>Sí. Puedes escribirnos por <strong>WhatsApp</strong> al número <strong>310 599 6169</strong> durante nuestro horario de atención (Lunes a Viernes, 8:00 am – 6:00 pm).</p>
+              <p style="margin-top:8px">
+                <a href="https://wa.me/573105996169" target="_blank" class="faq-wa-btn">
+                  💬 Abrir WhatsApp →
+                </a>
+              </p>
+            </div>
+            <span class="fcw-msg-time">Ahora</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /fcwMessages -->
+
+    <!-- Input area -->
+    <div class="fcw-input-area">
+      <div class="fcw-input-hint">
+        <span>💡</span>
+        <span>Haz clic en cualquier pregunta del chat para resaltarla, o selecciona una categoría en el panel lateral.</span>
+      </div>
+      <div class="fcw-search-row">
+        <input type="text" id="faqSearch" placeholder="Busca una pregunta…" autocomplete="off">
+        <button id="faqSearchBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /faq-chat-window -->
+</section>
+
+<!-- ══════════════ CTA BAND ══════════════ -->
+<div class="cta-band">
+  <h2>¿No encontraste lo que buscabas? <span>¡Contáctanos!</span></h2>
+  <a href="contacto.html" class="btn-white">Hablar con un asesor →</a>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="img/2.png" alt="DistriVision Logo" class="fp-logo-img">
+      <div class="fp-name">Distri<span>Vision</span></div>
+      <p>Líderes en distribución y comercialización de productos de alta calidad, comprometidos con la excelencia y el servicio superior en cada entrega.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="index.html#nosotros">Nosotros</a></li>
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="index.html#mision">Misión &amp; Visión</a></li>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="index.html#galeria">Galería</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="index.html#servicios">Distribución Directa</a></li>
+        <li><a href="index.html#servicios">Asesoría Comercial</a></li>
+        <li><a href="index.html#servicios">Portafolio de Productos</a></li>
+        <li><a href="index.html#servicios">Servicio Premium</a></li>
+        <li><a href="index.html#servicios">Innovación Continua</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 DistriVision LTDA. Todos los derechos reservados.</p>
+    <p>Distribución con Excelencia y Compromiso</p>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const dot  = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+});
+(function animateRing() {
+  ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+})();
+
+/* ── SCROLL PROGRESS ── */
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  progressBar.style.width = pct + '%';
+}, { passive: true });
+
+/* ── NAV SCROLLED ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── HAMBURGUESA ── */
+const hambBtn = document.getElementById('navHamburger');
+if (hambBtn) {
+  hambBtn.addEventListener('click', () => navbar.classList.toggle('menu-open'));
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => navbar.classList.remove('menu-open'));
+  });
+}
+
+/* ── MAGNETIC BUTTONS ── */
+document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    btn.style.transform = `translate(${(e.clientX-(r.left+r.width/2))*.18}px,${(e.clientY-(r.top+r.height/2))*.22}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+/* ── CATEGORÍAS FAQ ── */
+const catBtns   = document.querySelectorAll('.faq-cat-btn');
+const catBlocks = document.querySelectorAll('.faq-category-block');
+
+catBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cat = btn.dataset.cat;
+    catBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    catBlocks.forEach(b => b.classList.remove('active'));
+    const target = document.getElementById('cat-' + cat);
+    if (target) {
+      target.classList.add('active');
+      // Scroll suave al bloque de categoría dentro del chat
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+  });
+});
+
+/* ── CLICK EN PREGUNTA — resalta la respuesta ── */
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const id  = q.dataset.id;
+    const ans = document.getElementById('ans-' + id);
+    if (!ans) return;
+    // Quitar highlight previo
+    document.querySelectorAll('.faq-answer.highlighted').forEach(a => a.classList.remove('highlighted'));
+    ans.classList.add('highlighted');
+    setTimeout(() => {
+      ans.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 80);
+    setTimeout(() => ans.classList.remove('highlighted'), 2800);
+  });
+});
+
+/* ── BÚSQUEDA ── */
+function doSearch() {
+  const term = document.getElementById('faqSearch').value.trim().toLowerCase();
+  if (!term) return;
+
+  let found = null;
+  document.querySelectorAll('.fcw-msg-bubble').forEach(bubble => {
+    if (!found && bubble.textContent.toLowerCase().includes(term)) {
+      found = bubble.closest('.faq-question') || bubble.closest('.faq-answer');
+    }
+  });
+
+  if (found) {
+    // Activar categoría correcta
+    const block = found.closest('.faq-category-block');
+    if (block) {
+      const catId = block.id.replace('cat-', '');
+      catBtns.forEach(b => b.classList.remove('active'));
+      catBlocks.forEach(b => b.classList.remove('active'));
+      block.classList.add('active');
+      document.querySelector('[data-cat="'+catId+'"]')?.classList.add('active');
+    }
+    setTimeout(() => {
+      found.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      found.classList.add('highlighted');
+      setTimeout(() => found.classList.remove('highlighted'), 2800);
+    }, 100);
+  } else {
+    // Sin resultados
+    const input = document.getElementById('faqSearch');
+    input.style.borderColor = '#e53e3e';
+    setTimeout(() => { input.style.borderColor = ''; }, 1200);
+  }
+}
+
+document.getElementById('faqSearchBtn').addEventListener('click', doSearch);
+document.getElementById('faqSearch').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doSearch();
+});
+</script>
+</body>
+</html>
