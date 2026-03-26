@@ -186,9 +186,12 @@
 .faq-chat-section {
   display: grid;
   grid-template-columns: 300px 1fr;
+  /* height fija necesaria para que sticky funcione dentro del grid */
+  height: calc(100vh - 76px);
   background: #e8f0f9;
-  min-height: 82vh;
-  align-items: start;
+  /* align-items: start hace que sticky NO funcione — usar stretch */
+  align-items: stretch;
+  overflow: hidden;
 }
 
 /* ══════════════════════════════
@@ -198,9 +201,8 @@
   background: linear-gradient(180deg, #f5f9ff 0%, #e8f2fd 100%);
   border-right: 1px solid rgba(120,180,230,.4);
   padding: 28px 20px;
-  position: sticky;
-  top: 76px;
-  height: calc(100vh - 76px);
+  /* ocupa 100% de la altura del grid — no necesita sticky */
+  height: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -347,8 +349,7 @@
 .faq-chat-window {
   display: flex; flex-direction: column;
   background: #e8f0f9;
-  height: calc(100vh - 76px);
-  position: sticky; top: 76px;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -754,21 +755,23 @@
   .faq-cat-btn { font-size: .8rem; padding: 10px 11px; }
 }
 
-/* ── 780px — colapso completo ── */
 @media (max-width: 780px) {
   .faq-chat-section {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
+    height: auto;
+    min-height: calc(100vh - 76px);
+    overflow: visible;
   }
 
   /* Sidebar horizontal */
   .faq-sidebar {
-    position: static; height: auto;
+    height: auto;
     border-right: none; border-bottom: 2px solid rgba(120,180,230,.35);
     padding: 16px 14px 14px;
     gap: 12px;
-    /* tapa metálica en el top */
     background: var(--metal-plate);
+    overflow-y: visible;
   }
   .faq-sidebar-header {
     border-bottom-color: rgba(255,255,255,.15);
@@ -802,7 +805,10 @@
   }
 
   /* Chat */
-  .faq-chat-window { position: static; height: auto; min-height: 70vh; }
+  .faq-chat-window {
+    height: auto;
+    min-height: 65vh;
+  }
   .fcw-messages { max-height: 50vh; padding: 16px 14px; }
   .fcw-header { padding: 13px 16px; }
   .fcw-questions-bar { padding: 12px 14px; max-height: 160px; }
