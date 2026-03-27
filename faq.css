@@ -1,8 +1,8 @@
 /* ═══════════════════════════════════════════════
-   DistriVision — faq.css  v3.0
-   Layout corregido — sin position:fixed en botones,
-   sin sticky conflictivo. Panel de dos columnas con
-   scroll interno independiente en cada columna.
+   DistriVision — faq.css  v3.1
+   Fix: faq-panel-header sticky, faq-body height
+   corregido desde DOMContentLoaded, panel scroll
+   interno independiente en cada columna.
 ═══════════════════════════════════════════════ */
 
 /* ══════════════════════════════
@@ -160,25 +160,25 @@
 /* ══════════════════════════════
    LAYOUT PRINCIPAL
    ─────────────────────────────
-   CLAVE: display:flex + height calculada + overflow:hidden
-   Cada columna gestiona su propio scroll interno.
-   NO se usa position:sticky ni position:fixed aquí.
+   display:flex + height calculada por JS en
+   DOMContentLoaded y en resize.
+   overflow:hidden impide desborde exterior.
 ══════════════════════════════ */
 .faq-body {
   display: flex;
-  height: calc(100vh - 70px); /* se ajusta con JS al tamaño real del nav */
-  overflow: hidden;           /* impide que el contenido se desborde */
+  /* Altura inicial segura; JS la recalcula al cargar con la altura real del nav */
+  height: calc(100vh - 70px);
+  overflow: hidden;
   background: var(--blue-pale);
 }
 
 /* ══════════════════════════════
    PANEL IZQUIERDO
    ─────────────────────────────
-   Ancho fijo, tres zonas:
-     1. Header con categorías  (flex-shrink:0)
-     2. Lista de preguntas     (flex:1, overflow-y:auto)
-     3. Buscador               (flex-shrink:0)
-   overflow:hidden en el contenedor impide desbordamiento.
+   Tres zonas en flex-direction:column:
+     1. .faq-panel-header    → position:sticky top:0 (fijo arriba dentro del panel)
+     2. .faq-panel-questions → flex:1 + overflow-y:auto (único scroll del panel)
+     3. .faq-panel-search    → flex-shrink:0 (fijo abajo)
 ══════════════════════════════ */
 .faq-panel {
   width: 300px;
@@ -191,11 +191,16 @@
   overflow: hidden; /* scroll solo en .faq-panel-questions */
 }
 
+/* FIX PRINCIPAL: sticky dentro del panel para que los botones
+   de categoría no floten sobre el resto de la página */
 .faq-panel-header {
   padding: 22px 20px 18px;
   border-bottom: 1px solid var(--blue-border);
   background: linear-gradient(160deg, #f8fbff 0%, #eef4fd 100%);
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .faq-panel-title {
@@ -269,7 +274,7 @@
   color: var(--blue-primary);
 }
 
-/* Lista de preguntas — scroll interno */
+/* Lista de preguntas — único scroll interno del panel */
 .faq-panel-questions {
   flex: 1;
   overflow-y: auto;
@@ -411,17 +416,13 @@
 
 /* ══════════════════════════════
    COLUMNA CHAT
-   ─────────────────────────────
-   flex:1 — toma todo el ancho restante.
-   flex-direction:column con overflow:hidden.
-   .fcw-messages es la única zona con scroll.
 ══════════════════════════════ */
 .faq-chat-col {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  min-width: 0; /* evita desbordamiento en flex */
+  min-width: 0;
 }
 
 /* Cabecera del chat — metálica */
@@ -524,10 +525,10 @@
   border: 1px solid rgba(255,255,255,.25);
 }
 
-/* ── Área de mensajes — scroll interno ── */
+/* ── Área de mensajes — único scroll de la columna chat ── */
 .fcw-messages {
-  flex: 1;          /* toma todo el espacio vertical disponible */
-  overflow-y: auto; /* scroll SOLO aquí, no en el contenedor padre */
+  flex: 1;
+  overflow-y: auto;
   padding: 26px 30px;
   display: flex;
   flex-direction: column;
@@ -795,19 +796,27 @@
 @media (max-width: 660px) {
   .faq-body {
     flex-direction: column;
-    height: auto;        /* sin altura fija en móvil */
-    overflow: visible;   /* permite scroll nativo de página */
+    height: auto;
+    overflow: visible;
   }
 
   .faq-panel {
     width: 100%;
     min-width: unset;
     height: auto;
-    max-height: 340px;   /* limita el panel para no ocupar toda la pantalla */
+    max-height: 340px;
     border-right: none;
     border-bottom: 1px solid var(--blue-border);
     flex-shrink: 0;
   }
+
+  /* En móvil el header ya no necesita sticky ya que el panel
+     tiene altura fija y scroll interno */
+  .faq-panel-header {
+    position: relative;
+    top: auto;
+  }
+
   .faq-panel-questions { max-height: 140px; }
 
   .faq-chat-col {
