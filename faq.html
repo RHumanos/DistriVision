@@ -47,19 +47,10 @@
   </div>
 </section>
 
-<!-- ══ CUERPO ══
-     .faq-body: display:flex + height:calc(100vh - nav) + overflow:hidden
-     Cada columna gestiona su propio scroll internamente.
-     Sin position:sticky ni position:fixed dentro de este bloque.
--->
-<div class="faq-body">
+<!-- ══ CUERPO ══ -->
+<div class="faq-body" id="faqBody">
 
-  <!-- PANEL IZQUIERDO
-       Tres zonas en flex-direction:column:
-         1. .faq-panel-header    → flex-shrink:0 (fijo arriba)
-         2. .faq-panel-questions → flex:1 + overflow-y:auto (scroll interno)
-         3. .faq-panel-search    → flex-shrink:0 (fijo abajo)
-  -->
+  <!-- PANEL IZQUIERDO -->
   <aside class="faq-panel">
 
     <div class="faq-panel-header">
@@ -123,10 +114,7 @@
 
   </aside>
 
-  <!-- COLUMNA CHAT
-       flex:1 — ocupa todo el ancho restante.
-       .fcw-messages tiene flex:1 + overflow-y:auto → único scroll de esta columna.
-  -->
+  <!-- COLUMNA CHAT -->
   <div class="faq-chat-col">
 
     <div class="fcw-header">
@@ -354,16 +342,32 @@ const FAQ_DATA = {
   let   isTyping  = false;
   const AUTO_DEL  = 30000;
 
-  /* Ajustar .faq-body al alto real del navbar */
+  /* ─────────────────────────────────────────────
+     FIX: Ajustar .faq-body al alto real del navbar.
+     Se ejecuta en DOMContentLoaded (altura inicial
+     correcta antes de cualquier repintado) y en
+     resize (cambios de ventana o rotación).
+  ───────────────────────────────────────────── */
   function updateBodyHeight() {
     const nav  = document.getElementById('navbar');
-    const body = document.querySelector('.faq-body');
-    if (nav && body) {
-      const h = nav.getBoundingClientRect().height;
-      body.style.height = 'calc(100vh - ' + h + 'px)';
+    const body = document.getElementById('faqBody');
+    if (!nav || !body) return;
+
+    /* Ignorar en móvil donde el layout es vertical */
+    if (window.innerWidth <= 660) {
+      body.style.height = '';
+      return;
     }
+
+    const h = nav.getBoundingClientRect().height;
+    body.style.height = 'calc(100vh - ' + h + 'px)';
   }
+
+  /* Ejecutar tan pronto como el DOM esté listo */
+  document.addEventListener('DOMContentLoaded', updateBodyHeight);
+  /* También al cargar (por si DOMContentLoaded ya pasó) */
   updateBodyHeight();
+  /* Y en cada resize */
   window.addEventListener('resize', updateBodyHeight, { passive: true });
 
   /* Hora */
