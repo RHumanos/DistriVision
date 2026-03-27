@@ -38,7 +38,7 @@
   <div class="faq-hero-content">
     <span class="hero-eyebrow">Centro de Ayuda</span>
     <h1>Preguntas<br><em>Frecuentes</em></h1>
-    <p class="faq-hero-desc">Todo lo que necesitas saber sobre DistriVision. Selecciona una categoría, elige tu pregunta y el asistente te responderá al instante.</p>
+    <p class="faq-hero-desc">Todo lo que necesitas saber sobre DistriVision. Elige una categoría y el asistente te responderá al instante.</p>
     <div class="faq-hero-stats">
       <div class="fhs-item"><span class="fhs-num">24</span><span class="fhs-lbl">Preguntas</span></div>
       <div class="fhs-item"><span class="fhs-num">100%</span><span class="fhs-lbl">Inmediato</span></div>
@@ -47,76 +47,11 @@
   </div>
 </section>
 
-<!-- ══ CUERPO ══ -->
-<div class="faq-body" id="faqBody">
-
-  <!-- PANEL IZQUIERDO -->
-  <aside class="faq-panel">
-
-    <div class="faq-panel-header">
-      <p class="faq-panel-title">Categorías</p>
-      <nav class="faq-cats">
-        <button class="faq-cat-btn" data-cat="general">
-          <span class="fcat-icon-wrap">🏢</span>
-          <span class="fcat-label">General</span>
-          <span class="fcat-count">6</span>
-        </button>
-        <button class="faq-cat-btn" data-cat="servicios">
-          <span class="fcat-icon-wrap">🚚</span>
-          <span class="fcat-label">Servicios</span>
-          <span class="fcat-count">5</span>
-        </button>
-        <button class="faq-cat-btn" data-cat="productos">
-          <span class="fcat-icon-wrap">📦</span>
-          <span class="fcat-label">Productos</span>
-          <span class="fcat-count">4</span>
-        </button>
-        <button class="faq-cat-btn" data-cat="empleo">
-          <span class="fcat-icon-wrap">💼</span>
-          <span class="fcat-label">Empleo</span>
-          <span class="fcat-count">4</span>
-        </button>
-        <button class="faq-cat-btn" data-cat="certificados">
-          <span class="fcat-icon-wrap">📋</span>
-          <span class="fcat-label">Certificados</span>
-          <span class="fcat-count">3</span>
-        </button>
-        <button class="faq-cat-btn" data-cat="contacto">
-          <span class="fcat-icon-wrap">📞</span>
-          <span class="fcat-label">Contacto</span>
-          <span class="fcat-count">2</span>
-        </button>
-      </nav>
-    </div>
-
-    <!-- Scroll interno — lista de preguntas de la categoría activa -->
-    <div class="faq-panel-questions" id="faqPanelQuestions">
-      <div class="fqp-empty">
-        <span>💬</span>
-        <p>Selecciona una categoría para ver las preguntas disponibles.</p>
-      </div>
-    </div>
-
-    <!-- Buscador — siempre visible al pie del panel -->
-    <div class="faq-panel-search">
-      <div class="search-row">
-        <input type="text" id="faqSearch" placeholder="Buscar pregunta…" autocomplete="off">
-        <button id="faqSearchBtn" title="Buscar">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2.5"
-               stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-  </aside>
-
-  <!-- COLUMNA CHAT -->
+<!-- ══ CHAT ══ -->
+<div class="faq-body">
   <div class="faq-chat-col">
 
+    <!-- Cabecera -->
     <div class="fcw-header">
       <div class="fcw-header-left">
         <div class="fcw-bot-avatar">🤖</div>
@@ -132,21 +67,13 @@
       </div>
     </div>
 
-    <!-- Área de mensajes — scroll interno -->
+    <!-- Mensajes -->
     <div class="fcw-messages" id="fcwMessages">
-      <div class="fcw-msg intro-msg mb-group">
-        <div class="fcw-msg-avatar">🤖</div>
-        <div class="fcw-msg-bubble">
-          <p>¡Bienvenido al centro de ayuda de <strong>DistriVision</strong>! 👋</p>
-          <p style="margin-top:8px">Soy tu asistente virtual. Selecciona una <strong>categoría</strong> en el panel izquierdo, elige una pregunta y te responderé al instante.</p>
-        </div>
-        <span class="fcw-msg-time" id="welcomeTime"></span>
-      </div>
+      <!-- El JS inserta aquí el mensaje de bienvenida + opciones -->
     </div>
 
-  </div><!-- /.faq-chat-col -->
-
-</div><!-- /.faq-body -->
+  </div>
+</div>
 
 <!-- ══ CTA ══ -->
 <div class="cta-band">
@@ -191,382 +118,329 @@
 </footer>
 
 <script>
-/* ══════════════════════════════════════════════
-   FAQ DATA
-══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════ */
 const FAQ_DATA = {
-  general: { label:'🏢 General', questions:[
-    {q:'¿Qué es DistriVision?',
-     a:`<p><strong>DistriVision LTDA</strong> es una empresa líder en la distribución y comercialización de productos de alta calidad y consumo masivo, ubicada en Neiva, Huila, Colombia.</p>
-        <p style="margin-top:8px">Contamos con más de <strong>30 años de experiencia</strong>, atendiendo a más de <strong>500 clientes satisfechos</strong> con un portafolio de más de <strong>1,000 productos</strong>.</p>`},
-    {q:'¿Dónde están ubicados?',
-     a:`<p>Nuestra sede principal:</p>
-        <div class="faq-info-card">
-          <div class="fic-row">📍 <strong>Dirección:</strong> CL 26 SUR No. 6 – 74, Neiva, Huila</div>
-          <div class="fic-row">📞 <strong>Teléfono:</strong> (8) 870 34 34 &nbsp;|&nbsp; 310 599 6169</div>
-          <div class="fic-row">🕐 <strong>Horario:</strong> Lunes – Viernes: 8:00 am – 6:00 pm</div>
-        </div>`},
-    {q:'¿Cuántos años de experiencia tienen?',
-     a:`<p>DistriVision cuenta con más de <strong>30 años de trayectoria</strong> en el sector de distribución y comercialización en Colombia, posicionándose como referente de excelencia en la región.</p>`},
-    {q:'¿Cuál es la misión de DistriVision?',
-     a:`<p>Ser la empresa líder en la <strong>distribución y comercialización de productos de alta calidad y consumo masivo</strong>, ofreciendo un superior servicio y mayor asesoramiento al cliente consumidor.</p>`},
-    {q:'¿Cuál es la visión de la empresa?',
-     a:`<p>Lograr el reconocimiento como distribuidor de referencia mediante:</p>
-        <ul class="faq-list">
-          <li>✓ Excelente servicio al cliente</li>
-          <li>✓ Innovación en esquemas y métodos de trabajo</li>
-          <li>✓ Portafolio atractivo y diversificado</li>
-          <li>✓ Asesoría especializada al Cliente-Consumidor</li>
-          <li>✓ Infraestructura acorde con las necesidades</li>
-          <li>✓ Trabajo en equipo de alto rendimiento</li>
-        </ul>`},
-    {q:'¿Qué zona geográfica cubren?',
-     a:`<p>DistriVision opera con <strong>100% de cobertura de zona asignada</strong> en el departamento del Huila, Colombia, garantizando distribución oportuna y eficiente.</p>`}
+  general: { label:'General', icon:'🏢', questions:[
+    { q:'¿Qué es DistriVision?',
+      a:`<p><strong>DistriVision LTDA</strong> es una empresa líder en distribución y comercialización de productos de alta calidad y consumo masivo, ubicada en Neiva, Huila, Colombia.</p>
+         <p style="margin-top:8px">Contamos con más de <strong>30 años de experiencia</strong>, más de <strong>500 clientes satisfechos</strong> y un portafolio de más de <strong>1,000 productos</strong>.</p>` },
+    { q:'¿Dónde están ubicados?',
+      a:`<p>Nuestra sede principal:</p>
+         <div class="faq-info-card">
+           <div class="fic-row">📍 <strong>Dirección:</strong> CL 26 SUR No. 6 – 74, Neiva, Huila</div>
+           <div class="fic-row">📞 <strong>Teléfono:</strong> (8) 870 34 34 &nbsp;|&nbsp; 310 599 6169</div>
+           <div class="fic-row">🕐 <strong>Horario:</strong> Lunes – Viernes: 8:00 am – 6:00 pm</div>
+         </div>` },
+    { q:'¿Cuántos años de experiencia tienen?',
+      a:`<p>DistriVision cuenta con más de <strong>30 años de trayectoria</strong> en el sector de distribución y comercialización en Colombia.</p>` },
+    { q:'¿Cuál es la misión de DistriVision?',
+      a:`<p>Ser la empresa líder en la <strong>distribución y comercialización de productos de alta calidad y consumo masivo</strong>, ofreciendo un superior servicio y mayor asesoramiento al cliente consumidor.</p>` },
+    { q:'¿Cuál es la visión de la empresa?',
+      a:`<p>Lograr el reconocimiento como distribuidor de referencia mediante:</p>
+         <ul class="faq-list">
+           <li>✓ Excelente servicio al cliente</li>
+           <li>✓ Innovación en esquemas y métodos de trabajo</li>
+           <li>✓ Portafolio atractivo y diversificado</li>
+           <li>✓ Asesoría especializada al Cliente-Consumidor</li>
+           <li>✓ Infraestructura acorde con las necesidades</li>
+           <li>✓ Trabajo en equipo de alto rendimiento</li>
+         </ul>` },
+    { q:'¿Qué zona geográfica cubren?',
+      a:`<p>DistriVision opera con <strong>100% de cobertura de zona asignada</strong> en el departamento del Huila, Colombia.</p>` }
   ]},
-  servicios: { label:'🚚 Servicios', questions:[
-    {q:'¿Qué servicios ofrece DistriVision?',
-     a:`<ul class="faq-list">
-          <li>🚚 <strong>Distribución Directa:</strong> entrega oportuna en toda la zona</li>
-          <li>⭐ <strong>Servicio Premium:</strong> atención personalizada</li>
-          <li>📊 <strong>Asesoría Comercial:</strong> orientación para maximizar ventas</li>
-          <li>📦 <strong>Portafolio Completo:</strong> catálogo amplio de productos</li>
-          <li>🔄 <strong>Innovación Continua:</strong> métodos de vanguardia</li>
-        </ul>`},
-    {q:'¿Cómo funciona la distribución directa?',
-     a:`<p>Nuestra <strong>distribución directa</strong> funciona mediante una flota de vehículos modernos que cubren rutas estratégicas en la zona asignada, con sistemas avanzados de gestión logística que garantizan puntualidad.</p>`},
-    {q:'¿Ofrecen asesoría comercial gratuita?',
-     a:`<p>Sí. La <strong>asesoría comercial</strong> es parte de nuestro servicio integral.<br><br>Para agendar contáctanos al <strong>(8) 870 34 34</strong>.</p>`},
-    {q:'¿Cuáles son los horarios de entrega?',
-     a:`<div class="faq-info-card">
-          <div class="fic-row">📅 <strong>Días:</strong> Lunes a Viernes</div>
-          <div class="fic-row">⏰ <strong>Horario:</strong> 8:00 am – 6:00 pm</div>
-        </div>
-        <p style="margin-top:8px">Para pedidos especiales, contáctanos directamente.</p>`},
-    {q:'¿Tienen seguimiento de pedidos?',
-     a:`<p>Sí. Como parte de nuestro <strong>Servicio Premium</strong> brindamos seguimiento continuo.<br><br>Comunícate al <strong>310 599 6169</strong>.</p>`}
+  servicios: { label:'Servicios', icon:'🚚', questions:[
+    { q:'¿Qué servicios ofrece DistriVision?',
+      a:`<ul class="faq-list">
+           <li>🚚 <strong>Distribución Directa:</strong> entrega oportuna en toda la zona</li>
+           <li>⭐ <strong>Servicio Premium:</strong> atención personalizada</li>
+           <li>📊 <strong>Asesoría Comercial:</strong> orientación para maximizar ventas</li>
+           <li>📦 <strong>Portafolio Completo:</strong> catálogo amplio de productos</li>
+           <li>🔄 <strong>Innovación Continua:</strong> métodos de vanguardia</li>
+         </ul>` },
+    { q:'¿Cómo funciona la distribución directa?',
+      a:`<p>Nuestra <strong>distribución directa</strong> funciona con flota de vehículos modernos que cubren rutas estratégicas en la zona asignada, con sistemas avanzados de gestión logística que garantizan puntualidad.</p>` },
+    { q:'¿Ofrecen asesoría comercial gratuita?',
+      a:`<p>Sí. La <strong>asesoría comercial</strong> es parte de nuestro servicio integral.<br><br>Para agendar contáctanos al <strong>(8) 870 34 34</strong>.</p>` },
+    { q:'¿Cuáles son los horarios de entrega?',
+      a:`<div class="faq-info-card">
+           <div class="fic-row">📅 <strong>Días:</strong> Lunes a Viernes</div>
+           <div class="fic-row">⏰ <strong>Horario:</strong> 8:00 am – 6:00 pm</div>
+         </div>
+         <p style="margin-top:8px">Para pedidos especiales, contáctanos directamente.</p>` },
+    { q:'¿Tienen seguimiento de pedidos?',
+      a:`<p>Sí. Como parte de nuestro <strong>Servicio Premium</strong> brindamos seguimiento continuo.<br><br>Comunícate al <strong>310 599 6169</strong>.</p>` }
   ]},
-  productos: { label:'📦 Productos', questions:[
-    {q:'¿Qué tipo de productos distribuyen?',
-     a:`<p>Distribuimos un amplio portafolio de <strong>productos de alta calidad y consumo masivo</strong>. Nuestro catálogo cuenta con más de <strong>1,000 productos</strong> en diversas categorías.</p>`},
-    {q:'¿Cómo garantizan la calidad?',
-     a:`<ul class="faq-list">
-          <li>✓ Almacén de última generación</li>
-          <li>✓ Verificación en recepción de mercancía</li>
-          <li>✓ Control de inventario y trazabilidad</li>
-          <li>✓ Revisión antes de cada despacho</li>
-        </ul>`},
-    {q:'¿Cómo solicito el catálogo?',
-     a:`<div class="faq-info-card">
-          <div class="fic-row">✉️ distribuciones_vision@hotmail.com</div>
-          <div class="fic-row">📱 <a href="https://wa.me/573105996169" target="_blank">310 599 6169 (WhatsApp)</a></div>
-          <div class="fic-row">📞 (8) 870 34 34</div>
-        </div>`},
-    {q:'¿Tienen pedido mínimo?',
-     a:`<p>Las condiciones dependen del tipo de cliente y zona. Contáctanos para conocer los términos aplicables.<br><br>📞 <strong>(8) 870 34 34</strong> &nbsp;|&nbsp; 📱 <strong>310 599 6169</strong></p>`}
+  productos: { label:'Productos', icon:'📦', questions:[
+    { q:'¿Qué tipo de productos distribuyen?',
+      a:`<p>Distribuimos un amplio portafolio de <strong>productos de alta calidad y consumo masivo</strong> con más de <strong>1,000 productos</strong> en diversas categorías.</p>` },
+    { q:'¿Cómo garantizan la calidad?',
+      a:`<ul class="faq-list">
+           <li>✓ Almacén de última generación</li>
+           <li>✓ Verificación en recepción de mercancía</li>
+           <li>✓ Control de inventario y trazabilidad</li>
+           <li>✓ Revisión antes de cada despacho</li>
+         </ul>` },
+    { q:'¿Cómo solicito el catálogo?',
+      a:`<div class="faq-info-card">
+           <div class="fic-row">✉️ distribuciones_vision@hotmail.com</div>
+           <div class="fic-row">📱 <a href="https://wa.me/573105996169" target="_blank">310 599 6169 (WhatsApp)</a></div>
+           <div class="fic-row">📞 (8) 870 34 34</div>
+         </div>` },
+    { q:'¿Tienen pedido mínimo?',
+      a:`<p>Las condiciones dependen del tipo de cliente y zona. Contáctanos para conocer los términos aplicables.<br><br>📞 <strong>(8) 870 34 34</strong> &nbsp;|&nbsp; 📱 <strong>310 599 6169</strong></p>` }
   ]},
-  empleo: { label:'💼 Empleo', questions:[
-    {q:'¿Cómo aplico a una vacante?',
-     a:`<ul class="faq-list">
-          <li>📋 <a href="vacantes.html"><strong>Página de Vacantes</strong></a></li>
-          <li>✉️ recurso.humano@distrivision.com.co</li>
-          <li>📱 310 599 6169 (WhatsApp)</li>
-          <li>📍 CL 26 SUR No. 6 – 74, Neiva</li>
-        </ul>`},
-    {q:'¿Qué perfiles buscan?',
-     a:`<ul class="faq-list">
-          <li>🚚 Conductores y auxiliares de distribución</li>
-          <li>📊 Asesores comerciales y vendedores</li>
-          <li>📦 Auxiliares de bodega y logística</li>
-          <li>💼 Personal administrativo y contable</li>
-        </ul>`},
-    {q:'¿Cuánto demora la selección?',
-     a:`<ul class="faq-list">
-          <li>1️⃣ Revisión de hoja de vida (1–3 días)</li>
-          <li>2️⃣ Entrevista inicial con RRHH</li>
-          <li>3️⃣ Entrevista técnica</li>
-          <li>4️⃣ Verificación de referencias</li>
-          <li>5️⃣ Notificación de resultado</li>
-        </ul>`},
-    {q:'¿Tienen programa de pasantías?',
-     a:`<p>Sí. DistriVision apoya la formación de nuevos talentos.</p>
-        <div class="faq-info-card">
-          <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
-          <div class="fic-row">📞 (8) 870 34 34</div>
-        </div>`}
+  empleo: { label:'Empleo', icon:'💼', questions:[
+    { q:'¿Cómo aplico a una vacante?',
+      a:`<ul class="faq-list">
+           <li>📋 <a href="vacantes.html"><strong>Página de Vacantes</strong></a></li>
+           <li>✉️ recurso.humano@distrivision.com.co</li>
+           <li>📱 310 599 6169 (WhatsApp)</li>
+           <li>📍 CL 26 SUR No. 6 – 74, Neiva</li>
+         </ul>` },
+    { q:'¿Qué perfiles buscan?',
+      a:`<ul class="faq-list">
+           <li>🚚 Conductores y auxiliares de distribución</li>
+           <li>📊 Asesores comerciales y vendedores</li>
+           <li>📦 Auxiliares de bodega y logística</li>
+           <li>💼 Personal administrativo y contable</li>
+         </ul>` },
+    { q:'¿Cuánto demora la selección?',
+      a:`<ul class="faq-list">
+           <li>1️⃣ Revisión de hoja de vida (1–3 días)</li>
+           <li>2️⃣ Entrevista inicial con RRHH</li>
+           <li>3️⃣ Entrevista técnica</li>
+           <li>4️⃣ Verificación de referencias</li>
+           <li>5️⃣ Notificación de resultado</li>
+         </ul>` },
+    { q:'¿Tienen programa de pasantías?',
+      a:`<p>Sí. DistriVision apoya la formación de nuevos talentos.</p>
+         <div class="faq-info-card">
+           <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
+           <div class="fic-row">📞 (8) 870 34 34</div>
+         </div>` }
   ]},
-  certificados: { label:'📋 Certificados', questions:[
-    {q:'¿Cómo obtengo un certificado laboral?',
-     a:`<ul class="faq-list">
-          <li>1️⃣ <strong>Descarga</strong> el formato desde <a href="certificados.html">Certificados</a></li>
-          <li>2️⃣ <strong>Diligencia</strong> todos los campos</li>
-          <li>3️⃣ <strong>Preséntalo</strong> en Recursos Humanos</li>
-        </ul>
-        <div class="faq-info-card" style="margin-top:10px">
-          <div class="fic-row">⏰ Lun–Vie: 8:00 am – 6:00 pm</div>
-        </div>`},
-    {q:'¿Cuánto demora la expedición?',
-     a:`<p>El certificado se emite <strong>el mismo día o máximo 1 día hábil</strong> tras presentar el formato diligenciado.</p>`},
-    {q:'¿Puedo solicitarlo por correo?',
-     a:`<div class="faq-info-card">
-          <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
-          <div class="fic-row">📞 (8) 870 34 34</div>
-          <div class="fic-row">📱 310 599 6169</div>
-        </div>`}
+  certificados: { label:'Certificados', icon:'📋', questions:[
+    { q:'¿Cómo obtengo un certificado laboral?',
+      a:`<ul class="faq-list">
+           <li>1️⃣ <strong>Descarga</strong> el formato desde <a href="certificados.html">Certificados</a></li>
+           <li>2️⃣ <strong>Diligencia</strong> todos los campos</li>
+           <li>3️⃣ <strong>Preséntalo</strong> en Recursos Humanos</li>
+         </ul>
+         <div class="faq-info-card" style="margin-top:10px">
+           <div class="fic-row">⏰ Lun–Vie: 8:00 am – 6:00 pm</div>
+         </div>` },
+    { q:'¿Cuánto demora la expedición?',
+      a:`<p>El certificado se emite <strong>el mismo día o máximo 1 día hábil</strong> tras presentar el formato diligenciado.</p>` },
+    { q:'¿Puedo solicitarlo por correo?',
+      a:`<div class="faq-info-card">
+           <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
+           <div class="fic-row">📞 (8) 870 34 34</div>
+           <div class="fic-row">📱 310 599 6169</div>
+         </div>` }
   ]},
-  contacto: { label:'📞 Contacto', questions:[
-    {q:'¿Cuáles son sus medios de contacto?',
-     a:`<div class="faq-info-card">
-          <div class="fic-row">📍 CL 26 SUR No. 6 – 74, Neiva, Huila</div>
-          <div class="fic-row">📞 (8) 870 34 34</div>
-          <div class="fic-row">📱 <a href="https://wa.me/573105996169" target="_blank">310 599 6169 (WhatsApp)</a></div>
-          <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
-          <div class="fic-row">✉️ distribuciones_vision@hotmail.com</div>
-          <div class="fic-row">🕐 Lun–Vie: 8:00 am – 6:00 pm</div>
-        </div>`},
-    {q:'¿Tienen atención por WhatsApp?',
-     a:`<p>Sí. Escríbenos al <strong>310 599 6169</strong> (Lun–Vie, 8:00 am – 6:00 pm).</p>
-        <p style="margin-top:12px">
-          <a href="https://wa.me/573105996169" target="_blank" class="faq-wa-btn">💬 Abrir WhatsApp →</a>
-        </p>`}
+  contacto: { label:'Contacto', icon:'📞', questions:[
+    { q:'¿Cuáles son sus medios de contacto?',
+      a:`<div class="faq-info-card">
+           <div class="fic-row">📍 CL 26 SUR No. 6 – 74, Neiva, Huila</div>
+           <div class="fic-row">📞 (8) 870 34 34</div>
+           <div class="fic-row">📱 <a href="https://wa.me/573105996169" target="_blank">310 599 6169 (WhatsApp)</a></div>
+           <div class="fic-row">✉️ recurso.humano@distrivision.com.co</div>
+           <div class="fic-row">✉️ distribuciones_vision@hotmail.com</div>
+           <div class="fic-row">🕐 Lun–Vie: 8:00 am – 6:00 pm</div>
+         </div>` },
+    { q:'¿Tienen atención por WhatsApp?',
+      a:`<p>Sí. Escríbenos al <strong>310 599 6169</strong> (Lun–Vie, 8:00 am – 6:00 pm).</p>
+         <p style="margin-top:12px">
+           <a href="https://wa.me/573105996169" target="_blank" class="faq-wa-btn">💬 Abrir WhatsApp →</a>
+         </p>` }
   ]}
 };
 
-/* ══════════════════════════════════════════════
-   LÓGICA FAQ
-══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   LÓGICA
+═══════════════════════════════════════════ */
 (function () {
-  const messages  = document.getElementById('fcwMessages');
-  const panelQ    = document.getElementById('faqPanelQuestions');
-  const catBtns   = document.querySelectorAll('.faq-cat-btn');
-  let   activeCat = null;
-  let   isTyping  = false;
-  const AUTO_DEL  = 30000;
+  const chat     = document.getElementById('fcwMessages');
+  let   isTyping = false;
 
-  /* ─────────────────────────────────────────────
-     FIX: Ajustar .faq-body al alto real del navbar.
-     Se ejecuta en DOMContentLoaded (altura inicial
-     correcta antes de cualquier repintado) y en
-     resize (cambios de ventana o rotación).
-  ───────────────────────────────────────────── */
-  function updateBodyHeight() {
-    const nav  = document.getElementById('navbar');
-    const body = document.getElementById('faqBody');
-    if (!nav || !body) return;
+  /* ── Utilidades ── */
+  function pad(n) { return String(n).padStart(2,'0'); }
+  function now()  { const d = new Date(); return pad(d.getHours())+':'+pad(d.getMinutes()); }
+  function scrollBottom() { setTimeout(() => chat.scrollIntoView({ block:'end', behavior:'smooth' }), 60); }
 
-    /* Ignorar en móvil donde el layout es vertical */
-    if (window.innerWidth <= 660) {
-      body.style.height = '';
-      return;
-    }
-
-    const h = nav.getBoundingClientRect().height;
-    body.style.height = 'calc(100vh - ' + h + 'px)';
-  }
-
-  /* Ejecutar tan pronto como el DOM esté listo */
-  document.addEventListener('DOMContentLoaded', updateBodyHeight);
-  /* También al cargar (por si DOMContentLoaded ya pasó) */
-  updateBodyHeight();
-  /* Y en cada resize */
-  window.addEventListener('resize', updateBodyHeight, { passive: true });
-
-  /* Hora */
-  const wt = document.getElementById('welcomeTime');
-  function pad(n) { return String(n).padStart(2, '0'); }
-  function now()  { const d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
-  if (wt) wt.textContent = now();
-
-  function scrollBottom() {
-    setTimeout(() => { messages.scrollTop = messages.scrollHeight; }, 60);
-  }
-
-  /* Eliminar mensajes viejos con animación suave */
-  function scheduleDelete(el) {
-    if (!el || el.classList.contains('intro-msg')) return;
-    setTimeout(() => {
-      if (!el.parentNode) return;
-      el.style.transition = 'opacity .45s ease, max-height .45s ease, margin .45s ease';
-      el.style.opacity    = '0';
-      el.style.maxHeight  = el.offsetHeight + 'px';
-      el.style.overflow   = 'hidden';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        el.style.maxHeight    = '0';
-        el.style.marginBottom = '0';
-      }));
-      setTimeout(() => el.remove(), 460);
-    }, AUTO_DEL);
-  }
-
-  /* Indicador de tipeo */
-  function showTyping(ms = 800) {
+  /* ── Indicador de tipeo ── */
+  function showTyping(ms = 700) {
     return new Promise(resolve => {
       isTyping = true;
       const el = document.createElement('div');
-      el.className = 'fcw-msg mb-group typing-indicator';
+      el.className = 'fcw-msg mb-group';
       el.innerHTML = `<div class="fcw-msg-avatar">🤖</div>
                       <div class="fcw-msg-bubble typing-bubble">
                         <span></span><span></span><span></span>
                       </div>`;
-      messages.appendChild(el);
+      chat.appendChild(el);
       scrollBottom();
       setTimeout(() => { el.remove(); isTyping = false; resolve(); }, ms);
     });
   }
 
-  /* Burbuja del bot */
-  function addBot(html) {
+  /* ── Burbuja bot ── */
+  function addBot(html, withTime = true) {
     const el = document.createElement('div');
     el.className = 'fcw-msg mb-group';
     el.innerHTML = `<div class="fcw-msg-avatar">🤖</div>
                     <div class="fcw-msg-bubble">${html}</div>
-                    <span class="fcw-msg-time">${now()}</span>`;
-    messages.appendChild(el);
+                    ${withTime ? `<span class="fcw-msg-time">${now()}</span>` : ''}`;
+    chat.appendChild(el);
     scrollBottom();
-    scheduleDelete(el);
     return el;
   }
 
-  /* Burbuja del usuario */
+  /* ── Burbuja usuario ── */
   function addUser(text) {
     const el = document.createElement('div');
     el.className = 'fcw-msg user mb-group';
     el.innerHTML = `<div class="fcw-msg-bubble">${text}</div>
                     <div class="fcw-msg-avatar user-av">👤</div>`;
-    messages.appendChild(el);
+    chat.appendChild(el);
     scrollBottom();
-    scheduleDelete(el);
-    return el;
   }
 
-  /* Separador de categoría */
-  function addSeparator(label) {
+  /* ── Mostrar categorías como chips ── */
+  function showCategories() {
+    const opts = document.createElement('div');
+    opts.className = 'faq-options';
+
+    Object.entries(FAQ_DATA).forEach(([key, cat]) => {
+      const btn = document.createElement('button');
+      btn.className = 'faq-opt-btn';
+      btn.innerHTML = `${cat.icon} ${cat.label}`;
+      btn.addEventListener('click', () => {
+        if (isTyping) return;
+        selectCategory(key);
+      });
+      opts.appendChild(btn);
+    });
+
+    /* Envolvemos los chips en una burbuja del bot */
     const el = document.createElement('div');
-    el.className = 'fcat-label-row';
-    el.innerHTML = `<span class="fcat-separator">${label}</span>`;
-    messages.appendChild(el);
-    scheduleDelete(el);
+    el.className = 'fcw-msg mb-group';
+    el.innerHTML = `<div class="fcw-msg-avatar">🤖</div><div class="fcw-msg-bubble"></div>`;
+    el.querySelector('.fcw-msg-bubble').innerHTML =
+      `<p>Selecciona una <strong>categoría</strong> para comenzar:</p>`;
+    el.querySelector('.fcw-msg-bubble').appendChild(opts);
+    chat.appendChild(el);
+    scrollBottom();
   }
 
-  /* Renderizar preguntas en el panel izquierdo */
-  function renderPanelQuestions(catKey) {
-    const cat = FAQ_DATA[catKey];
-    panelQ.innerHTML = '';
+  /* ── Seleccionar categoría ── */
+  async function selectCategory(key) {
+    const cat = FAQ_DATA[key];
+    addUser(`${cat.icon} ${cat.label}`);
+    await showTyping(650);
 
-    const lbl = document.createElement('p');
-    lbl.className   = 'fqp-section-label';
-    lbl.textContent = cat.label;
-    panelQ.appendChild(lbl);
+    /* Burbuja con las preguntas de esa categoría */
+    const el = document.createElement('div');
+    el.className = 'fcw-msg mb-group';
+
+    const bubble = document.createElement('div');
+    bubble.className = 'fcw-msg-bubble';
+    bubble.innerHTML = `<p>Perfecto, aquí están las preguntas de <strong>${cat.icon} ${cat.label}</strong>:</p>`;
+
+    const opts = document.createElement('div');
+    opts.className = 'faq-options';
+    opts.style.flexDirection = 'column';
 
     cat.questions.forEach((item, idx) => {
       const btn = document.createElement('button');
-      btn.className   = 'fqp-btn';
+      btn.className = 'faq-opt-btn question-btn';
       btn.textContent = item.q;
       btn.addEventListener('click', () => {
-        if (isTyping || btn.disabled) return;
-        askQuestion(catKey, idx, btn);
+        if (isTyping || btn.classList.contains('used')) return;
+        askQuestion(key, idx, btn);
       });
-      panelQ.appendChild(btn);
+      opts.appendChild(btn);
     });
+
+    /* Botón volver */
+    const back = document.createElement('button');
+    back.className = 'faq-back-btn';
+    back.innerHTML = '← Elegir otra categoría';
+    back.addEventListener('click', () => {
+      if (isTyping) return;
+      goBack();
+    });
+
+    bubble.appendChild(opts);
+    bubble.appendChild(back);
+
+    el.innerHTML = `<div class="fcw-msg-avatar">🤖</div>`;
+    el.appendChild(bubble);
+    el.innerHTML += `<span class="fcw-msg-time">${now()}</span>`;
+    /* Reinsertamos porque innerHTML borra los listeners */
+    el.innerHTML = '';
+    const av = document.createElement('div');
+    av.className = 'fcw-msg-avatar';
+    av.textContent = '🤖';
+    const ts = document.createElement('span');
+    ts.className = 'fcw-msg-time';
+    ts.textContent = now();
+    el.appendChild(av);
+    el.appendChild(bubble);
+    el.appendChild(ts);
+
+    chat.appendChild(el);
+    scrollBottom();
   }
 
-  /* Flujo: pregunta → tipeo → respuesta */
+  /* ── Hacer pregunta ── */
   async function askQuestion(catKey, idx, btn) {
-    setQDisabled(true);
     btn.classList.add('used');
+    /* Deshabilitar todos los botones de esa burbuja mientras tipea */
+    const allBtns = btn.closest('.faq-options').querySelectorAll('.faq-opt-btn');
+    allBtns.forEach(b => { if (!b.classList.contains('used')) b.disabled = true; });
+
     const item = FAQ_DATA[catKey].questions[idx];
     addUser(item.q);
     await showTyping(800);
     addBot(item.a);
-    setQDisabled(false);
+
+    /* Reactivar botones no usados */
+    allBtns.forEach(b => { if (!b.classList.contains('used')) b.disabled = false; });
   }
 
-  /* Bloquear / desbloquear botones de preguntas */
-  function setQDisabled(state) {
-    panelQ.querySelectorAll('.fqp-btn').forEach(b => {
-      if (!b.classList.contains('used')) b.disabled = state;
-    });
+  /* ── Volver a categorías ── */
+  async function goBack() {
+    addUser('← Elegir otra categoría');
+    await showTyping(500);
+    showCategories();
   }
 
-  /* Seleccionar categoría */
-  async function selectCategory(catKey) {
-    if (catKey === activeCat || isTyping) return;
-    activeCat = catKey;
-    catBtns.forEach(b => b.classList.remove('active'));
-    document.querySelector(`[data-cat="${catKey}"]`).classList.add('active');
-    renderPanelQuestions(catKey);
-    addSeparator(FAQ_DATA[catKey].label);
-    await showTyping(650);
-    addBot(`Perfecto, estás en <strong>${FAQ_DATA[catKey].label}</strong>. ¿Sobre qué te puedo ayudar?`);
-  }
-
-  catBtns.forEach(btn =>
-    btn.addEventListener('click', () => selectCategory(btn.dataset.cat))
-  );
-
-  /* Búsqueda */
-  function doSearch() {
-    const term = document.getElementById('faqSearch').value.trim().toLowerCase();
-    if (!term) return;
-
-    let found = null, foundCat = null, foundIdx = -1;
-    outer: for (const [key, cat] of Object.entries(FAQ_DATA)) {
-      for (let i = 0; i < cat.questions.length; i++) {
-        const item = cat.questions[i];
-        if (item.q.toLowerCase().includes(term) || item.a.toLowerCase().includes(term)) {
-          found = item; foundCat = key; foundIdx = i; break outer;
-        }
-      }
-    }
-
-    document.getElementById('faqSearch').value = '';
-
-    if (!found) {
-      const inp = document.getElementById('faqSearch');
-      inp.classList.add('search-error');
-      setTimeout(() => inp.classList.remove('search-error'), 900);
-      return;
-    }
-
-    if (foundCat !== activeCat) {
-      selectCategory(foundCat).then(() =>
-        setTimeout(() => fireSearchBtn(foundIdx), 1400)
-      );
-    } else {
-      fireSearchBtn(foundIdx);
-    }
-  }
-
-  function fireSearchBtn(idx) {
-    const btns = panelQ.querySelectorAll('.fqp-btn');
-    const btn  = btns[idx];
-    if (!btn || btn.disabled || btn.classList.contains('used')) return;
-    btn.classList.add('search-highlight');
-    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    setTimeout(() => {
-      btn.classList.remove('search-highlight');
-      askQuestion(activeCat, idx, btn);
-    }, 400);
-  }
-
-  document.getElementById('faqSearchBtn').addEventListener('click', doSearch);
-  document.getElementById('faqSearch').addEventListener('keydown', e => {
-    if (e.key === 'Enter') doSearch();
-  });
+  /* ── Inicio ── */
+  (async function init() {
+    /* Mensaje de bienvenida */
+    addBot(`<p>¡Bienvenido al centro de ayuda de <strong>DistriVision</strong>! 👋</p>
+            <p style="margin-top:8px">Soy tu asistente virtual. Elige una categoría y te responderé al instante.</p>`, true);
+    await showTyping(500);
+    showCategories();
+  })();
 
 })();
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════
    NAVBAR
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 const pb = document.getElementById('scroll-progress');
 window.addEventListener('scroll', () => {
-  pb.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  pb.style.width = pct + '%';
 }, { passive: true });
 
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () =>
-  nav.classList.toggle('scrolled', window.scrollY > 60),
-  { passive: true }
+  nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true }
 );
 
 const hb = document.getElementById('navHamburger');
@@ -577,14 +451,12 @@ if (hb) {
   );
 }
 
-/* Efecto magnético en botones CTA */
 document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta').forEach(b => {
   b.addEventListener('mousemove', e => {
     const r = b.getBoundingClientRect();
     b.style.transform = `translate(
-      ${(e.clientX - (r.left + r.width  / 2)) * .18}px,
-      ${(e.clientY - (r.top  + r.height / 2)) * .22}px
-    )`;
+      ${(e.clientX-(r.left+r.width/2))*.18}px,
+      ${(e.clientY-(r.top+r.height/2))*.22}px)`;
   });
   b.addEventListener('mouseleave', () => { b.style.transform = ''; });
 });
