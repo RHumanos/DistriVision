@@ -34,7 +34,7 @@ body {
 }
 img { max-width: 100%; }
 
-/* ── Cursor ── */
+/* ── Cursor personalizado ── */
 .cursor-dot, .cursor-ring {
   position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%;
   transform: translate(-50%,-50%);
@@ -55,7 +55,9 @@ img { max-width: 100%; }
   box-shadow: 0 0 8px rgba(34,143,210,.4);
 }
 
-/* ── Navbar ── */
+/* ════════════════════════════════════════
+   NAVBAR — incluye lógica hamburguesa completa
+════════════════════════════════════════ */
 #navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
@@ -66,9 +68,13 @@ img { max-width: 100%; }
   transition: box-shadow .3s;
 }
 #navbar.scrolled { box-shadow: 0 4px 24px rgba(37,92,149,.12); }
+
 .nav-logo { display: flex; align-items: center; text-decoration: none; }
 .logo-img  { height: 42px; width: auto; }
-#navMenu   { display: flex; align-items: center; gap: 0; list-style: none; }
+
+#navMenu {
+  display: flex; align-items: center; gap: 0; list-style: none;
+}
 #navMenu a {
   display: block; padding: 8px 14px;
   font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600;
@@ -83,7 +89,83 @@ img { max-width: 100%; }
   transition: transform .2s, box-shadow .2s !important;
 }
 .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,92,149,.4) !important; }
-.nav-hamburger { display: none; }
+
+/* Botón hamburguesa — oculto en escritorio */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 8px;
+  border-radius: 8px;
+  transition: background .2s;
+}
+.nav-hamburger:hover { background: var(--blue-xlight); }
+.nav-hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--text); border-radius: 2px;
+  transition: transform .28s ease, opacity .28s ease;
+  transform-origin: center;
+}
+
+/* Animación de hamburguesa → X */
+#navbar.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#navbar.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#navbar.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── RESPONSIVE — menú desplegable ── */
+@media (max-width: 900px) {
+  #navbar { height: 68px; padding: 0 5vw; }
+
+  /* Ocultar hamburguesa en escritorio, mostrar en móvil */
+  .nav-hamburger { display: flex; }
+
+  /* Menú oculto por defecto en móvil */
+  #navMenu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;           /* justo debajo del navbar */
+    left: 0; right: 0;
+    background: rgba(255,255,255,.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 2px solid rgba(37,92,149,.12);
+    box-shadow: 0 12px 40px rgba(37,92,149,.15);
+    padding: 12px 5vw 20px;
+    gap: 4px;
+    animation: menuSlideDown .25s cubic-bezier(.16,1,.3,1) both;
+  }
+
+  /* Mostrar menú cuando navbar tiene clase menu-open */
+  #navbar.menu-open #navMenu {
+    display: flex;
+  }
+
+  #navMenu li { width: 100%; }
+  #navMenu a {
+    padding: 11px 16px;
+    font-size: .9rem;
+    border-radius: 10px;
+    width: 100%;
+    border-bottom: 1px solid rgba(37,92,149,.06);
+  }
+  #navMenu li:last-child a { border-bottom: none; }
+  .nav-cta {
+    margin-top: 8px;
+    text-align: center;
+    border-radius: 50px !important;
+    padding: 12px 20px !important;
+  }
+
+  /* Ocultar cursor personalizado en táctil */
+  .cursor-dot, .cursor-ring { display: none; }
+
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@keyframes menuSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* ── Footer ── */
 footer { background: #0f2642; font-family: 'Lato', sans-serif; }
@@ -197,6 +279,10 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
   transition: background .2s, transform .15s;
   animation: revealUp .3s ease both;
 }
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
 .dv-option-btn:hover { background: var(--blue-light); transform: translateX(4px); }
 .opt-icon { font-size: 1.1rem; }
 .opt-label { flex: 1; text-align: left; font-size: .8rem; font-weight: 700; color: var(--text); }
@@ -222,20 +308,6 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
   border-top: 1px solid rgba(37,92,149,.07); text-align: center;
 }
 .dv-chat-footer span { font-weight: 700; color: var(--blue); }
-
-@media (max-width: 900px) {
-  #navbar { height: 68px; padding: 0 5vw; }
-  #navMenu { display: none; }
-  .nav-hamburger {
-    display: flex; flex-direction: column; gap: 5px;
-    background: none; border: none; cursor: pointer; padding: 6px;
-  }
-  .nav-hamburger span {
-    display: block; width: 24px; height: 2px;
-    background: var(--text); border-radius: 2px; transition: .25s;
-  }
-  .footer-top { grid-template-columns: 1fr; gap: 28px; }
-}
 </style>
 </head>
 <body>
@@ -262,8 +334,11 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
-    <span></span><span></span><span></span>
+  <!-- Hamburguesa: 3 spans para la animación X -->
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
 </nav>
 
@@ -524,11 +599,6 @@ const BIRTHDAYS = [
    2. CELEBRACIONES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const CELEBRATIONS = [
-
-// ==========================
-// 🌿 SEMANA SANTA – ABRIL
-// ==========================
-
   {
     title:     '🙏✨ ¡Celebremos la Semana Santa! ✨🙏',
     excerpt:   'Un tiempo de reflexión, unión y paz para toda la familia DistriVision.',
@@ -549,179 +619,8 @@ const CELEBRATIONS = [
     bandLabel: 'Semana Santa',
     calMonth: 4, calYear: 2026,
   },
-
-
-// ==========================
-// 💼 DÍA DEL TRABAJO – 1 DE MAYO
-// ==========================
-/*
-  {
-    title:     '💼🌟 ¡Feliz Día del Trabajo! 🌟💼',
-    excerpt:   'Celebramos el esfuerzo, compromiso y dedicación de todo el equipo DistriVision.',
-    body:      `<p>Querido equipo,</p>
-                <p>Hoy conmemoramos el <strong>Día Internacional del Trabajo</strong>, una fecha para honrar su disciplina, entrega y la pasión que ponen en cada tarea.</p>
-                <p>💼 A quienes lideran.<br>
-                🤝 A quienes apoyan.<br>
-                🚀 A quienes nunca se rinden.<br>
-                ⭐ ¡Gracias por su increíble labor!</p>
-                <p><strong>¡Feliz Día del Trabajo!</strong> 👏</p>`,
-    date:      'Publicado el 1 de Mayo, 2026',
-    author:    'Gerencia General',
-    dept:      'DistriVision LTDA',
-    avatar:    '💼',
-    bg:        'linear-gradient(135deg, #0d47a1 0%, #1976d2 35%, #64b5f6 70%, #e3f2fd 100%)',
-    icon:      '🤝',
-    bandLabel: 'Día del Trabajo',
-    calDay: 1, calMonth: 5, calYear: 2026,
-  },
-*/
-
-// ==========================
-// 🌸 DÍA DE LA MADRE – MAYO
-// ==========================
-/*
-  {
-    title:     '🌸💖 ¡Feliz Día de la Madre! 💖🌸',
-    excerpt:   'Celebramos la dedicación, amor y fortaleza de todas las madres del equipo DistriVision.',
-    body:      `<p>Querido equipo,</p>
-                <p>Hoy honramos el <strong>Día de la Madre</strong>, una fecha para agradecer el amor, la entrega y el ejemplo de cada mamá.</p>
-                <p>🌸 A las que inspiran.<br>
-                💖 A las que sostienen.<br>
-                👩‍👧‍👦 A las que guían.<br>
-                ✨ ¡Gracias por su valentía y amor!</p>
-                <p><strong>¡Feliz Día de la Madre!</strong> 💐</p>`,
-    date:      'Publicado en Mayo de 2026',
-    author:    'Gerencia General',
-    dept:      'DistriVision LTDA',
-    avatar:    '🌸',
-    bg:        'linear-gradient(135deg, #ff6f61 0%, #ffab91 35%, #ffe0e0 70%, #fff8f6 100%)',
-    icon:      '💐',
-    bandLabel: 'Día de la Madre',
-    calMonth: 5, calYear: 2026,
-  },
-*/
-
-// ==========================
-// 👨‍👧 DÍA DEL PADRE – JUNIO
-// ==========================
-/*
-  {
-    title:     '👨‍👧💙 ¡Feliz Día del Padre! 💙👨‍👧',
-    excerpt:   'Honramos a los padres trabajadores que dan lo mejor dentro y fuera de la empresa.',
-    body:      `<p>Querido equipo,</p>
-                <p>Hoy celebramos el <strong>Día del Padre</strong> y agradecemos a quienes con amor, esfuerzo y responsabilidad inspiran cada día.</p>
-                <p>💙 A los que enseñan.<br>
-                💼 A los que trabajan duro.<br>
-                👨‍👧 A los que cuidan con el corazón.</p>
-                <p><strong>¡Feliz Día del Padre!</strong> 🎉</p>`,
-    date:      'Publicado en Junio de 2026',
-    author:    'Gerencia General',
-    dept:      'DistriVision LTDA',
-    avatar:    '💙',
-    bg:        'linear-gradient(135deg, #1b5e20 0%, #4caf50 35%, #a5d6a7 70%, #e8f5e9 100%)',
-    icon:      '👨‍👧',
-    bandLabel: 'Día del Padre',
-    calMonth: 6, calYear: 2026,
-  },
-*/
-
-// ==========================
-// 🇨🇴 DÍA DE LA INDEPENDENCIA – 20 DE JULIO
-// ==========================
-/*
-  {
-    title:     '🇨🇴✨ ¡Celebremos el Día de la Independencia! ✨🇨🇴',
-    excerpt:   'Un homenaje a nuestra historia, identidad y orgullo colombiano.',
-    body:      `<p>Querido equipo,</p>
-                <p>Hoy celebramos el <strong>20 de Julio</strong>, una fecha que nos recuerda el valor, la unión y la determinación de nuestro país.</p>
-                <p>🇨🇴 Orgullo por nuestras raíces.<br>
-                💛 Admiración por nuestra cultura.<br>
-                ❤️ Amor por nuestra gente.</p>
-                <p><strong>¡Feliz Día de la Independencia!</strong> 🇨🇴✨</p>`,
-    date:      'Publicado el 20 de Julio, 2026',
-    author:    'Gerencia General',
-    dept:      'DistriVision LTDA',
-    avatar:    '🇨🇴',
-    bg:        'linear-gradient(135deg, #ffeb3b 0%, #f44336 40%, #0d47a1 80%)',
-    icon:      '✨',
-    bandLabel: '20 de Julio',
-    calDay: 20, calMonth: 7, calYear: 2026,
-  },
-*/
-
-// ==========================
-// 💛 AMOR Y AMISTAD – SEPTIEMBRE
-// ==========================
-/*
-  {
-    title:     '💛🤗 ¡Feliz Día del Amor y la Amistad! 🤗💛',
-    excerpt:   'Un día para fortalecer la unión y valorar cada relación en DistriVision.',
-    body:      `<p>Querido equipo,</p>
-                <p>Hoy celebramos el <strong>Día del Amor y la Amistad</strong>, un día para agradecer el buen ambiente y el compañerismo.</p>
-                <p>💛 A quienes apoyan.<br>
-                🤗 A quienes motivan.<br>
-                🌟 A quienes hacen mejores los días.</p>
-                <p><strong>¡Feliz día para todos!</strong> 💛</p>`,
-    date:      'Publicado en Septiembre de 2026',
-    author:    'Gerencia General',
-    dept:      'DistriVision LTDA',
-    avatar:    '💛',
-    bg:        'linear-gradient(135deg, #ff9800 0%, #ffb74d 35%, #ffe0b2 70%, #fff3e0 100%)',
-    icon:      '🤗',
-    bandLabel: 'Amor y Amistad',
-    calMonth: 9, calYear: 2026,
-  },
-*/
-
-// ==========================
-// 🎃 HALLOWEEN – OCTUBRE
-// ==========================
-/*
-  {
-    title:     '🎃🕸️ ¡Feliz Halloween! 🕸️🎃',
-    excerpt:   'Una fecha para disfrutar, compartir y vivir el espíritu creativo de la temporada.',
-    body:      `<p>Querido equipo,</p>
-                <p>Hoy celebramos <strong>Halloween</strong>, una ocasión para la diversión y la creatividad.</p>
-                <p>🎃 Disfruten segura y alegremente.<br>
-                👻 Dejen volar la imaginación.<br>
-                🕸️ Sigamos construyendo un gran ambiente.</p>
-                <p><strong>¡Feliz Halloween!</strong> 🎃</p>`,
-    date:      'Publicado en Octubre de 2026',
-    author:    'Gerencia General',
-    dept:      'DistriVision LTDA',
-    avatar:    '🎃',
-    bg:        'linear-gradient(135deg, #ff6f00 0%, #ff8f00 35%, #ffcc80 70%, #fff3e0 100%)',
-    icon:      '🕸️',
-    bandLabel: 'Halloween',
-    calMonth: 10, calYear: 2026,
-  },
-*/
-
-// ==========================
-// 🎄 NAVIDAD – DICIEMBRE
-// ==========================
-/*
-  {
-    title:     '🎄✨ ¡Feliz Navidad! ✨🎄',
-    excerpt:   'Una época para compartir, agradecer y disfrutar en unión.',
-    body:      `<p>Querido equipo,</p>
-                <p>La <strong>Navidad</strong> llega para recordarnos la importancia de la familia, la esperanza y la gratitud.</p>
-                <p>🎄 Que estos días traigan paz.<br>
-                ✨ Que la luz ilumine sus hogares.<br>
-                ❤️ Que el amor sea el protagonista.</p>
-                <p><strong>¡Feliz Navidad!</strong> 🎁✨</p>`,
-    date:      'Publicado en Diciembre de 2026',
-    author:    'Gerencia General',
-    dept:      'DistriVision LTDA',
-    avatar:    '🎁',
-    bg:        'linear-gradient(135deg, #b71c1c 0%, #e53935 35%, #ef9a9a 70%, #ffebee 100%)',
-    icon:      '🎄',
-    bandLabel: 'Navidad',
-    calMonth: 12, calYear: 2026,
-  },
-*/
-
 ];
+
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    3. COMUNICADOS Y REUNIONES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -1052,7 +951,7 @@ document.getElementById('cnt-todos').textContent = allCards.length;
   if (el) el.textContent = counts[t] || 0;
 });
 
-/* ── Filtro de tabs — CORREGIDO ── */
+/* ── Filtro de tabs ── */
 document.querySelectorAll('.ptab').forEach(tab => {
   tab.addEventListener('click', function () {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
@@ -1073,7 +972,6 @@ document.querySelectorAll('.ptab').forEach(tab => {
       return;
     }
 
-    /* Volver a modo feed */
     feedEl.style.display    = '';
     sidebarEl.style.display = '';
     calView.classList.remove('cal-active');
@@ -1233,21 +1131,79 @@ function selectMood(btn) {
   setTimeout(() => { document.getElementById('moodOptions').style.display = 'none'; document.getElementById('moodThanks').style.display = 'block'; }, 600);
 }
 
-/* ── Cursor ── */
-const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+/* ── Cursor personalizado ── */
+const dot  = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-(function loop() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop); })();
+// Solo activar cursor personalizado si no es dispositivo táctil
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+  (function loop() {
+    rx += (mx - rx) * .12; ry += (my - ry) * .12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+} else {
+  // Táctil: ocultar los elementos del cursor personalizado
+  if (dot)  dot.style.display  = 'none';
+  if (ring) ring.style.display = 'none';
+}
 
 /* ── Scroll progress ── */
 const pb = document.getElementById('scroll-progress');
-window.addEventListener('scroll', () => { pb.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%'; }, { passive: true });
+window.addEventListener('scroll', () => {
+  pb.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
+}, { passive: true });
 
 /* ── Nav ── */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+window.addEventListener('scroll', () =>
+  navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true }
+);
+
+/* ── Hamburguesa — lógica completa ── */
 const hamb = document.getElementById('navHamburger');
-if (hamb) { hamb.addEventListener('click', () => navbar.classList.toggle('menu-open')); document.querySelectorAll('#navMenu a').forEach(l => l.addEventListener('click', () => navbar.classList.remove('menu-open'))); }
+if (hamb) {
+  hamb.addEventListener('click', () => {
+    const isOpen = navbar.classList.toggle('menu-open');
+    hamb.setAttribute('aria-expanded', isOpen);
+    // Evitar scroll del body cuando el menú está abierto
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Cerrar al hacer clic en cualquier enlace del menú
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('menu-open');
+      hamb.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && navbar.classList.contains('menu-open')) {
+      navbar.classList.remove('menu-open');
+      hamb.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      hamb.focus();
+    }
+  });
+
+  // Cerrar al hacer clic fuera del navbar
+  document.addEventListener('click', e => {
+    if (navbar.classList.contains('menu-open') && !navbar.contains(e.target)) {
+      navbar.classList.remove('menu-open');
+      hamb.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+}
 
 /* ── Chatbot ── */
 (function () {
