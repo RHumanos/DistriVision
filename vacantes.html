@@ -116,7 +116,7 @@
     <div class="solicitud-header">
       <span class="section-tag">Proceso de Aplicación</span>
       <h2 class="section-title">¿Cómo enviar tu solicitud?</h2>
-      <p>Sigue estos sencillos pasos para postularte a una de nuestras vacantes. Al presionar el botón, se abrirá automáticamente tu cliente de correo (Gmail, Hotmail u Outlook) con el destinatario y el mensaje ya redactados.</p>
+      <p>Sigue estos sencillos pasos para postularte a una de nuestras vacantes. Al presionar el botón, se abrirá automáticamente tu cliente de correo (Gmail, Hotmail u Outlook) con el destinatario, el asunto y el mensaje ya redactados.</p>
     </div>
 
     <!-- PASOS -->
@@ -151,8 +151,8 @@
       <div class="paso-card">
         <div class="paso-num">4</div>
         <div class="paso-body">
-          <h4>Ajusta el asunto del correo</h4>
-          <p>El asunto se generará como: <strong>"Solicitud de Vacante – [Nombre del Cargo]"</strong>. Una vez abierto el correo, reemplaza <em style="color:var(--accent);font-style:italic">[Nombre del Cargo]</em> con el cargo exacto que viste en el PDF.</p>
+          <h4>Indica el cargo en el formulario</h4>
+          <p>Escribe el nombre exacto del cargo al que aspiras en el campo correspondiente del formulario. Este se incluirá automáticamente en el <strong>asunto del correo</strong>, listo para enviar.</p>
         </div>
       </div>
 
@@ -178,7 +178,7 @@
     <!-- NOTA -->
     <div class="solicitud-nota">
       <span class="nota-icon">💡</span>
-      <p><strong>Importante:</strong> Completa el formulario con tus datos personales antes de hacer clic en el botón. Tu nombre, cédula y teléfono se incluirán automáticamente en el cuerpo del correo. Solo deberás ajustar el nombre del cargo en el asunto y adjuntar los dos documentos solicitados antes de enviar.</p>
+      <p><strong>Importante:</strong> Completa todos los campos del formulario, incluyendo el <strong>cargo al que aspiras</strong>. Tu nombre, cédula, teléfono y el cargo se incluirán automáticamente en el correo — el asunto ya vendrá con el nombre del cargo. Solo deberás adjuntar tu hoja de vida y la captura de la vacante antes de enviar.</p>
     </div>
 
     <!-- ══ FORMULARIO DE DATOS PERSONALES ══ -->
@@ -214,10 +214,17 @@
           <span class="fs-error-msg" id="err-telefono">⚠ Por favor ingresa tu teléfono de contacto.</span>
         </div>
 
+        <!-- ══ NUEVO CAMPO: CARGO ══ -->
+        <div class="fs-group" style="grid-column: 1 / -1;">
+          <label class="fs-label" for="fs-cargo">Cargo al que aspira <em>*</em></label>
+          <input class="fs-input" type="text" id="fs-cargo" placeholder="Ej: Auxiliar de Bodega, Vendedor, Conductor..." maxlength="100">
+          <span class="fs-error-msg" id="err-cargo">⚠ Por favor indica el cargo al que deseas aplicar.</span>
+        </div>
+
       </div>
 
       <div class="fs-preview" id="fsPreview">
-        <span class="fs-preview-label">✅ Vista previa — así aparecerá tu información en el correo</span>
+        <span class="fs-preview-label">✅ Vista previa — así aparecerán tus datos en el correo</span>
         <div class="fs-preview-text" id="fsPreviewText"></div>
       </div>
     </div>
@@ -409,9 +416,11 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-do
   const inputNombre   = document.getElementById('fs-nombre');
   const inputCedula   = document.getElementById('fs-cedula');
   const inputTelefono = document.getElementById('fs-telefono');
+  const inputCargo    = document.getElementById('fs-cargo');
   const errNombre     = document.getElementById('err-nombre');
   const errCedula     = document.getElementById('err-cedula');
   const errTelefono   = document.getElementById('err-telefono');
+  const errCargo      = document.getElementById('err-cargo');
   const preview       = document.getElementById('fsPreview');
   const previewText   = document.getElementById('fsPreviewText');
   const btnSolicitud  = document.getElementById('btnSolicitud');
@@ -420,34 +429,49 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-do
   inputTelefono.addEventListener('input', () => inputTelefono.value = inputTelefono.value.replace(/[^\d\s+\-()]/g, ''));
 
   function updatePreview() {
-    const n = inputNombre.value.trim(), c = inputCedula.value.trim(), t = inputTelefono.value.trim();
-    if (n || c || t) {
-      previewText.innerHTML = `<strong>Nombre:</strong> ${n||'<em style="color:#aaa">pendiente</em>'}<br><strong>Cédula:</strong> ${c||'<em style="color:#aaa">pendiente</em>'}<br><strong>Teléfono:</strong> ${t||'<em style="color:#aaa">pendiente</em>'}`;
+    const n = inputNombre.value.trim();
+    const c = inputCedula.value.trim();
+    const t = inputTelefono.value.trim();
+    const g = inputCargo.value.trim();
+    if (n || c || t || g) {
+      previewText.innerHTML =
+        `<strong>Cargo:</strong> ${g||'<em style="color:#aaa">pendiente</em>'}<br>` +
+        `<strong>Nombre:</strong> ${n||'<em style="color:#aaa">pendiente</em>'}<br>` +
+        `<strong>Cédula:</strong> ${c||'<em style="color:#aaa">pendiente</em>'}<br>` +
+        `<strong>Teléfono:</strong> ${t||'<em style="color:#aaa">pendiente</em>'}`;
       preview.classList.add('show');
     } else { preview.classList.remove('show'); }
   }
-  [inputNombre, inputCedula, inputTelefono].forEach(i => i.addEventListener('input', updatePreview));
+  [inputNombre, inputCedula, inputTelefono, inputCargo].forEach(i => i.addEventListener('input', updatePreview));
 
-  [[inputNombre,errNombre],[inputCedula,errCedula],[inputTelefono,errTelefono]].forEach(([i,e]) =>
+  [[inputNombre,errNombre],[inputCedula,errCedula],[inputTelefono,errTelefono],[inputCargo,errCargo]].forEach(([i,e]) =>
     i.addEventListener('input', () => { i.classList.remove('fs-error'); e.classList.remove('show'); })
   );
 
   btnSolicitud.addEventListener('click', () => {
-    const n = inputNombre.value.trim(), c = inputCedula.value.trim(), t = inputTelefono.value.trim();
+    const n = inputNombre.value.trim();
+    const c = inputCedula.value.trim();
+    const t = inputTelefono.value.trim();
+    const g = inputCargo.value.trim();
     let valid = true;
     if (!n) { inputNombre.classList.add('fs-error');   errNombre.classList.add('show');   valid = false; }
     if (!c) { inputCedula.classList.add('fs-error');   errCedula.classList.add('show');   valid = false; }
     if (!t) { inputTelefono.classList.add('fs-error'); errTelefono.classList.add('show'); valid = false; }
+    if (!g) { inputCargo.classList.add('fs-error');    errCargo.classList.add('show');    valid = false; }
     if (!valid) { document.querySelector('.form-solicitud-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     const destinatario = 'recurso.humano@distrivision.com.co';
-    const asunto       = 'Solicitud de Vacante - [Nombre del Cargo]';
+    // ── ASUNTO CON EL CARGO YA INCLUIDO ──
+    const asunto = 'Solicitud de Vacante - ' + g;
     const lineas = [
       'Estimado equipo de Recursos Humanos de DistriVision,','',
-      'Me dirijo a ustedes con el fin de postularme formalmente al cargo de [Nombre del Cargo], publicado en el documento de Vacantes DistriVision 2025.','',
+      'Me dirijo a ustedes con el fin de postularme formalmente al cargo de ' + g + ', publicado en el documento de Vacantes DistriVision 2025.','',
       'Considero que mi perfil profesional, experiencia y habilidades se alinean con los requisitos de la posicion. Me motiva unirme a una empresa comprometida con la excelencia, el servicio superior y el crecimiento continuo como DistriVision.','',
       'Adjunto a este correo:','- Hoja de vida actualizada (PDF o Word).','- Captura de pantalla de la vacante de mi interes.','',
-      'Mis datos de contacto:','Nombre completo : '+n,'Cedula          : '+c,'Telefono        : '+t,'',
+      'Mis datos de contacto:',
+      'Nombre completo : ' + n,
+      'Cedula          : ' + c,
+      'Telefono        : ' + t,'',
       'Quedo atento/a a cualquier informacion adicional que requieran y agradezco de antemano la consideracion a mi solicitud.','',
       'Cordialmente,', n
     ];
@@ -467,7 +491,8 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-do
       <div id="mailBox" style="background:#fff;border-radius:24px 24px 0 0;padding:26px 20px 38px;width:100%;max-width:480px;box-shadow:0 -12px 50px rgba(37,92,149,.2)">
         <div style="width:36px;height:3px;background:#e2e8f0;border-radius:3px;margin:0 auto 20px"></div>
         <div style="text-align:center;font-size:1.8rem;margin-bottom:8px">✉️</div>
-        <h3 style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;color:#1a4470;text-align:center;margin-bottom:6px">¡Tu solicitud está lista!</h3>
+        <h3 style="font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;color:#1a4470;text-align:center;margin-bottom:4px">¡Tu solicitud está lista!</h3>
+        <p style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:#6b7d90;text-align:center;line-height:1.55;margin-bottom:6px">Cargo: <strong style="color:#1a4470">${g}</strong></p>
         <p style="font-family:'DM Sans',sans-serif;font-size:.78rem;color:#6b7d90;text-align:center;line-height:1.55;margin-bottom:20px">El mensaje ya incluye tus datos.<br>Toca el botón para enviarlo.</p>
         <a href="${mailtoFallback}" style="display:flex;align-items:center;gap:12px;background:#1a4470;color:#fff;padding:16px 20px;border-radius:14px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;box-shadow:0 5px 18px rgba(26,68,112,.35);margin-bottom:10px">
           <span style="font-size:1.1rem">📧</span><span style="flex:1">Enviar solicitud por correo</span><span>→</span>
@@ -476,10 +501,11 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-do
       </div>`;
 
     const desktopBox = `
-      <div id="mailBox" style="background:#fff;border-radius:20px;padding:36px 32px 28px;max-width:380px;width:90%;text-align:center;box-shadow:0 28px 70px rgba(37,92,149,.25);border:1px solid rgba(37,92,149,.08)">
+      <div id="mailBox" style="background:#fff;border-radius:20px;padding:36px 32px 28px;max-width:400px;width:90%;text-align:center;box-shadow:0 28px 70px rgba(37,92,149,.25);border:1px solid rgba(37,92,149,.08)">
         <div style="font-size:2.2rem;margin-bottom:12px">✉️</div>
-        <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:700;color:#1a4470;margin-bottom:7px">¿Con qué correo deseas enviar?</h3>
-        <p style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#6b7d90;line-height:1.55;margin-bottom:24px">El mensaje ya está listo con tus datos.<br>Solo elige tu cliente de correo.</p>
+        <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:700;color:#1a4470;margin-bottom:4px">¿Con qué correo deseas enviar?</h3>
+        <div style="display:inline-block;background:#eef4fb;border-radius:8px;padding:5px 14px;font-family:'DM Sans',sans-serif;font-size:.8rem;color:#1a4470;font-weight:600;margin-bottom:8px">💼 ${g}</div>
+        <p style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:#6b7d90;line-height:1.55;margin-bottom:24px">El mensaje ya está listo con tus datos y el cargo.<br>Solo elige tu cliente de correo.</p>
         <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:16px">
           <a href="${gmailURL}" target="_blank" style="display:flex;align-items:center;gap:12px;background:#ea4335;color:#fff;padding:14px 20px;border-radius:12px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;box-shadow:0 4px 16px rgba(234,67,53,.35)">
             <span>📮</span><span style="flex:1">Abrir en Gmail</span><span style="opacity:.7">→</span>
