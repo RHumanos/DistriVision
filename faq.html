@@ -219,12 +219,247 @@ html, body { cursor: auto !important; }
 /* ─── BODY ─── */
 .faq-body {
   background: var(--blue-pale);
-  padding: 60px 24px 80px;
-  display: flex; justify-content: center;
+  padding: 60px 5vw 80px;
+  display: flex; justify-content: center; align-items: flex-start;
+  gap: 32px;
   background-image:
     radial-gradient(ellipse at 5% 20%,rgba(34,143,210,.07) 0%,transparent 50%),
     radial-gradient(ellipse at 95% 80%,rgba(37,92,149,.06) 0%,transparent 50%),
     radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.5) 0%,transparent 80%);
+}
+
+/* ─── CAJA PUBLICITARIA ─── */
+.faq-promo-col {
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+}
+
+.faq-promo-card {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(37,92,149,.12),
+    0 12px 40px rgba(14,44,74,.18),
+    0 2px 8px rgba(14,44,74,.08);
+  background: linear-gradient(160deg, #071928 0%, #0e2c4a 40%, #1a4470 75%, #255c95 100%);
+  position: relative;
+  animation: fadeUp .8s cubic-bezier(.16,1,.3,1) .3s both;
+}
+
+/* Patrón de puntos de fondo */
+.faq-promo-card::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Orbe decorativo */
+.faq-promo-card::after {
+  content: '';
+  position: absolute;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(34,143,210,.35) 0%, transparent 70%);
+  top: -80px; right: -80px;
+  border-radius: 50%; pointer-events: none;
+}
+
+.fpc-inner {
+  position: relative; z-index: 2;
+  padding: 32px 28px 28px;
+}
+
+/* Etiqueta superior */
+.fpc-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .65rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 24px;
+}
+.fpc-tag-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* Icono grande */
+.fpc-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 18px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 16px rgba(34,143,210,.5));
+  animation: heroFloat 4s ease-in-out infinite;
+}
+@keyframes heroFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Frase motivacional */
+.fpc-quote {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -.5px;
+  margin-bottom: 12px;
+}
+.fpc-quote em {
+  font-style: italic;
+  background: linear-gradient(135deg, #7dd3fc, #60a5fa);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.fpc-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .82rem;
+  color: rgba(255,255,255,.52);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* Separador con destellos */
+.fpc-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+  margin-bottom: 22px;
+}
+
+/* Stats en dos columnas */
+.fpc-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.fpc-stat {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-align: center;
+  transition: background .2s, transform .2s;
+}
+.fpc-stat:hover { background: rgba(255,255,255,.12); transform: translateY(-2px); }
+.fpc-stat-num {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem; font-weight: 900;
+  color: #fff; display: block; line-height: 1;
+}
+.fpc-stat-lbl {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .6rem; font-weight: 600;
+  color: rgba(255,255,255,.4);
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Botón CTA */
+.fpc-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  background: linear-gradient(135deg, #228fd2, #255c95);
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: .82rem; font-weight: 800;
+  padding: 13px 20px; border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 4px 18px rgba(34,143,210,.35), inset 0 1px 0 rgba(255,255,255,.2);
+  transition: transform .2s, box-shadow .2s;
+  letter-spacing: .3px;
+}
+.fpc-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(34,143,210,.5), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.fpc-btn-arrow {
+  font-size: 1rem;
+  transition: transform .2s;
+}
+.fpc-btn:hover .fpc-btn-arrow { transform: translateX(4px); }
+
+/* Barra inferior de confianza */
+.fpc-trust {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .68rem;
+  color: rgba(255,255,255,.35);
+}
+.fpc-trust-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,.2);
+}
+
+/* Segundo card: testimonial/dato */
+.faq-promo-mini {
+  border-radius: 18px;
+  background: var(--white);
+  border: 1px solid rgba(37,92,149,.1);
+  padding: 22px 22px 20px;
+  box-shadow: 0 4px 20px rgba(14,44,74,.08);
+  animation: fadeUp .8s cubic-bezier(.16,1,.3,1) .45s both;
+  position: relative;
+  overflow: hidden;
+}
+.faq-promo-mini::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #228fd2, #4ade80);
+}
+.fpm-icon {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  display: block;
+}
+.fpm-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .84rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+.fpm-text strong { color: var(--blue-primary); }
+.fpm-author {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(37,92,149,.08);
+}
+.fpm-av {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--metal-plate);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; flex-shrink: 0;
+}
+.fpm-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .75rem; font-weight: 700;
+  color: var(--text-dark);
+}
+.fpm-role {
+  font-size: .68rem; color: var(--text-soft); margin-top: 1px;
+}
+
+/* ─── Responsive: ocultar promo en móvil ─── */
+@media (max-width: 900px) {
+  .faq-body { padding: 24px 12px 56px; flex-direction: column; align-items: center; }
+  .faq-promo-col { display: none; }
 }
 
 /* ─── CHAT WINDOW ─── */
@@ -513,7 +748,6 @@ footer { background: linear-gradient(180deg,#071928,#040d14); color: rgba(255,25
 .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 22px 7vw; font-size: .75rem; }
 
 @media (max-width: 700px) {
-  .faq-body { padding: 24px 12px 56px; }
   .fcw-messages { padding: 24px 18px 20px; min-height: 400px; }
   .fcw-header { padding: 14px 18px; }
   .fcw-badge, .fcw-win-dots { display: none; }
@@ -569,6 +803,82 @@ footer { background: linear-gradient(180deg,#071928,#040d14); color: rgba(255,25
 </section>
 
 <div class="faq-body">
+
+  <!-- ══ COLUMNA PUBLICITARIA ══ -->
+  <aside class="faq-promo-col">
+
+    <!-- Card principal motivacional -->
+    <div class="faq-promo-card">
+      <div class="fpc-inner">
+        <span class="fpc-tag">
+          <span class="fpc-tag-dot"></span>
+          DistriVision
+        </span>
+
+        <span class="fpc-icon">🚀</span>
+
+        <h2 class="fpc-quote">
+          El éxito no es el destino,<br>
+          es el <em>camino</em> que recorremos juntos.
+        </h2>
+        <p class="fpc-sub">
+          Más de 30 años distribuyendo calidad, confianza y compromiso en cada entrega a todo el Huila.
+        </p>
+
+        <div class="fpc-divider"></div>
+
+        <div class="fpc-stats">
+          <div class="fpc-stat">
+            <span class="fpc-stat-num">30+</span>
+            <span class="fpc-stat-lbl">Años</span>
+          </div>
+          <div class="fpc-stat">
+            <span class="fpc-stat-num">500+</span>
+            <span class="fpc-stat-lbl">Clientes</span>
+          </div>
+          <div class="fpc-stat">
+            <span class="fpc-stat-num">1.000+</span>
+            <span class="fpc-stat-lbl">Productos</span>
+          </div>
+          <div class="fpc-stat">
+            <span class="fpc-stat-num">100%</span>
+            <span class="fpc-stat-lbl">Cobertura</span>
+          </div>
+        </div>
+
+        <a href="contacto.html" class="fpc-btn">
+          Contáctenos hoy
+          <span class="fpc-btn-arrow">→</span>
+        </a>
+
+        <div class="fpc-trust">
+          <span>Neiva, Huila</span>
+          <span class="fpc-trust-dot"></span>
+          <span>Colombia</span>
+          <span class="fpc-trust-dot"></span>
+          <span>Desde 1994</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini card testimonial -->
+    <div class="faq-promo-mini">
+      <span class="fpm-icon">💬</span>
+      <p class="fpm-text">
+        <strong>"Trabajar con DistriVision</strong> nos ha permitido crecer con confianza. Su puntualidad y variedad de productos marcan la diferencia."
+      </p>
+      <div class="fpm-author">
+        <div class="fpm-av">⭐</div>
+        <div>
+          <div class="fpm-name">Cliente Verificado</div>
+          <div class="fpm-role">Neiva, Huila · 5 años con DistriVision</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ══ CHAT ══ -->
   <div class="faq-chat-col">
 
     <!-- Header con botón reiniciar -->
