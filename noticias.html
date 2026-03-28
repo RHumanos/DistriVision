@@ -160,6 +160,12 @@ img { max-width: 100%; }
   .cursor-dot, .cursor-ring { display: none; }
 
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
+
+  /* ── Ocultar widgets de Próximos Eventos y Cumpleaños del Mes en móvil ── */
+  #portalSidebar .sidebar-widget:nth-child(1),
+  #portalSidebar .sidebar-widget:nth-child(2) {
+    display: none;
+  }
 }
 
 @keyframes menuSlideDown {
@@ -1135,7 +1141,6 @@ function selectMood(btn) {
 const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
-// Solo activar cursor personalizado si no es dispositivo táctil
 if (window.matchMedia('(pointer: fine)').matches) {
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
@@ -1149,7 +1154,6 @@ if (window.matchMedia('(pointer: fine)').matches) {
     requestAnimationFrame(loop);
   })();
 } else {
-  // Táctil: ocultar los elementos del cursor personalizado
   if (dot)  dot.style.display  = 'none';
   if (ring) ring.style.display = 'none';
 }
@@ -1166,17 +1170,15 @@ window.addEventListener('scroll', () =>
   navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true }
 );
 
-/* ── Hamburguesa — lógica completa ── */
+/* ── Hamburguesa ── */
 const hamb = document.getElementById('navHamburger');
 if (hamb) {
   hamb.addEventListener('click', () => {
     const isOpen = navbar.classList.toggle('menu-open');
     hamb.setAttribute('aria-expanded', isOpen);
-    // Evitar scroll del body cuando el menú está abierto
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Cerrar al hacer clic en cualquier enlace del menú
   document.querySelectorAll('#navMenu a').forEach(link => {
     link.addEventListener('click', () => {
       navbar.classList.remove('menu-open');
@@ -1185,7 +1187,6 @@ if (hamb) {
     });
   });
 
-  // Cerrar con tecla Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && navbar.classList.contains('menu-open')) {
       navbar.classList.remove('menu-open');
@@ -1195,7 +1196,6 @@ if (hamb) {
     }
   });
 
-  // Cerrar al hacer clic fuera del navbar
   document.addEventListener('click', e => {
     if (navbar.classList.contains('menu-open') && !navbar.contains(e.target)) {
       navbar.classList.remove('menu-open');
