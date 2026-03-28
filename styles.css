@@ -981,9 +981,10 @@ footer { background: var(--blue-dark); padding: 72px 7vw 36px; }
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
 .fp-logo-img {
-  height: 50px; width: auto; object-fit: contain;
+  height: 80px; width: auto; object-fit: contain;
   margin-bottom: 18px; display: block;
-  filter: brightness(0) invert(1); opacity: .8;
+  margin-left: 0;
+  filter: brightness(0) invert(1); opacity: .9;
 }
 .fp-name {
   font-size: 1.35rem; font-weight: 700;
