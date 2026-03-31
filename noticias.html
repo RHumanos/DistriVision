@@ -10,11 +10,10 @@
   <link rel="stylesheet" href="styles6.css">
   <link rel="stylesheet" href="portal-fixes.css">
   <link rel="icon" type="image/png" href="img/1 (3).png">
-<link rel="apple-touch-icon" href="img/1 (3).png">
-<link rel="shortcut icon" href="img/1 (3).png">
+  <link rel="apple-touch-icon" href="img/1 (3).png">
+  <link rel="shortcut icon" href="img/1 (3).png">
 
 <style>
-/* Variables base */
 :root {
   --blue:       #255c95;
   --blue-dark:  #1a3d5c;
@@ -30,292 +29,100 @@
   --transition: .28s ease;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Lato', sans-serif;
-  background: var(--gray); color: var(--text);
-  -webkit-font-smoothing: antialiased;
-}
+body { font-family: 'Lato', sans-serif; background: var(--gray); color: var(--text); -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; }
 
-/* ── Cursor personalizado ── */
-.cursor-dot, .cursor-ring {
-  position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%;
-  transform: translate(-50%,-50%);
-}
+.cursor-dot, .cursor-ring { position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%; transform: translate(-50%,-50%); }
 .cursor-dot  { width: 8px; height: 8px; background: var(--blue); }
-.cursor-ring {
-  width: 36px; height: 36px;
-  border: 2px solid rgba(37,92,149,.4); background: transparent;
-  transition: width .15s, height .15s;
-}
+.cursor-ring { width: 36px; height: 36px; border: 2px solid rgba(37,92,149,.4); background: transparent; transition: width .15s, height .15s; }
 
-/* ── Scroll progress ── */
-#scroll-progress {
-  position: fixed; top: 0; left: 0; height: 3px; z-index: 999;
-  background: linear-gradient(90deg, #228fd2, #255c95);
-  border-radius: 0 3px 3px 0;
-  transition: width .1s linear;
-  box-shadow: 0 0 8px rgba(34,143,210,.4);
-}
+#scroll-progress { position: fixed; top: 0; left: 0; height: 3px; z-index: 999; background: linear-gradient(90deg, #228fd2, #255c95); border-radius: 0 3px 3px 0; transition: width .1s linear; box-shadow: 0 0 8px rgba(34,143,210,.4); }
 
-/* ════════════════════════════════════════
-   NAVBAR — incluye lógica hamburguesa completa
-════════════════════════════════════════ */
-#navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 6vw; height: 76px;
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(37,92,149,.1);
-  transition: box-shadow .3s;
-}
+#navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 6vw; height: 76px; background: rgba(255,255,255,.96); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(37,92,149,.1); transition: box-shadow .3s; }
 #navbar.scrolled { box-shadow: 0 4px 24px rgba(37,92,149,.12); }
-
 .nav-logo { display: flex; align-items: center; text-decoration: none; }
 .logo-img  { height: 42px; width: auto; }
-
-#navMenu {
-  display: flex; align-items: center; gap: 0; list-style: none;
-}
-#navMenu a {
-  display: block; padding: 8px 14px;
-  font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600;
-  color: var(--text-muted); text-decoration: none;
-  border-radius: 8px; transition: color .2s, background .2s;
-}
+#navMenu { display: flex; align-items: center; gap: 0; list-style: none; }
+#navMenu a { display: block; padding: 8px 14px; font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: color .2s, background .2s; }
 #navMenu a:hover { color: var(--blue); background: var(--blue-xlight); }
-.nav-cta {
-  background: var(--blue) !important; color: #fff !important;
-  border-radius: 50px !important; padding: 9px 20px !important;
-  box-shadow: 0 4px 14px rgba(37,92,149,.3);
-  transition: transform .2s, box-shadow .2s !important;
-}
+.nav-cta { background: var(--blue) !important; color: #fff !important; border-radius: 50px !important; padding: 9px 20px !important; box-shadow: 0 4px 14px rgba(37,92,149,.3); transition: transform .2s, box-shadow .2s !important; }
 .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,92,149,.4) !important; }
-
-/* Botón hamburguesa — oculto en escritorio */
-.nav-hamburger {
-  display: none;
-  flex-direction: column; justify-content: center; align-items: center;
-  gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 8px;
-  border-radius: 8px;
-  transition: background .2s;
-}
+.nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; transition: background .2s; }
 .nav-hamburger:hover { background: var(--blue-xlight); }
-.nav-hamburger span {
-  display: block; width: 24px; height: 2px;
-  background: var(--text); border-radius: 2px;
-  transition: transform .28s ease, opacity .28s ease;
-  transform-origin: center;
-}
-
-/* Animación de hamburguesa → X */
+.nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .28s ease, opacity .28s ease; transform-origin: center; }
 #navbar.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 #navbar.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 #navbar.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── RESPONSIVE — menú desplegable ── */
 @media (max-width: 900px) {
   #navbar { height: 68px; padding: 0 5vw; }
-
-  /* Ocultar hamburguesa en escritorio, mostrar en móvil */
   .nav-hamburger { display: flex; }
-
-  /* Menú oculto por defecto en móvil */
-  #navMenu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;           /* justo debajo del navbar */
-    left: 0; right: 0;
-    background: rgba(255,255,255,.98);
-    backdrop-filter: blur(16px);
-    border-bottom: 2px solid rgba(37,92,149,.12);
-    box-shadow: 0 12px 40px rgba(37,92,149,.15);
-    padding: 12px 5vw 20px;
-    gap: 4px;
-    animation: menuSlideDown .25s cubic-bezier(.16,1,.3,1) both;
-  }
-
-  /* Mostrar menú cuando navbar tiene clase menu-open */
-  #navbar.menu-open #navMenu {
-    display: flex;
-  }
-
+  #navMenu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(16px); border-bottom: 2px solid rgba(37,92,149,.12); box-shadow: 0 12px 40px rgba(37,92,149,.15); padding: 12px 5vw 20px; gap: 4px; animation: menuSlideDown .25s cubic-bezier(.16,1,.3,1) both; }
+  #navbar.menu-open #navMenu { display: flex; }
   #navMenu li { width: 100%; }
-  #navMenu a {
-    padding: 11px 16px;
-    font-size: .9rem;
-    border-radius: 10px;
-    width: 100%;
-    border-bottom: 1px solid rgba(37,92,149,.06);
-  }
+  #navMenu a { padding: 11px 16px; font-size: .9rem; border-radius: 10px; width: 100%; border-bottom: 1px solid rgba(37,92,149,.06); }
   #navMenu li:last-child a { border-bottom: none; }
-  .nav-cta {
-    margin-top: 8px;
-    text-align: center;
-    border-radius: 50px !important;
-    padding: 12px 20px !important;
-  }
-
-  /* Ocultar cursor personalizado en táctil */
+  .nav-cta { margin-top: 8px; text-align: center; border-radius: 50px !important; padding: 12px 20px !important; }
   .cursor-dot, .cursor-ring { display: none; }
-
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
-
-  /* ── Ocultar widgets de Próximos Eventos y Cumpleaños del Mes en móvil ── */
   #portalSidebar .sidebar-widget:nth-child(1),
-  #portalSidebar .sidebar-widget:nth-child(2) {
-    display: none;
-  }
+  #portalSidebar .sidebar-widget:nth-child(2) { display: none; }
 }
+@keyframes menuSlideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes menuSlideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Footer ── */
 footer { background: #0f2642; font-family: 'Lato', sans-serif; }
-.footer-top {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px; padding: 52px 6vw 44px;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-.footer-brand p {
-  font-size: .85rem; color: rgba(255,255,255,.45);
-  line-height: 1.7; max-width: 280px; margin-top: 12px;
-}
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; padding: 52px 6vw 44px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.footer-brand p { font-size: .85rem; color: rgba(255,255,255,.45); line-height: 1.7; max-width: 280px; margin-top: 12px; }
 .fp-logo-img { height: 36px; width: auto; margin-bottom: 10px; }
 .fp-name { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
 .fp-name span { color: #228fd2; }
-.footer-col h5 {
-  font-size: .7rem; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 16px;
-}
+.footer-col h5 { font-size: .7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 16px; }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
-.footer-col ul li a {
-  font-size: .84rem; color: rgba(255,255,255,.55);
-  text-decoration: none; transition: color .2s;
-}
+.footer-col ul li a { font-size: .84rem; color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
 .footer-col ul li a:hover { color: #fff; }
-.footer-bottom {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 6vw; flex-wrap: wrap; gap: 8px;
-}
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding: 20px 6vw; flex-wrap: wrap; gap: 8px; }
 .footer-bottom p { font-size: .75rem; color: rgba(255,255,255,.3); }
 
-/* ── Chatbot base ── */
-#dv-help-btn {
-  position: fixed; bottom: 28px; right: 28px; z-index: 300;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: linear-gradient(145deg, #255c95, #1a4470);
-  border: none; cursor: pointer;
-  box-shadow: 0 6px 24px rgba(37,92,149,.4);
-  display: flex; align-items: center; justify-content: center;
-  transition: transform .25s, box-shadow .25s;
-}
+#dv-help-btn { position: fixed; bottom: 28px; right: 28px; z-index: 300; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(145deg, #255c95, #1a4470); border: none; cursor: pointer; box-shadow: 0 6px 24px rgba(37,92,149,.4); display: flex; align-items: center; justify-content: center; transition: transform .25s, box-shadow .25s; }
 #dv-help-btn:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,92,149,.5); }
 #dv-help-btn .icon-close { display: none; }
 #dv-help-btn.open .icon-bot   { display: none; }
 #dv-help-btn.open .icon-close { display: block; }
-
-#dv-chat-panel {
-  position: fixed; bottom: 96px; right: 28px; z-index: 300;
-  width: 340px; background: var(--white); border-radius: 24px;
-  box-shadow: 0 16px 48px rgba(0,0,0,.18);
-  overflow: hidden; border: 1px solid rgba(37,92,149,.1);
-  opacity: 0; pointer-events: none; transform: translateY(16px) scale(.97);
-  transition: opacity .3s, transform .3s;
-  display: flex; flex-direction: column; max-height: 520px;
-}
+#dv-chat-panel { position: fixed; bottom: 96px; right: 28px; z-index: 300; width: 340px; background: var(--white); border-radius: 24px; box-shadow: 0 16px 48px rgba(0,0,0,.18); overflow: hidden; border: 1px solid rgba(37,92,149,.1); opacity: 0; pointer-events: none; transform: translateY(16px) scale(.97); transition: opacity .3s, transform .3s; display: flex; flex-direction: column; max-height: 520px; }
 #dv-chat-panel.open { opacity: 1; pointer-events: all; transform: translateY(0) scale(1); }
-.dv-chat-header {
-  background: linear-gradient(130deg, #0f2d52, #255c95);
-  padding: 16px 20px; display: flex; align-items: center; gap: 12px;
-}
-.dv-bot-avatar {
-  width: 40px; height: 40px; background: rgba(255,255,255,.18);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
-}
+.dv-chat-header { background: linear-gradient(130deg, #0f2d52, #255c95); padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
+.dv-bot-avatar { width: 40px; height: 40px; background: rgba(255,255,255,.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
 .dv-chat-header-name { font-size: .88rem; font-weight: 700; color: #fff; }
 .dv-chat-header-status { font-size: .7rem; color: rgba(255,255,255,.6); margin-top: 1px; }
-.dv-chat-body {
-  padding: 16px; overflow-y: auto; flex: 1;
-  display: flex; flex-direction: column; gap: 10px;
-  max-height: 320px;
-}
+.dv-chat-body { padding: 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 10px; max-height: 320px; }
 .dv-bubble { display: flex; gap: 8px; align-items: flex-start; }
-.dv-bubble-avatar {
-  width: 28px; height: 28px; background: var(--blue-light);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: .9rem; flex-shrink: 0;
-}
-.dv-bubble-text {
-  background: var(--gray); border-radius: 14px 14px 14px 4px;
-  padding: 10px 14px; font-size: .82rem; color: var(--text); line-height: 1.6;
-  max-width: 82%;
-}
+.dv-bubble-avatar { width: 28px; height: 28px; background: var(--blue-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+.dv-bubble-text { background: var(--gray); border-radius: 14px 14px 14px 4px; padding: 10px 14px; font-size: .82rem; color: var(--text); line-height: 1.6; max-width: 82%; }
 .dv-bubble.user { flex-direction: row-reverse; }
-.dv-bubble.user .dv-bubble-text {
-  background: var(--blue); color: #fff;
-  border-radius: 14px 14px 4px 14px; text-align: right;
-}
+.dv-bubble.user .dv-bubble-text { background: var(--blue); color: #fff; border-radius: 14px 14px 4px 14px; text-align: right; }
 .dv-typing { display: flex; gap: 8px; align-items: center; }
-.dv-typing-dots {
-  background: var(--gray); border-radius: 14px;
-  padding: 10px 14px; display: flex; gap: 4px; align-items: center;
-}
-.dv-typing-dots span {
-  width: 6px; height: 6px; background: var(--text-muted);
-  border-radius: 50%; animation: typingBounce .8s ease-in-out infinite;
-}
+.dv-typing-dots { background: var(--gray); border-radius: 14px; padding: 10px 14px; display: flex; gap: 4px; align-items: center; }
+.dv-typing-dots span { width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; animation: typingBounce .8s ease-in-out infinite; }
 .dv-typing-dots span:nth-child(2) { animation-delay: .15s; }
 .dv-typing-dots span:nth-child(3) { animation-delay: .3s; }
-@keyframes typingBounce {
-  0%,60%,100% { transform: translateY(0); }
-  30%  { transform: translateY(-5px); }
-}
+@keyframes typingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
 #dvDynamic { padding: 0 16px; }
 .dv-options { display: flex; flex-direction: column; gap: 6px; padding-bottom: 12px; }
-.dv-option-btn {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--gray); border: 1px solid rgba(37,92,149,.1);
-  border-radius: 12px; padding: 10px 14px; cursor: pointer;
-  transition: background .2s, transform .15s;
-  animation: revealUp .3s ease both;
-}
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
-}
+.dv-option-btn { display: flex; align-items: center; gap: 10px; background: var(--gray); border: 1px solid rgba(37,92,149,.1); border-radius: 12px; padding: 10px 14px; cursor: pointer; transition: background .2s, transform .15s; animation: revealUp .3s ease both; }
+@keyframes revealUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .dv-option-btn:hover { background: var(--blue-light); transform: translateX(4px); }
 .opt-icon { font-size: 1.1rem; }
 .opt-label { flex: 1; text-align: left; font-size: .8rem; font-weight: 700; color: var(--text); }
 .opt-arrow { font-size: .85rem; color: var(--text-muted); }
 .dv-answer { padding-bottom: 16px; }
-.dv-answer-card {
-  background: var(--gray); border-radius: 14px;
-  padding: 14px 16px; font-size: .8rem; line-height: 1.7; color: var(--text);
-  margin-bottom: 8px;
-}
+.dv-answer-card { background: var(--gray); border-radius: 14px; padding: 14px 16px; font-size: .8rem; line-height: 1.7; color: var(--text); margin-bottom: 8px; }
 .dv-answer-card strong { display: block; margin-bottom: 8px; font-size: .85rem; color: var(--blue-dark); }
 .dv-answer-card p { margin-bottom: 6px; }
 .dv-answer-card a { color: var(--blue); font-weight: 600; }
-.dv-back-btn {
-  background: none; border: 1px solid rgba(37,92,149,.2);
-  color: var(--blue); border-radius: 50px; padding: 7px 16px;
-  font-size: .76rem; font-weight: 700; cursor: pointer;
-  transition: background .2s;
-}
+.dv-back-btn { background: none; border: 1px solid rgba(37,92,149,.2); color: var(--blue); border-radius: 50px; padding: 7px 16px; font-size: .76rem; font-weight: 700; cursor: pointer; transition: background .2s; }
 .dv-back-btn:hover { background: var(--blue-light); }
-.dv-chat-footer {
-  padding: 10px 16px; font-size: .7rem; color: var(--text-muted);
-  border-top: 1px solid rgba(37,92,149,.07); text-align: center;
-}
+.dv-chat-footer { padding: 10px 16px; font-size: .7rem; color: var(--text-muted); border-top: 1px solid rgba(37,92,149,.07); text-align: center; }
 .dv-chat-footer span { font-weight: 700; color: var(--blue); }
 </style>
 </head>
@@ -325,7 +132,6 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
-<!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="img/1 (3).png" alt="DistriVision" class="logo-img">
@@ -343,15 +149,11 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
   </ul>
-  <!-- Hamburguesa: 3 spans para la animación X -->
   <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- HERO -->
 <section class="portal-hero">
   <div class="hero-bg">
     <div class="geo geo-1"></div>
@@ -368,36 +170,16 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
   </div>
 </section>
 
-<!-- TABS -->
 <div class="portal-tabs" id="portalTabs">
-  <button class="ptab active" data-tab="todos">
-    <span class="tab-icon">📋</span> Todos
-    <span class="tab-count" id="cnt-todos">0</span>
-  </button>
-  <button class="ptab" data-tab="cumpleanos">
-    <span class="tab-icon">🎂</span> Cumpleaños
-    <span class="tab-count" id="cnt-cumpleanos">0</span>
-  </button>
-  <button class="ptab" data-tab="reunion">
-    <span class="tab-icon">📅</span> Reuniones
-    <span class="tab-count" id="cnt-reunion">0</span>
-  </button>
-  <button class="ptab" data-tab="celebracion">
-    <span class="tab-icon">🎉</span> Celebraciones
-    <span class="tab-count" id="cnt-celebracion">0</span>
-  </button>
-  <button class="ptab" data-tab="comunicado">
-    <span class="tab-icon">📢</span> Comunicados
-    <span class="tab-count" id="cnt-comunicado">0</span>
-  </button>
-  <button class="ptab" data-tab="calendario">
-    <span class="tab-icon">🗓️</span> Calendario
-  </button>
+  <button class="ptab active" data-tab="todos"><span class="tab-icon">📋</span> Todos <span class="tab-count" id="cnt-todos">0</span></button>
+  <button class="ptab" data-tab="cumpleanos"><span class="tab-icon">🎂</span> Cumpleaños <span class="tab-count" id="cnt-cumpleanos">0</span></button>
+  <button class="ptab" data-tab="reunion"><span class="tab-icon">📅</span> Reuniones <span class="tab-count" id="cnt-reunion">0</span></button>
+  <button class="ptab" data-tab="celebracion"><span class="tab-icon">🎉</span> Celebraciones <span class="tab-count" id="cnt-celebracion">0</span></button>
+  <button class="ptab" data-tab="comunicado"><span class="tab-icon">📢</span> Comunicados <span class="tab-count" id="cnt-comunicado">0</span></button>
+  <button class="ptab" data-tab="calendario"><span class="tab-icon">🗓️</span> Calendario</button>
 </div>
 
-<!-- CUERPO PRINCIPAL -->
 <div class="portal-body" id="portalBody">
-
   <div class="portal-feed" id="portalFeed">
     <div class="feed-empty" id="feedEmpty">
       <div class="fe-icon">📭</div>
@@ -405,7 +187,6 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
     </div>
   </div>
 
-  <!-- VISTA CALENDARIO -->
   <div class="calendar-view" id="calendarView">
     <div class="cal-wrapper">
       <div class="cal-header">
@@ -437,24 +218,16 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
         </div>
       </div>
       <div class="cdp-events" id="cdpEvents">
-        <div class="cdp-empty">
-          <span>🗓️</span>
-          <p>Haz clic en un día para ver sus eventos</p>
-        </div>
+        <div class="cdp-empty"><span>🗓️</span><p>Haz clic en un día para ver sus eventos</p></div>
       </div>
     </div>
   </div>
 
-  <!-- Sidebar -->
   <aside class="portal-sidebar" id="portalSidebar">
-
     <div class="sidebar-widget">
-      <div class="sw-header">
-        <span class="sw-title"><span>📅</span> Próximos Eventos</span>
-      </div>
+      <div class="sw-header"><span class="sw-title"><span>📅</span> Próximos Eventos</span></div>
       <div class="sw-body" id="upcomingEvents"></div>
     </div>
-
     <div class="sidebar-widget">
       <div class="sw-header">
         <span class="sw-title"><span>🎂</span> Cumpleaños del Mes</span>
@@ -462,11 +235,8 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
       </div>
       <div class="bday-scroll" id="bdaySidebarList" style="padding:8px 22px 14px;"></div>
     </div>
-
     <div class="sidebar-widget">
-      <div class="sw-header">
-        <span class="sw-title"><span>💬</span> ¿Cómo estás hoy?</span>
-      </div>
+      <div class="sw-header"><span class="sw-title"><span>💬</span> ¿Cómo estás hoy?</span></div>
       <div class="sw-body mood-widget">
         <p class="mood-question">Comparte cómo te sientes este día</p>
         <div class="mood-options" id="moodOptions">
@@ -478,24 +248,19 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
         <div class="mood-thanks" id="moodThanks">¡Gracias por compartir! 💙</div>
       </div>
     </div>
-
     <div class="sidebar-widget">
-      <div class="sw-header">
-        <span class="sw-title"><span>⚡</span> Accesos Rápidos</span>
-      </div>
+      <div class="sw-header"><span class="sw-title"><span>⚡</span> Accesos Rápidos</span></div>
       <div class="sw-body" style="padding-top:8px;padding-bottom:8px;">
-        <a href="vacantes.html"        class="quick-link"><div class="ql-icon">💼</div><span class="ql-text">Vacantes Internas</span>    <span class="ql-arrow">›</span></a>
-        <a href="certificados.html"    class="quick-link"><div class="ql-icon">📋</div><span class="ql-text">Mis Certificados</span>      <span class="ql-arrow">›</span></a>
-        <a href="index.html#contacto"  class="quick-link"><div class="ql-icon">📞</div><span class="ql-text">Directorio Interno</span>   <span class="ql-arrow">›</span></a>
-        <a href="historia.html"        class="quick-link"><div class="ql-icon">📖</div><span class="ql-text">Historia de la Empresa</span><span class="ql-arrow">›</span></a>
-        <a href="contacto.html"        class="quick-link"><div class="ql-icon">✉️</div><span class="ql-text">Contáctanos</span>           <span class="ql-arrow">›</span></a>
+        <a href="vacantes.html"       class="quick-link"><div class="ql-icon">💼</div><span class="ql-text">Vacantes Internas</span>    <span class="ql-arrow">›</span></a>
+        <a href="certificados.html"   class="quick-link"><div class="ql-icon">📋</div><span class="ql-text">Mis Certificados</span>      <span class="ql-arrow">›</span></a>
+        <a href="index.html#contacto" class="quick-link"><div class="ql-icon">📞</div><span class="ql-text">Directorio Interno</span>   <span class="ql-arrow">›</span></a>
+        <a href="historia.html"       class="quick-link"><div class="ql-icon">📖</div><span class="ql-text">Historia de la Empresa</span><span class="ql-arrow">›</span></a>
+        <a href="contacto.html"       class="quick-link"><div class="ql-icon">✉️</div><span class="ql-text">Contáctanos</span>           <span class="ql-arrow">›</span></a>
       </div>
     </div>
-
   </aside>
-</div><!-- /.portal-body -->
+</div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -527,7 +292,6 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
   </div>
 </footer>
 
-<!-- MODAL COMUNICADO -->
 <div class="comm-modal" id="commModal">
   <div class="comm-modal-box">
     <button class="cmm-close" id="cmmClose">✕</button>
@@ -551,7 +315,6 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
   </div>
 </div>
 
-<!-- CHATBOT -->
 <button id="dv-help-btn" aria-label="Abrir asistente">
   <svg class="icon-bot" width="26" height="26" viewBox="0 0 24 24" fill="none">
     <rect x="3" y="8" width="18" height="12" rx="4" fill="white" opacity=".9"/>
@@ -583,22 +346,43 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
 
 <!-- ════════════════════════════════════════════════════
      ZONA DE DATOS — SOLO EDITAR AQUÍ
+     ▸ Agrega entradas para TODOS los meses del año.
+     ▸ El portal mostrará automáticamente los del mes actual.
+     ▸ El calendario mostrará los de cualquier mes al navegar.
 ════════════════════════════════════════════════════ -->
 <script>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   1. CUMPLEAÑOS
+   1. CUMPLEAÑOS  ← AGREGA AQUÍ TODOS LOS MESES
+   Formato: { month: MES_NUMERO, day: DÍA, name: 'Nombre', photo: '' }
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const BIRTHDAYS = [
+  // ── MARZO ──
+  { month:3, day:6,  name:'Juan Diego Oliveros Orjuela',      photo:'' },
+  { month:3, day:8,  name:'Evelio Esneid Llanos Rodríguez',   photo:'' },
+  { month:3, day:15, name:'Diego Fernando Núñez Scarpetta',   photo:'' },
+  { month:3, day:17, name:'Aderson Cárdenas Rojas',           photo:'' },
+  { month:3, day:20, name:'Karen Stefanny Salazar Silva',      photo:'' },
+  { month:3, day:21, name:'Jhon Sebastian Sánchez Bailón',    photo:'' },
+  { month:3, day:22, name:'Herinson Losada Ramos',            photo:'' },
+  { month:3, day:22, name:'Juan José Barreto Pérez',          photo:'' },
+  { month:3, day:23, name:'Juan Camilo Trujillo Castañeda',   photo:'' },
+  { month:3, day:24, name:'Karla Milena Osorio Amaya',        photo:'' },
+  { month:3, day:27, name:'Lizeth Rojas Tovar',               photo:'' },
+  { month:3, day:29, name:'Flavio Abdel Córdoba Gordo',       photo:'' },
+  { month:3, day:31, name:'Anyelo Stiven Ortiz Casas',        photo:'' },
+  // ── ABRIL ──
   { month:4, day:1,  name:'Carlos Alberto Rodriguez Ramirez', photo:'' },
-  { month:4, day:2,  name:'Jose Elias Holguin Pencue',         photo:'' },
-  { month:4, day:3,  name:'William German Vargas Leon',        photo:'' },
-  { month:4, day:3,  name:'Edwin Gilberto Erazo Lussan',       photo:'' },
-  { month:4, day:4,  name:'William Alberto Valderrama Icopo',  photo:'' },
-  { month:4, day:10, name:'Karen Julleth Benavides Hoyos',     photo:'' },
-  { month:4, day:12, name:'Gisela Morales Velez',              photo:'' },
-  { month:4, day:15, name:'Jair Medina Pachongo',              photo:'' },
-  { month:4, day:19, name:'Laura Valentina Avila Torres',      photo:'' },
-  { month:4, day:26, name:'Daniel Mauricio Ojeda Caldon',      photo:'' },
+  { month:4, day:2,  name:'Jose Elias Holguin Pencue',        photo:'' },
+  { month:4, day:3,  name:'William German Vargas Leon',       photo:'' },
+  { month:4, day:3,  name:'Edwin Gilberto Erazo Lussan',      photo:'' },
+  { month:4, day:4,  name:'William Alberto Valderrama Icopo', photo:'' },
+  { month:4, day:10, name:'Karen Julleth Benavides Hoyos',    photo:'' },
+  { month:4, day:12, name:'Gisela Morales Velez',             photo:'' },
+  { month:4, day:15, name:'Jair Medina Pachongo',             photo:'' },
+  { month:4, day:19, name:'Laura Valentina Avila Torres',     photo:'' },
+  { month:4, day:26, name:'Daniel Mauricio Ojeda Caldon',     photo:'' },
+  // ── MAYO (ejemplo — reemplaza con los reales) ──
+  // { month:5, day:5,  name:'Ejemplo Nombre Apellido',          photo:'' },
 ];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -688,7 +472,7 @@ const UPCOMING_EVENTS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   MOTOR DEL PORTAL
+   MOTOR DEL PORTAL — No editar salvo que sepas lo que haces
 ═══════════════════════════════════════════════════════════════ */
 const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
@@ -696,18 +480,21 @@ const DAY_NAMES    = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes'
 const BDAY_EMOJIS  = ['🎂','🎉','🥳','🎊','🎈','🌟','✨','💫','🎁','🎀'];
 function getRandomBdayEmoji() { return BDAY_EMOJIS[Math.floor(Math.random() * BDAY_EMOJIS.length)]; }
 
+/* ── Fecha real del sistema ── */
 const now        = new Date();
 const TODAY_DAY  = now.getDate();
-const TODAY_MON  = now.getMonth() + 1;
+const TODAY_MON  = now.getMonth() + 1;   // 1–12
 const TODAY_YEAR = now.getFullYear();
 
 document.getElementById('heroDay').textContent       = TODAY_DAY;
 document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON - 1] + ' ' + TODAY_YEAR;
 
+/* ── Cumpleaños del MES ACTUAL (usa TODAY_MON del sistema) ── */
 const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a,b) => a.day - b.day);
 const bdaysToday     = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
 
-document.getElementById('bdayMonthLabel').textContent = bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON - 1];
+document.getElementById('bdayMonthLabel').textContent =
+  bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON - 1];
 
 /* Sidebar: lista cumpleaños del mes */
 (function () {
@@ -766,50 +553,29 @@ function launchParticles(canvasId) {
   const ctx    = canvas.getContext('2d');
   const EMOJIS = ['🎈','🎉','✨','🎊','🎁','⭐','💫','🌟','🎀','🥳'];
   let W, H, particles, active = true;
-
   function resize() {
     W = canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
     H = canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
   }
   function makeParticle(spreadY = false) {
-    return {
-      x: Math.random() * (W || 400),
-      y: spreadY ? Math.random() * (H || 460) : (H || 460) + Math.random() * 80,
-      vy: -(0.4 + Math.random() * 1.1),
-      vx: (Math.random() - 0.5) * 0.7,
-      size: 16 + Math.random() * 18,
-      alpha: 0.55 + Math.random() * 0.45,
-      emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
-      spin: (Math.random() - 0.5) * 0.05,
-      angle: Math.random() * Math.PI * 2,
-      wave: Math.random() * Math.PI * 2,
-      wAmp: 0.3 + Math.random() * 0.5,
-    };
+    return { x: Math.random()*(W||400), y: spreadY ? Math.random()*(H||460) : (H||460)+Math.random()*80, vy: -(0.4+Math.random()*1.1), vx: (Math.random()-0.5)*0.7, size: 16+Math.random()*18, alpha: 0.55+Math.random()*0.45, emoji: EMOJIS[Math.floor(Math.random()*EMOJIS.length)], spin: (Math.random()-0.5)*0.05, angle: Math.random()*Math.PI*2, wave: Math.random()*Math.PI*2, wAmp: 0.3+Math.random()*0.5 };
   }
-  function init() { resize(); particles = Array.from({ length: 26 }, () => makeParticle(true)); }
+  function init() { resize(); particles = Array.from({length:26}, () => makeParticle(true)); }
   function loop() {
     if (!active) return;
-    ctx.clearRect(0, 0, W, H);
+    ctx.clearRect(0,0,W,H);
     particles.forEach(p => {
-      p.x += p.vx + Math.sin(p.wave) * p.wAmp;
-      p.y += p.vy; p.angle += p.spin; p.wave += 0.025;
+      p.x += p.vx + Math.sin(p.wave)*p.wAmp; p.y += p.vy; p.angle += p.spin; p.wave += 0.025;
       if (p.y < -50) Object.assign(p, makeParticle(false));
-      const edgeFade = Math.max(0, Math.min(1, (H - p.y + 50) / 100, p.y / 80));
-      ctx.save();
-      ctx.globalAlpha = p.alpha * edgeFade;
-      ctx.translate(p.x, p.y); ctx.rotate(p.angle);
-      ctx.font = `${p.size}px serif`;
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(p.emoji, 0, 0);
-      ctx.restore();
+      const edgeFade = Math.max(0, Math.min(1, (H-p.y+50)/100, p.y/80));
+      ctx.save(); ctx.globalAlpha = p.alpha*edgeFade; ctx.translate(p.x,p.y); ctx.rotate(p.angle);
+      ctx.font = `${p.size}px serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(p.emoji,0,0); ctx.restore();
     });
     requestAnimationFrame(loop);
   }
-  const observer = new IntersectionObserver(entries => {
-    active = entries[0].isIntersecting; if (active) loop();
-  }, { threshold: 0.1 });
-  observer.observe(canvas);
-  init(); loop();
+  const observer = new IntersectionObserver(entries => { active = entries[0].isIntersecting; if (active) loop(); }, {threshold:0.1});
+  observer.observe(canvas); init(); loop();
   window.addEventListener('resize', () => { resize(); });
 }
 
@@ -818,13 +584,10 @@ bdaysToday.forEach(b => {
   MODAL_DATA.push({ _bday: true, person: b });
   const idx      = MODAL_DATA.length - 1;
   const canvasId = `btcCanvas_${idx}`;
-  let photoZoneHtml;
-  if (b.photo) {
-    photoZoneHtml = `<div class="btc-photo-wrap"><img class="btc-photo" src="${b.photo}" alt="${b.name}" onerror="this.parentNode.innerHTML=''"></div>`;
-  } else {
-    const randEmoji = getRandomBdayEmoji();
-    photoZoneHtml = `<div class="btc-photo-wrap"><div class="btc-emoji-placeholder"><div class="bep-rings"><span></span><span></span><span></span></div><div class="bep-emoji">${randEmoji}</div></div></div>`;
-  }
+  const randEmoji = getRandomBdayEmoji();
+  const photoZoneHtml = b.photo
+    ? `<div class="btc-photo-wrap"><img class="btc-photo" src="${b.photo}" alt="${b.name}" onerror="this.parentNode.innerHTML=''"></div>`
+    : `<div class="btc-photo-wrap"><div class="btc-emoji-placeholder"><div class="bep-rings"><span></span><span></span><span></span></div><div class="bep-emoji">${randEmoji}</div></div></div>`;
   const card = document.createElement('div');
   card.className    = 'bday-today-card visible';
   card.dataset.type = 'cumpleanos';
@@ -882,7 +645,7 @@ if (!CELEBRATIONS.length) {
     card.innerHTML = `
       <div class="cc-header"><span class="cc-type-badge badge-celebracion">🎉 Celebración</span></div>
       <div class="cc-body">
-        <div class="cc-band" data-label="${cel.bandLabel || ''}" style="background:${cel.bg};">${cel.icon}</div>
+        <div class="cc-band" data-label="${cel.bandLabel||''}" style="background:${cel.bg};">${cel.icon}</div>
         <h3 class="cc-title">${cel.title}</h3>
         <p class="cc-excerpt">${cel.excerpt}</p>
         ${cel.eventDetails ? `<div class="cc-event-details"><span class="cc-detail-pill">${cel.eventDetails.date}</span><span class="cc-detail-pill">${cel.eventDetails.time}</span><span class="cc-detail-pill">${cel.eventDetails.place}</span></div>` : ''}
@@ -897,8 +660,8 @@ if (!CELEBRATIONS.length) {
 
 /* ③ Resumen cumpleaños del mes */
 if (bdaysThisMonth.length) {
-  const listHtml = bdaysThisMonth.map(b => `🎂 <b>${b.day} ${SHORT_MONTHS[TODAY_MON - 1]}</b> — ${b.name}`).join('<br>');
-  MODAL_DATA.push({ _bdayList: true, listHtml, month: MONTH_NAMES[TODAY_MON - 1], total: bdaysThisMonth.length });
+  const listHtml = bdaysThisMonth.map(b => `🎂 <b>${b.day} ${SHORT_MONTHS[TODAY_MON-1]}</b> — ${b.name}`).join('<br>');
+  MODAL_DATA.push({ _bdayList: true, listHtml, month: MONTH_NAMES[TODAY_MON-1], total: bdaysThisMonth.length });
   const idx  = MODAL_DATA.length - 1;
   const card = document.createElement('div');
   card.className    = 'comm-card visible card-highlight';
@@ -907,8 +670,8 @@ if (bdaysThisMonth.length) {
   card.innerHTML = `
     <div class="cc-header"><span class="cc-type-badge badge-cumpleanos">🎂 Cumpleaños</span></div>
     <div class="cc-body">
-      <div class="cc-band" data-label="${MONTH_NAMES[TODAY_MON - 1]}" style="background:linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc);">🎂</div>
-      <h3 class="cc-title">¡${bdaysThisMonth.length} cumpleaños en ${MONTH_NAMES[TODAY_MON - 1]}! Felicitaciones a todos 🎉</h3>
+      <div class="cc-band" data-label="${MONTH_NAMES[TODAY_MON-1]}" style="background:linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc);">🎂</div>
+      <h3 class="cc-title">¡${bdaysThisMonth.length} cumpleaños en ${MONTH_NAMES[TODAY_MON-1]}! Felicitaciones a todos 🎉</h3>
       <p class="cc-excerpt">Este mes celebramos a ${bdaysThisMonth.length} compañeros. Cuando sea su día, recuerda felicitarlos con todo el cariño de la familia DistriVision.</p>
     </div>
     <div class="cc-footer">
@@ -950,7 +713,7 @@ POSTS.forEach(p => {
 
 /* Contadores */
 const counts = {};
-allCards.forEach(c => counts[c.type] = (counts[c.type] || 0) + 1);
+allCards.forEach(c => counts[c.type] = (counts[c.type]||0) + 1);
 document.getElementById('cnt-todos').textContent = allCards.length;
 ['cumpleanos','reunion','celebracion','comunicado'].forEach(t => {
   const el = document.getElementById('cnt-' + t);
@@ -963,12 +726,10 @@ document.querySelectorAll('.ptab').forEach(tab => {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
     this.classList.add('active');
     const f = this.dataset.tab;
-
     const calView   = document.getElementById('calendarView');
     const feedEl    = document.getElementById('portalFeed');
     const sidebarEl = document.getElementById('portalSidebar');
     const bodyEl    = document.getElementById('portalBody');
-
     if (f === 'calendario') {
       feedEl.style.display    = 'none';
       sidebarEl.style.display = 'none';
@@ -977,12 +738,10 @@ document.querySelectorAll('.ptab').forEach(tab => {
       renderCalendar(calViewYear, calViewMonth);
       return;
     }
-
     feedEl.style.display    = '';
     sidebarEl.style.display = '';
     calView.classList.remove('cal-active');
     bodyEl.classList.remove('cal-mode');
-
     let vis = 0;
     allCards.forEach(c => {
       const show = f === 'todos' || c.type === f;
@@ -1005,250 +764,194 @@ function openModal(idx) {
   const dept   = document.getElementById('cmmDept');
   const date   = document.getElementById('cmmDate');
   band.className = 'cmm-band'; band.style.background = ''; band.innerHTML = '';
-
   if (d._bday) {
     const b = d.person;
-    if (b.photo) { band.className = 'cmm-band has-photo'; band.innerHTML = `<img src="${b.photo}" alt="${b.name}">`; }
-    else { band.innerHTML = '🎂'; band.style.background = 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)'; }
-    badge.textContent = '🎂 ¡Cumpleaños Hoy!'; badge.className = 'cc-type-badge badge-cumpleanos';
-    date.textContent = `📅 ${TODAY_DAY} de ${MONTH_NAMES[TODAY_MON - 1]}`;
-    title.textContent = `¡Feliz Cumpleaños, ${b.name}!`; avatar.textContent = '🎈';
-    author.textContent = 'Recursos Humanos'; dept.textContent = 'Gestión del Talento Humano';
-    text.innerHTML = `<div class="cmm-text"><p>Hoy es un día muy especial. <strong>¡Celebramos el cumpleaños de ${b.name}!</strong></p><p>Toda la familia DistriVision te desea:<br>✨ Un día lleno de amor y felicidad<br>💙 Mucha salud y bendiciones<br>🌟 Que todos tus sueños se cumplan</p><p>¡No olvides felicitarle en persona hoy! 🎉</p></div>`;
+    if (b.photo) { band.className='cmm-band has-photo'; band.innerHTML=`<img src="${b.photo}" alt="${b.name}">`; }
+    else { band.innerHTML='🎂'; band.style.background='linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)'; }
+    badge.textContent='🎂 ¡Cumpleaños Hoy!'; badge.className='cc-type-badge badge-cumpleanos';
+    date.textContent=`📅 ${TODAY_DAY} de ${MONTH_NAMES[TODAY_MON-1]}`;
+    title.textContent=`¡Feliz Cumpleaños, ${b.name}!`; avatar.textContent='🎈';
+    author.textContent='Recursos Humanos'; dept.textContent='Gestión del Talento Humano';
+    text.innerHTML=`<div class="cmm-text"><p>Hoy es un día muy especial. <strong>¡Celebramos el cumpleaños de ${b.name}!</strong></p><p>Toda la familia DistriVision te desea:<br>✨ Un día lleno de amor y felicidad<br>💙 Mucha salud y bendiciones<br>🌟 Que todos tus sueños se cumplan</p><p>¡No olvides felicitarle en persona hoy! 🎉</p></div>`;
   } else if (d._bdayList) {
-    band.innerHTML = '🎂'; band.style.background = 'linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';
-    badge.textContent = `🎂 Cumpleaños de ${d.month}`; badge.className = 'cc-type-badge badge-cumpleanos';
-    date.textContent = `📅 ${d.total} celebraciones este mes`; title.textContent = `Cumpleaños de ${d.month}`;
-    avatar.textContent = '🎈'; author.textContent = 'Recursos Humanos'; dept.textContent = 'Gestión del Talento Humano';
-    text.innerHTML = `<div class="cmm-text"><p>¡Felicitaciones a todos los compañeros que cumplen años este mes!</p><p>${d.listHtml}</p><p>Cuando llegue su día, <strong>recuerda felicitarlos con todo el cariño</strong>. ¡Son parte especial de nuestra familia! 💙</p></div>`;
+    band.innerHTML='🎂'; band.style.background='linear-gradient(135deg,#4a148c,#7b1fa2,#ab47bc)';
+    badge.textContent=`🎂 Cumpleaños de ${d.month}`; badge.className='cc-type-badge badge-cumpleanos';
+    date.textContent=`📅 ${d.total} celebraciones este mes`; title.textContent=`Cumpleaños de ${d.month}`;
+    avatar.textContent='🎈'; author.textContent='Recursos Humanos'; dept.textContent='Gestión del Talento Humano';
+    text.innerHTML=`<div class="cmm-text"><p>¡Felicitaciones a todos los compañeros que cumplen años este mes!</p><p>${d.listHtml}</p><p>Cuando llegue su día, <strong>recuerda felicitarlos con todo el cariño</strong>. ¡Son parte especial de nuestra familia! 💙</p></div>`;
   } else if (d._generic) {
-    band.innerHTML = '🎊'; band.style.background = 'linear-gradient(135deg,#1a4470,#255c95,#228fd2)';
-    badge.textContent = '🎉 Celebraciones'; badge.className = 'cc-type-badge badge-celebracion';
-    date.textContent = ''; title.textContent = 'Sin celebraciones pendientes';
-    avatar.textContent = '💛'; author.textContent = 'Bienestar Laboral'; dept.textContent = 'Gestión del Talento Humano';
-    text.innerHTML = `<div class="cmm-text"><p>En este momento no hay celebraciones ni eventos especiales programados.</p><p>Cuando la empresa organice una integración, una fecha especial o cualquier evento para el equipo, <strong>aparecerá aquí con todos los detalles</strong>.</p><p>¡Mantente atento al portal! 💙</p></div>`;
+    band.innerHTML='🎊'; band.style.background='linear-gradient(135deg,#1a4470,#255c95,#228fd2)';
+    badge.textContent='🎉 Celebraciones'; badge.className='cc-type-badge badge-celebracion';
+    date.textContent=''; title.textContent='Sin celebraciones pendientes';
+    avatar.textContent='💛'; author.textContent='Bienestar Laboral'; dept.textContent='Gestión del Talento Humano';
+    text.innerHTML=`<div class="cmm-text"><p>En este momento no hay celebraciones ni eventos especiales programados.</p><p>¡Mantente atento al portal! 💙</p></div>`;
   } else if (d._cel) {
     const c = d.data;
-    band.innerHTML = c.icon; band.style.background = c.bg;
-    badge.textContent = '🎉 Celebración'; badge.className = 'cc-type-badge badge-celebracion';
-    date.textContent = c.date; title.textContent = c.title;
-    avatar.textContent = c.avatar; author.textContent = c.author; dept.textContent = c.dept;
-    let html = `<div class="cmm-text">${c.body}</div>`;
-    if (c.eventDetails) { const ev = c.eventDetails; html += `<div class="cmm-event-box"><h6>📌 Detalles del Evento</h6><div class="cmm-event-row"><span class="cmm-event-detail">${ev.date}</span><span class="cmm-event-detail">${ev.time}</span><span class="cmm-event-detail">${ev.place}</span><span class="cmm-event-detail">${ev.extra}</span></div></div>`; }
-    text.innerHTML = html;
+    band.innerHTML=c.icon; band.style.background=c.bg;
+    badge.textContent='🎉 Celebración'; badge.className='cc-type-badge badge-celebracion';
+    date.textContent=c.date; title.textContent=c.title;
+    avatar.textContent=c.avatar; author.textContent=c.author; dept.textContent=c.dept;
+    let html=`<div class="cmm-text">${c.body}</div>`;
+    if (c.eventDetails) { const ev=c.eventDetails; html+=`<div class="cmm-event-box"><h6>📌 Detalles del Evento</h6><div class="cmm-event-row"><span class="cmm-event-detail">${ev.date}</span><span class="cmm-event-detail">${ev.time}</span><span class="cmm-event-detail">${ev.place}</span><span class="cmm-event-detail">${ev.extra}</span></div></div>`; }
+    text.innerHTML=html;
   } else if (d._post) {
     const p = d.data;
-    band.innerHTML = p.icon; band.style.background = p.bg;
-    const bLabel = { reunion:'📅 Reunión', comunicado:'📢 Comunicado', logro:'🏆 Logro del Mes' }[p.type] || p.type;
-    badge.textContent = bLabel; badge.className = `cc-type-badge badge-${p.type}`;
-    date.textContent = p.date; title.textContent = p.title;
-    avatar.textContent = p.avatar; author.textContent = p.author; dept.textContent = p.dept;
-    let html = `<div class="cmm-text">${p.body}</div>`;
-    if (p.eventDetails) { const ev = p.eventDetails; html += `<div class="cmm-event-box"><h6>📌 Detalles del Evento</h6><div class="cmm-event-row"><span class="cmm-event-detail">${ev.date}</span><span class="cmm-event-detail">${ev.time}</span><span class="cmm-event-detail">${ev.place}</span><span class="cmm-event-detail">${ev.extra}</span></div></div>`; }
-    text.innerHTML = html;
+    band.innerHTML=p.icon; band.style.background=p.bg;
+    const bLabel={reunion:'📅 Reunión',comunicado:'📢 Comunicado',logro:'🏆 Logro del Mes'}[p.type]||p.type;
+    badge.textContent=bLabel; badge.className=`cc-type-badge badge-${p.type}`;
+    date.textContent=p.date; title.textContent=p.title;
+    avatar.textContent=p.avatar; author.textContent=p.author; dept.textContent=p.dept;
+    let html=`<div class="cmm-text">${p.body}</div>`;
+    if (p.eventDetails) { const ev=p.eventDetails; html+=`<div class="cmm-event-box"><h6>📌 Detalles del Evento</h6><div class="cmm-event-row"><span class="cmm-event-detail">${ev.date}</span><span class="cmm-event-detail">${ev.time}</span><span class="cmm-event-detail">${ev.place}</span><span class="cmm-event-detail">${ev.extra}</span></div></div>`; }
+    text.innerHTML=html;
   }
   document.getElementById('commModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 document.getElementById('cmmClose').addEventListener('click', closeModal);
-document.getElementById('commModal').addEventListener('click', e => { if (e.target === document.getElementById('commModal')) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-function closeModal() { document.getElementById('commModal').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('commModal').addEventListener('click', e => { if (e.target===document.getElementById('commModal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+function closeModal() { document.getElementById('commModal').classList.remove('open'); document.body.style.overflow=''; }
 
 /* ── Calendario ── */
 let calViewMonth = TODAY_MON, calViewYear = TODAY_YEAR, calSelected = null;
 
 function buildCalendarEvents() {
   const map = {};
-  function addEv(year, month, day, ev) { const key = `${year}-${month}-${day}`; if (!map[key]) map[key] = []; map[key].push(ev); }
-  BIRTHDAYS.forEach(b => addEv(calViewYear, b.month, b.day, { type:'birthday', icon:'🎂', title:`Cumpleaños: ${b.name}`, modalIdx: null }));
-  CELEBRATIONS.forEach(cel => { if (cel.calDay && cel.calMonth) { const yr = cel.calYear || calViewYear; addEv(yr, cel.calMonth, cel.calDay, { type:'celebracion', icon:cel.icon||'🎉', title:cel.title, modalIdx: MODAL_DATA.findIndex(d => d._cel && d.data === cel) }); } });
-  POSTS.forEach(p => { if (p.calDay && p.calMonth) { const yr = p.calYear || calViewYear; addEv(yr, p.calMonth, p.calDay, { type:p.type, icon:p.icon||'📢', title:p.title, modalIdx: MODAL_DATA.findIndex(d => d._post && d.data === p) }); } });
+  function addEv(year, month, day, ev) { const key=`${year}-${month}-${day}`; if (!map[key]) map[key]=[]; map[key].push(ev); }
+  /* Cumpleaños: se muestran en TODOS los años en el calendario */
+  BIRTHDAYS.forEach(b => addEv(calViewYear, b.month, b.day, { type:'birthday', icon:'🎂', title:`Cumpleaños: ${b.name}`, modalIdx:null }));
+  CELEBRATIONS.forEach(cel => { if (cel.calDay && cel.calMonth) { const yr=cel.calYear||calViewYear; addEv(yr, cel.calMonth, cel.calDay, { type:'celebracion', icon:cel.icon||'🎉', title:cel.title, modalIdx:MODAL_DATA.findIndex(d=>d._cel&&d.data===cel) }); } });
+  POSTS.forEach(p => { if (p.calDay && p.calMonth) { const yr=p.calYear||calViewYear; addEv(yr, p.calMonth, p.calDay, { type:p.type, icon:p.icon||'📢', title:p.title, modalIdx:MODAL_DATA.findIndex(d=>d._post&&d.data===p) }); } });
   return map;
 }
 
 function renderCalendar(year, month) {
-  calViewYear = year; calViewMonth = month;
-  document.getElementById('calMonthName').textContent = MONTH_NAMES[month - 1];
-  document.getElementById('calYearName').textContent  = year;
-  const evMap = buildCalendarEvents();
-  const grid  = document.getElementById('calGrid');
-  grid.innerHTML = '';
-  const firstDay    = new Date(year, month - 1, 1).getDay();
-  const daysInMonth = new Date(year, month, 0).getDate();
-  const prevDays    = new Date(year, month - 1, 0).getDate();
-  for (let i = firstDay - 1; i >= 0; i--) { const cell = document.createElement('div'); cell.className = 'cal-cell other-month'; cell.innerHTML = `<span class="cal-day-num">${prevDays - i}</span>`; grid.appendChild(cell); }
-  for (let d = 1; d <= daysInMonth; d++) {
-    const key    = `${year}-${month}-${d}`;
-    const events = evMap[key] || [];
-    const isToday = d === TODAY_DAY && month === TODAY_MON && year === TODAY_YEAR;
-    const cell = document.createElement('div');
-    let classes = 'cal-cell'; if (isToday) classes += ' is-today'; if (events.length) classes += ' has-events';
-    cell.className = classes;
-    const dotTypes = [...new Set(events.map(e => e.type))].slice(0, 4);
-    const dotsHtml = dotTypes.map(t => `<span class="cal-dot dot-${t}"></span>`).join('');
-    cell.innerHTML = `<span class="cal-day-num">${d}</span>${events.length ? `<div class="cal-dots">${dotsHtml}</div>` : ''}`;
-    cell.addEventListener('click', () => selectCalDay(d, month, year, events));
+  calViewYear=year; calViewMonth=month;
+  document.getElementById('calMonthName').textContent=MONTH_NAMES[month-1];
+  document.getElementById('calYearName').textContent=year;
+  const evMap=buildCalendarEvents();
+  const grid=document.getElementById('calGrid');
+  grid.innerHTML='';
+  const firstDay=new Date(year,month-1,1).getDay();
+  const daysInMonth=new Date(year,month,0).getDate();
+  const prevDays=new Date(year,month-1,0).getDate();
+  for (let i=firstDay-1;i>=0;i--) { const cell=document.createElement('div'); cell.className='cal-cell other-month'; cell.innerHTML=`<span class="cal-day-num">${prevDays-i}</span>`; grid.appendChild(cell); }
+  for (let d=1;d<=daysInMonth;d++) {
+    const key=`${year}-${month}-${d}`;
+    const events=evMap[key]||[];
+    const isToday=d===TODAY_DAY&&month===TODAY_MON&&year===TODAY_YEAR;
+    const cell=document.createElement('div');
+    let classes='cal-cell'; if(isToday) classes+=' is-today'; if(events.length) classes+=' has-events';
+    cell.className=classes;
+    const dotTypes=[...new Set(events.map(e=>e.type))].slice(0,4);
+    const dotsHtml=dotTypes.map(t=>`<span class="cal-dot dot-${t}"></span>`).join('');
+    cell.innerHTML=`<span class="cal-day-num">${d}</span>${events.length?`<div class="cal-dots">${dotsHtml}</div>`:''}`;
+    cell.addEventListener('click',()=>selectCalDay(d,month,year,events));
     grid.appendChild(cell);
   }
-  const total = firstDay + daysInMonth;
-  const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
-  for (let i = 1; i <= remaining; i++) { const cell = document.createElement('div'); cell.className = 'cal-cell other-month'; cell.innerHTML = `<span class="cal-day-num">${i}</span>`; grid.appendChild(cell); }
-  if (calSelected && calSelected.month === month && calSelected.year === year) {
-    const cells = grid.querySelectorAll('.cal-cell:not(.other-month)');
-    if (cells[calSelected.day - 1]) cells[calSelected.day - 1].classList.add('selected');
+  const total=firstDay+daysInMonth;
+  const remaining=total%7===0?0:7-(total%7);
+  for (let i=1;i<=remaining;i++) { const cell=document.createElement('div'); cell.className='cal-cell other-month'; cell.innerHTML=`<span class="cal-day-num">${i}</span>`; grid.appendChild(cell); }
+  if (calSelected&&calSelected.month===month&&calSelected.year===year) {
+    const cells=grid.querySelectorAll('.cal-cell:not(.other-month)');
+    if (cells[calSelected.day-1]) cells[calSelected.day-1].classList.add('selected');
   }
 }
 
 function selectCalDay(day, month, year, events) {
-  document.querySelectorAll('.cal-cell.selected').forEach(c => c.classList.remove('selected'));
-  const cells = document.querySelectorAll('#calGrid .cal-cell:not(.other-month)');
-  if (cells[day - 1]) cells[day - 1].classList.add('selected');
-  calSelected = { day, month, year };
-  document.getElementById('cdpDayNum').textContent   = day;
-  document.getElementById('cdpDayLabel').textContent = `${DAY_NAMES[new Date(year, month-1, day).getDay()]}, ${MONTH_NAMES[month-1]} ${year}`;
-  const evEl   = document.getElementById('cdpEvents');
-  const iconEl = document.querySelector('.cdp-icon-wrap');
-  if (!events.length) { if (iconEl) iconEl.textContent = '🗓️'; evEl.innerHTML = `<div class="cdp-empty"><span>☀️</span><p>Sin eventos este día.</p></div>`; return; }
-  const typeOrder = ['birthday','celebracion','reunion','comunicado'];
-  const dominant  = typeOrder.find(t => events.some(e => e.type === t)) || 'comunicado';
-  const panelIcon = { birthday:'🎂', celebracion:'🎉', reunion:'📅', comunicado:'📢' }[dominant];
-  if (iconEl) iconEl.textContent = panelIcon;
-  evEl.innerHTML = events.map(ev => {
-    const colorClass = { birthday:'cdp-ev-birthday', celebracion:'cdp-ev-celebracion', reunion:'cdp-ev-reunion', comunicado:'cdp-ev-comunicado' }[ev.type] || 'cdp-ev-comunicado';
-    const hasModal = ev.modalIdx !== null && ev.modalIdx >= 0;
-    return `<div class="cdp-event ${colorClass}${hasModal ? ' is-clickable' : ''}" ${hasModal ? `onclick="openModal(${ev.modalIdx})"` : ''}><div class="cdp-ev-icon">${ev.icon}</div><div class="cdp-ev-body"><div class="cdp-ev-title">${ev.title}</div>${hasModal ? '<div class="cdp-ev-hint">Toca para ver detalles →</div>' : ''}</div></div>`;
+  document.querySelectorAll('.cal-cell.selected').forEach(c=>c.classList.remove('selected'));
+  const cells=document.querySelectorAll('#calGrid .cal-cell:not(.other-month)');
+  if (cells[day-1]) cells[day-1].classList.add('selected');
+  calSelected={day,month,year};
+  document.getElementById('cdpDayNum').textContent=day;
+  document.getElementById('cdpDayLabel').textContent=`${DAY_NAMES[new Date(year,month-1,day).getDay()]}, ${MONTH_NAMES[month-1]} ${year}`;
+  const evEl=document.getElementById('cdpEvents');
+  const iconEl=document.querySelector('.cdp-icon-wrap');
+  if (!events.length) { if(iconEl) iconEl.textContent='🗓️'; evEl.innerHTML=`<div class="cdp-empty"><span>☀️</span><p>Sin eventos este día.</p></div>`; return; }
+  const typeOrder=['birthday','celebracion','reunion','comunicado'];
+  const dominant=typeOrder.find(t=>events.some(e=>e.type===t))||'comunicado';
+  const panelIcon={birthday:'🎂',celebracion:'🎉',reunion:'📅',comunicado:'📢'}[dominant];
+  if(iconEl) iconEl.textContent=panelIcon;
+  evEl.innerHTML=events.map(ev=>{
+    const colorClass={birthday:'cdp-ev-birthday',celebracion:'cdp-ev-celebracion',reunion:'cdp-ev-reunion',comunicado:'cdp-ev-comunicado'}[ev.type]||'cdp-ev-comunicado';
+    const hasModal=ev.modalIdx!==null&&ev.modalIdx>=0;
+    return `<div class="cdp-event ${colorClass}${hasModal?' is-clickable':''}" ${hasModal?`onclick="openModal(${ev.modalIdx})"`:''}>
+      <div class="cdp-ev-icon">${ev.icon}</div>
+      <div class="cdp-ev-body"><div class="cdp-ev-title">${ev.title}</div>${hasModal?'<div class="cdp-ev-hint">Toca para ver detalles →</div>':''}</div>
+    </div>`;
   }).join('');
 }
 
-document.getElementById('calPrev').addEventListener('click', () => { calSelected = null; let m = calViewMonth - 1, y = calViewYear; if (m < 1) { m = 12; y--; } renderCalendar(y, m); resetDayPanel(); });
-document.getElementById('calNext').addEventListener('click', () => { calSelected = null; let m = calViewMonth + 1, y = calViewYear; if (m > 12) { m = 1; y++; } renderCalendar(y, m); resetDayPanel(); });
+document.getElementById('calPrev').addEventListener('click',()=>{ calSelected=null; let m=calViewMonth-1,y=calViewYear; if(m<1){m=12;y--;} renderCalendar(y,m); resetDayPanel(); });
+document.getElementById('calNext').addEventListener('click',()=>{ calSelected=null; let m=calViewMonth+1,y=calViewYear; if(m>12){m=1;y++;} renderCalendar(y,m); resetDayPanel(); });
 function resetDayPanel() {
-  document.getElementById('cdpDayNum').textContent = '—';
-  document.getElementById('cdpDayLabel').textContent = 'Selecciona un día';
-  const iconEl = document.querySelector('.cdp-icon-wrap'); if (iconEl) iconEl.textContent = '📅';
-  document.getElementById('cdpEvents').innerHTML = `<div class="cdp-empty"><span>🗓️</span><p>Haz clic en un día para ver sus eventos</p></div>`;
+  document.getElementById('cdpDayNum').textContent='—';
+  document.getElementById('cdpDayLabel').textContent='Selecciona un día';
+  const iconEl=document.querySelector('.cdp-icon-wrap'); if(iconEl) iconEl.textContent='📅';
+  document.getElementById('cdpEvents').innerHTML=`<div class="cdp-empty"><span>🗓️</span><p>Haz clic en un día para ver sus eventos</p></div>`;
 }
 
 /* ── Mood ── */
 function selectMood(btn) {
-  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
-  setTimeout(() => { document.getElementById('moodOptions').style.display = 'none'; document.getElementById('moodThanks').style.display = 'block'; }, 600);
+  setTimeout(()=>{ document.getElementById('moodOptions').style.display='none'; document.getElementById('moodThanks').style.display='block'; },600);
 }
 
 /* ── Cursor personalizado ── */
-const dot  = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
+const dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
 if (window.matchMedia('(pointer: fine)').matches) {
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-  });
-  (function loop() {
-    rx += (mx - rx) * .12; ry += (my - ry) * .12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(loop);
-  })();
-} else {
-  if (dot)  dot.style.display  = 'none';
-  if (ring) ring.style.display = 'none';
-}
+  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  (function loop(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+} else { if(dot) dot.style.display='none'; if(ring) ring.style.display='none'; }
 
 /* ── Scroll progress ── */
-const pb = document.getElementById('scroll-progress');
-window.addEventListener('scroll', () => {
-  pb.style.width = ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100) + '%';
-}, { passive: true });
+const pb=document.getElementById('scroll-progress');
+window.addEventListener('scroll',()=>{ pb.style.width=((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100)+'%'; },{passive:true});
 
 /* ── Nav ── */
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () =>
-  navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true }
-);
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=> navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
 
 /* ── Hamburguesa ── */
-const hamb = document.getElementById('navHamburger');
+const hamb=document.getElementById('navHamburger');
 if (hamb) {
-  hamb.addEventListener('click', () => {
-    const isOpen = navbar.classList.toggle('menu-open');
-    hamb.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  document.querySelectorAll('#navMenu a').forEach(link => {
-    link.addEventListener('click', () => {
-      navbar.classList.remove('menu-open');
-      hamb.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && navbar.classList.contains('menu-open')) {
-      navbar.classList.remove('menu-open');
-      hamb.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-      hamb.focus();
-    }
-  });
-
-  document.addEventListener('click', e => {
-    if (navbar.classList.contains('menu-open') && !navbar.contains(e.target)) {
-      navbar.classList.remove('menu-open');
-      hamb.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-  });
+  hamb.addEventListener('click',()=>{ const isOpen=navbar.classList.toggle('menu-open'); hamb.setAttribute('aria-expanded',isOpen); document.body.style.overflow=isOpen?'hidden':''; });
+  document.querySelectorAll('#navMenu a').forEach(link=>{ link.addEventListener('click',()=>{ navbar.classList.remove('menu-open'); hamb.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&navbar.classList.contains('menu-open')){ navbar.classList.remove('menu-open'); hamb.setAttribute('aria-expanded','false'); document.body.style.overflow=''; hamb.focus(); } });
+  document.addEventListener('click',e=>{ if(navbar.classList.contains('menu-open')&&!navbar.contains(e.target)){ navbar.classList.remove('menu-open'); hamb.setAttribute('aria-expanded','false'); document.body.style.overflow=''; } });
 }
 
 /* ── Chatbot ── */
-(function () {
-  const helpBtn = document.getElementById('dv-help-btn'), chatPanel = document.getElementById('dv-chat-panel');
-  const chatBody = document.getElementById('dvChatBody'), dynamic = document.getElementById('dvDynamic');
-  let isOpen = false, initialized = false;
-  const OPTIONS = [
-    { icon:'📞', label:'Comunícate con nosotros',     sub:'Teléfono, WhatsApp o correo',  id:'contacto'    },
-    { icon:'📋', label:'Cómo obtener mi certificado', sub:'Pasos del proceso explicados', id:'certificado' },
-    { icon:'💼', label:'Vacantes y empleo',            sub:'Trabaja con DistriVision',     id:'vacantes'    }
+(function(){
+  const helpBtn=document.getElementById('dv-help-btn'), chatPanel=document.getElementById('dv-chat-panel');
+  const chatBody=document.getElementById('dvChatBody'), dynamic=document.getElementById('dvDynamic');
+  let isOpen=false, initialized=false;
+  const OPTIONS=[
+    {icon:'📞',label:'Comunícate con nosotros',    sub:'Teléfono, WhatsApp o correo', id:'contacto'},
+    {icon:'📋',label:'Cómo obtener mi certificado',sub:'Pasos del proceso explicados',id:'certificado'},
+    {icon:'💼',label:'Vacantes y empleo',           sub:'Trabaja con DistriVision',    id:'vacantes'}
   ];
-  const ANSWERS = {
-    contacto:    { title:'📞 Contáctanos directamente',    html:'<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>' },
-    certificado: { title:'📋 Cómo obtener tu certificado', html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>' },
-    vacantes:    { title:'💼 Vacantes en DistriVision',    html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>' }
+  const ANSWERS={
+    contacto:   {title:'📞 Contáctanos directamente',   html:'<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>'},
+    certificado:{title:'📋 Cómo obtener tu certificado',html:'<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>'},
+    vacantes:   {title:'💼 Vacantes en DistriVision',   html:'<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>'}
   };
-  helpBtn.addEventListener('click', () => { isOpen = !isOpen; helpBtn.classList.toggle('open', isOpen); chatPanel.classList.toggle('open', isOpen); if (isOpen && !initialized) initChat(); });
-  function initChat() { initialized = true; addTyping(() => { addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?'); setTimeout(() => showOptions(), 400); }); }
-  function showOptions() {
-    dynamic.innerHTML = '<div class="dv-options" id="dvOptions"></div>';
-    const c = document.getElementById('dvOptions');
-    OPTIONS.forEach((o, i) => {
-      const b = document.createElement('button'); b.className = 'dv-option-btn'; b.style.animationDelay = (i * .08) + 's';
-      b.innerHTML = `<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`;
-      b.addEventListener('click', () => selOpt(o)); c.appendChild(b);
-    });
+  helpBtn.addEventListener('click',()=>{ isOpen=!isOpen; helpBtn.classList.toggle('open',isOpen); chatPanel.classList.toggle('open',isOpen); if(isOpen&&!initialized) initChat(); });
+  function initChat(){ initialized=true; addTyping(()=>{ addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?'); setTimeout(()=>showOptions(),400); }); }
+  function showOptions(){
+    dynamic.innerHTML='<div class="dv-options" id="dvOptions"></div>';
+    const c=document.getElementById('dvOptions');
+    OPTIONS.forEach((o,i)=>{ const b=document.createElement('button'); b.className='dv-option-btn'; b.style.animationDelay=(i*.08)+'s'; b.innerHTML=`<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`; b.addEventListener('click',()=>selOpt(o)); c.appendChild(b); });
     scrollBot();
   }
-  function selOpt(o) {
-    addUser(o.icon + ' ' + o.label); dynamic.innerHTML = '';
-    addTyping(() => {
-      const a = ANSWERS[o.id];
-      dynamic.innerHTML = `<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`;
-      document.getElementById('dvBackBtn').addEventListener('click', () => { addBot('¿Hay algo más en lo que pueda ayudarte?'); dynamic.innerHTML = ''; setTimeout(() => showOptions(), 300); });
-      scrollBot();
-    });
-  }
-  function addBot(h)  { const e=document.createElement('div'); e.className='dv-bubble'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
-  function addUser(t) { const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
-  function addTyping(cb) {
-    const e=document.createElement('div'); e.className='dv-typing';
-    e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
-    chatBody.appendChild(e); scrollBot(); setTimeout(()=>{ chatBody.removeChild(e); cb(); }, 950);
-  }
-  function scrollBot() { setTimeout(()=> chatBody.scrollTop=chatBody.scrollHeight, 50); }
+  function selOpt(o){ addUser(o.icon+' '+o.label); dynamic.innerHTML=''; addTyping(()=>{ const a=ANSWERS[o.id]; dynamic.innerHTML=`<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`; document.getElementById('dvBackBtn').addEventListener('click',()=>{ addBot('¿Hay algo más en lo que pueda ayudarte?'); dynamic.innerHTML=''; setTimeout(()=>showOptions(),300); }); scrollBot(); }); }
+  function addBot(h){ const e=document.createElement('div'); e.className='dv-bubble'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addUser(t){ const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addTyping(cb){ const e=document.createElement('div'); e.className='dv-typing'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`; chatBody.appendChild(e); scrollBot(); setTimeout(()=>{ chatBody.removeChild(e); cb(); },950); }
+  function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
 })();
 </script>
 </body>
