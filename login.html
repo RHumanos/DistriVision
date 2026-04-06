@@ -54,7 +54,6 @@ body{font-family:'Lato',sans-serif;color:var(--text);background:var(--gray);over
 .login-field input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 18px;font-family:'Lato',sans-serif;font-size:.95rem;color:#fff;transition:border-color .2s,background .2s;outline:none}
 .login-field input::placeholder{color:rgba(255,255,255,.3)}
 .login-field input:focus{border-color:rgba(100,185,240,.6);background:rgba(255,255,255,.12)}
-/* ── CAMBIO 3: checkbox recordar ── */
 .login-remember{display:flex;align-items:center;gap:8px;margin-bottom:14px}
 .login-remember input[type=checkbox]{accent-color:#64b9f0;cursor:pointer;width:15px;height:15px}
 .login-remember label{font-size:.75rem;color:rgba(255,255,255,.4);cursor:pointer;font-family:'Lato',sans-serif;user-select:none}
@@ -111,7 +110,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;ali
 .dot-transporte{background:#c084fc}
 
 /* MAIN */
-.main-content{flex:1;padding:32px 36px;overflow-x:auto;min-width:0}
+.main-content{flex:1;padding:32px 36px;overflow-x:hidden;min-width:0}
 .page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
 .page-header-left h1{font-size:1.7rem;font-weight:900;color:var(--blue-dark);letter-spacing:-.3px}
 .page-header-left p{font-size:.88rem;color:var(--text-muted);margin-top:4px;font-family:'Playfair Display',serif}
@@ -153,41 +152,69 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;ali
 .btn-sm{padding:7px 14px;font-size:.78rem;border-radius:8px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
 
-/* TABLE — CAMBIO 1: scrollbar visible dentro del contenedor */
+/* TABLE — sin scroll horizontal, columnas colapsables */
 .table-wrapper{
   background:var(--white);
   border-radius:var(--radius);
   border:1px solid var(--gray-mid);
   box-shadow:var(--shadow-sm);
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;
-  scrollbar-color:var(--accent) var(--gray-mid);
+  overflow:hidden;
+  width:100%;
 }
-.table-wrapper::-webkit-scrollbar{height:6px}
-.table-wrapper::-webkit-scrollbar-track{background:var(--gray-mid);border-radius:0 0 var(--radius) var(--radius)}
-.table-wrapper::-webkit-scrollbar-thumb{background:var(--accent);border-radius:6px}
-.table-wrapper::-webkit-scrollbar-thumb:hover{background:var(--blue)}
-table{width:100%;border-collapse:collapse;min-width:900px}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
 thead{background:var(--blue-deep)}
-thead th{padding:14px 16px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-align:left;white-space:nowrap}
+thead th{padding:12px 10px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 tbody tr{border-bottom:1px solid var(--gray-mid);transition:background .15s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--blue-xlight)}
-tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:middle;white-space:nowrap}
-.emp-avatar{width:38px;height:38px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0}
-.emp-info{display:flex;align-items:center;gap:12px}
-.emp-info-text .emp-name{font-weight:700;font-size:.9rem;color:var(--blue-dark)}
-.emp-info-text .emp-cargo{font-size:.75rem;color:var(--text-muted)}
-.area-tag{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+tbody td{padding:10px 10px;font-size:.84rem;color:var(--text);vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.emp-avatar{width:36px;height:36px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0}
+.emp-info{display:flex;align-items:center;gap:10px}
+.emp-info-text .emp-name{font-weight:700;font-size:.87rem;color:var(--blue-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.emp-info-text .emp-cargo{font-size:.72rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.area-tag{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
 .area-tag.admin{background:rgba(96,165,250,.12);color:#2563eb}
 .area-tag.comercial{background:rgba(52,211,153,.12);color:#059669}
 .area-tag.bodega{background:rgba(251,146,60,.12);color:#d97706}
 .area-tag.transporte{background:rgba(192,132,252,.12);color:#7c3aed}
-.status-badge{font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;display:inline-block;white-space:nowrap}
+.status-badge{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:50px;display:inline-block;white-space:nowrap}
 .status-activo{background:rgba(22,163,74,.1);color:#16a34a}
 .status-inactivo{background:rgba(156,163,175,.15);color:#6b7280}
-.actions-cell{display:flex;gap:6px;align-items:center}
+.actions-cell{display:flex;gap:4px;align-items:center}
+
+/* Anchos de columnas de la tabla principal */
+table.emp-table th:nth-child(1),
+table.emp-table td:nth-child(1){width:220px}
+table.emp-table th:nth-child(2),
+table.emp-table td:nth-child(2){width:110px}
+table.emp-table th:nth-child(3),
+table.emp-table td:nth-child(3){width:110px}
+table.emp-table th:nth-child(4),
+table.emp-table td:nth-child(4){width:150px}
+table.emp-table th:nth-child(5),
+table.emp-table td:nth-child(5){width:110px}
+table.emp-table th:nth-child(6),
+table.emp-table td:nth-child(6){width:100px}
+table.emp-table th:nth-child(7),
+table.emp-table td:nth-child(7){width:80px}
+table.emp-table th:nth-child(8),
+table.emp-table td:nth-child(8){width:100px}
+
+/* Ocultar columnas secundarias según espacio */
+@media(max-width:1200px){
+  table.emp-table .col-eps{display:none}
+}
+@media(max-width:1000px){
+  table.emp-table .col-telefono,
+  table.emp-table .col-eps{display:none}
+  table.emp-table th:nth-child(1),table.emp-table td:nth-child(1){width:auto}
+  table.emp-table th:nth-child(4),table.emp-table td:nth-child(4){width:130px}
+}
+@media(max-width:750px){
+  table.emp-table .col-cedula,
+  table.emp-table .col-telefono,
+  table.emp-table .col-eps{display:none}
+}
 
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(9,18,30,.7);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -347,7 +374,6 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
 <div id="login-screen">
   <div class="login-orb login-orb-1"></div>
   <div class="login-orb login-orb-2"></div>
-  <!-- CAMBIO 2: canvas de partículas -->
   <canvas id="login-particles" style="position:absolute;inset:0;pointer-events:none;z-index:0"></canvas>
   <div class="login-box">
     <a href="index.html" class="login-back-btn" title="Volver al inicio">✕</a>
@@ -369,7 +395,6 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
       <label>Contraseña</label>
       <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <!-- CAMBIO 3: checkbox recordar credenciales -->
     <div class="login-remember">
       <input type="checkbox" id="remember-me">
       <label for="remember-me">Recordar mis credenciales</label>
@@ -512,15 +537,15 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
           </select>
         </div>
         <div class="table-wrapper">
-          <table>
+          <table class="emp-table">
             <thead>
               <tr>
                 <th>Empleado</th>
-                <th>Cédula</th>
+                <th class="col-cedula">Cédula</th>
                 <th>Área</th>
                 <th>Cargo</th>
-                <th>Teléfono</th>
-                <th>EPS</th>
+                <th class="col-telefono">Teléfono</th>
+                <th class="col-eps">EPS</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
@@ -561,42 +586,27 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <script>
-/* ==================== CAMBIO 2: PARTÍCULAS LOGIN ==================== */
+/* ==================== PARTÍCULAS LOGIN ==================== */
 (function() {
   const canvas = document.getElementById('login-particles');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
   function Particle() {
-    this.x     = Math.random() * W;
-    this.y     = Math.random() * H;
-    this.r     = Math.random() * 2 + 0.5;
-    this.vx    = (Math.random() - 0.5) * 0.4;
-    this.vy    = (Math.random() - 0.5) * 0.4;
-    this.alpha = Math.random() * 0.3 + 0.05;
+    this.x = Math.random() * W; this.y = Math.random() * H;
+    this.r = Math.random() * 2 + 0.5; this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4; this.alpha = Math.random() * 0.3 + 0.05;
   }
-
-  function init() {
-    resize();
-    particles = Array.from({length: 80}, () => new Particle());
-  }
-
+  function init() { resize(); particles = Array.from({length: 80}, () => new Particle()); }
   function draw() {
     ctx.clearRect(0, 0, W, H);
     particles.forEach(p => {
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
       if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(100,185,240,${p.alpha})`;
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(100,185,240,${p.alpha})`; ctx.fill();
     });
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -604,42 +614,17 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx*dx + dy*dy);
         if (dist < 100) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = `rgba(100,185,240,${0.08 * (1 - dist/100)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
+          ctx.lineWidth = 0.5; ctx.stroke();
         }
       }
     }
     requestAnimationFrame(draw);
   }
-
   window.addEventListener('resize', resize);
-  init();
-  draw();
-})();
-
-/* ==================== CAMBIO 3: LEER COOKIES AL CARGAR ==================== */
-(function loadSavedCredentials() {
-  const getCookie = name => {
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match ? decodeURIComponent(match[2]) : null;
-  };
-  const role = getCookie('dv_role');
-  const user = getCookie('dv_user');
-  const pass = getCookie('dv_pass');
-  if (role && user && pass && USERS && USERS[role]) {
-    document.querySelectorAll('.role-tab').forEach(t => {
-      t.classList.toggle('active', t.dataset.role === role);
-    });
-    currentRole = role;
-    document.getElementById('login-user').value = user;
-    document.getElementById('login-pass').value = pass;
-    const cb = document.getElementById('remember-me');
-    if (cb) cb.checked = true;
-  }
+  init(); draw();
 })();
 
 /* ==================== CREDENCIALES ==================== */
@@ -651,6 +636,7 @@ function toggleHint(btn) {
     : '<span class="hint-icon">🔑</span> Ver credenciales de acceso';
 }
 
+/* ==================== USUARIOS — definidos PRIMERO ==================== */
 const USERS = {
   administrador: { user:'admin',    pass:'DV@dmin2025', name:'Administrador',    badge:'badge-admin',    canEdit:true,  canDelete:true,  canAdd:true  },
   jefe:          { user:'jefe',     pass:'JefeRH#2025', name:'Jefe de Recursos', badge:'badge-jefe',     canEdit:true,  canDelete:false, canAdd:true  },
@@ -666,6 +652,27 @@ let modalMode = 'add';
 
 const STORAGE_KEY = 'dv_personal_v2';
 
+/* ==================== LEER COOKIES AL CARGAR (después de USERS) ==================== */
+(function loadSavedCredentials() {
+  const getCookie = name => {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  };
+  const role = getCookie('dv_role');
+  const user = getCookie('dv_user');
+  const pass = getCookie('dv_pass');
+  if (role && user && pass && USERS[role]) {
+    document.querySelectorAll('.role-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.role === role);
+    });
+    currentRole = role;
+    document.getElementById('login-user').value = user;
+    document.getElementById('login-pass').value = pass;
+    const cb = document.getElementById('remember-me');
+    if (cb) cb.checked = true;
+  }
+})();
+
 /* ==================== DATOS ==================== */
 const DEFAULT_EMPLOYEES = [
   {"id":1,"nombres":"GLADYS","apellidos":"QUINTANILLA GALVIS","cedula":"51599409","fecha_nacimiento":"2019-11-11","cargo":"GERENTE GENERAL","area":"Administrativo","fecha_ingreso":"1996-04-01","salario":"","telefono":"3102083831","telefono_alt":"8776012","email":"distrivisionneiva@hotmail.com","direccion":"CRA 42 # 18a - 08 VERGEL","eps":"SANITAS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"101-829781-11","estado":"Activo"},
@@ -680,7 +687,7 @@ const DEFAULT_EMPLOYEES = [
   {"id":10,"nombres":"ANYELO STIVEN","apellidos":"ORTIZ CASAS","cedula":"1004494138","fecha_nacimiento":"2000-03-31","cargo":"AUXILIAR ADMINISTRATIVO","area":"Administrativo","fecha_ingreso":"2022-09-26","salario":"1750905","telefono":"3212778879","telefono_alt":"","email":"anyelostivenortiz@gmail.com","direccion":"CALLE 17A #53 - 70 SIGLO 21","eps":"NUEVA EPS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"534-424097-53","estado":"Activo"},
   {"id":11,"nombres":"MARIA ANGELICA","apellidos":"SUAZA SERRANO","cedula":"1033713029","fecha_nacimiento":"","cargo":"JEFE RECURSOS HUMANOS Y SST","area":"Administrativo","fecha_ingreso":"2023-12-14","salario":"1750905","telefono":"3105996169","telefono_alt":"","email":"mariaangel502@hotmail.com","direccion":"CALLE 2E # 15A 16","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"941-697-906-09","estado":"Activo"},
   {"id":12,"nombres":"CAMILA","apellidos":"LASSO PENAGOS","cedula":"1003802402","fecha_nacimiento":"2001-01-22","cargo":"TESORERA","area":"Administrativo","fecha_ingreso":"2025-06-03","salario":"1750905","telefono":"3209206885","telefono_alt":"","email":"CLASSO.PENAGOS22@GMAIL.COM","direccion":"CRA 29 B 11-07 NEIVA-HUILA","eps":"NUEVA EPS","pension":"COLPENSIONES","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"454-853564-56","estado":"Activo"},
-  {"id":13,"nombres":"JUAN FELIPE","apellidos":"MEDINA FUYAR","cedula":"1003805055","fecha_nacimiento":"2001-07-25","cargo":"21/ENERO 2026 FACTURADOR -20/01/2026-SUPERNUMERARIO ADMINISTRATIVO","area":"Administrativo","fecha_ingreso":"2025-08-01","salario":"1750905","telefono":"3122730198","telefono_alt":"","email":"JFMEDINA2002@GMAIL.COM","direccion":"CALLE 27 A SUR D 26 A 54 CUARTO CENTENARIO","eps":"SANITAS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-639784-91","estado":"Activo"},
+  {"id":13,"nombres":"JUAN FELIPE","apellidos":"MEDINA FUYAR","cedula":"1003805055","fecha_nacimiento":"2001-07-25","cargo":"FACTURADOR - SUPERNUMERARIO","area":"Administrativo","fecha_ingreso":"2025-08-01","salario":"1750905","telefono":"3122730198","telefono_alt":"","email":"JFMEDINA2002@GMAIL.COM","direccion":"CALLE 27 A SUR D 26 A 54 CUARTO CENTENARIO","eps":"SANITAS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-639784-91","estado":"Activo"},
   {"id":14,"nombres":"NATALIA","apellidos":"MONTANO NUNEZ","cedula":"1113693618","fecha_nacimiento":"1998-10-06","cargo":"APRENDIZ SENA","area":"Administrativo","fecha_ingreso":"2025-11-04","salario":"1750905","telefono":"3028141358","telefono_alt":"","email":"nuneznatalia622@gmail.com","direccion":"LOTE 54 LA PAZ EL CAGUAN NEIVA","eps":"NUEVA EPS","pension":"PROTECCION","arl":"","tipo_contrato":"APRENDIZ SENA","banco":"","num_cuenta":"941-654-764-89","estado":"Activo"},
   {"id":15,"nombres":"ANGUIE MARIA","apellidos":"SALAMANCA MENESES","cedula":"1083922450","fecha_nacimiento":"1997-10-26","cargo":"ASISTENTE ADMINISTRATIVA","area":"Administrativo","fecha_ingreso":"2025-12-02","salario":"1750905","telefono":"3175023019","telefono_alt":"","email":"anyisalamancameneses@gmail.com","direccion":"CARRERA 11 ESTE # 1 - 15 SUR PARAÌSO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"453-286-069-29","estado":"Activo"},
   {"id":16,"nombres":"KARLA MILENA","apellidos":"OSORIO AMAYA","cedula":"1075794421","fecha_nacimiento":"2007-03-24","cargo":"APRENDIZ SENA","area":"Administrativo","fecha_ingreso":"2026-01-30","salario":"1750905","telefono":"3104200577","telefono_alt":"","email":"chikykarla2007@gmail.com","direccion":"CALLE 1 NO 21 04 ACACIAS","eps":"FAMISANAR","pension":"PORVENIR","arl":"","tipo_contrato":"APRENDIZ SENA","banco":"","num_cuenta":"94198176821","estado":"Activo"},
@@ -690,7 +697,7 @@ const DEFAULT_EMPLOYEES = [
   {"id":20,"nombres":"JEFERSON ARIEL","apellidos":"OSPINA GIRALDO","cedula":"1007411166","fecha_nacimiento":"1996-01-26","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2019-03-18","salario":"1750905","telefono":"3168373771","telefono_alt":"","email":"","direccion":"B/VILLA ESPERANZA PLANADAS","eps":"NUEVA EPS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"941-000208-52","estado":"Activo"},
   {"id":21,"nombres":"MIGUEL ALBERTO","apellidos":"VARGAS DIAZ","cedula":"1075224270","fecha_nacimiento":"1987-10-19","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2021-09-15","salario":"1750905","telefono":"3105826428","telefono_alt":"","email":"drowning1313@hotmail.com","direccion":"CARRERA 54  # 24 - 61 LAS PALMAS","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"147-028929-62","estado":"Activo"},
   {"id":22,"nombres":"KAREN STEFANNY","apellidos":"SALAZAR SILVA","cedula":"1075278945","fecha_nacimiento":"1994-03-20","cargo":"MERCADERISTA","area":"Comercial","fecha_ingreso":"2021-11-19","salario":"1750905","telefono":"3125009961","telefono_alt":"","email":"","direccion":"CRA 13 # 25A - 88 NEIVA - HUILA","eps":"NUEVA EPS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"455-287902-01","estado":"Activo"},
-  {"id":23,"nombres":"JOSE ELIAS","apellidos":"HOLGUIN PENCUE","cedula":"1061221822","fecha_nacimiento":"1989-04-02","cargo":"JEFE OPERATIVO PITALITO - ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"25/03/2023 - 15/04/2023","salario":"1750905","telefono":"3168326538","telefono_alt":"","email":"holguinj052@gmail.com","direccion":"CRA 2 # 9 - 10 PANORAMA","eps":"SANITAS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-2296-0031","estado":"Activo"},
+  {"id":23,"nombres":"JOSE ELIAS","apellidos":"HOLGUIN PENCUE","cedula":"1061221822","fecha_nacimiento":"1989-04-02","cargo":"JEFE OPERATIVO - ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2023-03-25","salario":"1750905","telefono":"3168326538","telefono_alt":"","email":"holguinj052@gmail.com","direccion":"CRA 2 # 9 - 10 PANORAMA","eps":"SANITAS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-2296-0031","estado":"Activo"},
   {"id":24,"nombres":"YUSNEYDI","apellidos":"FALLA GOMEZ","cedula":"1077872430","fecha_nacimiento":"1996-07-07","cargo":"MERCADERISTA","area":"Comercial","fecha_ingreso":"2023-09-21","salario":"1750905","telefono":"3118381333","telefono_alt":"","email":"yusneydi.falla96@hotmail.com","direccion":"CRA 8B E #7A 18 INDEPENDENCIA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"285-000036-36","estado":"Activo"},
   {"id":25,"nombres":"YINETH","apellidos":"HURTATIS COLLAZOS","cedula":"1130662351","fecha_nacimiento":"2024-08-27","cargo":"ASESORA COMERCIAL","area":"Comercial","fecha_ingreso":"2024-01-23","salario":"1750905","telefono":"3223866323","telefono_alt":"","email":"","direccion":"CALLE 17A 9-34 PITALITO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"45-3870057-85","estado":"Activo"},
   {"id":26,"nombres":"JOSE RICARDO","apellidos":"LEMUS FIERRO","cedula":"1075272819","fecha_nacimiento":"2024-08-01","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2024-03-18","salario":"1750905","telefono":"3228495690","telefono_alt":"","email":"RICANCHO201@HOTMAIL.COM","direccion":"CALLE 72 B NO 1 15 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
@@ -698,16 +705,16 @@ const DEFAULT_EMPLOYEES = [
   {"id":28,"nombres":"DIANA PATRICIA","apellidos":"LOPEZ ANACONA","cedula":"1083877342","fecha_nacimiento":"1988-09-14","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2024-04-15","salario":"1750905","telefono":"3227674937","telefono_alt":"","email":"","direccion":"TRAVERSAL 4 NO 11-77 SUR PITALITO","eps":"SANITAS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"032-276-749-37","estado":"Activo"},
   {"id":29,"nombres":"SANTIAGO","apellidos":"VANEGAS PEDREROS","cedula":"1081161027","fecha_nacimiento":"1999-09-01","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2024-05-16","salario":"1750905","telefono":"3213923520","telefono_alt":"","email":"santiagovanegaspedreros@gmail.com","direccion":"VEREDA FILO DE PLATANARES PITALITO","eps":"SANITAS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"032-139235-20","estado":"Activo"},
   {"id":30,"nombres":"MAYERLI","apellidos":"ORTIZ ALVAREZ","cedula":"1075246090","fecha_nacimiento":"1989-08-09","cargo":"VENDEDORA MERCADERISTA","area":"Comercial","fecha_ingreso":"2024-05-24","salario":"1750905","telefono":"3228076048","telefono_alt":"","email":"maortiz092008@gmail.com","direccion":"CRA 39#32 - 40 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"454-247815-11","estado":"Activo"},
-  {"id":31,"nombres":"JAIRO ANDRES","apellidos":"LEON ARCINIEGAS","cedula":"7718985","fecha_nacimiento":"1978-12-28","cargo":"ASESOR TAT","area":"Comercial","fecha_ingreso":"2024-08-23","salario":"1750905","telefono":"315 7085167","telefono_alt":"","email":"","direccion":"CARRERA 33 A NO 1AW 36 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"941-000011-95","estado":"Activo"},
+  {"id":31,"nombres":"JAIRO ANDRES","apellidos":"LEON ARCINIEGAS","cedula":"7718985","fecha_nacimiento":"1978-12-28","cargo":"ASESOR TAT","area":"Comercial","fecha_ingreso":"2024-08-23","salario":"1750905","telefono":"3157085167","telefono_alt":"","email":"","direccion":"CARRERA 33 A NO 1AW 36 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"941-000011-95","estado":"Activo"},
   {"id":32,"nombres":"LAURA VALENTINA","apellidos":"AVILA TORRES","cedula":"1007371996","fecha_nacimiento":"2000-04-19","cargo":"MERCADERISTA-POPULARES","area":"Comercial","fecha_ingreso":"2024-08-26","salario":"1750905","telefono":"3046384697","telefono_alt":"","email":"LAURAVALENTINAAVILATORRES@GMAIL.COM","direccion":"SPM9MZ 3 CASA 5 IBAGUE","eps":"SALUD TOTAL","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"7971277992","estado":"Activo"},
   {"id":33,"nombres":"LIZETH","apellidos":"ROJAS TOVAR","cedula":"1075251722","fecha_nacimiento":"2008-03-27","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2024-08-26","salario":"1750905","telefono":"3178712659","telefono_alt":"","email":"","direccion":"CALLE20ANO5063 NEIVA","eps":"SANITAS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"7600003444","estado":"Activo"},
-  {"id":34,"nombres":"ANDRY JULIETH","apellidos":"ORTIZ LOPEZ","cedula":"1075791047","fecha_nacimiento":"2005-02-06","cargo":"ASESOR COMECIAL","area":"Comercial","fecha_ingreso":"2025-01-09","salario":"1750905","telefono":"3156807423","telefono_alt":"","email":"LOPEZANDRY450@GMAIL.COM","direccion":"CALLE 1 # 21-99 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"94-1631239-02","estado":"Activo"},
+  {"id":34,"nombres":"ANDRY JULIETH","apellidos":"ORTIZ LOPEZ","cedula":"1075791047","fecha_nacimiento":"2005-02-06","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2025-01-09","salario":"1750905","telefono":"3156807423","telefono_alt":"","email":"LOPEZANDRY450@GMAIL.COM","direccion":"CALLE 1 # 21-99 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"94-1631239-02","estado":"Activo"},
   {"id":35,"nombres":"MIGUEL HERNAN","apellidos":"CAMPOS SIERRA","cedula":"1081418659","fecha_nacimiento":"1996-05-19","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2025-03-01","salario":"1750905","telefono":"3209316307","telefono_alt":"","email":"SIERRACAMPOSMIGUEL@GMAIL.COM","direccion":"CALLE 5 NO 13-39 LA PLATA","eps":"SANITAS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"845-325510-04","estado":"Activo"},
   {"id":36,"nombres":"JHON SEBASTIAN","apellidos":"SANCHEZ BAILON","cedula":"1003866241","fecha_nacimiento":"2001-03-21","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2025-05-02","salario":"1750905","telefono":"3186412037","telefono_alt":"","email":"SEBASTIANSANCHEZ2020@GMAIL.COM","direccion":"CALLE 21 A NO 53-25 LAS PALMAS","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"454-667303-21","estado":"Activo"},
   {"id":37,"nombres":"HERINSON","apellidos":"LOSADA RAMOS","cedula":"7727193","fecha_nacimiento":"1984-03-22","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2025-08-01","salario":"1750905","telefono":"3024962505","telefono_alt":"","email":"HERINSON30@GMAIL.COM","direccion":"CARRERA 17 NO 2-19 GARZON-HUILA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"285-000041-81","estado":"Activo"},
   {"id":38,"nombres":"STEFANIA","apellidos":"QUIMBAYA CORTES","cedula":"1075289488","fecha_nacimiento":"1995-06-28","cargo":"MERCADERISTA","area":"Comercial","fecha_ingreso":"2025-08-01","salario":"1750905","telefono":"3176165309","telefono_alt":"","email":"STEFANIA952806@HOTMAIL.COM","direccion":"CALLE 17 A NO.20-75 B LA LIBERTAD","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"454-433478-21","estado":"Activo"},
   {"id":39,"nombres":"MARIA FERNANDA","apellidos":"RODRIGUEZ LOSADA","cedula":"1069721704","fecha_nacimiento":"1986-09-17","cargo":"ASESORA COMERCIAL","area":"Comercial","fecha_ingreso":"2025-09-09","salario":"1750905","telefono":"3232209921","telefono_alt":"","email":"MFERNANDARODRIGUEZLOSADA@GMAIL.COM","direccion":"CALLE 3 B 15 16 CENTRO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-908309-78","estado":"Activo"},
-  {"id":40,"nombres":"CARLOS ALBERT","apellidos":"RODRIGUEZ JARA","cedula":"1077872432","fecha_nacimiento":"1996-06-09","cargo":"ASESORA COMERCIAL","area":"Comercial","fecha_ingreso":"2025-10-06","salario":"1750905","telefono":"322233723","telefono_alt":"","email":"","direccion":"CALLE 1C SUR No 23 58 GARZON-HUILA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"912-310686-65","estado":"Activo"},
+  {"id":40,"nombres":"CARLOS ALBERT","apellidos":"RODRIGUEZ JARA","cedula":"1077872432","fecha_nacimiento":"1996-06-09","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2025-10-06","salario":"1750905","telefono":"322233723","telefono_alt":"","email":"","direccion":"CALLE 1C SUR No 23 58 GARZON-HUILA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"912-310686-65","estado":"Activo"},
   {"id":41,"nombres":"MIGUEL ANTONIO","apellidos":"VACA PALACIOS","cedula":"14325298","fecha_nacimiento":"","cargo":"JEFE DE VENTAS","area":"Comercial","fecha_ingreso":"2025-10-01","salario":"","telefono":"3174352064","telefono_alt":"","email":"","direccion":"NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"153-691306-31","estado":"Activo"},
   {"id":42,"nombres":"ANGELICA MARIA","apellidos":"IBARRA RUBIANO","cedula":"1075297584","fecha_nacimiento":"1996-05-22","cargo":"ASESORA COMERCIAL","area":"Comercial","fecha_ingreso":"2025-11-05","salario":"1750905","telefono":"3194818737","telefono_alt":"","email":"itarubiano@gmail.com","direccion":"CRA 39B #20A - 17SUR NEIVA - HUILA","eps":"SANITAS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"457-000001-58","estado":"Activo"},
   {"id":43,"nombres":"OSCAR JULIAN","apellidos":"SOLANO BAILON","cedula":"1233513327","fecha_nacimiento":"","cargo":"ASESOR COMERCIAL","area":"Comercial","fecha_ingreso":"2025-10-20","salario":"1750905","telefono":"3186412037","telefono_alt":"","email":"","direccion":"CALLE 5 A 6 A BIS 62 NEIVA-HUILA","eps":"SANITAS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"454-667303-21","estado":"Activo"},
@@ -731,7 +738,7 @@ const DEFAULT_EMPLOYEES = [
   {"id":61,"nombres":"WILLIAM","apellidos":"BAHAMON MOSQUERA","cedula":"1003801508","fecha_nacimiento":"1991-09-28","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2019-07-16","salario":"1750905","telefono":"3004608588","telefono_alt":"","email":"","direccion":"CRA 31 1EBIS 70 PANORAMA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"455-715622-12","estado":"Activo"},
   {"id":62,"nombres":"MICHAEL","apellidos":"URIBE JAVELA","cedula":"1007186710","fecha_nacimiento":"2000-11-03","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2020-10-07","salario":"1750905","telefono":"3143311749","telefono_alt":"","email":"URIBEMAICOL97@gmail.com","direccion":"CLL 23 # 37-25 LIMONAR","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-000194-01","estado":"Activo"},
   {"id":63,"nombres":"FABIO ORLANDO","apellidos":"SALAMANCA ARIZA","cedula":"9534182","fecha_nacimiento":"1969-05-18","cargo":"CONDUCTOR","area":"Transporte","fecha_ingreso":"2021-04-16","salario":"1750905","telefono":"3134686018","telefono_alt":"3224148793","email":"fabiosalam@hotmail.com","direccion":"CRA 30 #23A - 90 NEIVA - HUILA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"941-000009-47","estado":"Activo"},
-  {"id":64,"nombres":"FLAVIO ABDEL","apellidos":"CORDOBA GORDO","cedula":"86047635","fecha_nacimiento":"1976-03-29","cargo":"AUXILIAR DE TRANSPORTEY BODEGA","area":"Transporte","fecha_ingreso":"2023-01-16","salario":"1750905","telefono":"8738074","telefono_alt":"3102561137","email":"","direccion":"CRA 25 #6 - 31 JOSE ANTONIO GALAN","eps":"SANITAS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-654508-85","estado":"Activo"},
+  {"id":64,"nombres":"FLAVIO ABDEL","apellidos":"CORDOBA GORDO","cedula":"86047635","fecha_nacimiento":"1976-03-29","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2023-01-16","salario":"1750905","telefono":"8738074","telefono_alt":"3102561137","email":"","direccion":"CRA 25 #6 - 31 JOSE ANTONIO GALAN","eps":"SANITAS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-654508-85","estado":"Activo"},
   {"id":65,"nombres":"ISMAEL","apellidos":"OLAVE CARLOSAMA","cedula":"1083911009","fecha_nacimiento":"1994-10-31","cargo":"AUXILIAR TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2023-09-28","salario":"1750905","telefono":"3105666534","telefono_alt":"","email":"","direccion":"CALLE 15 #4 -15 LOS GUADUALES - PITALITO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"453-594197-10","estado":"Activo"},
   {"id":66,"nombres":"JULIAN ANDRES","apellidos":"LLANOS BARRAGAN","cedula":"1075309039","fecha_nacimiento":"1997-09-18","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2024-12-17","salario":"1750905","telefono":"3202297625","telefono_alt":"","email":"JULIANANDRESLLANOS1997@gmail.com","direccion":"CLL 3#2136 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"32-022976-25","estado":"Activo"},
   {"id":67,"nombres":"DIEGO FERNANDO","apellidos":"NUÑEZ SCARPETTA","cedula":"1075248397","fecha_nacimiento":"1990-03-15","cargo":"CONDUCTOR","area":"Transporte","fecha_ingreso":"2025-02-25","salario":"1750905","telefono":"3118259876","telefono_alt":"8733310","email":"maomorocha@hotmail.com","direccion":"CALLE 4 SUR N 19A 03 SANTA ISABEL-NEIVA","eps":"NUEVA EPS","pension":"PROTECCION","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"455-792323-78","estado":"Activo"},
@@ -751,9 +758,9 @@ const DEFAULT_EMPLOYEES = [
   {"id":81,"nombres":"CAMILO ARMANDO","apellidos":"MORERA MORERA","cedula":"1020733468","fecha_nacimiento":"1988-06-28","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2025-12-13","salario":"1750905","telefono":"3212580001","telefono_alt":"","email":"","direccion":"CRA 34 # 10 - 11 7 DE AGOSTO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-364929-27","estado":"Activo"},
   {"id":82,"nombres":"JULIAN","apellidos":"ASTUDILLO OVALLOS","cedula":"1004418019","fecha_nacimiento":"2003-02-04","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2025-12-10","salario":"1750905","telefono":"3122060959","telefono_alt":"3133614978","email":"","direccion":"PITALITO","eps":"ASMET SALUD","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":83,"nombres":"CARLOS ALBERTO","apellidos":"RODRIGUEZ RAMIREZ","cedula":"1075318699","fecha_nacimiento":"1999-04-01","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2025-12-25","salario":"1750905","telefono":"3222837299","telefono_alt":"","email":"","direccion":"CARRERA 15 # 14 - 35 SANTA LIBRADA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"455-000021-84","estado":"Activo"},
-  {"id":84,"nombres":"JHONATAN","apellidos":"MOLINA OVALLE","cedula":"1022432860","fecha_nacimiento":"1998-01-24","cargo":"AUXILIAR DE TRANSPORTE Y  BODEGA","area":"Transporte","fecha_ingreso":"2025-12-30","salario":"1750905","telefono":"3223900267","telefono_alt":"","email":"","direccion":"GRANJAS","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"455-960-649-00","estado":"Activo"},
+  {"id":84,"nombres":"JHONATAN","apellidos":"MOLINA OVALLE","cedula":"1022432860","fecha_nacimiento":"1998-01-24","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2025-12-30","salario":"1750905","telefono":"3223900267","telefono_alt":"","email":"","direccion":"GRANJAS","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"455-960-649-00","estado":"Activo"},
   {"id":85,"nombres":"ANDRES","apellidos":"SANCHEZ VALDERRAMA","cedula":"1083901636","fecha_nacimiento":"1993-05-07","cargo":"CONDUCTOR","area":"Transporte","fecha_ingreso":"2026-03-26","salario":"1750905","telefono":"3208483689","telefono_alt":"","email":"mariadelmarmorales2910@gmail.com","direccion":"CARRERA 52 # 24 - 35 CIUDADELA ANTONIO BARAYA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
-  {"id":86,"nombres":"WILSON ALEXANDER","apellidos":"IMBACHI ROJAS","cedula":"1075226748","fecha_nacimiento":"1987-05-24","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2026-01-20","salario":"1750905","telefono":"31452306431","telefono_alt":"","email":"","direccion":"CALLE 25C 9 05 PITALITO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
+  {"id":86,"nombres":"WILSON ALEXANDER","apellidos":"IMBACHI ROJAS","cedula":"1075226748","fecha_nacimiento":"1987-05-24","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2026-01-20","salario":"1750905","telefono":"3145230643","telefono_alt":"","email":"","direccion":"CALLE 25C 9 05 PITALITO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":87,"nombres":"EVELIO ESNEID","apellidos":"LLANOS RODRIGUEZ","cedula":"1075538934","fecha_nacimiento":"2005-03-08","cargo":"CONDUCTOR AUXILIAR","area":"Transporte","fecha_ingreso":"2026-01-21","salario":"1750905","telefono":"3025498871","telefono_alt":"","email":"","direccion":"NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":88,"nombres":"JHAN CARLOS","apellidos":"GUERRERO RAMIREZ","cedula":"1118022458","fecha_nacimiento":"2000-07-07","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2026-02-06","salario":"1750905","telefono":"3202563579","telefono_alt":"","email":"JHANCARLOSGUERRERORAMIREZ27@GMAIL.COM","direccion":"PITALITO","eps":"ASMET SALUD","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":89,"nombres":"SANTIAGO","apellidos":"FIGUEROA BURBANO","cedula":"1077724655","fecha_nacimiento":"2007-09-20","cargo":"AUXILIAR DE TRANSPORTE","area":"Transporte","fecha_ingreso":"2026-03-02","salario":"1750905","telefono":"3223705323","telefono_alt":"","email":"","direccion":"CRA 58 B 22 22 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"45791491610","estado":"Activo"},
@@ -766,7 +773,7 @@ const DEFAULT_EMPLOYEES = [
   {"id":96,"nombres":"LUIS OSWALDO","apellidos":"VANEGAS BERNAL","cedula":"1110518711","fecha_nacimiento":"2005-01-26","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2026-03-20","salario":"1750905","telefono":"3213214706","telefono_alt":"","email":"LUISWALDOBERNAL46@GMAIL.COM","direccion":"CALLE 16 NO 22 14 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":97,"nombres":"CRISTIAN STIVEN","apellidos":"PADILLA SUAREZ","cedula":"1077228509","fecha_nacimiento":"","cargo":"CONDUCTOR","area":"Transporte","fecha_ingreso":"2026-03-24","salario":"1750905","telefono":"3106862635","telefono_alt":"","email":"CRISTIANSTIVENPADILLASUAREZ@GMAIL.COM","direccion":"CALLE 25 A SUR 23 A 48 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":98,"nombres":"ERIC DUVAN","apellidos":"VELASCO RUIZ","cedula":"1004251071","fecha_nacimiento":"","cargo":"CONDUCTOR","area":"Transporte","fecha_ingreso":"2026-03-20","salario":"1750905","telefono":"3151086256","telefono_alt":"","email":"ERIKDUVAN317@GMAIL.COM","direccion":"CALLE 18 NO 28 34 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
-  {"id":99,"nombres":"WILMER YESID","apellidos":"ORTIZ REALPE","cedula":"1083917435","fecha_nacimiento":"","cargo":"CONDUCTOR","area":"Transporte","fecha_ingreso":"2026-03-17","salario":"1750905","telefono":"3183845015","telefono_alt":"","email":"YOZO89@HITMAIL.COM","direccion":"CRA 14 NO 9 04 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
+  {"id":99,"nombres":"WILMER YESID","apellidos":"ORTIZ REALPE","cedula":"1083917435","fecha_nacimiento":"","cargo":"CONDUCTOR","area":"Transporte","fecha_ingreso":"2026-03-17","salario":"1750905","telefono":"3183845015","telefono_alt":"","email":"YOZO89@HOTMAIL.COM","direccion":"CRA 14 NO 9 04 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":100,"nombres":"JULIAN","apellidos":"DIAZ RAMIREZ","cedula":"1083875333","fecha_nacimiento":"","cargo":"AUXILIAR DE TRANSPORTE","area":"Transporte","fecha_ingreso":"2026-03-13","salario":"1750905","telefono":"3162672665","telefono_alt":"","email":"","direccion":"PITALITO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":101,"nombres":"DAGOBERTO","apellidos":"COLLAZOS VARGAS","cedula":"1080937113","fecha_nacimiento":"","cargo":"AUXILIAR DE TRANSPORTE","area":"Transporte","fecha_ingreso":"2026-03-13","salario":"1750905","telefono":"3118644548","telefono_alt":"","email":"GIRALDOCOLLAZOS1994@GMAIL.COM","direccion":"PITALITO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":102,"nombres":"JULIAN DAVID","apellidos":"CANACUE HERNANDEZ","cedula":"1083870351","fecha_nacimiento":"","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Transporte","fecha_ingreso":"2026-03-25","salario":"1750905","telefono":"3118642169","telefono_alt":"","email":"","direccion":"PITALITO","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
@@ -781,7 +788,7 @@ const DEFAULT_EMPLOYEES = [
   {"id":111,"nombres":"JUAN JOSE","apellidos":"BARRETO PEREZ","cedula":"1102148351","fecha_nacimiento":"2003-03-22","cargo":"SEPARACION","area":"Bodega","fecha_ingreso":"2025-08-11","salario":"1750905","telefono":"3219486209","telefono_alt":"","email":"","direccion":"CALLE 26 SUR 29 65 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"94189124141","estado":"Activo"},
   {"id":112,"nombres":"JUAN CAMILO","apellidos":"TRUJILLO CASTAÑEDA","cedula":"1075794398","fecha_nacimiento":"2007-03-23","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Bodega","fecha_ingreso":"2025-09-24","salario":"1750905","telefono":"3137839344","telefono_alt":"","email":"","direccion":"CALLE 74 C 3 21 NEIVA","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"94191536848","estado":"Activo"},
   {"id":113,"nombres":"DEINER ESMID","apellidos":"CORDOBA PERDOMO","cedula":"1003819738","fecha_nacimiento":"2003-09-14","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Bodega","fecha_ingreso":"2025-10-27","salario":"1750905","telefono":"3209622355","telefono_alt":"","email":"naniscordoba24@gmail.com","direccion":"CRA 13 # 2 - 14SUR MIRAMAR NEIVA","eps":"PROTECCION","pension":"COMFAMILIAR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"076-280153-62","estado":"Activo"},
-  {"id":114,"nombres":"JHON ALEXANDER","apellidos":"BOTINA GONZALEZ","cedula":"1075795636","fecha_nacimiento":"2008-02-04","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Bodega","fecha_ingreso":"2026-03-10","salario":"1750905","telefono":"3137303394","telefono_alt":"","email":"","direccion":"LOTE A 1 ASENTAMIENTO ALVARO URIBE ALVARO URIBE","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
+  {"id":114,"nombres":"JHON ALEXANDER","apellidos":"BOTINA GONZALEZ","cedula":"1075795636","fecha_nacimiento":"2008-02-04","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Bodega","fecha_ingreso":"2026-03-10","salario":"1750905","telefono":"3137303394","telefono_alt":"","email":"","direccion":"LOTE A 1 ASENTAMIENTO ALVARO URIBE","eps":"NUEVA EPS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"},
   {"id":115,"nombres":"MILTON JOSE","apellidos":"MONTES PERTUZ","cedula":"1102814191","fecha_nacimiento":"2005-09-14","cargo":"AUXILIAR DE TRANSPORTE Y BODEGA","area":"Bodega","fecha_ingreso":"2026-02-27","salario":"1750905","telefono":"3337075665","telefono_alt":"","email":"","direccion":"CALLE 26 SUR NO 29 65 NEIVA","eps":"SANITAS","pension":"PORVENIR","arl":"","tipo_contrato":"INDEFINIDO","banco":"","num_cuenta":"","estado":"Activo"}
 ];
 
@@ -804,20 +811,17 @@ function selectRole(el) {
   document.getElementById('login-pass').value = '';
 }
 
-/* ==================== CAMBIO 3: doLogin con cookies ==================== */
 function doLogin() {
   const user = document.getElementById('login-user').value.trim();
   const pass = document.getElementById('login-pass').value;
   const cfg  = USERS[currentRole];
   if (user === cfg.user && pass === cfg.pass) {
-    // Guardar cookie si marcó "recordar" (30 días)
     if (document.getElementById('remember-me')?.checked) {
       const exp = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
       document.cookie = `dv_role=${encodeURIComponent(currentRole)};expires=${exp};path=/;SameSite=Strict`;
       document.cookie = `dv_user=${encodeURIComponent(user)};expires=${exp};path=/;SameSite=Strict`;
       document.cookie = `dv_pass=${encodeURIComponent(pass)};expires=${exp};path=/;SameSite=Strict`;
     } else {
-      // Si no está marcado, borrar cookies existentes
       document.cookie = 'dv_role=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
       document.cookie = 'dv_user=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
       document.cookie = 'dv_pass=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
@@ -918,7 +922,7 @@ function renderDashTable() {
     document.getElementById('dash-table').innerHTML = '<div class="empty-state" style="padding:40px"><div class="es-icon">👥</div><h3>Sin empleados</h3><p>Agrega el primer empleado</p></div>';
     return;
   }
-  let html = `<table><thead><tr>
+  let html = `<table style="table-layout:auto"><thead><tr>
     <th>Empleado</th><th>Área</th><th>Cargo</th><th>Estado</th><th>Acciones</th>
   </tr></thead><tbody>`;
   recent.forEach(e => {
@@ -978,11 +982,11 @@ function renderTable() {
           <div class="emp-cargo">${e.email||''}</div>
         </div>
       </div></td>
-      <td>${e.cedula}</td>
+      <td class="col-cedula">${e.cedula}</td>
       <td><span class="area-tag ${AREA_CLASS[e.area]||''}">${e.area}</span></td>
-      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis" title="${e.cargo}">${e.cargo}</td>
-      <td>${e.telefono}</td>
-      <td>${e.eps}</td>
+      <td title="${e.cargo}">${e.cargo}</td>
+      <td class="col-telefono">${e.telefono}</td>
+      <td class="col-eps">${e.eps}</td>
       <td><span class="status-badge ${e.estado==='Activo'?'status-activo':'status-inactivo'}">${e.estado}</span></td>
       <td><div class="actions-cell">
         <button class="btn btn-outline btn-sm btn-icon" onclick="openModal('view',${e.id})" title="Ver detalle">👁</button>
@@ -1192,7 +1196,6 @@ function exportExcel() {
   const search = (document.getElementById('search-input')?.value || '').toLowerCase();
   const area   = document.getElementById('filter-area')?.value  || '';
   const status = document.getElementById('filter-status')?.value || '';
-
   let data = employees;
   if (currentView === 'personal') {
     data = employees.filter(e => {
@@ -1200,40 +1203,19 @@ function exportExcel() {
         (`${e.nombres} ${e.apellidos}`).toLowerCase().includes(search) ||
         e.cedula.includes(search) ||
         e.cargo.toLowerCase().includes(search);
-      return matchSearch &&
-        (!area   || e.area   === area) &&
-        (!status || e.estado === status);
+      return matchSearch && (!area || e.area === area) && (!status || e.estado === status);
     });
   }
-
   const rows = data.map(e => ({
-    'Nombres':           e.nombres,
-    'Apellidos':         e.apellidos,
-    'Cédula':            e.cedula,
-    'Fecha Nacimiento':  e.fecha_nacimiento,
-    'Área':              e.area,
-    'Cargo':             e.cargo,
-    'Fecha Ingreso':     e.fecha_ingreso,
-    'Tipo Contrato':     e.tipo_contrato,
-    'Salario':           e.salario,
-    'Estado':            e.estado,
-    'Teléfono':          e.telefono,
-    'Tel. Alternativo':  e.telefono_alt,
-    'Email':             e.email,
-    'Dirección':         e.direccion,
-    'EPS':               e.eps,
-    'Pensión':           e.pension,
-    'ARL':               e.arl,
-    'Banco':             e.banco,
-    'N° Cuenta':         e.num_cuenta,
+    'Nombres': e.nombres, 'Apellidos': e.apellidos, 'Cédula': e.cedula,
+    'Fecha Nacimiento': e.fecha_nacimiento, 'Área': e.area, 'Cargo': e.cargo,
+    'Fecha Ingreso': e.fecha_ingreso, 'Tipo Contrato': e.tipo_contrato,
+    'Salario': e.salario, 'Estado': e.estado, 'Teléfono': e.telefono,
+    'Tel. Alternativo': e.telefono_alt, 'Email': e.email, 'Dirección': e.direccion,
+    'EPS': e.eps, 'Pensión': e.pension, 'ARL': e.arl, 'Banco': e.banco, 'N° Cuenta': e.num_cuenta,
   }));
-
   const ws = XLSX.utils.json_to_sheet(rows);
-  ws['!cols'] = [
-    {wch:20},{wch:22},{wch:14},{wch:14},{wch:16},{wch:34},
-    {wch:14},{wch:16},{wch:12},{wch:10},{wch:14},{wch:14},
-    {wch:30},{wch:36},{wch:14},{wch:14},{wch:12},{wch:14},{wch:20}
-  ];
+  ws['!cols'] = [{wch:20},{wch:22},{wch:14},{wch:14},{wch:16},{wch:34},{wch:14},{wch:16},{wch:12},{wch:10},{wch:14},{wch:14},{wch:30},{wch:36},{wch:14},{wch:14},{wch:12},{wch:14},{wch:20}];
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Personal DistriVision');
   const fecha = new Date().toISOString().slice(0,10);
@@ -1248,7 +1230,6 @@ function printEmployee(id) {
   const color = avatarColor(emp.area);
   const initials = (emp.nombres[0]||'') + (emp.apellidos[0]||'');
   const fecha = new Date().toLocaleDateString('es-CO', { year:'numeric', month:'long', day:'numeric' });
-
   const sections = [
     { title: '👤 Información Personal', fields: [
       ['Nombres completos', emp.nombres], ['Apellidos', emp.apellidos],
@@ -1272,10 +1253,7 @@ function printEmployee(id) {
       ['Banco', emp.banco], ['N° de cuenta', emp.num_cuenta],
     ]}
   ];
-
-  const areaColors = {'Administrativo':'#3b82f6','Comercial':'#10b981','Bodega':'#f59e0b','Transporte':'#8b5cf6'};
-  const ac = areaColors[emp.area] || '#255c95';
-
+  const ac = AREA_COLORS[emp.area] || '#255c95';
   let sectionsHTML = '<div class="print-sections">';
   sections.forEach(sec => {
     sectionsHTML += `<div class="print-section"><div class="print-section-title">${sec.title}</div>`;
@@ -1285,7 +1263,6 @@ function printEmployee(id) {
     sectionsHTML += '</div>';
   });
   sectionsHTML += '</div>';
-
   const html = `
     <div class="print-header">
       <div class="print-logo">Distri<span>Vision</span></div>
@@ -1301,7 +1278,6 @@ function printEmployee(id) {
     </div>
     ${sectionsHTML}
     <div class="print-footer">Documento generado el ${fecha} por el Sistema DistriVision — Confidencial</div>`;
-
   const printArea = document.getElementById('print-area');
   printArea.innerHTML = html;
   printArea.style.display = 'block';
