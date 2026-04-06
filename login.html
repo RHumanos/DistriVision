@@ -54,6 +54,10 @@ body{font-family:'Lato',sans-serif;color:var(--text);background:var(--gray);over
 .login-field input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 18px;font-family:'Lato',sans-serif;font-size:.95rem;color:#fff;transition:border-color .2s,background .2s;outline:none}
 .login-field input::placeholder{color:rgba(255,255,255,.3)}
 .login-field input:focus{border-color:rgba(100,185,240,.6);background:rgba(255,255,255,.12)}
+/* ── CAMBIO 3: checkbox recordar ── */
+.login-remember{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.login-remember input[type=checkbox]{accent-color:#64b9f0;cursor:pointer;width:15px;height:15px}
+.login-remember label{font-size:.75rem;color:rgba(255,255,255,.4);cursor:pointer;font-family:'Lato',sans-serif;user-select:none}
 .login-btn{width:100%;background:linear-gradient(135deg,#1a4470,#255c95,#228fd2);border:none;border-radius:12px;padding:15px;font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;color:#fff;cursor:pointer;margin-top:8px;box-shadow:0 8px 28px rgba(37,92,149,.5);transition:transform .2s,box-shadow .2s}
 .login-btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(37,92,149,.6)}
 .login-error{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);color:#fca5a5;font-size:.82rem;border-radius:10px;padding:10px 14px;margin-top:14px;display:none;text-align:center}
@@ -149,8 +153,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;ali
 .btn-sm{padding:7px 14px;font-size:.78rem;border-radius:8px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
 
-/* TABLE */
-.table-wrapper{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm);overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* TABLE — CAMBIO 1: scrollbar visible dentro del contenedor */
+.table-wrapper{
+  background:var(--white);
+  border-radius:var(--radius);
+  border:1px solid var(--gray-mid);
+  box-shadow:var(--shadow-sm);
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:var(--accent) var(--gray-mid);
+}
+.table-wrapper::-webkit-scrollbar{height:6px}
+.table-wrapper::-webkit-scrollbar-track{background:var(--gray-mid);border-radius:0 0 var(--radius) var(--radius)}
+.table-wrapper::-webkit-scrollbar-thumb{background:var(--accent);border-radius:6px}
+.table-wrapper::-webkit-scrollbar-thumb:hover{background:var(--blue)}
 table{width:100%;border-collapse:collapse;min-width:900px}
 thead{background:var(--blue-deep)}
 thead th{padding:14px 16px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-align:left;white-space:nowrap}
@@ -330,6 +347,8 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
 <div id="login-screen">
   <div class="login-orb login-orb-1"></div>
   <div class="login-orb login-orb-2"></div>
+  <!-- CAMBIO 2: canvas de partículas -->
+  <canvas id="login-particles" style="position:absolute;inset:0;pointer-events:none;z-index:0"></canvas>
   <div class="login-box">
     <a href="index.html" class="login-back-btn" title="Volver al inicio">✕</a>
     <div class="login-logo">
@@ -344,11 +363,16 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
     </div>
     <div class="login-field">
       <label>Usuario</label>
-      <input type="text" id="login-user" placeholder="Ingresa tu usuario" autocomplete="off">
+      <input type="text" id="login-user" placeholder="Ingresa tu usuario" autocomplete="username">
     </div>
     <div class="login-field">
       <label>Contraseña</label>
-      <input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+      <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <!-- CAMBIO 3: checkbox recordar credenciales -->
+    <div class="login-remember">
+      <input type="checkbox" id="remember-me">
+      <label for="remember-me">Recordar mis credenciales</label>
     </div>
     <button class="login-btn" onclick="doLogin()">Ingresar al sistema →</button>
     <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
@@ -537,6 +561,87 @@ tbody td{padding:12px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <script>
+/* ==================== CAMBIO 2: PARTÍCULAS LOGIN ==================== */
+(function() {
+  const canvas = document.getElementById('login-particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function Particle() {
+    this.x     = Math.random() * W;
+    this.y     = Math.random() * H;
+    this.r     = Math.random() * 2 + 0.5;
+    this.vx    = (Math.random() - 0.5) * 0.4;
+    this.vy    = (Math.random() - 0.5) * 0.4;
+    this.alpha = Math.random() * 0.3 + 0.05;
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({length: 80}, () => new Particle());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(100,185,240,${p.alpha})`;
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(100,185,240,${0.08 * (1 - dist/100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  draw();
+})();
+
+/* ==================== CAMBIO 3: LEER COOKIES AL CARGAR ==================== */
+(function loadSavedCredentials() {
+  const getCookie = name => {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  };
+  const role = getCookie('dv_role');
+  const user = getCookie('dv_user');
+  const pass = getCookie('dv_pass');
+  if (role && user && pass && USERS && USERS[role]) {
+    document.querySelectorAll('.role-tab').forEach(t => {
+      t.classList.toggle('active', t.dataset.role === role);
+    });
+    currentRole = role;
+    document.getElementById('login-user').value = user;
+    document.getElementById('login-pass').value = pass;
+    const cb = document.getElementById('remember-me');
+    if (cb) cb.checked = true;
+  }
+})();
+
 /* ==================== CREDENCIALES ==================== */
 function toggleHint(btn) {
   const creds = document.getElementById('login-hint-creds');
@@ -699,11 +804,24 @@ function selectRole(el) {
   document.getElementById('login-pass').value = '';
 }
 
+/* ==================== CAMBIO 3: doLogin con cookies ==================== */
 function doLogin() {
   const user = document.getElementById('login-user').value.trim();
   const pass = document.getElementById('login-pass').value;
   const cfg  = USERS[currentRole];
   if (user === cfg.user && pass === cfg.pass) {
+    // Guardar cookie si marcó "recordar" (30 días)
+    if (document.getElementById('remember-me')?.checked) {
+      const exp = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toUTCString();
+      document.cookie = `dv_role=${encodeURIComponent(currentRole)};expires=${exp};path=/;SameSite=Strict`;
+      document.cookie = `dv_user=${encodeURIComponent(user)};expires=${exp};path=/;SameSite=Strict`;
+      document.cookie = `dv_pass=${encodeURIComponent(pass)};expires=${exp};path=/;SameSite=Strict`;
+    } else {
+      // Si no está marcado, borrar cookies existentes
+      document.cookie = 'dv_role=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      document.cookie = 'dv_user=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      document.cookie = 'dv_pass=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    }
     currentUser = { ...cfg, role: currentRole };
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app').classList.add('visible');
