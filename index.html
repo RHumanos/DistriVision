@@ -679,6 +679,28 @@ if (hambBtn) {
  
   targets.forEach(el => observer.observe(el));
 })();
+  /* ── DROPDOWN NOSOTROS ── */
+(function setupDropdown() {
+  const dropItem = document.querySelector('.nav-dropdown');
+  if (!dropItem) return;
+  const toggle = dropItem.querySelector('.nav-dropdown-toggle');
+
+  // Mobile: toggle con click
+  toggle.addEventListener('click', (e) => {
+    if (window.innerWidth <= 900) {
+      e.preventDefault();
+      dropItem.classList.toggle('open');
+    }
+  });
+
+  // Cerrar dropdown al hacer click en un enlace del submenú
+  dropItem.querySelectorAll('.nav-submenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropItem.classList.remove('open');
+      navbar.classList.remove('menu-open');
+    });
+  });
+})();
 </script>
 </body>
 </html>
