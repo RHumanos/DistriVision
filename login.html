@@ -7,11 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════
-   DistriVision — Sistema de Personal
-   Paleta: #255c95 | #228fd2 | #fff
-   Lato (UI) | Playfair Display (texto)
-═══════════════════════════════════════════════ */
 :root {
   --blue:       #255c95;
   --blue-dark:  #1a4470;
@@ -36,9 +31,6 @@
 html{scroll-behavior:smooth}
 body{font-family:'Lato',sans-serif;color:var(--text);background:var(--gray);overflow-x:hidden;min-height:100vh}
 
-/* ══════════════════════════════
-   LOGIN SCREEN
-══════════════════════════════ */
 #login-screen {
   min-height:100vh;
   background:linear-gradient(145deg,#091929 0%,#0d1f35 30%,#1a4470 65%,#255c95 100%);
@@ -67,201 +59,76 @@ body{font-family:'Lato',sans-serif;color:var(--text);background:var(--gray);over
 }
 @keyframes loginReveal{from{opacity:0;transform:translateY(32px) scale(.95)}to{opacity:1;transform:none}}
 
-/* ── BOTÓN VOLVER (X) ── */
 .login-back-btn {
-  position:absolute;
-  top:18px;right:18px;
-  width:34px;height:34px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.2);
-  background:rgba(255,255,255,.08);
-  color:rgba(255,255,255,.6);
-  font-size:1rem;line-height:1;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  text-decoration:none;
-  transition:all .2s;
-  font-weight:700;
+  position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.6);font-size:1rem;line-height:1;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  text-decoration:none;transition:all .2s;font-weight:700;
 }
-.login-back-btn:hover {
-  background:rgba(255,255,255,.18);
-  color:#fff;
-  border-color:rgba(255,255,255,.4);
-  transform:rotate(90deg);
-}
+.login-back-btn:hover{background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.4);transform:rotate(90deg)}
 
-.login-logo {
-  text-align:center;margin-bottom:36px;
-}
-.login-logo-circle {
-  width:80px;height:80px;border-radius:50%;
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.2);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 16px;font-size:2.2rem;
-  box-shadow:0 0 40px rgba(34,143,210,.3);
-}
+.login-logo{text-align:center;margin-bottom:36px}
+.login-logo-circle{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2.2rem;box-shadow:0 0 40px rgba(34,143,210,.3)}
 .login-title{font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-.5px}
 .login-title span{color:#64b9f0}
 .login-sub{font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-top:6px}
 
 .login-role-tabs{display:flex;gap:8px;margin-bottom:28px;background:rgba(0,0,0,.2);border-radius:12px;padding:6px}
-.role-tab{
-  flex:1;padding:9px;border-radius:8px;border:none;cursor:pointer;
-  font-family:'Lato',sans-serif;font-size:.8rem;font-weight:700;
-  color:rgba(255,255,255,.5);background:transparent;
-  transition:all .25s;
-}
+.role-tab{flex:1;padding:9px;border-radius:8px;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:.8rem;font-weight:700;color:rgba(255,255,255,.5);background:transparent;transition:all .25s}
 .role-tab.active{background:rgba(255,255,255,.15);color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.2)}
 
 .login-field{margin-bottom:18px}
 .login-field label{display:block;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
-.login-field input{
-  width:100%;background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:12px;padding:14px 18px;
-  font-family:'Lato',sans-serif;font-size:.95rem;color:#fff;
-  transition:border-color .2s,background .2s;outline:none;
-}
+.login-field input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 18px;font-family:'Lato',sans-serif;font-size:.95rem;color:#fff;transition:border-color .2s,background .2s;outline:none}
 .login-field input::placeholder{color:rgba(255,255,255,.3)}
 .login-field input:focus{border-color:rgba(100,185,240,.6);background:rgba(255,255,255,.12)}
 
-.login-btn{
-  width:100%;background:linear-gradient(135deg,#1a4470,#255c95,#228fd2);
-  border:none;border-radius:12px;padding:15px;
-  font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;color:#fff;
-  cursor:pointer;margin-top:8px;
-  box-shadow:0 8px 28px rgba(37,92,149,.5);
-  transition:transform .2s,box-shadow .2s;
-}
+.login-btn{width:100%;background:linear-gradient(135deg,#1a4470,#255c95,#228fd2);border:none;border-radius:12px;padding:15px;font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;color:#fff;cursor:pointer;margin-top:8px;box-shadow:0 8px 28px rgba(37,92,149,.5);transition:transform .2s,box-shadow .2s}
 .login-btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(37,92,149,.6)}
+.login-error{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);color:#fca5a5;font-size:.82rem;border-radius:10px;padding:10px 14px;margin-top:14px;display:none;text-align:center}
 
-.login-error{
-  background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);
-  color:#fca5a5;font-size:.82rem;border-radius:10px;padding:10px 14px;
-  margin-top:14px;display:none;text-align:center;
-}
-
-/* ── HINT CON CONTRASEÑAS OCULTAS ── */
 .login-hint{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);text-align:center}
-.login-hint-toggle {
-  font-size:.72rem;color:rgba(255,255,255,.3);
-  cursor:pointer;
-  display:inline-flex;align-items:center;gap:5px;
-  border:none;background:none;font-family:'Lato',sans-serif;
-  padding:4px 8px;border-radius:6px;
-  transition:all .2s;
-  user-select:none;
-}
+.login-hint-toggle{font-size:.72rem;color:rgba(255,255,255,.3);cursor:pointer;display:inline-flex;align-items:center;gap:5px;border:none;background:none;font-family:'Lato',sans-serif;padding:4px 8px;border-radius:6px;transition:all .2s;user-select:none}
 .login-hint-toggle:hover{color:rgba(255,255,255,.55);background:rgba(255,255,255,.05)}
 .login-hint-toggle .hint-icon{font-size:.85rem}
-.login-hint-creds {
-  display:none;
-  margin-top:10px;
-  padding:10px 14px;
-  background:rgba(0,0,0,.25);
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.08);
-}
+.login-hint-creds{display:none;margin-top:10px;padding:10px 14px;background:rgba(0,0,0,.25);border-radius:10px;border:1px solid rgba(255,255,255,.08)}
 .login-hint-creds.visible{display:block;animation:fadeInHint .25s ease}
 @keyframes fadeInHint{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .login-hint-creds p{font-size:.73rem;color:rgba(255,255,255,.35);line-height:2}
 .login-hint-creds strong{color:rgba(255,255,255,.55)}
-.login-hint-creds code{
-  font-family:monospace;font-size:.75rem;
-  background:rgba(255,255,255,.08);
-  padding:1px 6px;border-radius:4px;
-  color:rgba(100,185,240,.8);
-  letter-spacing:.5px;
-}
+.login-hint-creds code{font-family:monospace;font-size:.75rem;background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px;color:rgba(100,185,240,.8);letter-spacing:.5px}
 
-/* ══════════════════════════════
-   MAIN APP (oculto hasta login)
-══════════════════════════════ */
 #app{display:none;min-height:100vh;flex-direction:column}
 #app.visible{display:flex}
 
-/* ── NAV ── */
-nav {
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  height:72px;display:flex;align-items:center;
-  justify-content:space-between;padding:0 5vw;
-  background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(37,92,149,.08);
-  box-shadow:var(--shadow-sm);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(37,92,149,.08);box-shadow:var(--shadow-sm)}
 .nav-left{display:flex;align-items:center;gap:16px}
 .nav-brand{font-size:1.4rem;font-weight:900;color:var(--blue);letter-spacing:-.5px}
 .nav-brand span{color:var(--accent)}
-.nav-module{
-  font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--accent);background:var(--blue-light);
-  padding:5px 14px;border-radius:50px;
-}
+.nav-module{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:var(--blue-light);padding:5px 14px;border-radius:50px}
 .nav-right{display:flex;align-items:center;gap:16px}
-.nav-user{
-  display:flex;align-items:center;gap:10px;
-  font-size:.85rem;font-weight:600;color:var(--text-muted);
-}
-.nav-avatar{
-  width:36px;height:36px;border-radius:10px;
-  background:linear-gradient(135deg,var(--blue),var(--accent));
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:.9rem;font-weight:700;
-}
-.nav-role-badge{
-  font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  padding:4px 10px;border-radius:50px;
-}
+.nav-user{display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;color:var(--text-muted)}
+.nav-avatar{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;font-weight:700}
+.nav-role-badge{font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:50px}
 .badge-admin{background:rgba(220,38,38,.1);color:#dc2626}
 .badge-jefe{background:rgba(22,163,74,.1);color:#16a34a}
 .badge-auxiliar{background:rgba(37,92,149,.1);color:var(--blue)}
-.btn-logout{
-  background:none;border:1.5px solid var(--gray-mid);
-  border-radius:8px;padding:7px 14px;
-  font-family:'Lato',sans-serif;font-size:.8rem;font-weight:700;
-  color:var(--text-muted);cursor:pointer;transition:all .2s;
-}
+.btn-logout{background:none;border:1.5px solid var(--gray-mid);border-radius:8px;padding:7px 14px;font-family:'Lato',sans-serif;font-size:.8rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all .2s}
 .btn-logout:hover{border-color:var(--danger);color:var(--danger)}
 
-/* ── SIDEBAR ── */
 .app-body{display:flex;margin-top:72px;min-height:calc(100vh - 72px)}
-.sidebar{
-  width:260px;flex-shrink:0;
-  background:var(--blue-deep);
-  min-height:calc(100vh - 72px);
-  position:sticky;top:72px;
-  padding:28px 0 40px;
-  display:flex;flex-direction:column;
-  box-shadow:4px 0 24px rgba(0,0,0,.15);
-}
-.sidebar-section-title{
-  font-size:.62rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
-  color:rgba(255,255,255,.25);padding:0 24px;margin-bottom:10px;margin-top:24px;
-}
+.sidebar{width:260px;flex-shrink:0;background:var(--blue-deep);min-height:calc(100vh - 72px);position:sticky;top:72px;padding:28px 0 40px;display:flex;flex-direction:column;box-shadow:4px 0 24px rgba(0,0,0,.15)}
+.sidebar-section-title{font-size:.62rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.25);padding:0 24px;margin-bottom:10px;margin-top:24px}
 .sidebar-section-title:first-child{margin-top:0}
-.sidebar-link{
-  display:flex;align-items:center;gap:12px;
-  padding:12px 24px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.55);
-  cursor:pointer;border:none;background:transparent;width:100%;text-align:left;
-  transition:all .2s;border-left:3px solid transparent;font-family:'Lato',sans-serif;
-}
+.sidebar-link{display:flex;align-items:center;gap:12px;padding:12px 24px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.55);cursor:pointer;border:none;background:transparent;width:100%;text-align:left;transition:all .2s;border-left:3px solid transparent;font-family:'Lato',sans-serif}
 .sidebar-link:hover{color:#fff;background:rgba(255,255,255,.07)}
 .sidebar-link.active{color:#fff;background:rgba(34,143,210,.2);border-left-color:var(--accent)}
 .sidebar-link .s-icon{font-size:1.1rem;width:24px;text-align:center;flex-shrink:0}
-.sidebar-link .s-badge{
-  margin-left:auto;background:var(--accent);color:#fff;
-  font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:50px;
-}
+.sidebar-link .s-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:50px}
 
 .sidebar-area-group{margin-top:auto;padding:16px 20px 0}
-.area-pill{
-  display:flex;align-items:center;gap:8px;
-  font-size:.78rem;font-weight:600;padding:8px 12px;border-radius:10px;
-  margin-bottom:6px;cursor:pointer;border:none;background:rgba(255,255,255,.05);
-  color:rgba(255,255,255,.5);width:100%;font-family:'Lato',sans-serif;
-  transition:all .2s;border:1px solid transparent;
-}
+.area-pill{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;padding:8px 12px;border-radius:10px;margin-bottom:6px;cursor:pointer;border:none;background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);width:100%;font-family:'Lato',sans-serif;transition:all .2s;border:1px solid transparent}
 .area-pill:hover{background:rgba(255,255,255,.1);color:#fff}
 .area-pill.active{background:rgba(34,143,210,.2);border-color:rgba(34,143,210,.3);color:#fff}
 .area-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
@@ -270,22 +137,15 @@ nav {
 .dot-bodega{background:#fb923c}
 .dot-transporte{background:#c084fc}
 
-/* ── MAIN CONTENT ── */
 .main-content{flex:1;padding:32px 36px;overflow-x:auto}
 
-/* ── PAGE HEADER ── */
 .page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px}
 .page-header-left h1{font-size:1.7rem;font-weight:900;color:var(--blue-dark);letter-spacing:-.3px}
 .page-header-left p{font-size:.88rem;color:var(--text-muted);margin-top:4px;font-family:'Playfair Display',serif}
 .page-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-/* ── STATS CARDS ── */
 .stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:28px}
-.stat-card{
-  background:var(--white);border-radius:var(--radius);
-  padding:20px 22px;border:1px solid var(--gray-mid);
-  box-shadow:var(--shadow-sm);
-}
+.stat-card{background:var(--white);border-radius:var(--radius);padding:20px 22px;border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm)}
 .stat-card-num{font-size:2rem;font-weight:900;color:var(--blue-dark);line-height:1}
 .stat-card-lbl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-top:6px}
 .stat-card-bar{height:3px;background:var(--gray-mid);border-radius:2px;margin-top:12px;overflow:hidden}
@@ -295,35 +155,13 @@ nav {
 .stat-card.area-bod .stat-card-bar-fill{background:#fb923c}
 .stat-card.area-tra .stat-card-bar-fill{background:#c084fc}
 
-/* ── FILTER BAR ── */
-.filter-bar{
-  background:var(--white);border-radius:var(--radius);
-  padding:16px 20px;margin-bottom:20px;
-  display:flex;gap:12px;align-items:center;flex-wrap:wrap;
-  border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm);
-}
-.filter-bar input[type=text]{
-  flex:1;min-width:200px;border:1px solid var(--gray-mid);
-  border-radius:10px;padding:10px 16px;font-family:'Lato',sans-serif;
-  font-size:.88rem;color:var(--text);outline:none;
-  transition:border-color .2s;
-}
+.filter-bar{background:var(--white);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm)}
+.filter-bar input[type=text]{flex:1;min-width:200px;border:1px solid var(--gray-mid);border-radius:10px;padding:10px 16px;font-family:'Lato',sans-serif;font-size:.88rem;color:var(--text);outline:none;transition:border-color .2s}
 .filter-bar input[type=text]:focus{border-color:var(--accent)}
-.filter-bar select{
-  border:1px solid var(--gray-mid);border-radius:10px;
-  padding:10px 14px;font-family:'Lato',sans-serif;font-size:.88rem;
-  color:var(--text);outline:none;cursor:pointer;background:var(--white);
-  transition:border-color .2s;
-}
+.filter-bar select{border:1px solid var(--gray-mid);border-radius:10px;padding:10px 14px;font-family:'Lato',sans-serif;font-size:.88rem;color:var(--text);outline:none;cursor:pointer;background:var(--white);transition:border-color .2s}
 .filter-bar select:focus{border-color:var(--accent)}
 
-/* ── BUTTONS ── */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 20px;border-radius:10px;border:none;cursor:pointer;
-  font-family:'Lato',sans-serif;font-size:.85rem;font-weight:700;
-  transition:all .2s;
-}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:.85rem;font-weight:700;transition:all .2s}
 .btn-primary{background:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(37,92,149,.3)}
 .btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px)}
 .btn-accent{background:var(--accent);color:#fff;box-shadow:0 4px 16px rgba(34,143,210,.3)}
@@ -335,39 +173,21 @@ nav {
 .btn-sm{padding:7px 14px;font-size:.78rem;border-radius:8px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
 
-/* ── TABLE ── */
-.table-wrapper{
-  background:var(--white);border-radius:var(--radius);
-  border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm);
-  overflow:hidden;
-}
+.table-wrapper{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm);overflow:hidden}
 table{width:100%;border-collapse:collapse}
 thead{background:var(--blue-deep)}
-thead th{
-  padding:14px 16px;font-size:.72rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.65);
-  text-align:left;white-space:nowrap;
-}
-thead th:first-child{border-radius:0}
+thead th{padding:14px 16px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-align:left;white-space:nowrap}
 tbody tr{border-bottom:1px solid var(--gray-mid);transition:background .15s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--blue-xlight)}
 tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:middle}
 
-.emp-avatar{
-  width:38px;height:38px;border-radius:10px;
-  display:inline-flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0;
-}
+.emp-avatar{width:38px;height:38px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0}
 .emp-info{display:flex;align-items:center;gap:12px}
 .emp-info-text .emp-name{font-weight:700;font-size:.9rem;color:var(--blue-dark)}
 .emp-info-text .emp-cargo{font-size:.75rem;color:var(--text-muted)}
 
-.area-tag{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:50px;
-  text-transform:uppercase;letter-spacing:.5px;
-}
+.area-tag{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px}
 .area-tag.admin{background:rgba(96,165,250,.12);color:#2563eb}
 .area-tag.comercial{background:rgba(52,211,153,.12);color:#059669}
 .area-tag.bodega{background:rgba(251,146,60,.12);color:#d97706}
@@ -375,72 +195,29 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
 
 .actions-cell{display:flex;gap:6px;align-items:center}
 
-/* ── MODAL ── */
-.modal-overlay{
-  position:fixed;inset:0;z-index:500;
-  background:rgba(9,18,30,.7);backdrop-filter:blur(8px);
-  display:flex;align-items:flex-start;justify-content:center;
-  padding:40px 20px;overflow-y:auto;
-  opacity:0;pointer-events:none;transition:opacity .3s;
-}
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(9,18,30,.7);backdrop-filter:blur(8px);display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .3s}
 .modal-overlay.open{opacity:1;pointer-events:all}
-.modal-box{
-  background:#fff;border-radius:24px;
-  width:100%;max-width:820px;
-  box-shadow:var(--shadow-lg);
-  transform:scale(.95) translateY(20px);
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
-  overflow:hidden;margin:auto;
-}
+.modal-box{background:#fff;border-radius:24px;width:100%;max-width:820px;box-shadow:var(--shadow-lg);transform:scale(.95) translateY(20px);transition:transform .35s cubic-bezier(.34,1.56,.64,1);overflow:hidden;margin:auto}
 .modal-overlay.open .modal-box{transform:scale(1) translateY(0)}
-.modal-header{
-  background:linear-gradient(135deg,var(--blue-deep),var(--blue),var(--accent));
-  padding:24px 32px;display:flex;align-items:center;justify-content:space-between;
-}
+.modal-header{background:linear-gradient(135deg,var(--blue-deep),var(--blue),var(--accent));padding:24px 32px;display:flex;align-items:center;justify-content:space-between}
 .modal-header h2{font-size:1.2rem;font-weight:700;color:#fff}
 .modal-header p{font-size:.8rem;color:rgba(255,255,255,.55);margin-top:3px}
-.modal-close{
-  width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);
-  background:rgba(255,255,255,.1);color:#fff;cursor:pointer;
-  font-size:1rem;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
+.modal-close{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
 .modal-close:hover{background:rgba(255,255,255,.2);transform:rotate(90deg)}
 .modal-body{padding:32px}
-.modal-footer{
-  padding:20px 32px;border-top:1px solid var(--gray-mid);
-  display:flex;justify-content:flex-end;gap:10px;background:var(--gray);
-}
+.modal-footer{padding:20px 32px;border-top:1px solid var(--gray-mid);display:flex;justify-content:flex-end;gap:10px;background:var(--gray)}
 
-/* ── FORM GRID ── */
 .form-section{margin-bottom:28px}
-.form-section-title{
-  font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--accent);margin-bottom:16px;padding-bottom:8px;
-  border-bottom:1px solid var(--gray-mid);
-}
+.form-section-title{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--gray-mid)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
 .form-group{display:flex;flex-direction:column;gap:6px}
 .form-group.full{grid-column:1/-1}
 .form-group label{font-size:.73rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
-.form-group input,
-.form-group select,
-.form-group textarea{
-  border:1.5px solid var(--gray-mid);border-radius:10px;
-  padding:11px 14px;font-family:'Lato',sans-serif;font-size:.9rem;
-  color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;
-  background:#fff;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(34,143,210,.12);
-}
+.form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--gray-mid);border-radius:10px;padding:11px 14px;font-family:'Lato',sans-serif;font-size:.9rem;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;background:#fff}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,143,210,.12)}
 .form-group textarea{resize:vertical;min-height:80px}
 
-/* ── DETAIL VIEW ── */
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .detail-block{padding:14px 0;border-bottom:1px solid var(--gray-mid)}
 .detail-block:nth-child(odd){padding-right:24px;border-right:1px solid var(--gray-mid)}
@@ -449,111 +226,49 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
 .detail-val{font-size:.92rem;color:var(--text);font-weight:500}
 .detail-val.empty{color:var(--text-muted);font-style:italic;font-size:.85rem}
 
-/* ── PROFILE HEADER inside modal ── */
-.profile-header{
-  display:flex;align-items:center;gap:20px;
-  margin-bottom:28px;padding-bottom:24px;
-  border-bottom:2px solid var(--gray-mid);
-}
-.profile-avatar{
-  width:72px;height:72px;border-radius:18px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.8rem;font-weight:900;color:#fff;flex-shrink:0;
-}
+.profile-header{display:flex;align-items:center;gap:20px;margin-bottom:28px;padding-bottom:24px;border-bottom:2px solid var(--gray-mid)}
+.profile-avatar{width:72px;height:72px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:900;color:#fff;flex-shrink:0}
 .profile-info h3{font-size:1.3rem;font-weight:700;color:var(--blue-dark)}
 .profile-info .p-cargo{font-size:.88rem;color:var(--text-muted);font-family:'Playfair Display',serif;margin-top:2px}
 .profile-info .p-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 
-/* ── TOAST ── */
-.toast{
-  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--blue-deep);color:#fff;
-  padding:13px 24px;border-radius:12px;
-  font-size:.87rem;font-weight:600;
-  box-shadow:var(--shadow-lg);z-index:9999;
-  opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);
-  pointer-events:none;white-space:nowrap;
-  display:flex;align-items:center;gap:10px;
-}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--blue-deep);color:#fff;padding:13px 24px;border-radius:12px;font-size:.87rem;font-weight:600;box-shadow:var(--shadow-lg);z-index:9999;opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap;display:flex;align-items:center;gap:10px}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.success{background:#15803d}
 .toast.error{background:#b91c1c}
 
-/* ── EMPTY STATE ── */
-.empty-state{
-  text-align:center;padding:80px 24px;
-  color:var(--text-muted);
-}
+.empty-state{text-align:center;padding:80px 24px;color:var(--text-muted)}
 .empty-state .es-icon{font-size:3rem;margin-bottom:16px;opacity:.4}
 .empty-state h3{font-size:1.1rem;font-weight:700;color:var(--text-muted);margin-bottom:8px}
 .empty-state p{font-size:.88rem}
 
-/* ── SCROLL PROGRESS ── */
-#scroll-progress{
-  position:fixed;top:0;left:0;height:2px;width:0%;
-  background:linear-gradient(90deg,var(--blue),var(--accent));
-  z-index:200;transition:width .1s linear;
-}
+#scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--blue),var(--accent));z-index:200;transition:width .1s linear}
 
-/* ── RESPONSIVE ── */
-@media(max-width:1100px){
-  .stats-row{grid-template-columns:repeat(3,1fr)}
-  .form-grid.cols-3{grid-template-columns:1fr 1fr}
-}
-@media(max-width:900px){
-  .sidebar{display:none}
-  .main-content{padding:20px}
-  .stats-row{grid-template-columns:1fr 1fr}
-  .form-grid{grid-template-columns:1fr}
-  .form-grid.cols-3{grid-template-columns:1fr}
-  .detail-grid{grid-template-columns:1fr}
-  .detail-block{border-right:none!important;padding-left:0!important;padding-right:0!important}
-}
-@media(max-width:600px){
-  .page-header{flex-direction:column;align-items:flex-start}
-  .stats-row{grid-template-columns:1fr}
-  .filter-bar{flex-direction:column;align-items:stretch}
-  .filter-bar input[type=text]{min-width:unset}
-  .modal-body{padding:20px}
-  .modal-header{padding:18px 20px}
-  .login-box{padding:36px 24px 28px;margin:16px}
-}
-
-/* ── READ-ONLY field visual ── */
-.field-readonly{
-  background:var(--gray)!important;
-  color:var(--text-muted)!important;
-  cursor:not-allowed!important;
-}
+@media(max-width:1100px){.stats-row{grid-template-columns:repeat(3,1fr)}.form-grid.cols-3{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.sidebar{display:none}.main-content{padding:20px}.stats-row{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.form-grid.cols-3{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.detail-block{border-right:none!important;padding-left:0!important;padding-right:0!important}}
+@media(max-width:600px){.page-header{flex-direction:column;align-items:flex-start}.stats-row{grid-template-columns:1fr}.filter-bar{flex-direction:column;align-items:stretch}.filter-bar input[type=text]{min-width:unset}.modal-body{padding:20px}.modal-header{padding:18px 20px}.login-box{padding:36px 24px 28px;margin:16px}}
+.field-readonly{background:var(--gray)!important;color:var(--text-muted)!important;cursor:not-allowed!important}
 </style>
 </head>
 <body>
 
 <div id="scroll-progress"></div>
 
-<!-- ══════════════════════════════
-     LOGIN SCREEN
-══════════════════════════════ -->
 <div id="login-screen">
   <div class="login-orb login-orb-1"></div>
   <div class="login-orb login-orb-2"></div>
   <div class="login-box">
-
-    <!-- ✕ Botón volver a index.html -->
     <a href="index.html" class="login-back-btn" title="Volver al inicio">✕</a>
-
     <div class="login-logo">
       <div class="login-logo-circle">🏢</div>
       <div class="login-title">Distri<span>Vision</span></div>
       <div class="login-sub">Sistema de Gestión de Personal</div>
     </div>
-
     <div class="login-role-tabs">
       <button class="role-tab active" data-role="administrador" onclick="selectRole(this)">👑 Admin</button>
       <button class="role-tab" data-role="jefe" onclick="selectRole(this)">🧑‍💼 Jefe</button>
       <button class="role-tab" data-role="auxiliar" onclick="selectRole(this)">👤 Auxiliar</button>
     </div>
-
     <div class="login-field">
       <label>Usuario</label>
       <input type="text" id="login-user" placeholder="Ingresa tu usuario" autocomplete="off">
@@ -564,8 +279,6 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
     </div>
     <button class="login-btn" onclick="doLogin()">Ingresar al sistema →</button>
     <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
-
-    <!-- Hint con contraseñas ocultas por defecto -->
     <div class="login-hint">
       <button class="login-hint-toggle" onclick="toggleHint(this)">
         <span class="hint-icon">🔑</span> Ver credenciales de acceso
@@ -578,15 +291,10 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
         </p>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     MAIN APP
-══════════════════════════════ -->
 <div id="app">
-  <!-- NAV -->
   <nav>
     <div class="nav-left">
       <div class="nav-brand">Distri<span>Vision</span></div>
@@ -605,7 +313,6 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
   </nav>
 
   <div class="app-body">
-    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-section-title">Principal</div>
       <button class="sidebar-link active" onclick="showView('dashboard')">
@@ -613,9 +320,8 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
       </button>
       <button class="sidebar-link" onclick="showView('personal')">
         <span class="s-icon">👥</span> Todo el Personal
-        <span class="s-badge" id="sb-total">80</span>
+        <span class="s-badge" id="sb-total">115</span>
       </button>
-
       <div class="sidebar-section-title">Áreas</div>
       <button class="area-pill active" onclick="filterArea('all')">
         <span class="area-dot" style="background:var(--accent)"></span> Todas las áreas
@@ -634,10 +340,7 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
       </button>
     </aside>
 
-    <!-- MAIN -->
     <main class="main-content">
-
-      <!-- DASHBOARD VIEW -->
       <div id="view-dashboard">
         <div class="page-header">
           <div class="page-header-left">
@@ -648,7 +351,6 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
             <button class="btn btn-primary" onclick="openModal('add')">+ Agregar empleado</button>
           </div>
         </div>
-
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-card-num" id="stat-total">0</div>
@@ -676,18 +378,13 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
             <div class="stat-card-bar"><div class="stat-card-bar-fill" id="bar-tra" style="width:25%"></div></div>
           </div>
         </div>
-
-        <!-- Recent table preview -->
         <div class="page-header" style="margin-top:8px">
-          <div class="page-header-left">
-            <h1 style="font-size:1.2rem">Últimos ingresos</h1>
-          </div>
+          <div class="page-header-left"><h1 style="font-size:1.2rem">Últimos ingresos</h1></div>
           <button class="btn btn-outline btn-sm" onclick="showView('personal')">Ver todos →</button>
         </div>
         <div class="table-wrapper" id="dash-table"></div>
       </div>
 
-      <!-- PERSONAL VIEW -->
       <div id="view-personal" style="display:none">
         <div class="page-header">
           <div class="page-header-left">
@@ -698,7 +395,6 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
             <button class="btn btn-primary" onclick="openModal('add')" id="btn-add-emp">+ Agregar empleado</button>
           </div>
         </div>
-
         <div class="filter-bar">
           <input type="text" id="search-input" placeholder="🔍 Buscar por nombre, cédula, cargo..." oninput="renderTable()">
           <select id="filter-area" onchange="renderTable()">
@@ -714,19 +410,12 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
             <option value="Inactivo">Inactivo</option>
           </select>
         </div>
-
         <div class="table-wrapper">
           <table>
             <thead>
               <tr>
-                <th>Empleado</th>
-                <th>Cédula</th>
-                <th>Área</th>
-                <th>Cargo</th>
-                <th>Teléfono</th>
-                <th>EPS</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+                <th>Empleado</th><th>Cédula</th><th>Área</th><th>Cargo</th>
+                <th>Teléfono</th><th>EPS</th><th>Estado</th><th>Acciones</th>
               </tr>
             </thead>
             <tbody id="emp-table-body"></tbody>
@@ -738,14 +427,10 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
           <p>Intenta con otro filtro o término de búsqueda</p>
         </div>
       </div>
-
     </main>
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     MODAL — AGREGAR / EDITAR
-══════════════════════════════ -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOverlay(event)">
   <div class="modal-box">
     <div class="modal-header">
@@ -755,9 +440,7 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body" id="modal-body-content">
-      <!-- Contenido dinámico -->
-    </div>
+    <div class="modal-body" id="modal-body-content"></div>
     <div class="modal-footer" id="modal-footer">
       <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
       <button class="btn btn-primary" id="modal-save-btn" onclick="saveEmployee()">💾 Guardar empleado</button>
@@ -765,13 +448,9 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-/* ═══════════════════════════════════════════════
-   HINT TOGGLE
-═══════════════════════════════════════════════ */
 function toggleHint(btn) {
   const creds = document.getElementById('login-hint-creds');
   const isVisible = creds.classList.toggle('visible');
@@ -780,10 +459,6 @@ function toggleHint(btn) {
     : '<span class="hint-icon">🔑</span> Ver credenciales de acceso';
 }
 
-/* ═══════════════════════════════════════════════
-   CREDENCIALES — Incrustadas en código
-   (sin base de datos)
-═══════════════════════════════════════════════ */
 const USERS = {
   administrador: { user: 'admin',    pass: 'DV@dmin2025', name: 'Administrador',    badge: 'badge-admin',    canEdit: true,  canDelete: true,  canAdd: true  },
   jefe:          { user: 'jefe',     pass: 'JefeRH#2025', name: 'Jefe de Recursos', badge: 'badge-jefe',     canEdit: true,  canDelete: false, canAdd: true  },
@@ -795,213 +470,2553 @@ let currentUser = null;
 let currentView = 'dashboard';
 let currentAreaFilter = 'all';
 let editingId = null;
-let modalMode = 'add'; // 'add' | 'edit' | 'view'
+let modalMode = 'add';
 
-/* ═══════════════════════════════════════════════
-   BASE DE DATOS DE EMPLEADOS (localStorage-backed)
-═══════════════════════════════════════════════ */
-
-const STORAGE_KEY = 'dv_personal_v1';
+const STORAGE_KEY = 'dv_personal_v2';
 
 const DEFAULT_EMPLOYEES = [
   {
-    id: 1, nombres: 'Carlos Alberto', apellidos: 'Ramírez Torres',
-    cedula: '1012345678', fecha_nacimiento: '1985-03-14', cargo: 'Coordinador Administrativo',
-    area: 'Administrativo', fecha_ingreso: '2018-06-01', salario: '3500000',
-    telefono: '3101234567', telefono_alt: '6012345678', email: 'c.ramirez@distrivision.co',
-    direccion: 'Cra 15 #45-20 Bogotá', eps: 'Sánitas', pension: 'Porvenir',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '123-456789-01', estado: 'Activo'
+    "id": 1,
+    "nombres": "GLADYS",
+    "apellidos": "QUINTANILLA GALVIS",
+    "cedula": "51599409",
+    "fecha_nacimiento": "2019-11-11",
+    "cargo": "GERENTE GENERAL",
+    "area": "Administrativo",
+    "fecha_ingreso": "1996-04-01",
+    "salario": "",
+    "telefono": "3102083831",
+    "telefono_alt": "8776012",
+    "email": "distrivisionneiva@hotmail.com",
+    "direccion": "CRA 42 # 18a - 08 VERGEL",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "101-829781-11",
+    "estado": "Activo"
   },
   {
-    id: 2, nombres: 'Luisa Fernanda', apellidos: 'Gómez Herrera',
-    cedula: '1023456789', fecha_nacimiento: '1990-07-22', cargo: 'Asistente Administrativa',
-    area: 'Administrativo', fecha_ingreso: '2020-02-10', salario: '1800000',
-    telefono: '3152345678', telefono_alt: '', email: 'l.gomez@distrivision.co',
-    direccion: 'Cl 80 #23-45 Bogotá', eps: 'Compensar', pension: 'Protección',
-    arl: 'Positiva', tipo_contrato: 'Fijo 1 año', banco: 'Davivienda',
-    num_cuenta: '234-567890-12', estado: 'Activo'
+    "id": 2,
+    "nombres": "MAURICIO",
+    "apellidos": "CAMARGO",
+    "cedula": "79318178",
+    "fecha_nacimiento": "2019-09-10",
+    "cargo": "GERENTE FINANCIERO",
+    "area": "Administrativo",
+    "fecha_ingreso": "1996-01-12",
+    "salario": "",
+    "telefono": "8776012",
+    "telefono_alt": "",
+    "email": "distrivisionneiva@hotmail.com",
+    "direccion": "CRA 42 # 18a - 08 VERGEL",
+    "eps": "SANITAS",
+    "pension": "COLFONDOS",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "101-829782-60",
+    "estado": "Activo"
   },
   {
-    id: 3, nombres: 'Mario Andrés', apellidos: 'Pedraza Soto',
-    cedula: '79345678', fecha_nacimiento: '1979-11-05', cargo: 'Contador',
-    area: 'Administrativo', fecha_ingreso: '2015-08-15', salario: '4200000',
-    telefono: '3203456789', telefono_alt: '6023456789', email: 'm.pedraza@distrivision.co',
-    direccion: 'Av Suba #109-25 Bogotá', eps: 'Famisanar', pension: 'Colfondos',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'BBVA',
-    num_cuenta: '345-678901-23', estado: 'Activo'
+    "id": 3,
+    "nombres": "DORIS AMELIA",
+    "apellidos": "QUINTANILLA GALVIS",
+    "cedula": "51741482",
+    "fecha_nacimiento": "2019-09-27",
+    "cargo": "JEFE SISTEMAS",
+    "area": "Administrativo",
+    "fecha_ingreso": "2005-12-01",
+    "salario": "",
+    "telefono": "8776012",
+    "telefono_alt": "",
+    "email": "doris.quintanilla@distrivision.com",
+    "direccion": "CRA 42 # 18a - 08 VERGEL",
+    "eps": "COMPENSAR",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "207-870197-23",
+    "estado": "Activo"
   },
   {
-    id: 4, nombres: 'Sandra Milena', apellidos: 'López Vargas',
-    cedula: '1034567890', fecha_nacimiento: '1993-04-18', cargo: 'Auxiliar Contable',
-    area: 'Administrativo', fecha_ingreso: '2021-09-01', salario: '1300000',
-    telefono: '3164567890', telefono_alt: '', email: 's.lopez@distrivision.co',
-    direccion: 'Cl 127 #15-10 Bogotá', eps: 'Nueva EPS', pension: 'Old Mutual',
-    arl: 'Positiva', tipo_contrato: 'Fijo 6 meses', banco: 'Nequi',
-    num_cuenta: '456-789012-34', estado: 'Activo'
+    "id": 4,
+    "nombres": "NEIDY CONSTANZA",
+    "apellidos": "SANCHEZ LAVAO",
+    "cedula": "1080291918",
+    "fecha_nacimiento": "1988-08-03",
+    "cargo": "CONTADORA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2014-11-12",
+    "salario": "",
+    "telefono": "3168243863",
+    "telefono_alt": "8783087",
+    "email": "neidy.sanchez@distrivision.com.co",
+    "direccion": "AV. CRA 30  # 21-71",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-337249-69",
+    "estado": "Activo"
   },
   {
-    id: 5, nombres: 'Felipe Ernesto', apellidos: 'Cárdenas Ruiz',
-    cedula: '80456789', fecha_nacimiento: '1982-09-30', cargo: 'Gerente Administrativo',
-    area: 'Administrativo', fecha_ingreso: '2012-01-15', salario: '6500000',
-    telefono: '3115678901', telefono_alt: '6025678901', email: 'f.cardenas@distrivision.co',
-    direccion: 'Kr 7 #120-55 Bogotá', eps: 'Sánitas', pension: 'Porvenir',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '567-890123-45', estado: 'Activo'
+    "id": 5,
+    "nombres": "SAIDA CAROLINA",
+    "apellidos": "MORENO CORTES",
+    "cedula": "1082805013",
+    "fecha_nacimiento": "1993-06-19",
+    "cargo": "ASISTENTE ADMINISTRATIVA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2016-06-07",
+    "salario": "",
+    "telefono": "3224309291",
+    "telefono_alt": "3132197802",
+    "email": "CARITOSAY19@gmail.com",
+    "direccion": "CLL 14 # 20 - 04 1° DE MAYO",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-497902-77",
+    "estado": "Activo"
   },
   {
-    id: 6, nombres: 'Andrés Felipe', apellidos: 'Moreno Castro',
-    cedula: '1045678901', fecha_nacimiento: '1988-06-14', cargo: 'Director Comercial',
-    area: 'Comercial', fecha_ingreso: '2016-03-07', salario: '5800000',
-    telefono: '3006789012', telefono_alt: '6036789012', email: 'a.moreno@distrivision.co',
-    direccion: 'Cra 11 #90-30 Bogotá', eps: 'Compensar', pension: 'Protección',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '678-901234-56', estado: 'Activo'
+    "id": 6,
+    "nombres": "LAURA CONSTANZA",
+    "apellidos": "MAÑOZCA YUCUMA",
+    "cedula": "26431825",
+    "fecha_nacimiento": "1983-07-03",
+    "cargo": "SERVICIO GENERALES",
+    "area": "Administrativo",
+    "fecha_ingreso": "2019-04-25",
+    "salario": "1750905",
+    "telefono": "3114938926",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 27A SUR 34A 50 OASIS",
+    "eps": "NUEVA EPS",
+    "pension": "COLPENSIONES",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "466-470921-95",
+    "estado": "Activo"
   },
   {
-    id: 7, nombres: 'Valentina', apellidos: 'Suárez Pinto',
-    cedula: '1056789012', fecha_nacimiento: '1995-12-03', cargo: 'Asesora Comercial',
-    area: 'Comercial', fecha_ingreso: '2022-04-11', salario: '1600000',
-    telefono: '3017890123', telefono_alt: '', email: 'v.suarez@distrivision.co',
-    direccion: 'Cl 45 #68-10 Bogotá', eps: 'Sánitas', pension: 'Porvenir',
-    arl: 'Positiva', tipo_contrato: 'Fijo 1 año', banco: 'Davivienda',
-    num_cuenta: '789-012345-67', estado: 'Activo'
+    "id": 7,
+    "nombres": "ERIKA",
+    "apellidos": "SANCHEZ LAVAO",
+    "cedula": "1080294857",
+    "fecha_nacimiento": "1993-12-06",
+    "cargo": "AUXILIAR CONTABLE",
+    "area": "Administrativo",
+    "fecha_ingreso": "2021-05-05",
+    "salario": "1750905",
+    "telefono": "3123893032",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 10A #9-20 COMUNEROS",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "711-000110-80",
+    "estado": "Activo"
   },
   {
-    id: 8, nombres: 'Juan Sebastián', apellidos: 'Ospina Mejía',
-    cedula: '1067890123', fecha_nacimiento: '1991-02-27', cargo: 'Ejecutivo de Ventas',
-    area: 'Comercial', fecha_ingreso: '2019-07-22', salario: '2200000',
-    telefono: '3128901234', telefono_alt: '', email: 'j.ospina@distrivision.co',
-    direccion: 'Av 19 #114-45 Bogotá', eps: 'Famisanar', pension: 'Colfondos',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'BBVA',
-    num_cuenta: '890-123456-78', estado: 'Activo'
+    "id": 8,
+    "nombres": "CLARA INES",
+    "apellidos": "BARRETO CHAPIAMA",
+    "cedula": "1075285521",
+    "fecha_nacimiento": "1994-11-11",
+    "cargo": "AUXILIAR ADMINISTRATIVA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2022-03-23",
+    "salario": "1750905",
+    "telefono": "3185447051",
+    "telefono_alt": "",
+    "email": "clarainesbacha1994@gmail.com",
+    "direccion": "CALLE 27A SUR 34A 09 OASIS SUR",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "534-340074-76",
+    "estado": "Activo"
   },
   {
-    id: 9, nombres: 'Camila Andrea', apellidos: 'Ríos Bermúdez',
-    cedula: '1078901234', fecha_nacimiento: '1997-08-19', cargo: 'Promotora',
-    area: 'Comercial', fecha_ingreso: '2023-01-09', salario: '1160000',
-    telefono: '3209012345', telefono_alt: '', email: 'c.rios@distrivision.co',
-    direccion: 'Cra 30 #25-30 Bogotá', eps: 'Nueva EPS', pension: 'Old Mutual',
-    arl: 'Positiva', tipo_contrato: 'Fijo 6 meses', banco: 'Nequi',
-    num_cuenta: '901-234567-89', estado: 'Activo'
+    "id": 9,
+    "nombres": "WILLIAM GERMAN",
+    "apellidos": "VARGAS LEON",
+    "cedula": "79656851",
+    "fecha_nacimiento": "1974-04-03",
+    "cargo": "JEFE ADMINISTRATIVO",
+    "area": "Administrativo",
+    "fecha_ingreso": "2022-06-01",
+    "salario": "",
+    "telefono": "3166251790",
+    "telefono_alt": "3174191686",
+    "email": "WILLIAMGVARGAS01@gmail.com",
+    "direccion": "CALLE 57 1AW 40 CIUDADELA COMFAMILIAR",
+    "eps": "NUEVA EPS",
+    "pension": "COLPENSIONES",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-209727-77",
+    "estado": "Activo"
   },
   {
-    id: 10, nombres: 'Roberto Carlos', apellidos: 'Jiménez Uribe',
-    cedula: '79012345', fecha_nacimiento: '1975-05-11', cargo: 'Coordinador de Ventas',
-    area: 'Comercial', fecha_ingreso: '2014-10-01', salario: '3900000',
-    telefono: '3010123456', telefono_alt: '6010123456', email: 'r.jimenez@distrivision.co',
-    direccion: 'Kr 50 #22-15 Bogotá', eps: 'Compensar', pension: 'Protección',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '012-345678-90', estado: 'Activo'
+    "id": 10,
+    "nombres": "ANYELO STIVEN",
+    "apellidos": "ORTIZ CASAS",
+    "cedula": "1004494138",
+    "fecha_nacimiento": "2000-03-31",
+    "cargo": "AUXILIAR ADMINISTRATIVO",
+    "area": "Administrativo",
+    "fecha_ingreso": "2022-09-26",
+    "salario": "1750905",
+    "telefono": "3212778879",
+    "telefono_alt": "",
+    "email": "anyelostivenortiz@gmail.com",
+    "direccion": "CALLE 17A #53 - 70 SIGLO 21",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "534-424097-53",
+    "estado": "Activo"
   },
   {
-    id: 11, nombres: 'Pedro Antonio', apellidos: 'Vargas Niño',
-    cedula: '80123456', fecha_nacimiento: '1980-01-25', cargo: 'Jefe de Bodega',
-    area: 'Bodega', fecha_ingreso: '2013-05-20', salario: '2800000',
-    telefono: '3111234567', telefono_alt: '6011234567', email: 'p.vargas@distrivision.co',
-    direccion: 'Cra 78 #12-34 Bogotá', eps: 'Sánitas', pension: 'Porvenir',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '123-456780-11', estado: 'Activo'
+    "id": 11,
+    "nombres": "MARIA ANGELICA",
+    "apellidos": "SUAZA SERRANO",
+    "cedula": "1033713029",
+    "fecha_nacimiento": "",
+    "cargo": "JEFE RECURSOS HUMANOS Y SST",
+    "area": "Administrativo",
+    "fecha_ingreso": "2023-12-14",
+    "salario": "1750905",
+    "telefono": "3105996169",
+    "telefono_alt": "",
+    "email": "mariaangel502@hotmail.com",
+    "direccion": "CALLE 2E # 15A 16",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-697-906-09",
+    "estado": "Activo"
   },
   {
-    id: 12, nombres: 'Hernán Darío', apellidos: 'Acosta Cruz',
-    cedula: '1089012345', fecha_nacimiento: '1989-10-14', cargo: 'Auxiliar de Bodega',
-    area: 'Bodega', fecha_ingreso: '2021-03-15', salario: '1160000',
-    telefono: '3142345678', telefono_alt: '', email: 'h.acosta@distrivision.co',
-    direccion: 'Cl 13 #56-78 Bogotá', eps: 'Nueva EPS', pension: 'Colfondos',
-    arl: 'Positiva', tipo_contrato: 'Fijo 1 año', banco: 'Davivienda',
-    num_cuenta: '234-567801-12', estado: 'Activo'
+    "id": 12,
+    "nombres": "CAMILA",
+    "apellidos": "LASSO PENAGOS",
+    "cedula": "1003802402",
+    "fecha_nacimiento": "2001-01-22",
+    "cargo": "TESORERA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2025-06-03",
+    "salario": "1750905",
+    "telefono": "3209206885",
+    "telefono_alt": "",
+    "email": "CLASSO.PENAGOS22@GMAIL.COM",
+    "direccion": "CRA 29 B 11-07 NEIVA-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "COLPENSIONES",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "454-853564-56",
+    "estado": "Activo"
   },
   {
-    id: 13, nombres: 'Jairo Alonso', apellidos: 'Sánchez Molina',
-    cedula: '71234567', fecha_nacimiento: '1971-07-08', cargo: 'Operario de Bodega',
-    area: 'Bodega', fecha_ingreso: '2010-09-03', salario: '1300000',
-    telefono: '3013456789', telefono_alt: '', email: 'j.sanchez@distrivision.co',
-    direccion: 'Av Américas #30-20 Bogotá', eps: 'Famisanar', pension: 'Old Mutual',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'BBVA',
-    num_cuenta: '345-678012-13', estado: 'Activo'
+    "id": 13,
+    "nombres": "JUAN FELIPE",
+    "apellidos": "MEDINA FUYAR",
+    "cedula": "1003805055",
+    "fecha_nacimiento": "2001-07-25",
+    "cargo": "21/ENERO 2026 FACTURADOR -20/01/2026-SUPERNUMERARIO ADMINISTRATIVO",
+    "area": "Administrativo",
+    "fecha_ingreso": "2025-08-01",
+    "salario": "1750905",
+    "telefono": "3122730198",
+    "telefono_alt": "",
+    "email": "JFMEDINA2002@GMAIL.COM",
+    "direccion": "CALLE 27 A SUR D 26 A 54 CUARTO CENTENARIO",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-639784-91",
+    "estado": "Activo"
   },
   {
-    id: 14, nombres: 'Yesenia Paola', apellidos: 'Torres Guerrero',
-    cedula: '1090123456', fecha_nacimiento: '1992-03-31', cargo: 'Auxiliar Inventarios',
-    area: 'Bodega', fecha_ingreso: '2020-11-02', salario: '1250000',
-    telefono: '3174567890', telefono_alt: '', email: 'y.torres@distrivision.co',
-    direccion: 'Cl 68 #89-10 Bogotá', eps: 'Compensar', pension: 'Protección',
-    arl: 'Positiva', tipo_contrato: 'Fijo 6 meses', banco: 'Nequi',
-    num_cuenta: '456-780123-14', estado: 'Activo'
+    "id": 14,
+    "nombres": "NATALIA",
+    "apellidos": "MONTANO NUNEZ",
+    "cedula": "1113693618",
+    "fecha_nacimiento": "1998-10-06",
+    "cargo": "APRENDIZ SENA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2025-11-04",
+    "salario": "1750905",
+    "telefono": "3028141358",
+    "telefono_alt": "",
+    "email": "nuneznatalia622@gmail.com",
+    "direccion": "LOTE 54 LA PAZ EL CAGUAN NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "APRENDIZ SENA",
+    "banco": "",
+    "num_cuenta": "941-654-764-89",
+    "estado": "Activo"
   },
   {
-    id: 15, nombres: 'Edgar Enrique', apellidos: 'Castillo Parra',
-    cedula: '79567890', fecha_nacimiento: '1977-12-18', cargo: 'Almacenista',
-    area: 'Bodega', fecha_ingreso: '2017-02-14', salario: '1700000',
-    telefono: '3155678901', telefono_alt: '6015678901', email: 'e.castillo@distrivision.co',
-    direccion: 'Kr 40 #50-60 Bogotá', eps: 'Sánitas', pension: 'Porvenir',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '567-801234-15', estado: 'Activo'
+    "id": 15,
+    "nombres": "ANGUIE MARIA",
+    "apellidos": "SALAMANCA MENESES",
+    "cedula": "1083922450",
+    "fecha_nacimiento": "1997-10-26",
+    "cargo": "ASISTENTE ADMINISTRATIVA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2025-12-02",
+    "salario": "1750905",
+    "telefono": "3175023019",
+    "telefono_alt": "",
+    "email": "anyisalamancameneses@gmail.com",
+    "direccion": "CARRERA 11 ESTE # 1 - 15 SUR PARAÌSO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "453-286-069-29",
+    "estado": "Activo"
   },
   {
-    id: 16, nombres: 'Gilberto', apellidos: 'Rincón Espitia',
-    cedula: '77890123', fecha_nacimiento: '1973-04-09', cargo: 'Conductor Senior',
-    area: 'Transporte', fecha_ingreso: '2009-06-11', salario: '2100000',
-    telefono: '3196789012', telefono_alt: '', email: 'g.rincon@distrivision.co',
-    direccion: 'Cra 68 #5-23 Bogotá', eps: 'Nueva EPS', pension: 'Porvenir',
-    arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '678-012345-16', estado: 'Activo'
+    "id": 16,
+    "nombres": "KARLA MILENA",
+    "apellidos": "OSORIO AMAYA",
+    "cedula": "1075794421",
+    "fecha_nacimiento": "2007-03-24",
+    "cargo": "APRENDIZ SENA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2026-01-30",
+    "salario": "1750905",
+    "telefono": "3104200577",
+    "telefono_alt": "",
+    "email": "chikykarla2007@gmail.com",
+    "direccion": "CALLE 1 NO 21 04 ACACIAS",
+    "eps": "FAMISANAR",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "APRENDIZ SENA",
+    "banco": "",
+    "num_cuenta": "94198176821",
+    "estado": "Activo"
   },
   {
-    id: 17, nombres: 'Nelson Fabián', apellidos: 'Quiroga Álvarez',
-    cedula: '1001234567', fecha_nacimiento: '1986-09-22', cargo: 'Conductor',
-    area: 'Transporte', fecha_ingreso: '2018-04-03', salario: '1800000',
-    telefono: '3007890123', telefono_alt: '', email: 'n.quiroga@distrivision.co',
-    direccion: 'Cl 32 #74-15 Bogotá', eps: 'Compensar', pension: 'Colfondos',
-    arl: 'Positiva', tipo_contrato: 'Indefinido', banco: 'Davivienda',
-    num_cuenta: '789-123456-17', estado: 'Activo'
+    "id": 17,
+    "nombres": "DANIEL",
+    "apellidos": "OSPINA LOSADA",
+    "cedula": "1003803952",
+    "fecha_nacimiento": "2001-04-25",
+    "cargo": "APRENDIZ SENA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2026-02-16",
+    "salario": "1750905",
+    "telefono": "3213076112",
+    "telefono_alt": "",
+    "email": "noaseo01@gmail.com",
+    "direccion": "CALLE 10 # 34-35 LIBERTAD",
+    "eps": "NUEVA EPS",
+    "pension": "COLPENSIONES",
+    "arl": "",
+    "tipo_contrato": "APRENDIZ SENA",
+    "banco": "",
+    "num_cuenta": "91283888075",
+    "estado": "Activo"
   },
   {
-    id: 18, nombres: 'Gustavo Adolfo', apellidos: 'Mendoza Leal',
-    cedula: '81234567', fecha_nacimiento: '1983-02-14', cargo: 'Auxiliar de Reparto',
-    area: 'Transporte', fecha_ingreso: '2022-08-01', salario: '1200000',
-    telefono: '3108901234', telefono_alt: '', email: 'g.mendoza@distrivision.co',
-    direccion: 'Av Boyacá #25-40 Bogotá', eps: 'Famisanar', pension: 'Old Mutual',
-    arl: 'Sura', tipo_contrato: 'Fijo 1 año', banco: 'BBVA',
-    num_cuenta: '890-234567-18', estado: 'Activo'
+    "id": 18,
+    "nombres": "GYNNA OSIRIZ",
+    "apellidos": "MONJE PEREZ",
+    "cedula": "1075216920",
+    "fecha_nacimiento": "1986-12-15",
+    "cargo": "TESORERA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2026-03-21",
+    "salario": "1750905",
+    "telefono": "3118095274",
+    "telefono_alt": "",
+    "email": "GMONJEPEREZ@GMAIL.COM",
+    "direccion": "CALLE 49 A 5 A 17 SANTA MONICA",
+    "eps": "NUEVA EPS",
+    "pension": "COLPENSIONES",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "94100024548",
+    "estado": "Activo"
   },
   {
-    id: 19, nombres: 'Rodrigo', apellidos: 'Bernal Peña',
-    cedula: '80234567', fecha_nacimiento: '1981-06-28', cargo: 'Conductor Pesado',
-    area: 'Transporte', fecha_ingreso: '2015-11-16', salario: '2400000',
-    telefono: '3219012345', telefono_alt: '6019012345', email: 'r.bernal@distrivision.co',
-    direccion: 'Kr 86 #43-22 Bogotá', eps: 'Sánitas', pension: 'Protección',
-    arl: 'Positiva', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
-    num_cuenta: '901-345678-19', estado: 'Activo'
+    "id": 19,
+    "nombres": "ANDRES FELIPE",
+    "apellidos": "BARRIOS ORTIZ",
+    "cedula": "1075793425",
+    "fecha_nacimiento": "2006-07-24",
+    "cargo": "APRENDIZ SENA",
+    "area": "Administrativo",
+    "fecha_ingreso": "2026-03-30",
+    "salario": "",
+    "telefono": "3209797120",
+    "telefono_alt": "",
+    "email": "pppipe4000@gmail.com",
+    "direccion": "CALLE 80 C # 2-45 SANTA ROSA",
+    "eps": "NUEVA EPS",
+    "pension": "",
+    "arl": "",
+    "tipo_contrato": "APRENDIZ SENA",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
   },
   {
-    id: 20, nombres: 'Mauricio', apellidos: 'Pinzón Bautista',
-    cedula: '1012345699', fecha_nacimiento: '1994-11-07', cargo: 'Mensajero / Motero',
-    area: 'Transporte', fecha_ingreso: '2023-05-22', salario: '1100000',
-    telefono: '3120123456', telefono_alt: '', email: 'm.pinzon@distrivision.co',
-    direccion: 'Cl 57 #28-14 Bogotá', eps: 'Nueva EPS', pension: 'Colfondos',
-    arl: 'Sura', tipo_contrato: 'Prestación', banco: 'Nequi',
-    num_cuenta: '012-456789-20', estado: 'Activo'
+    "id": 20,
+    "nombres": "JEFERSON ARIEL",
+    "apellidos": "OSPINA GIRALDO",
+    "cedula": "1007411166",
+    "fecha_nacimiento": "1996-01-26",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2019-03-18",
+    "salario": "1750905",
+    "telefono": "3168373771",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "B/VILLA ESPERANZA PLANADAS",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-000208-52",
+    "estado": "Activo"
+  },
+  {
+    "id": 21,
+    "nombres": "MIGUEL ALBERTO",
+    "apellidos": "VARGAS DIAZ",
+    "cedula": "1075224270",
+    "fecha_nacimiento": "1987-10-19",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2021-09-15",
+    "salario": "1750905",
+    "telefono": "3105826428",
+    "telefono_alt": "",
+    "email": "drowning1313@hotmail.com",
+    "direccion": "CARRERA 54  # 24 - 61 LAS PALMAS",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "147-028929-62",
+    "estado": "Activo"
+  },
+  {
+    "id": 22,
+    "nombres": "KAREN STEFANNY",
+    "apellidos": "SALAZAR SILVA",
+    "cedula": "1075278945",
+    "fecha_nacimiento": "1994-03-20",
+    "cargo": "MERCADERISTA",
+    "area": "Comercial",
+    "fecha_ingreso": "2021-11-19",
+    "salario": "1750905",
+    "telefono": "3125009961",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 13 # 25A - 88 NEIVA - HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-287902-01",
+    "estado": "Activo"
+  },
+  {
+    "id": 23,
+    "nombres": "JOSE ELIAS",
+    "apellidos": "HOLGUIN PENCUE",
+    "cedula": "1061221822",
+    "fecha_nacimiento": "1989-04-02",
+    "cargo": "JEFE OPERATIVO PITALITO - ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "25/03/2023 - 15/04/2023",
+    "salario": "1750905",
+    "telefono": "3168326538",
+    "telefono_alt": "",
+    "email": "holguinj052@gmail.com",
+    "direccion": "CRA 2 # 9 - 10 PANORAMA",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-2296-0031",
+    "estado": "Activo"
+  },
+  {
+    "id": 24,
+    "nombres": "YUSNEYDI",
+    "apellidos": "FALLA GOMEZ",
+    "cedula": "1077872430",
+    "fecha_nacimiento": "1996-07-07",
+    "cargo": "MERCADERISTA",
+    "area": "Comercial",
+    "fecha_ingreso": "2023-09-21",
+    "salario": "1750905",
+    "telefono": "3118381333",
+    "telefono_alt": "",
+    "email": "yusneydi.falla96@hotmail.com",
+    "direccion": "CRA 8B E #7A 18 INDEPENDENCIA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "285-000036-36",
+    "estado": "Activo"
+  },
+  {
+    "id": 25,
+    "nombres": "YINETH",
+    "apellidos": "HURTATIS COLLAZOS",
+    "cedula": "1130662351",
+    "fecha_nacimiento": "2024-08-27",
+    "cargo": "ASESORA COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-01-23",
+    "salario": "1750905",
+    "telefono": "3223866323",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 17A 9-34 PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "45-3870057-85",
+    "estado": "Activo"
+  },
+  {
+    "id": 26,
+    "nombres": "JOSE RICARDO",
+    "apellidos": "LEMUS FIERRO",
+    "cedula": "1075272819",
+    "fecha_nacimiento": "2024-08-01",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-03-18",
+    "salario": "1750905",
+    "telefono": "3228495690",
+    "telefono_alt": "",
+    "email": "RICANCHO201@HOTMAIL.COM",
+    "direccion": "CALLE 72 B NO 1 15 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 27,
+    "nombres": "JESUS ENRIQUE",
+    "apellidos": "CURVELO USTARIZ",
+    "cedula": "1065203308",
+    "fecha_nacimiento": "1989-11-18",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-04-22",
+    "salario": "1750905",
+    "telefono": "3172681185",
+    "telefono_alt": "",
+    "email": "curveloustariz26@gmail.com",
+    "direccion": "CALLE 26B 51 05 NEIVA",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-990751-96",
+    "estado": "Activo"
+  },
+  {
+    "id": 28,
+    "nombres": "DIANA PATRICIA",
+    "apellidos": "LOPEZ ANACONA",
+    "cedula": "1083877342",
+    "fecha_nacimiento": "1988-09-14",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-04-15",
+    "salario": "1750905",
+    "telefono": "3227674937",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "TRAVERSAL 4 NO 11-77 SUR PITALITO",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "032-276-749-37",
+    "estado": "Activo"
+  },
+  {
+    "id": 29,
+    "nombres": "SANTIAGO",
+    "apellidos": "VANEGAS PEDREROS",
+    "cedula": "1081161027",
+    "fecha_nacimiento": "1999-09-01",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-05-16",
+    "salario": "1750905",
+    "telefono": "3213923520",
+    "telefono_alt": "",
+    "email": "santiagovanegaspedreros@gmail.com",
+    "direccion": "VEREDA FILO DE PLATANARES PITALITO",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "032-139235-20",
+    "estado": "Activo"
+  },
+  {
+    "id": 30,
+    "nombres": "MAYERLI",
+    "apellidos": "ORTIZ ALVAREZ",
+    "cedula": "1075246090",
+    "fecha_nacimiento": "1989-08-09",
+    "cargo": "VENDEDORA MERCADERISTA",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-05-24",
+    "salario": "1750905",
+    "telefono": "3228076048",
+    "telefono_alt": "",
+    "email": "maortiz092008@gmail.com",
+    "direccion": "CRA 39#32 - 40 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "454-247815-11",
+    "estado": "Activo"
+  },
+  {
+    "id": 31,
+    "nombres": "JAIRO ANDRES",
+    "apellidos": "LEON ARCINIEGAS",
+    "cedula": "7718985",
+    "fecha_nacimiento": "1978-12-28",
+    "cargo": "ASESOR TAT",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-08-23",
+    "salario": "1750905",
+    "telefono": "315 7085167",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CARRERA 33 A NO 1AW 36 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-000011-95",
+    "estado": "Activo"
+  },
+  {
+    "id": 32,
+    "nombres": "LAURA VALENTINA",
+    "apellidos": "AVILA TORRES",
+    "cedula": "1007371996",
+    "fecha_nacimiento": "2000-04-19",
+    "cargo": "MERCADERISTA-POPULARES",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-08-26",
+    "salario": "1750905",
+    "telefono": "3046384697",
+    "telefono_alt": "",
+    "email": "LAURAVALENTINAAVILATORRES@GMAIL.COM",
+    "direccion": "SPM9MZ 3 CASA 5 IBAGUE",
+    "eps": "SALUD TOTAL",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "7971277992",
+    "estado": "Activo"
+  },
+  {
+    "id": 33,
+    "nombres": "LIZETH",
+    "apellidos": "ROJAS TOVAR",
+    "cedula": "1075251722",
+    "fecha_nacimiento": "2008-03-27",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2024-08-26",
+    "salario": "1750905",
+    "telefono": "3178712659",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE20ANO5063 NEIVA",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "7600003444",
+    "estado": "Activo"
+  },
+  {
+    "id": 34,
+    "nombres": "ANDRY JULIETH",
+    "apellidos": "ORTIZ LOPEZ",
+    "cedula": "1075791047",
+    "fecha_nacimiento": "2005-02-06",
+    "cargo": "ASESOR COMECIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-01-09",
+    "salario": "1750905",
+    "telefono": "3156807423",
+    "telefono_alt": "",
+    "email": "LOPEZANDRY450@GMAIL.COM",
+    "direccion": "CALLE 1 # 21-99 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "94-1631239-02",
+    "estado": "Activo"
+  },
+  {
+    "id": 35,
+    "nombres": "MIGUEL HERNAN",
+    "apellidos": "CAMPOS SIERRA",
+    "cedula": "1081418659",
+    "fecha_nacimiento": "1996-05-19",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-03-01",
+    "salario": "1750905",
+    "telefono": "3209316307",
+    "telefono_alt": "",
+    "email": "SIERRACAMPOSMIGUEL@GMAIL.COM",
+    "direccion": "CALLE 5 NO 13-39 LA PLATA",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "845-325510-04",
+    "estado": "Activo"
+  },
+  {
+    "id": 36,
+    "nombres": "JHON SEBASTIAN",
+    "apellidos": "SANCHEZ BAILON",
+    "cedula": "1003866241",
+    "fecha_nacimiento": "2001-03-21",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-05-02",
+    "salario": "1750905",
+    "telefono": "3186412037",
+    "telefono_alt": "",
+    "email": "SEBASTIANSANCHEZ2020@GMAIL.COM",
+    "direccion": "CALLE 21 A NO 53-25 LAS PALMAS",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "454-667303-21",
+    "estado": "Activo"
+  },
+  {
+    "id": 37,
+    "nombres": "HERINSON",
+    "apellidos": "LOSADA RAMOS",
+    "cedula": "7727193",
+    "fecha_nacimiento": "1984-03-22",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-08-01",
+    "salario": "1750905",
+    "telefono": "3024962505",
+    "telefono_alt": "",
+    "email": "HERINSON30@GMAIL.COM",
+    "direccion": "CARRERA 17 NO 2-19 GARZON-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "285-000041-81",
+    "estado": "Activo"
+  },
+  {
+    "id": 38,
+    "nombres": "STEFANIA",
+    "apellidos": "QUIMBAYA CORTES",
+    "cedula": "1075289488",
+    "fecha_nacimiento": "1995-06-28",
+    "cargo": "MERCADERISTA",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-08-01",
+    "salario": "1750905",
+    "telefono": "3176165309",
+    "telefono_alt": "",
+    "email": "STEFANIA952806@HOTMAIL.COM",
+    "direccion": "CALLE 17 A NO.20-75 B LA LIBERTAD",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "454-433478-21",
+    "estado": "Activo"
+  },
+  {
+    "id": 39,
+    "nombres": "MARIA FERNANDA",
+    "apellidos": "RODRIGUEZ LOSADA",
+    "cedula": "1069721704",
+    "fecha_nacimiento": "1986-09-17",
+    "cargo": "ASESORA COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-09-09",
+    "salario": "1750905",
+    "telefono": "3232209921",
+    "telefono_alt": "",
+    "email": "MFERNANDARODRIGUEZLOSADA@GMAIL.COM",
+    "direccion": "CALLE 3 B 15 16 CENTRO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-908309-78",
+    "estado": "Activo"
+  },
+  {
+    "id": 40,
+    "nombres": "CARLOS ALBERT",
+    "apellidos": "RODRIGUEZ JARA",
+    "cedula": "1077872432",
+    "fecha_nacimiento": "1996-06-09",
+    "cargo": "ASESORA COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-10-06",
+    "salario": "1750905",
+    "telefono": "322233723",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 1C SUR No 23 58 GARZON-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "912-310686-65",
+    "estado": "Activo"
+  },
+  {
+    "id": 41,
+    "nombres": "MIGUEL ANTONIO",
+    "apellidos": "VACA PALACIOS",
+    "cedula": "14325298",
+    "fecha_nacimiento": "",
+    "cargo": "JEFE DE VENTAS",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-10-01",
+    "salario": "",
+    "telefono": "3174352064",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "153-691306-31",
+    "estado": "Activo"
+  },
+  {
+    "id": 42,
+    "nombres": "ANGELICA MARIA",
+    "apellidos": "IBARRA RUBIANO",
+    "cedula": "1075297584",
+    "fecha_nacimiento": "1996-05-22",
+    "cargo": "ASESORA COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-11-05",
+    "salario": "1750905",
+    "telefono": "3194818737",
+    "telefono_alt": "",
+    "email": "itarubiano@gmail.com",
+    "direccion": "CRA 39B #20A - 17SUR NEIVA - HUILA",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "457-000001-58",
+    "estado": "Activo"
+  },
+  {
+    "id": 43,
+    "nombres": "OSCAR JULIAN",
+    "apellidos": "SOLANO BAILON",
+    "cedula": "1233513327",
+    "fecha_nacimiento": "",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-10-20",
+    "salario": "1750905",
+    "telefono": "3186412037",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 5 A 6 A BIS 62 NEIVA-HUILA",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "454-667303-21",
+    "estado": "Activo"
+  },
+  {
+    "id": 44,
+    "nombres": "EDWIN GILBERTO",
+    "apellidos": "ERAZO DUSSAN",
+    "cedula": "7731473",
+    "fecha_nacimiento": "1985-04-03",
+    "cargo": "ASESOR COMERCIAL",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-04-10",
+    "salario": "1750905",
+    "telefono": "3182510951",
+    "telefono_alt": "",
+    "email": "GJUNIORDUSSAN0385@GMAIL.COM",
+    "direccion": "CALLE 66 A NO 2W-64 BARRIO CHICALA",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 45,
+    "nombres": "LEIDY JHOANA",
+    "apellidos": "COLLAZOS CUERVO",
+    "cedula": "1075274975",
+    "fecha_nacimiento": "1993-10-23",
+    "cargo": "MERCADERISTA",
+    "area": "Comercial",
+    "fecha_ingreso": "2025-12-24",
+    "salario": "1750905",
+    "telefono": "3176775451",
+    "telefono_alt": "",
+    "email": "yoyito93@misena.edu.co",
+    "direccion": "CALLE 66 A # 1A - 15 MIRA RIO",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "NEQUI",
+    "estado": "Activo"
+  },
+  {
+    "id": 46,
+    "nombres": "JHONNY ALEXANDER",
+    "apellidos": "MONTOYA CHARA",
+    "cedula": "7720694",
+    "fecha_nacimiento": "1982-02-21",
+    "cargo": "COORDINADOR VIAJERO",
+    "area": "Comercial",
+    "fecha_ingreso": "2026-01-07",
+    "salario": "1750905",
+    "telefono": "3178883786",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 50 A # 24 - 67 CIPRESES",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "NEQUI",
+    "estado": "Activo"
+  },
+  {
+    "id": 47,
+    "nombres": "GISELA",
+    "apellidos": "MORALES VELEZ",
+    "cedula": "1001725305",
+    "fecha_nacimiento": "2001-04-12",
+    "cargo": "MERCADERISTA",
+    "area": "Comercial",
+    "fecha_ingreso": "2026-01-16",
+    "salario": "1750905",
+    "telefono": "3057648515",
+    "telefono_alt": "",
+    "email": "giselavelez2017@gmail.com",
+    "direccion": "CARRERA 31 #  18F SUR - 04 MANZANARES",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "NEQUI",
+    "estado": "Activo"
+  },
+  {
+    "id": 48,
+    "nombres": "LILIA VIVIANA",
+    "apellidos": "URZOLA RAMOS",
+    "cedula": "1101203493",
+    "fecha_nacimiento": "2026-05-13",
+    "cargo": "MERCADERISTA",
+    "area": "Comercial",
+    "fecha_ingreso": "2026-03-28",
+    "salario": "1750905",
+    "telefono": "3116295382",
+    "telefono_alt": "",
+    "email": "VIVI.URZOLA1705@GMAIL.COM",
+    "direccion": "CRA 40 NO 23 34 LIMONAR",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "94174071394",
+    "estado": "Activo"
+  },
+  {
+    "id": 49,
+    "nombres": "CESAR ALFREDO",
+    "apellidos": "CAICEDO JIMENEZ",
+    "cedula": "1075271765",
+    "fecha_nacimiento": "1996-06-13",
+    "cargo": "SUPERVISOR DE BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2014-12-04",
+    "salario": "",
+    "telefono": "3168211653",
+    "telefono_alt": "8663941",
+    "email": "cxarjimenez@gmail.com",
+    "direccion": "CRA 3 # 20 - 40 CALIXTO",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-232294-02",
+    "estado": "Activo"
+  },
+  {
+    "id": 50,
+    "nombres": "JUAN CAMILO",
+    "apellidos": "COMETA OSORIO",
+    "cedula": "1078778105",
+    "fecha_nacimiento": "1995-01-23",
+    "cargo": "JEFE DE BODEGA DIA",
+    "area": "Bodega",
+    "fecha_ingreso": "2020-03-02",
+    "salario": "1750905",
+    "telefono": "3209432909",
+    "telefono_alt": "",
+    "email": "choco__23__01@hotmail.com",
+    "direccion": "CALLE 29 # 16-30 VIRGILIO BARCO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-078882-85",
+    "estado": "Activo"
+  },
+  {
+    "id": 51,
+    "nombres": "YAMITH ALEJANDRO",
+    "apellidos": "MOSQUERA COLLAZOS",
+    "cedula": "1003806141",
+    "fecha_nacimiento": "2001-02-08",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2022-03-19",
+    "salario": "1750905",
+    "telefono": "3219486858",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 33 # 30 - 36 SUR CUARTO CENTENARIO",
+    "eps": "COMFAMILIAR",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-339169-12",
+    "estado": "Activo"
+  },
+  {
+    "id": 52,
+    "nombres": "JHONATAN",
+    "apellidos": "MUÑOZ PERDOMO",
+    "cedula": "1003812792",
+    "fecha_nacimiento": "2000-06-03",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2023-02-21",
+    "salario": "1750905",
+    "telefono": "3028579308",
+    "telefono_alt": "",
+    "email": "jonatanperdomo0@gmail.com",
+    "direccion": "CRA 8 #3A - 51 CAGUAN",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-439105-40",
+    "estado": "Activo"
+  },
+  {
+    "id": 53,
+    "nombres": "JAVIER DANIEL",
+    "apellidos": "VARGAS PATIÑO",
+    "cedula": "1117805859",
+    "fecha_nacimiento": "2004-06-27",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2024-09-23",
+    "salario": "1750905",
+    "telefono": "3223269987",
+    "telefono_alt": "",
+    "email": "jv422983@gmail.com",
+    "direccion": "CALLE 94 NO 8-59 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-736604-51",
+    "estado": "Activo"
+  },
+  {
+    "id": 54,
+    "nombres": "JUAN DAVID",
+    "apellidos": "VALENCIA QUEBRADA",
+    "cedula": "1007404250",
+    "fecha_nacimiento": "2000-06-09",
+    "cargo": "RECIBO",
+    "area": "Bodega",
+    "fecha_ingreso": "2025-08-12",
+    "salario": "1750905",
+    "telefono": "3213662975",
+    "telefono_alt": "",
+    "email": "CROWNMC17@GMAIL.COM",
+    "direccion": "CRA 28 NO 13-34 EL JORDAN",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "3213662975",
+    "estado": "Activo"
+  },
+  {
+    "id": 55,
+    "nombres": "JUAN PABLO",
+    "apellidos": "CASALLAS RUIZ",
+    "cedula": "1193484241",
+    "fecha_nacimiento": "2000-05-22",
+    "cargo": "JEFE LOGISTICO Y TRANSPORTE",
+    "area": "Bodega",
+    "fecha_ingreso": "2025-09-01",
+    "salario": "",
+    "telefono": "3103030606",
+    "telefono_alt": "",
+    "email": "juanpablocasallasruiz@gmail.com",
+    "direccion": "CALLE 27 #10 - 64 PITALITO - HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "453-000022-66",
+    "estado": "Activo"
+  },
+  {
+    "id": 56,
+    "nombres": "SERGIO ALEJANDRO",
+    "apellidos": "AGUIRRE VILLAMOR",
+    "cedula": "1007155620",
+    "fecha_nacimiento": "2002-02-14",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2025-12-15",
+    "salario": "1750905",
+    "telefono": "3213929534",
+    "telefono_alt": "",
+    "email": "alejovillamor0@gmail.com",
+    "direccion": "CALLE 18E # 54-21 PALMAS",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-955-554-99",
+    "estado": "Activo"
+  },
+  {
+    "id": 57,
+    "nombres": "DIEGO FERNANDO",
+    "apellidos": "GUTIERREZ GARAY",
+    "cedula": "1004074592",
+    "fecha_nacimiento": "2002-05-16",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2026-01-05",
+    "salario": "1750905",
+    "telefono": "3166056148",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "NEIVA - HUILA NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "FIJO",
+    "banco": "",
+    "num_cuenta": "NEQUI",
+    "estado": "Activo"
+  },
+  {
+    "id": 58,
+    "nombres": "CARLOS ALBERTO",
+    "apellidos": "REYES ROJAS",
+    "cedula": "12114969",
+    "fecha_nacimiento": "1960-01-09",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2011-02-16",
+    "salario": "1750905",
+    "telefono": "3186296766",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CLL 42 # 6A- 54 GRANJAS",
+    "eps": "SANITAS",
+    "pension": "COLFONDOS",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-867315-76",
+    "estado": "Activo"
+  },
+  {
+    "id": 59,
+    "nombres": "EMILIANO",
+    "apellidos": "ACOSTA GARCIA",
+    "cedula": "7691682",
+    "fecha_nacimiento": "1972-11-18",
+    "cargo": "SUPERVISOR TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2016-04-19",
+    "salario": "1750905",
+    "telefono": "3142142202",
+    "telefono_alt": "3138372240",
+    "email": "miyo1872@hotmail.com",
+    "direccion": "CRA 9 # 12 - 43 CHAPINERO",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "454-387784-40",
+    "estado": "Activo"
+  },
+  {
+    "id": 60,
+    "nombres": "ROLAND",
+    "apellidos": "VERU CUELLAR",
+    "cedula": "7733240",
+    "fecha_nacimiento": "1985-12-16",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2018-12-14",
+    "salario": "1750905",
+    "telefono": "3133984079",
+    "telefono_alt": "",
+    "email": "rolandverucuellar@gmail.com",
+    "direccion": "CLL 9 # 23 A 25 BUENOS AIRES",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-776054-20",
+    "estado": "Activo"
+  },
+  {
+    "id": 61,
+    "nombres": "WILLIAM",
+    "apellidos": "BAHAMON MOSQUERA",
+    "cedula": "1003801508",
+    "fecha_nacimiento": "1991-09-28",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2019-07-16",
+    "salario": "1750905",
+    "telefono": "3004608588",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 31 1EBIS 70 PANORAMA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-715622-12",
+    "estado": "Activo"
+  },
+  {
+    "id": 62,
+    "nombres": "MICHAEL",
+    "apellidos": "URIBE JAVELA",
+    "cedula": "1007186710",
+    "fecha_nacimiento": "2000-11-03",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2020-10-07",
+    "salario": "1750905",
+    "telefono": "3143311749",
+    "telefono_alt": "",
+    "email": "URIBEMAICOL97@gmail.com",
+    "direccion": "CLL 23 # 37-25 LIMONAR",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-000194-01",
+    "estado": "Activo"
+  },
+  {
+    "id": 63,
+    "nombres": "FABIO ORLANDO",
+    "apellidos": "SALAMANCA ARIZA",
+    "cedula": "9534182",
+    "fecha_nacimiento": "1969-05-18",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2021-04-16",
+    "salario": "1750905",
+    "telefono": "3134686018",
+    "telefono_alt": "3224148793",
+    "email": "fabiosalam@hotmail.com",
+    "direccion": "CRA 30 #23A - 90 NEIVA - HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-000009-47",
+    "estado": "Activo"
+  },
+  {
+    "id": 64,
+    "nombres": "FLAVIO ABDEL",
+    "apellidos": "CORDOBA GORDO",
+    "cedula": "86047635",
+    "fecha_nacimiento": "1976-03-29",
+    "cargo": "AUXILIAR DE TRANSPORTEY BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2023-01-16",
+    "salario": "1750905",
+    "telefono": "8738074",
+    "telefono_alt": "3102561137",
+    "email": "",
+    "direccion": "CRA 25 #6 - 31 JOSE ANTONIO GALAN",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-654508-85",
+    "estado": "Activo"
+  },
+  {
+    "id": 65,
+    "nombres": "ISMAEL",
+    "apellidos": "OLAVE CARLOSAMA",
+    "cedula": "1083911009",
+    "fecha_nacimiento": "1994-10-31",
+    "cargo": "AUXILIAR TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2023-09-28",
+    "salario": "1750905",
+    "telefono": "3105666534",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 15 #4 -15 LOS GUADUALES - PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "453-594197-10",
+    "estado": "Activo"
+  },
+  {
+    "id": 66,
+    "nombres": "JULIAN ANDRES",
+    "apellidos": "LLANOS BARRAGAN",
+    "cedula": "1075309039",
+    "fecha_nacimiento": "1997-09-18",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2024-12-17",
+    "salario": "1750905",
+    "telefono": "3202297625",
+    "telefono_alt": "",
+    "email": "JULIANANDRESLLANOS1997@gmail.com",
+    "direccion": "CLL 3#2136 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "32-022976-25",
+    "estado": "Activo"
+  },
+  {
+    "id": 67,
+    "nombres": "DIEGO FERNANDO",
+    "apellidos": "NUÑEZ SCARPETTA",
+    "cedula": "1075248397",
+    "fecha_nacimiento": "1990-03-15",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-02-25",
+    "salario": "1750905",
+    "telefono": "3118259876",
+    "telefono_alt": "8733310",
+    "email": "maomorocha@hotmail.com",
+    "direccion": "CALLE 4 SUR N 19A 03 SANTA ISABEL-NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-792323-78",
+    "estado": "Activo"
+  },
+  {
+    "id": 68,
+    "nombres": "FABIAN ANDRES",
+    "apellidos": "BARRERA IBAÑEZ",
+    "cedula": "1052392455",
+    "fecha_nacimiento": "1990-12-30",
+    "cargo": "CONDUCTOR AUXILIAR",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-06-12",
+    "salario": "1750905",
+    "telefono": "3203936943",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 58B 22-46 NEIVA-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "289-915833-11",
+    "estado": "Activo"
+  },
+  {
+    "id": 69,
+    "nombres": "ALFREDO",
+    "apellidos": "GUTIERREZ USECHE",
+    "cedula": "93478936",
+    "fecha_nacimiento": "1982-11-01",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-08-02",
+    "salario": "1750905",
+    "telefono": "3203183871",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 29 #11 - 08 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "454-380445-19",
+    "estado": "Activo"
+  },
+  {
+    "id": 70,
+    "nombres": "CHRISTIAN ALEXIS",
+    "apellidos": "RODRIGUEZ CORTES",
+    "cedula": "1082803177",
+    "fecha_nacimiento": "1994-10-12",
+    "cargo": "CONDUCTOR AUXILIAR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-26",
+    "salario": "1750905",
+    "telefono": "3124539668",
+    "telefono_alt": "",
+    "email": "CRIS.RODRIGUEZCORTES1202@GMAIL.COM",
+    "direccion": "CALLE 17 NO 24 BIS 30 NEIVA-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "395-500643-95",
+    "estado": "Activo"
+  },
+  {
+    "id": 71,
+    "nombres": "ADERSSON",
+    "apellidos": "CARDENAS ROJAS",
+    "cedula": "1080186330",
+    "fecha_nacimiento": "1994-03-17",
+    "cargo": "CONDUCTOR AUXILIAR",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-06-27",
+    "salario": "1750905",
+    "telefono": "3247740254",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 11 NO 10-67 SUR APTO 103 NEIVA-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 72,
+    "nombres": "WILLIAM ALBERTO",
+    "apellidos": "VALDERRAMA ICOPO",
+    "cedula": "1075260834",
+    "fecha_nacimiento": "1992-04-04",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-07-03",
+    "salario": "1750905",
+    "telefono": "3154275833",
+    "telefono_alt": "",
+    "email": "VALDERRAMAW568@GMAIL.COM",
+    "direccion": "CRA 39 NO 20 45 NEIVA-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-696405-85",
+    "estado": "Activo"
+  },
+  {
+    "id": 73,
+    "nombres": "DANIEL MAURICIO",
+    "apellidos": "OJEDA CALDON",
+    "cedula": "1003804663",
+    "fecha_nacimiento": "2001-04-26",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-07-16",
+    "salario": "1750905",
+    "telefono": "3163998860",
+    "telefono_alt": "3158870531",
+    "email": "MAURICIODANIEL26@GMAIL.COM",
+    "direccion": "CALLE 16F 28 F SUR NEIVA-HUILA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 74,
+    "nombres": "CARLOS DAVID",
+    "apellidos": "SEGURA GONZALEZ",
+    "cedula": "1077722753",
+    "fecha_nacimiento": "2006-02-05",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-07-28",
+    "salario": "1750905",
+    "telefono": "3108598416",
+    "telefono_alt": "",
+    "email": "seguragonzalezcarlosdavid@gmail.com",
+    "direccion": "CRA 9 # 2-90 ESTADIO URDANETA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-775048-01",
+    "estado": "Activo"
+  },
+  {
+    "id": 75,
+    "nombres": "ANDRES CAMILO",
+    "apellidos": "MACIAS CASTRO",
+    "cedula": "1029880359",
+    "fecha_nacimiento": "2005-09-14",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-08-29",
+    "salario": "1750905",
+    "telefono": "3115049345",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 8 NO 1 14 SUR NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "NEQUI",
+    "estado": "Activo"
+  },
+  {
+    "id": 76,
+    "nombres": "JORDAN STEVEN",
+    "apellidos": "ISAZA OSORIO",
+    "cedula": "1076902143",
+    "fecha_nacimiento": "2004-02-06",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-07-28",
+    "salario": "1750905",
+    "telefono": "3125032674",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 37 21 28 SUR NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "002-553765-01",
+    "estado": "Activo"
+  },
+  {
+    "id": 77,
+    "nombres": "JHONATAN FERNEY",
+    "apellidos": "MENESES MUÑOZ",
+    "cedula": "1083893934",
+    "fecha_nacimiento": "1991-11-25",
+    "cargo": "CONDUCTOR AUXILIAR",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-08-23",
+    "salario": "1750905",
+    "telefono": "3142744670",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 1 B 6 52 PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "045-465917-31",
+    "estado": "Activo"
+  },
+  {
+    "id": 78,
+    "nombres": "EDINSSON YUNEIDER",
+    "apellidos": "TOVAR CARRASCAL",
+    "cedula": "1076502457",
+    "fecha_nacimiento": "2005-10-06",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-09-05",
+    "salario": "1750905",
+    "telefono": "3123151974",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 42 A 5 W 27 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-664643-77",
+    "estado": "Activo"
+  },
+  {
+    "id": 79,
+    "nombres": "CESAR AUGUSTO",
+    "apellidos": "ARISTIZABAL PEREZ",
+    "cedula": "1112481658",
+    "fecha_nacimiento": "1994-02-23",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-11-01",
+    "salario": "1750905",
+    "telefono": "3167746823",
+    "telefono_alt": "",
+    "email": "cesararitisabal09@gmail.com",
+    "direccion": "CALLE 23B # 45-75 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "534-543911-08",
+    "estado": "Activo"
+  },
+  {
+    "id": 80,
+    "nombres": "OMAR ANDRES",
+    "apellidos": "MURCIA",
+    "cedula": "1075271350",
+    "fecha_nacimiento": "1993-06-05",
+    "cargo": "CONDUCTOR AUXILIAR",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-11-25",
+    "salario": "1750905",
+    "telefono": "3128550874",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CARRERA 51C # 26A - 25 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "NEQUI",
+    "estado": "Activo"
+  },
+  {
+    "id": 81,
+    "nombres": "CAMILO ARMANDO",
+    "apellidos": "MORERA MORERA",
+    "cedula": "1020733468",
+    "fecha_nacimiento": "1988-06-28",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-12-13",
+    "salario": "1750905",
+    "telefono": "3212580001",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 34 # 10 - 11 7 DE AGOSTO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-364929-27",
+    "estado": "Activo"
+  },
+  {
+    "id": 82,
+    "nombres": "JULIAN",
+    "apellidos": "ASTUDILLO OVALLOS",
+    "cedula": "1004418019",
+    "fecha_nacimiento": "2003-02-04",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-12-10",
+    "salario": "1750905",
+    "telefono": "3122060959",
+    "telefono_alt": "3133614978",
+    "email": "",
+    "direccion": "PITALITO",
+    "eps": "ASMET SALUD",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 83,
+    "nombres": "CARLOS ALBERTO",
+    "apellidos": "RODRIGUEZ RAMIREZ",
+    "cedula": "1075318699",
+    "fecha_nacimiento": "1999-04-01",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-12-25",
+    "salario": "1750905",
+    "telefono": "3222837299",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CARRERA 15 # 14 - 35 SANTA LIBRADA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-000021-84",
+    "estado": "Activo"
+  },
+  {
+    "id": 84,
+    "nombres": "JHONATAN",
+    "apellidos": "MOLINA OVALLE",
+    "cedula": "1022432860",
+    "fecha_nacimiento": "1998-01-24",
+    "cargo": "AUXILIAR DE TRANSPORTE Y  BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2025-12-30",
+    "salario": "1750905",
+    "telefono": "3223900267",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "GRANJAS",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "455-960-649-00",
+    "estado": "Activo"
+  },
+  {
+    "id": 85,
+    "nombres": "ANDRES",
+    "apellidos": "SANCHEZ VALDERRAMA",
+    "cedula": "1083901636",
+    "fecha_nacimiento": "1993-05-07",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-26",
+    "salario": "1750905",
+    "telefono": "3208483689",
+    "telefono_alt": "",
+    "email": "mariadelmarmorales2910@gmail.com",
+    "direccion": "CARRERA 52 # 24 - 35 CIUDADELA ANTONIO BARAYA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 86,
+    "nombres": "WILSON ALEXANDER",
+    "apellidos": "IMBACHI ROJAS",
+    "cedula": "1075226748",
+    "fecha_nacimiento": "1987-05-24",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-01-20",
+    "salario": "1750905",
+    "telefono": "31452306431",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 25C 9 05 PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 87,
+    "nombres": "EVELIO ESNEID",
+    "apellidos": "LLANOS RODRIGUEZ",
+    "cedula": "1075538934",
+    "fecha_nacimiento": "2005-03-08",
+    "cargo": "CONDUCTOR AUXILIAR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-01-21",
+    "salario": "1750905",
+    "telefono": "3025498871",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 88,
+    "nombres": "JHAN CARLOS",
+    "apellidos": "GUERRERO RAMIREZ",
+    "cedula": "1118022458",
+    "fecha_nacimiento": "2000-07-07",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-02-06",
+    "salario": "1750905",
+    "telefono": "3202563579",
+    "telefono_alt": "",
+    "email": "JHANCARLOSGUERRERORAMIREZ27@GMAIL.COM",
+    "direccion": "PITALITO",
+    "eps": "ASMET SALUD",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 89,
+    "nombres": "SANTIAGO",
+    "apellidos": "FIGUEROA BURBANO",
+    "cedula": "1077724655",
+    "fecha_nacimiento": "2007-09-20",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-02",
+    "salario": "1750905",
+    "telefono": "3223705323",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 58 B 22 22 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "45791491610",
+    "estado": "Activo"
+  },
+  {
+    "id": 90,
+    "nombres": "YESID",
+    "apellidos": "RUIZ RUIZ",
+    "cedula": "1122119072",
+    "fecha_nacimiento": "1986-12-23",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-06",
+    "salario": "1750905",
+    "telefono": "3108658084",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 72 B NO 23 52 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 91,
+    "nombres": "CRISTIAN CAMILO",
+    "apellidos": "BOLAÑOS IBAÑEZ",
+    "cedula": "1117513282",
+    "fecha_nacimiento": "2003-09-27",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-03",
+    "salario": "1750905",
+    "telefono": "3205248255",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 11 B 15 39 PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 92,
+    "nombres": "JORGE LEONARDO",
+    "apellidos": "LOSADA MARTINEZ",
+    "cedula": "1075240847",
+    "fecha_nacimiento": "2026-01-02",
+    "cargo": "CONDUCTOR AUXILIAR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-24",
+    "salario": "1750905",
+    "telefono": "3135009661",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 1 F 32 16 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 93,
+    "nombres": "YHONATHAN RAMON",
+    "apellidos": "BASTOS COLORADO",
+    "cedula": "1075302081",
+    "fecha_nacimiento": "1997-01-14",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-13",
+    "salario": "1750905",
+    "telefono": "3213978676",
+    "telefono_alt": "",
+    "email": "YHONNATANRBASTO@GMAIL.COM",
+    "direccion": "CALLE 74 C NO 1C 11 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 94,
+    "nombres": "JAVIER",
+    "apellidos": "MARIMON RUZ",
+    "cedula": "1100894583",
+    "fecha_nacimiento": "2026-03-19",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-19",
+    "salario": "1750905",
+    "telefono": "3042324934",
+    "telefono_alt": "",
+    "email": "JAVIERRUZ205@GMAIL.COM",
+    "direccion": "CALLE 43 NO 24 B 16 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 95,
+    "nombres": "VICTOR ALFONSO",
+    "apellidos": "POLANIA CADENA",
+    "cedula": "7725822",
+    "fecha_nacimiento": "1995-09-02",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-25",
+    "salario": "1750905",
+    "telefono": "3112939556",
+    "telefono_alt": "",
+    "email": "VICPOLACAD@GMAIL.COM",
+    "direccion": "CALLE 37 SUR A 56 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 96,
+    "nombres": "LUIS OSWALDO",
+    "apellidos": "VANEGAS BERNAL",
+    "cedula": "1110518711",
+    "fecha_nacimiento": "2005-01-26",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-20",
+    "salario": "1750905",
+    "telefono": "3213214706",
+    "telefono_alt": "",
+    "email": "LUISWALDOBERNAL46@GMAIL.COM",
+    "direccion": "CALLE 16 NO 22 14 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 97,
+    "nombres": "CRISTIAN STIVEN",
+    "apellidos": "PADILLA SUAREZ",
+    "cedula": "1077228509",
+    "fecha_nacimiento": "",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-24",
+    "salario": "1750905",
+    "telefono": "3106862635",
+    "telefono_alt": "",
+    "email": "CRISTIANSTIVENPADILLASUAREZ@GMAIL.COM",
+    "direccion": "CALLE 25 A SUR 23 A 48 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 98,
+    "nombres": "ERIC DUVAN",
+    "apellidos": "VELASCO RUIZ",
+    "cedula": "1004251071",
+    "fecha_nacimiento": "",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-20",
+    "salario": "1750905",
+    "telefono": "3151086256",
+    "telefono_alt": "",
+    "email": "ERIKDUVAN317@GMAIL.COM",
+    "direccion": "CALLE 18 NO 28 34 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 99,
+    "nombres": "WILMER YESID",
+    "apellidos": "ORTIZ REALPE",
+    "cedula": "1083917435",
+    "fecha_nacimiento": "",
+    "cargo": "CONDUCTOR",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-17",
+    "salario": "1750905",
+    "telefono": "3183845015",
+    "telefono_alt": "",
+    "email": "YOZO89@HITMAIL.COM",
+    "direccion": "CRA 14 NO 9 04 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 100,
+    "nombres": "JULIAN",
+    "apellidos": "DIAZ RAMIREZ",
+    "cedula": "1083875333",
+    "fecha_nacimiento": "",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-13",
+    "salario": "1750905",
+    "telefono": "3162672665",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 101,
+    "nombres": "DAGOBERTO",
+    "apellidos": "COLLAZOS VARGAS",
+    "cedula": "1080937113",
+    "fecha_nacimiento": "",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-13",
+    "salario": "1750905",
+    "telefono": "3118644548",
+    "telefono_alt": "",
+    "email": "GIRALDOCOLLAZOS1994@GMAIL.COM",
+    "direccion": "PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 102,
+    "nombres": "JULIAN DAVID",
+    "apellidos": "CANACUE HERNANDEZ",
+    "cedula": "1083870351",
+    "fecha_nacimiento": "",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-25",
+    "salario": "1750905",
+    "telefono": "3118642169",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "PITALITO",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 103,
+    "nombres": "JHON ALEXADER",
+    "apellidos": "LOSADA MORA",
+    "cedula": "1076982112",
+    "fecha_nacimiento": "",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-06",
+    "salario": "1750905",
+    "telefono": "3108221952",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "NEIVA - HUILA NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 104,
+    "nombres": "CRISTIAN ELIECER",
+    "apellidos": "FIGUEROA SANCHEZ",
+    "cedula": "1075217720",
+    "fecha_nacimiento": "",
+    "cargo": "AUXILIAR DE TRANSPORTE",
+    "area": "Transporte",
+    "fecha_ingreso": "2026-03-28",
+    "salario": "1750905",
+    "telefono": "3112081880",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 6 NO 1 A 50 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 105,
+    "nombres": "JHON FREDY",
+    "apellidos": "MORALES GRANADA",
+    "cedula": "79700563",
+    "fecha_nacimiento": "1974-10-02",
+    "cargo": "SEPARACION",
+    "area": "Bodega",
+    "fecha_ingreso": "2015-06-17",
+    "salario": "1750905",
+    "telefono": "3114949704",
+    "telefono_alt": "8466772",
+    "email": "",
+    "direccion": "CRA 55 # 21 - 95 LAS PALMAS",
+    "eps": "SANITAS",
+    "pension": "COLPENSIONES",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-537754-44",
+    "estado": "Activo"
+  },
+  {
+    "id": 106,
+    "nombres": "JESUS MANUEL",
+    "apellidos": "BARRETO PEREZ",
+    "cedula": "1102231915",
+    "fecha_nacimiento": "1992-10-20",
+    "cargo": "LIDER SEPARACION",
+    "area": "Bodega",
+    "fecha_ingreso": "2022-05-18",
+    "salario": "1750905",
+    "telefono": "3116166414",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "SAN JORGE II",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 107,
+    "nombres": "CRISTHIAN ALEJANDRO",
+    "apellidos": "OVIEDO OROZCO",
+    "cedula": "1075298425",
+    "fecha_nacimiento": "1996-08-16",
+    "cargo": "SEPARACION",
+    "area": "Bodega",
+    "fecha_ingreso": "2022-05-02",
+    "salario": "1750905",
+    "telefono": "3123112195",
+    "telefono_alt": "",
+    "email": "alejandro17caoo@gmail.com",
+    "direccion": "CLL 08 # 05",
+    "eps": "FAMISANAR CAFAM",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-576225-90",
+    "estado": "Activo"
+  },
+  {
+    "id": 108,
+    "nombres": "NELSON",
+    "apellidos": "OLAYA CORDOBA",
+    "cedula": "1117931130",
+    "fecha_nacimiento": "2004-09-02",
+    "cargo": "SEPARACION",
+    "area": "Bodega",
+    "fecha_ingreso": "2022-12-16",
+    "salario": "1750905",
+    "telefono": "3208504710",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 24SUR 21 B - 42 CANAIMA",
+    "eps": "ASMETSALUD",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-459662-65",
+    "estado": "Activo"
+  },
+  {
+    "id": 109,
+    "nombres": "DARWIN STIVEN",
+    "apellidos": "VILLALBA SAAVEDRA",
+    "cedula": "1007503362",
+    "fecha_nacimiento": "2000-12-12",
+    "cargo": "SEPARACION",
+    "area": "Bodega",
+    "fecha_ingreso": "2022-11-01",
+    "salario": "1750905",
+    "telefono": "3203959329",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CRA 40 A No 20 71 SUR LIMONAR",
+    "eps": "SANITAS",
+    "pension": "PROTECCION",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-328318-91",
+    "estado": "Activo"
+  },
+  {
+    "id": 110,
+    "nombres": "ADRIAN FELIPE",
+    "apellidos": "BOTINA GONZALEZ",
+    "cedula": "1003829043",
+    "fecha_nacimiento": "2003-10-14",
+    "cargo": "SEPARACION",
+    "area": "Bodega",
+    "fecha_ingreso": "2024-09-23",
+    "salario": "1750905",
+    "telefono": "3213401081",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "LOTE 128 ALVARO URIBE NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "941-753917-41",
+    "estado": "Activo"
+  },
+  {
+    "id": 111,
+    "nombres": "JUAN JOSE",
+    "apellidos": "BARRETO PEREZ",
+    "cedula": "1102148351",
+    "fecha_nacimiento": "2003-03-22",
+    "cargo": "SEPARACION",
+    "area": "Bodega",
+    "fecha_ingreso": "2025-08-11",
+    "salario": "1750905",
+    "telefono": "3219486209",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 26 SUR 29 65 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "94189124141",
+    "estado": "Activo"
+  },
+  {
+    "id": 112,
+    "nombres": "JUAN CAMILO",
+    "apellidos": "TRUJILLO CASTAÑEDA",
+    "cedula": "1075794398",
+    "fecha_nacimiento": "2007-03-23",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2025-09-24",
+    "salario": "1750905",
+    "telefono": "3137839344",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 74 C 3 21 NEIVA",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "94191536848",
+    "estado": "Activo"
+  },
+  {
+    "id": 113,
+    "nombres": "DEINER ESMID",
+    "apellidos": "CORDOBA PERDOMO",
+    "cedula": "1003819738",
+    "fecha_nacimiento": "2003-09-14",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2025-10-27",
+    "salario": "1750905",
+    "telefono": "3209622355",
+    "telefono_alt": "",
+    "email": "naniscordoba24@gmail.com",
+    "direccion": "CRA 13 # 2 - 14SUR MIRAMAR NEIVA",
+    "eps": "PROTECCION",
+    "pension": "COMFAMILIAR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "076-280153-62",
+    "estado": "Activo"
+  },
+  {
+    "id": 114,
+    "nombres": "JHON ALEXANDER",
+    "apellidos": "BOTINA GONZALEZ",
+    "cedula": "1075795636",
+    "fecha_nacimiento": "2008-02-04",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2026-03-10",
+    "salario": "1750905",
+    "telefono": "3137303394",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "LOTE A 1 ASENTAMIENTO ALVARO URIBE ALVARO URIBE",
+    "eps": "NUEVA EPS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
+  },
+  {
+    "id": 115,
+    "nombres": "MILTON JOSE",
+    "apellidos": "MONTES PERTUZ",
+    "cedula": "1102814191",
+    "fecha_nacimiento": "2005-09-14",
+    "cargo": "AUXILIAR DE TRANSPORTE Y BODEGA",
+    "area": "Bodega",
+    "fecha_ingreso": "2026-02-27",
+    "salario": "1750905",
+    "telefono": "3337075665",
+    "telefono_alt": "",
+    "email": "",
+    "direccion": "CALLE 26 SUR NO 29 65 NEIVA",
+    "eps": "SANITAS",
+    "pension": "PORVENIR",
+    "arl": "",
+    "tipo_contrato": "INDEFINIDO",
+    "banco": "",
+    "num_cuenta": "",
+    "estado": "Activo"
   }
 ];
 
-/* ═══ INIT DATA ═══ */
 function getEmployees() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored) return JSON.parse(stored);
   saveEmployees(DEFAULT_EMPLOYEES);
   return DEFAULT_EMPLOYEES;
 }
-function saveEmployees(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
+function saveEmployees(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
 
 let employees = [];
 
-/* ═══════════════════════════════════════════════
-   AUTH
-═══════════════════════════════════════════════ */
 function selectRole(el) {
   document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
@@ -1045,14 +3060,11 @@ function doLogout() {
 
 function applyRoleUI() {
   const canAdd = currentUser.canAdd;
-  document.querySelectorAll('#btn-add-emp, [onclick="openModal(\'add\')"]').forEach(el => {
+  document.querySelectorAll('#btn-add-emp, [onclick="openModal('add')"]').forEach(el => {
     el.style.display = canAdd ? '' : 'none';
   });
 }
 
-/* ═══════════════════════════════════════════════
-   VIEWS
-═══════════════════════════════════════════════ */
 function showView(view) {
   currentView = view;
   document.getElementById('view-dashboard').style.display = view === 'dashboard' ? 'block' : 'none';
@@ -1079,23 +3091,18 @@ function filterArea(area) {
   renderTable();
 }
 
-/* ═══════════════════════════════════════════════
-   STATS
-═══════════════════════════════════════════════ */
 function updateStats() {
   const total = employees.length;
   const adm = employees.filter(e => e.area === 'Administrativo').length;
   const com = employees.filter(e => e.area === 'Comercial').length;
   const bod = employees.filter(e => e.area === 'Bodega').length;
   const tra = employees.filter(e => e.area === 'Transporte').length;
-
   document.getElementById('stat-total').textContent = total;
   document.getElementById('stat-adm').textContent   = adm;
   document.getElementById('stat-com').textContent   = com;
   document.getElementById('stat-bod').textContent   = bod;
   document.getElementById('stat-tra').textContent   = tra;
   document.getElementById('sb-total').textContent   = total;
-
   if (total > 0) {
     document.getElementById('bar-adm').style.width = (adm/total*100) + '%';
     document.getElementById('bar-com').style.width = (com/total*100) + '%';
@@ -1104,34 +3111,13 @@ function updateStats() {
   }
 }
 
-/* ═══════════════════════════════════════════════
-   COLOR POR ÁREA
-═══════════════════════════════════════════════ */
-const AREA_COLORS = {
-  'Administrativo': '#3b82f6',
-  'Comercial':      '#10b981',
-  'Bodega':         '#f59e0b',
-  'Transporte':     '#8b5cf6'
-};
-const AREA_CLASS = {
-  'Administrativo': 'admin',
-  'Comercial':      'comercial',
-  'Bodega':         'bodega',
-  'Transporte':     'transporte'
-};
+const AREA_COLORS = { 'Administrativo': '#3b82f6', 'Comercial': '#10b981', 'Bodega': '#f59e0b', 'Transporte': '#8b5cf6' };
+const AREA_CLASS  = { 'Administrativo': 'admin', 'Comercial': 'comercial', 'Bodega': 'bodega', 'Transporte': 'transporte' };
+function avatarColor(area) { return AREA_COLORS[area] || '#255c95'; }
 
-function avatarColor(area) {
-  return AREA_COLORS[area] || '#255c95';
-}
-
-/* ═══════════════════════════════════════════════
-   DASHBOARD TABLE
-═══════════════════════════════════════════════ */
 function renderDashTable() {
   const recent = [...employees].slice(-6).reverse();
-  let html = `<table><thead><tr>
-    <th>Empleado</th><th>Área</th><th>Cargo</th><th>Estado</th><th>Acciones</th>
-  </tr></thead><tbody>`;
+  let html = `<table><thead><tr><th>Empleado</th><th>Área</th><th>Cargo</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>`;
   recent.forEach(e => {
     const initials = (e.nombres[0]||'') + (e.apellidos[0]||'');
     const color = avatarColor(e.area);
@@ -1156,38 +3142,26 @@ function renderDashTable() {
   document.getElementById('dash-table').innerHTML = html;
 }
 
-/* ═══════════════════════════════════════════════
-   PERSONAL TABLE
-═══════════════════════════════════════════════ */
 function renderTable() {
   const search = (document.getElementById('search-input')?.value || '').toLowerCase();
   const area   = document.getElementById('filter-area')?.value  || '';
   const status = document.getElementById('filter-status')?.value || '';
-
   let filtered = employees.filter(e => {
     const matchSearch = !search ||
       (`${e.nombres} ${e.apellidos}`).toLowerCase().includes(search) ||
       e.cedula.includes(search) ||
       e.cargo.toLowerCase().includes(search) ||
-      e.email.toLowerCase().includes(search);
+      (e.email||'').toLowerCase().includes(search);
     const matchArea   = !area   || e.area   === area;
     const matchStatus = !status || e.estado === status;
     return matchSearch && matchArea && matchStatus;
   });
-
   const tbody = document.getElementById('emp-table-body');
   const empty = document.getElementById('table-empty');
-
-  if (!filtered.length) {
-    tbody.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
+  if (!filtered.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
   empty.style.display = 'none';
-
   const canEdit   = currentUser?.canEdit;
   const canDelete = currentUser?.canDelete;
-
   tbody.innerHTML = filtered.map(e => {
     const initials = (e.nombres[0]||'') + (e.apellidos[0]||'');
     const color = avatarColor(e.area);
@@ -1196,7 +3170,7 @@ function renderTable() {
         <div class="emp-avatar" style="background:${color}">${initials}</div>
         <div class="emp-info-text">
           <div class="emp-name">${e.nombres} ${e.apellidos}</div>
-          <div class="emp-cargo">${e.email}</div>
+          <div class="emp-cargo">${e.email||''}</div>
         </div>
       </div></td>
       <td style="font-size:.85rem">${e.cedula}</td>
@@ -1214,26 +3188,21 @@ function renderTable() {
   }).join('');
 }
 
-/* ═══════════════════════════════════════════════
-   MODAL — FORM / VIEW
-═══════════════════════════════════════════════ */
 function openModal(mode, id) {
   modalMode = mode;
   editingId = id || null;
-  const overlay = document.getElementById('modal-overlay');
-  const title   = document.getElementById('modal-title');
+  const overlay  = document.getElementById('modal-overlay');
+  const title    = document.getElementById('modal-title');
   const subtitle = document.getElementById('modal-subtitle');
-  const footer  = document.getElementById('modal-footer');
-  const body    = document.getElementById('modal-body-content');
-
+  const footer   = document.getElementById('modal-footer');
+  const body     = document.getElementById('modal-body-content');
   if (mode === 'view') {
     const emp = employees.find(e => e.id === id);
     title.textContent = `${emp.nombres} ${emp.apellidos}`;
     subtitle.textContent = `${emp.cargo} · ${emp.area}`;
     footer.innerHTML = `
       <button class="btn btn-outline" onclick="closeModal()">Cerrar</button>
-      ${currentUser?.canEdit ? `<button class="btn btn-primary" onclick="openModal('edit',${id})">✏️ Editar</button>` : ''}
-    `;
+      ${currentUser?.canEdit ? `<button class="btn btn-primary" onclick="openModal('edit',${id})">✏️ Editar</button>` : ''}`;
     body.innerHTML = buildDetailView(emp);
   } else {
     const emp = mode === 'edit' ? employees.find(e => e.id === id) : null;
@@ -1241,195 +3210,105 @@ function openModal(mode, id) {
     subtitle.textContent = mode === 'add' ? 'Complete los datos del nuevo empleado' : `Editando a ${emp?.nombres} ${emp?.apellidos}`;
     footer.innerHTML = `
       <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" onclick="saveEmployee()">💾 Guardar</button>
-    `;
+      <button class="btn btn-primary" onclick="saveEmployee()">💾 Guardar</button>`;
     body.innerHTML = buildForm(emp);
   }
-
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeModalOverlay(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+function closeModalOverlay(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
 
-/* ─── FORM ─── */
 function buildForm(emp) {
   const v = emp || {};
   return `
   <div class="form-section">
     <div class="form-section-title">👤 Información Personal</div>
     <div class="form-grid">
-      <div class="form-group">
-        <label>Nombres *</label>
-        <input type="text" id="f-nombres" value="${v.nombres||''}" placeholder="Nombres completos">
-      </div>
-      <div class="form-group">
-        <label>Apellidos *</label>
-        <input type="text" id="f-apellidos" value="${v.apellidos||''}" placeholder="Apellidos completos">
-      </div>
-      <div class="form-group">
-        <label>Cédula *</label>
-        <input type="text" id="f-cedula" value="${v.cedula||''}" placeholder="Número de cédula">
-      </div>
-      <div class="form-group">
-        <label>Fecha de Nacimiento</label>
-        <input type="date" id="f-fecha_nacimiento" value="${v.fecha_nacimiento||''}">
-      </div>
-      <div class="form-group full">
-        <label>Dirección</label>
-        <input type="text" id="f-direccion" value="${v.direccion||''}" placeholder="Dirección de residencia completa">
-      </div>
+      <div class="form-group"><label>Nombres *</label><input type="text" id="f-nombres" value="${v.nombres||''}" placeholder="Nombres completos"></div>
+      <div class="form-group"><label>Apellidos *</label><input type="text" id="f-apellidos" value="${v.apellidos||''}" placeholder="Apellidos completos"></div>
+      <div class="form-group"><label>Cédula *</label><input type="text" id="f-cedula" value="${v.cedula||''}" placeholder="Número de cédula"></div>
+      <div class="form-group"><label>Fecha de Nacimiento</label><input type="date" id="f-fecha_nacimiento" value="${v.fecha_nacimiento||''}"></div>
+      <div class="form-group full"><label>Dirección</label><input type="text" id="f-direccion" value="${v.direccion||''}" placeholder="Dirección de residencia completa"></div>
     </div>
   </div>
-
   <div class="form-section">
     <div class="form-section-title">🏢 Información Laboral</div>
     <div class="form-grid">
-      <div class="form-group">
-        <label>Área *</label>
-        <select id="f-area">
-          <option value="">Seleccione área</option>
-          ${['Administrativo','Comercial','Bodega','Transporte'].map(a =>
-            `<option value="${a}" ${v.area===a?'selected':''}>${a}</option>`).join('')}
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Cargo *</label>
-        <input type="text" id="f-cargo" value="${v.cargo||''}" placeholder="Cargo o posición">
-      </div>
-      <div class="form-group">
-        <label>Fecha de Ingreso</label>
-        <input type="date" id="f-fecha_ingreso" value="${v.fecha_ingreso||''}">
-      </div>
-      <div class="form-group">
-        <label>Tipo de Contrato</label>
-        <select id="f-tipo_contrato">
-          <option value="">Seleccione</option>
-          ${['Indefinido','Fijo 1 año','Fijo 6 meses','Prestación','Obra labor'].map(t =>
-            `<option value="${t}" ${v.tipo_contrato===t?'selected':''}>${t}</option>`).join('')}
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Salario Base</label>
-        <input type="text" id="f-salario" value="${v.salario||''}" placeholder="Ej: 1500000">
-      </div>
-      <div class="form-group">
-        <label>Estado</label>
-        <select id="f-estado">
-          <option value="Activo"   ${!v.estado||v.estado==='Activo'?'selected':''}>Activo</option>
-          <option value="Inactivo" ${v.estado==='Inactivo'?'selected':''}>Inactivo</option>
-        </select>
-      </div>
+      <div class="form-group"><label>Área *</label><select id="f-area">
+        <option value="">Seleccione área</option>
+        ${['Administrativo','Comercial','Bodega','Transporte'].map(a=>`<option value="${a}" ${v.area===a?'selected':''}>${a}</option>`).join('')}
+      </select></div>
+      <div class="form-group"><label>Cargo *</label><input type="text" id="f-cargo" value="${v.cargo||''}" placeholder="Cargo o posición"></div>
+      <div class="form-group"><label>Fecha de Ingreso</label><input type="date" id="f-fecha_ingreso" value="${v.fecha_ingreso||''}"></div>
+      <div class="form-group"><label>Tipo de Contrato</label><select id="f-tipo_contrato">
+        <option value="">Seleccione</option>
+        ${['INDEFINIDO','Fijo 1 año','Fijo 6 meses','Prestación','APRENDIZ SENA'].map(t=>`<option value="${t}" ${v.tipo_contrato===t?'selected':''}>${t}</option>`).join('')}
+      </select></div>
+      <div class="form-group"><label>Salario Base</label><input type="text" id="f-salario" value="${v.salario||''}" placeholder="Ej: 1750905"></div>
+      <div class="form-group"><label>Estado</label><select id="f-estado">
+        <option value="Activo" ${!v.estado||v.estado==='Activo'?'selected':''}>Activo</option>
+        <option value="Inactivo" ${v.estado==='Inactivo'?'selected':''}>Inactivo</option>
+      </select></div>
     </div>
   </div>
-
   <div class="form-section">
     <div class="form-section-title">📞 Contacto</div>
     <div class="form-grid">
-      <div class="form-group">
-        <label>Teléfono celular *</label>
-        <input type="text" id="f-telefono" value="${v.telefono||''}" placeholder="300XXXXXXX">
-      </div>
-      <div class="form-group">
-        <label>Teléfono alternativo</label>
-        <input type="text" id="f-telefono_alt" value="${v.telefono_alt||''}" placeholder="Fijo o alternativo">
-      </div>
-      <div class="form-group full">
-        <label>Correo electrónico</label>
-        <input type="email" id="f-email" value="${v.email||''}" placeholder="correo@distrivision.co">
-      </div>
+      <div class="form-group"><label>Teléfono celular *</label><input type="text" id="f-telefono" value="${v.telefono||''}" placeholder="300XXXXXXX"></div>
+      <div class="form-group"><label>Teléfono alternativo</label><input type="text" id="f-telefono_alt" value="${v.telefono_alt||''}" placeholder="Fijo o alternativo"></div>
+      <div class="form-group full"><label>Correo electrónico</label><input type="email" id="f-email" value="${v.email||''}" placeholder="correo@distrivision.co"></div>
     </div>
   </div>
-
   <div class="form-section">
     <div class="form-section-title">🏥 Seguridad Social</div>
     <div class="form-grid cols-3">
-      <div class="form-group">
-        <label>EPS</label>
-        <select id="f-eps">
-          <option value="">Seleccione</option>
-          ${['Sánitas','Compensar','Famisanar','Nueva EPS','Salud Total','Coomeva','Cafesalud'].map(x =>
-            `<option value="${x}" ${v.eps===x?'selected':''}>${x}</option>`).join('')}
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Pensión</label>
-        <select id="f-pension">
-          <option value="">Seleccione</option>
-          ${['Porvenir','Protección','Colfondos','Old Mutual','Colpensiones'].map(x =>
-            `<option value="${x}" ${v.pension===x?'selected':''}>${x}</option>`).join('')}
-        </select>
-      </div>
-      <div class="form-group">
-        <label>ARL</label>
-        <select id="f-arl">
-          <option value="">Seleccione</option>
-          ${['Sura','Positiva','Colmena','Bolívar','Liberty'].map(x =>
-            `<option value="${x}" ${v.arl===x?'selected':''}>${x}</option>`).join('')}
-        </select>
-      </div>
+      <div class="form-group"><label>EPS</label><select id="f-eps">
+        <option value="">Seleccione</option>
+        ${['SANITAS','NUEVA EPS','COMPENSAR','FAMISANAR','COMFAMILIAR','COOMEVA','SALUD TOTAL','MEDIMAS EPS','ASMETSALUD','ASMET SALUD'].map(x=>`<option value="${x}" ${v.eps===x?'selected':''}>${x}</option>`).join('')}
+      </select></div>
+      <div class="form-group"><label>Pensión</label><select id="f-pension">
+        <option value="">Seleccione</option>
+        ${['PORVENIR','PROTECCION','COLFONDOS','COLPENSIONES','FONDO NACIONAL DEL AHORRO','FNH'].map(x=>`<option value="${x}" ${v.pension===x?'selected':''}>${x}</option>`).join('')}
+      </select></div>
+      <div class="form-group"><label>ARL</label><select id="f-arl">
+        <option value="">Seleccione</option>
+        ${['SURA','POSITIVA','COLMENA','BOLÍVAR','LIBERTY'].map(x=>`<option value="${x}" ${v.arl===x?'selected':''}>${x}</option>`).join('')}
+      </select></div>
     </div>
   </div>
-
   <div class="form-section" style="margin-bottom:0">
     <div class="form-section-title">🏦 Información Bancaria</div>
     <div class="form-grid">
-      <div class="form-group">
-        <label>Banco</label>
-        <select id="f-banco">
-          <option value="">Seleccione</option>
-          ${['Bancolombia','Davivienda','BBVA','Bogotá','Popular','Nequi','Daviplata','AV Villas'].map(x =>
-            `<option value="${x}" ${v.banco===x?'selected':''}>${x}</option>`).join('')}
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Número de cuenta</label>
-        <input type="text" id="f-num_cuenta" value="${v.num_cuenta||''}" placeholder="XXX-XXXXXX-XX">
-      </div>
+      <div class="form-group"><label>Banco</label><select id="f-banco">
+        <option value="">Seleccione</option>
+        ${['Bancolombia','Davivienda','BBVA','Bogotá','Popular','Nequi','Daviplata','AV Villas'].map(x=>`<option value="${x}" ${v.banco===x?'selected':''}>${x}</option>`).join('')}
+      </select></div>
+      <div class="form-group"><label>Número de cuenta</label><input type="text" id="f-num_cuenta" value="${v.num_cuenta||''}" placeholder="XXX-XXXXXX-XX"></div>
     </div>
   </div>`;
 }
 
-/* ─── DETAIL VIEW ─── */
 function buildDetailView(emp) {
   const color = avatarColor(emp.area);
   const initials = (emp.nombres[0]||'') + (emp.apellidos[0]||'');
   const fields = [
-    ['Nombres',            emp.nombres],
-    ['Apellidos',          emp.apellidos],
-    ['Cédula',             emp.cedula],
-    ['Fecha nacimiento',   emp.fecha_nacimiento],
-    ['Área',               emp.area],
-    ['Cargo',              emp.cargo],
-    ['Fecha ingreso',      emp.fecha_ingreso],
-    ['Tipo contrato',      emp.tipo_contrato],
-    ['Salario base',       emp.salario ? '$' + Number(emp.salario).toLocaleString('es-CO') : ''],
-    ['Estado',             emp.estado],
-    ['Teléfono',           emp.telefono],
-    ['Tel. alternativo',   emp.telefono_alt],
-    ['Email',              emp.email],
-    ['Dirección',          emp.direccion],
-    ['EPS',                emp.eps],
-    ['Pensión',            emp.pension],
-    ['ARL',                emp.arl],
-    ['Banco',              emp.banco],
-    ['N° de cuenta',       emp.num_cuenta],
+    ['Nombres', emp.nombres], ['Apellidos', emp.apellidos],
+    ['Cédula', emp.cedula], ['Fecha nacimiento', emp.fecha_nacimiento],
+    ['Área', emp.area], ['Cargo', emp.cargo],
+    ['Fecha ingreso', emp.fecha_ingreso], ['Tipo contrato', emp.tipo_contrato],
+    ['Salario base', emp.salario ? '$' + Number(emp.salario).toLocaleString('es-CO') : ''], ['Estado', emp.estado],
+    ['Teléfono', emp.telefono], ['Tel. alternativo', emp.telefono_alt],
+    ['Email', emp.email], ['Dirección', emp.direccion],
+    ['EPS', emp.eps], ['Pensión', emp.pension],
+    ['ARL', emp.arl], ['Banco', emp.banco],
+    ['N° de cuenta', emp.num_cuenta],
   ];
-
   let rows = '';
   fields.forEach(([lbl, val]) => {
-    rows += `<div class="detail-block">
-      <div class="detail-lbl">${lbl}</div>
-      <div class="detail-val ${!val?'empty':''}">${val || 'Sin información'}</div>
-    </div>`;
+    rows += `<div class="detail-block"><div class="detail-lbl">${lbl}</div><div class="detail-val ${!val?'empty':''}">${val || 'Sin información'}</div></div>`;
   });
-
   return `
     <div class="profile-header">
       <div class="profile-avatar" style="background:${color}">${initials}</div>
@@ -1445,13 +3324,7 @@ function buildDetailView(emp) {
     <div class="detail-grid">${rows}</div>`;
 }
 
-/* ═══════════════════════════════════════════════
-   CRUD
-═══════════════════════════════════════════════ */
-function getField(id) {
-  const el = document.getElementById(id);
-  return el ? el.value.trim() : '';
-}
+function getField(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
 function saveEmployee() {
   const nombres   = getField('f-nombres');
@@ -1460,31 +3333,19 @@ function saveEmployee() {
   const area      = getField('f-area');
   const cargo     = getField('f-cargo');
   const telefono  = getField('f-telefono');
-
   if (!nombres || !apellidos || !cedula || !area || !cargo || !telefono) {
-    showToast('⚠️ Completa los campos obligatorios (*)', 'error');
-    return;
+    showToast('⚠️ Completa los campos obligatorios (*)', 'error'); return;
   }
-
   const data = {
     nombres, apellidos, cedula,
-    fecha_nacimiento: getField('f-fecha_nacimiento'),
-    cargo, area,
-    fecha_ingreso: getField('f-fecha_ingreso'),
-    salario: getField('f-salario'),
-    telefono,
-    telefono_alt: getField('f-telefono_alt'),
-    email:        getField('f-email'),
-    direccion:    getField('f-direccion'),
-    eps:          getField('f-eps'),
-    pension:      getField('f-pension'),
-    arl:          getField('f-arl'),
-    tipo_contrato:getField('f-tipo_contrato'),
-    banco:        getField('f-banco'),
-    num_cuenta:   getField('f-num_cuenta'),
-    estado:       getField('f-estado') || 'Activo',
+    fecha_nacimiento: getField('f-fecha_nacimiento'), cargo, area,
+    fecha_ingreso: getField('f-fecha_ingreso'), salario: getField('f-salario'), telefono,
+    telefono_alt: getField('f-telefono_alt'), email: getField('f-email'),
+    direccion: getField('f-direccion'), eps: getField('f-eps'),
+    pension: getField('f-pension'), arl: getField('f-arl'),
+    tipo_contrato: getField('f-tipo_contrato'), banco: getField('f-banco'),
+    num_cuenta: getField('f-num_cuenta'), estado: getField('f-estado') || 'Activo',
   };
-
   if (modalMode === 'add') {
     const maxId = employees.length ? Math.max(...employees.map(e => e.id)) : 0;
     data.id = maxId + 1;
@@ -1495,7 +3356,6 @@ function saveEmployee() {
     if (idx >= 0) { data.id = editingId; employees[idx] = data; }
     showToast('✅ Empleado actualizado', 'success');
   }
-
   saveEmployees(employees);
   closeModal();
   updateStats();
@@ -1507,15 +3367,10 @@ function deleteEmployee(id) {
   if (!confirm('¿Confirmas que deseas eliminar este empleado? Esta acción no se puede deshacer.')) return;
   employees = employees.filter(e => e.id !== id);
   saveEmployees(employees);
-  updateStats();
-  renderDashTable();
-  renderTable();
+  updateStats(); renderDashTable(); renderTable();
   showToast('🗑 Empleado eliminado', 'error');
 }
 
-/* ═══════════════════════════════════════════════
-   TOAST
-═══════════════════════════════════════════════ */
 function showToast(msg, type = '') {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1524,14 +3379,12 @@ function showToast(msg, type = '') {
   setTimeout(() => t.classList.remove('show'), 3200);
 }
 
-/* ═══ SCROLL PROGRESS ═══ */
 window.addEventListener('scroll', () => {
   const sp = document.getElementById('scroll-progress');
   const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
   sp.style.width = pct + '%';
 }, {passive: true});
 
-/* ═══ ESC key ═══ */
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
