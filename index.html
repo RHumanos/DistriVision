@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="img/1 (3).png">
 </head>
   <style>
-    /* ══════════════════════════════
+  /* ══════════════════════════════
    NAV DROPDOWN — Nosotros
 ══════════════════════════════ */
 .nav-dropdown {
@@ -33,12 +33,11 @@
   opacity: .7;
 }
 
-.nav-dropdown:hover .nav-arrow,
 .nav-dropdown.open .nav-arrow {
   transform: rotate(180deg);
 }
 
-/* Submenú */
+/* Submenú — se controla solo con la clase .open */
 .nav-submenu {
   position: absolute !important;
   top: calc(100% + 16px);
@@ -58,7 +57,6 @@
   z-index: 200;
 }
 
-/* Triángulo decorativo */
 .nav-submenu::before {
   content: '';
   position: absolute;
@@ -70,17 +68,14 @@
   filter: drop-shadow(0 -2px 2px rgba(37,92,149,.06));
 }
 
-/* Visible en hover desktop */
-.nav-dropdown:hover .nav-submenu {
+/* Solo se abre con .open — nada de :hover */
+.nav-dropdown.open .nav-submenu {
   opacity: 1;
   pointer-events: all;
   transform: translateX(-50%) translateY(0);
 }
 
-/* Items del submenú */
-.nav-submenu li {
-  width: 100%;
-}
+.nav-submenu li { width: 100%; }
 
 .nav-submenu a {
   display: flex !important;
@@ -103,7 +98,7 @@
   padding-left: 20px !important;
 }
 
-/* ── Móvil: dropdown dentro del menú hamburguesa ── */
+/* ── Móvil ── */
 @media (max-width: 900px) {
   .nav-submenu {
     position: static !important;
@@ -111,14 +106,14 @@
     box-shadow: none !important;
     border-radius: 0 !important;
     background: var(--blue-xlight) !important;
-    padding: 4px 0 4px 16px !important;
+    padding: 0 !important;
     margin: 0 !important;
     border-left: 3px solid var(--blue-light);
     max-height: 0;
     overflow: hidden;
     opacity: 1;
     pointer-events: none;
-    transition: max-height .35s ease, padding .25s ease !important;
+    transition: max-height .35s ease !important;
   }
 
   .nav-submenu::before { display: none; }
@@ -133,10 +128,6 @@
     border-bottom: none !important;
     padding: 11px 12px !important;
     font-size: .88rem !important;
-  }
-
-  .nav-submenu a:hover {
-    padding-left: 16px !important;
   }
 }
    </style>
@@ -810,25 +801,31 @@ if (hambBtn) {
   targets.forEach(el => observer.observe(el));
 })();
   /* ── DROPDOWN NOSOTROS ── */
+/* ── DROPDOWN NOSOTROS ── */
 (function setupDropdown() {
   const dropItem = document.querySelector('.nav-dropdown');
   if (!dropItem) return;
   const toggle = dropItem.querySelector('.nav-dropdown-toggle');
 
-  // Mobile: toggle con click
+  // Click en el toggle: abre/cierra
   toggle.addEventListener('click', (e) => {
-    if (window.innerWidth <= 900) {
-      e.preventDefault();
-      dropItem.classList.toggle('open');
-    }
+    e.preventDefault();
+    dropItem.classList.toggle('open');
   });
 
-  // Cerrar dropdown al hacer click en un enlace del submenú
+  // Click en un link del submenú: cierra todo
   dropItem.querySelectorAll('.nav-submenu a').forEach(link => {
     link.addEventListener('click', () => {
       dropItem.classList.remove('open');
       navbar.classList.remove('menu-open');
     });
+  });
+
+  // Click fuera: cierra
+  document.addEventListener('click', (e) => {
+    if (!dropItem.contains(e.target)) {
+      dropItem.classList.remove('open');
+    }
   });
 })();
 </script>
