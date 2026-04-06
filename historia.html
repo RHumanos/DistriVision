@@ -7,8 +7,214 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="styles1.css">
   <link rel="icon" type="image/png" href="img/1 (3).png">
-<link rel="apple-touch-icon" href="img/1 (3).png">
-<link rel="shortcut icon" href="img/1 (3).png">
+  <link rel="apple-touch-icon" href="img/1 (3).png">
+  <link rel="shortcut icon" href="img/1 (3).png">
+  <style>
+  /* ══════════════════════════════
+     TOP BAR
+  ══════════════════════════════ */
+  #top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 101;
+    height: 38px;
+    background: var(--blue-deep, #122f50);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6vw;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  #top-bar::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent, transparent 120px,
+      rgba(255,255,255,.015) 120px,
+      rgba(255,255,255,.015) 121px
+    );
+    pointer-events: none;
+  }
+  .top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .top-bar-left span,
+  .top-bar-hours {
+    font-family: 'Lato', sans-serif;
+    font-size: .72rem;
+    color: rgba(255,255,255,.45);
+    letter-spacing: .3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .top-bar-login {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Lato', sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    letter-spacing: .5px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.05);
+    transition: background .2s, color .2s, border-color .2s, transform .2s;
+  }
+  .top-bar-login:hover {
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border-color: rgba(255,255,255,.25);
+    transform: translateY(-1px);
+  }
+
+  /* Nav baja debajo del top bar */
+  nav {
+    top: 38px !important;
+  }
+
+  /* Menú móvil abierto también baja */
+  nav.menu-open ul {
+    top: calc(68px + 38px) !important;
+  }
+
+  /* ══════════════════════════════
+     NAV DROPDOWN — Nosotros
+  ══════════════════════════════ */
+  .nav-dropdown {
+    position: relative;
+  }
+  .nav-dropdown-toggle {
+    display: flex !important;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .nav-arrow {
+    font-size: .65rem;
+    transition: transform .28s cubic-bezier(.34,1.56,.64,1);
+    display: inline-block;
+    color: var(--blue, #255c95);
+    opacity: .7;
+  }
+  .nav-dropdown.open .nav-arrow {
+    transform: rotate(180deg);
+  }
+
+  .nav-submenu {
+    position: absolute !important;
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(37,92,149,.18), 0 0 0 1px rgba(37,92,149,.06);
+    padding: 8px;
+    min-width: 220px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+    z-index: 200;
+    list-style: none;
+  }
+  .nav-submenu::before {
+    content: '';
+    position: absolute;
+    top: -7px; left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-bottom-color: #fff;
+    border-top: none;
+    filter: drop-shadow(0 -2px 2px rgba(37,92,149,.06));
+  }
+  .nav-dropdown.open .nav-submenu {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-submenu li { width: 100%; }
+  .nav-submenu a {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 16px !important;
+    border-radius: 10px !important;
+    font-size: .86rem !important;
+    font-weight: 500 !important;
+    color: var(--text, #1c2535) !important;
+    transition: background .18s, color .18s, padding-left .18s !important;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-submenu a::after { display: none !important; }
+  .nav-submenu a:hover {
+    background: #f0f7fd !important;
+    color: var(--blue, #255c95) !important;
+    padding-left: 20px !important;
+  }
+
+  /* ── Responsive top bar ── */
+  @media (max-width: 900px) {
+    #top-bar {
+      padding: 0 5vw;
+      height: 34px;
+    }
+    .top-bar-left span:first-child,
+    .top-bar-hours { display: none; }
+    .top-bar-left span:last-child { font-size: .68rem; }
+    nav { top: 34px !important; }
+    nav.menu-open ul { top: calc(68px + 34px) !important; }
+
+    .nav-submenu {
+      position: static !important;
+      transform: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      background: #f0f7fd !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border-left: 3px solid #d6e5f5;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 1;
+      pointer-events: none;
+      transition: max-height .35s ease !important;
+    }
+    .nav-submenu::before { display: none; }
+    .nav-dropdown.open .nav-submenu {
+      max-height: 400px;
+      pointer-events: all;
+      padding: 6px 0 6px 16px !important;
+    }
+    .nav-submenu a {
+      border-bottom: none !important;
+      padding: 11px 12px !important;
+      font-size: .88rem !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #top-bar { height: 30px; padding: 0 4vw; }
+    .top-bar-left { display: none; }
+    .top-bar-login { font-size: .68rem; padding: 4px 11px; }
+    nav { top: 30px !important; }
+    nav.menu-open ul { top: calc(68px + 30px) !important; }
+  }
+  </style>
 </head>
 <body>
 
@@ -16,22 +222,46 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
+<!-- ══════════════ TOP BAR ══════════════ -->
+<div id="top-bar">
+  <div class="top-bar-left">
+    <span>📞 (8) 870 34 34 &nbsp;|&nbsp; 310 599 6169</span>
+    <span>✉️ recurso.humano@distrivision.com.co</span>
+  </div>
+  <div class="top-bar-right">
+    <span class="top-bar-hours">🕐 Lun – Vie: 8:00 am – 6:00 pm</span>
+    <a href="login.html" class="top-bar-login">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Iniciar sesión
+    </a>
+  </div>
+</div>
+
 <!-- ════ NAV ════ -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="img/1 (3).png" alt="DistriVision Logo" class="logo-img">
-    
   </a>
   <ul id="navMenu">
-    <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="index.html#mision">Misión &amp; Visión</a></li>
-    <li><a href="index.html#servicios">Servicios</a></li>
-    <li><a href="index.html#galeria">Galería</a></li>
-    <li><a href="historia.html">Historia</a></li>
+    <li class="nav-dropdown">
+      <a href="index.html#nosotros" class="nav-dropdown-toggle">
+        Nosotros <span class="nav-arrow">▾</span>
+      </a>
+      <ul class="nav-submenu">
+        <li><a href="index.html#nosotros">🏢 Quiénes Somos</a></li>
+        <li><a href="index.html#mision">🎯 Misión &amp; Visión</a></li>
+        <li><a href="index.html#servicios">🚚 Servicios</a></li>
+        <li><a href="index.html#galeria">🖼️ Galería</a></li>
+        <li><a href="index.html#contacto">📍 Contacto</a></li>
+      </ul>
+    </li>
+    <li><a href="historia.html" class="active">Historia</a></li>
     <li><a href="noticias.html">Noticias</a></li>
     <li><a href="certificados.html">Certificados</a></li>
     <li><a href="vacantes.html">Vacantes</a></li>
-    <li><a href="index.html#contacto">Contacto</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
   </ul>
@@ -160,7 +390,6 @@
   </div>
 
   <div class="pilares-grid">
-
     <div class="pilar-card reveal">
       <div class="pilar-icon-wrap">🏆</div>
       <div class="pilar-card-text">
@@ -168,7 +397,6 @@
         <p>El deseo innato de construir algo grande y duradero, que beneficiara a todos los que formaran parte del proyecto.</p>
       </div>
     </div>
-
     <div class="pilar-card reveal">
       <div class="pilar-icon-wrap">🔥</div>
       <div class="pilar-card-text">
@@ -176,7 +404,6 @@
         <p>Personas valientes y comprometidas, dispuestas a conquistar el mercado y superar cualquier obstáculo juntas.</p>
       </div>
     </div>
-
     <div class="pilar-card reveal">
       <div class="pilar-icon-wrap">🔭</div>
       <div class="pilar-card-text">
@@ -184,7 +411,6 @@
         <p>Un nombre que nació de una visión trazada con claridad: DistriVision, la realización de un sueño hecho realidad.</p>
       </div>
     </div>
-
     <div class="pilar-card reveal">
       <div class="pilar-icon-wrap">👨‍👩‍👧‍👦</div>
       <div class="pilar-card-text">
@@ -192,7 +418,6 @@
         <p>La tradición de ser empresarios corre en nuestra sangre. DistriVision es el orgullo de una familia que soñó en grande.</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -225,10 +450,11 @@
 <!-- ════ FOOTER ════ -->
 <footer>
   <div class="footer-bottom">
-    <p>© 2025 DistriVision LTDA. Todos los derechos reservados.</p>
+    <p>© 2026 DistriVision LTDA. Todos los derechos reservados.</p>
     <p>Distribución con Excelencia y Compromiso</p>
   </div>
 </footer>
+
 <!-- ══════════════ CHATBOT WIDGET ══════════════ -->
 <button id="dv-help-btn" aria-label="Abrir asistente de ayuda">
   <svg class="icon-bot" width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -259,6 +485,7 @@
   <div id="dvDynamic"></div>
   <div class="dv-chat-footer">Potenciado por <span>DistriVision</span> · Neiva, Colombia</div>
 </div>
+
 <!-- ════ SCRIPTS ════ -->
 <script>
 /* ── CURSOR ── */
@@ -282,15 +509,45 @@ window.addEventListener('scroll', () => {
   progressBar.style.width = pct + '%';
 }, { passive: true });
 
+/* ── NAV SCROLLED ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
 /* ── HAMBURGUESA ── */
-const navbar  = document.getElementById('navbar');
 const hambBtn = document.getElementById('navHamburger');
 if (hambBtn) {
   hambBtn.addEventListener('click', () => navbar.classList.toggle('menu-open'));
-  document.querySelectorAll('#navMenu a').forEach(l =>
+  document.querySelectorAll('#navMenu > li > a:not(.nav-dropdown-toggle)').forEach(l =>
     l.addEventListener('click', () => navbar.classList.remove('menu-open'))
   );
 }
+
+/* ── DROPDOWN NOSOTROS ── */
+(function setupDropdown() {
+  const dropItem = document.querySelector('.nav-dropdown');
+  if (!dropItem) return;
+  const toggle = dropItem.querySelector('.nav-dropdown-toggle');
+
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    dropItem.classList.toggle('open');
+  });
+
+  dropItem.querySelectorAll('.nav-submenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropItem.classList.remove('open');
+      navbar.classList.remove('menu-open');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropItem.contains(e.target)) {
+      dropItem.classList.remove('open');
+    }
+  });
+})();
 
 /* ── PARTÍCULAS ── */
 (function createParticles() {
@@ -313,8 +570,6 @@ if (hambBtn) {
     hero.appendChild(p);
   }
 })();
-  
-
 
 /* ── REVEAL ON SCROLL ── */
 (function setupReveal() {
@@ -330,38 +585,27 @@ if (hambBtn) {
   els.forEach(el => obs.observe(el));
 })();
 
-/* ── TIMELINE MÓVIL — columna única ── */
+/* ── TIMELINE MÓVIL ── */
 (function setupMobileTimeline() {
   function isMobile() { return window.innerWidth <= 900; }
-
   function build() {
     if (!isMobile()) return;
     document.querySelectorAll('.tl-item').forEach(item => {
-      if (item.querySelector('.tl-mobile-card')) return; // ya procesado
-
-      // Buscar la tl-card (puede estar en tl-left o tl-right)
+      if (item.querySelector('.tl-mobile-card')) return;
       const card = item.querySelector('.tl-card');
       if (!card) return;
-
-      const icon  = card.querySelector('.tl-icon')  ? card.querySelector('.tl-icon').textContent  : '';
-      const title = card.querySelector('h4')         ? card.querySelector('h4').innerHTML           : '';
-      const body  = card.querySelector('p')          ? card.querySelector('p').innerHTML            : '';
-
-      // Crear dot móvil
-      const dot = document.createElement('div');
-      dot.className = 'tl-mobile-dot';
-
-      // Crear tarjeta móvil
+      const icon  = card.querySelector('.tl-icon') ? card.querySelector('.tl-icon').textContent : '';
+      const title = card.querySelector('h4')        ? card.querySelector('h4').innerHTML          : '';
+      const body  = card.querySelector('p')         ? card.querySelector('p').innerHTML           : '';
+      const dot2  = document.createElement('div');
+      dot2.className = 'tl-mobile-dot';
       const mc = document.createElement('div');
       mc.className = 'tl-mobile-card';
       mc.innerHTML = `<span class="tl-mobile-icon">${icon}</span><h4>${title}</h4><p>${body}</p>`;
-
-      item.appendChild(dot);
+      item.appendChild(dot2);
       item.appendChild(mc);
     });
   }
-
-  // Construir al cargar
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', build);
   } else {
@@ -381,7 +625,9 @@ if (hambBtn) {
     btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
   });
 })();
-  (function(){
+
+/* ── CHATBOT ── */
+(function(){
   const helpBtn   = document.getElementById('dv-help-btn');
   const chatPanel = document.getElementById('dv-chat-panel');
   const chatBody  = document.getElementById('dvChatBody');
@@ -393,116 +639,91 @@ if (hambBtn) {
     { icon:'📋', label:'Cómo obtener mi certificado', sub:'Pasos del proceso explicados', id:'certificado' },
     { icon:'💼', label:'Vacantes y empleo',           sub:'Trabaja con DistriVision',     id:'vacantes'    }
   ];
-
   const ANSWERS = {
     contacto: {
       title:'📞 Contáctanos directamente',
-      html:`
-        <p>Puedes comunicarte con nosotros por cualquiera de estos medios:</p><br>
+      html:`<p>Puedes comunicarte con nosotros por cualquiera de estos medios:</p><br>
         <p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p>
         <p>📞 <b>Teléfono:</b> (8) 870 34 34</p>
         <p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p>
         <p>✉️ <b>RR.HH.:</b> <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>✉️ <b>General:</b> <a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></p>
-      `
+        <p>✉️ <b>General:</b> <a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></p>`
     },
     certificado: {
       title:'📋 Cómo obtener tu certificado',
-      html:`
-        <p><b>Sigue estos 3 sencillos pasos:</b></p><br>
+      html:`<p><b>Sigue estos 3 sencillos pasos:</b></p><br>
         <p><b>1️⃣ Descarga e imprime</b> el formato desde la carpeta de Drive en esta página.</p>
         <p><b>2️⃣ Diligencia</b> todos los campos con letra clara y legible.</p>
         <p><b>3️⃣ Preséntalo</b> en Recursos Humanos para firma y sello oficial.</p><br>
-        <p>📍 <b>RR.HH.:</b> CL 26 SUR No. 6 – 74, Neiva</p>
-      `
+        <p>📍 <b>RR.HH.:</b> CL 26 SUR No. 6 – 74, Neiva</p>`
     },
     vacantes: {
       title:'💼 Vacantes en DistriVision',
-      html:`
-        <p>¿Quieres ser parte de nuestro equipo?</p><br>
+      html:`<p>¿Quieres ser parte de nuestro equipo?</p><br>
         <p>👉 <a href="vacantes.html">Ver vacantes disponibles →</a></p><br>
         <p>O envía tu hoja de vida a:</p>
         <p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>📱 <a href="https://wa.me/573105996169" target="_blank">WhatsApp: 310 599 6169</a></p>
-      `
+        <p>📱 <a href="https://wa.me/573105996169" target="_blank">WhatsApp: 310 599 6169</a></p>`
     }
   };
 
-  helpBtn.addEventListener('click', ()=>{
+  helpBtn.addEventListener('click', () => {
     isOpen = !isOpen;
     helpBtn.classList.toggle('open', isOpen);
     chatPanel.classList.toggle('open', isOpen);
-    if(isOpen && !initialized) initChat();
+    if (isOpen && !initialized) initChat();
   });
 
-  function initChat(){
+  function initChat() {
     initialized = true;
-    addTyping(()=>{
+    addTyping(() => {
       addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte hoy?');
-      setTimeout(()=>showOptions(), 400);
+      setTimeout(() => showOptions(), 400);
     });
   }
-
-  function showOptions(){
+  function showOptions() {
     dynamic.innerHTML = '<div class="dv-options" id="dvOptions"></div>';
     const container = document.getElementById('dvOptions');
-    OPTIONS.forEach((opt,i)=>{
+    OPTIONS.forEach((opt, i) => {
       const b = document.createElement('button');
       b.className = 'dv-option-btn';
-      b.style.animationDelay = (i*.08)+'s';
-      b.innerHTML = `
-        <div class="opt-icon">${opt.icon}</div>
-        <div class="opt-label">
-          <div>${opt.label}</div>
-          <div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${opt.sub}</div>
-        </div>
-        <span class="opt-arrow">›</span>
-      `;
-      b.addEventListener('click', ()=>selectOption(opt));
+      b.style.animationDelay = (i * .08) + 's';
+      b.innerHTML = `<div class="opt-icon">${opt.icon}</div>
+        <div class="opt-label"><div>${opt.label}</div>
+        <div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${opt.sub}</div></div>
+        <span class="opt-arrow">›</span>`;
+      b.addEventListener('click', () => selectOption(opt));
       container.appendChild(b);
     });
     scrollBot();
   }
-
-  function selectOption(opt){
-    addUser(opt.icon+' '+opt.label);
+  function selectOption(opt) {
+    addUser(opt.icon + ' ' + opt.label);
     dynamic.innerHTML = '';
-    addTyping(()=>{
+    addTyping(() => {
       const ans = ANSWERS[opt.id];
-      dynamic.innerHTML = `
-        <div class="dv-answer">
-          <div class="dv-answer-card"><strong>${ans.title}</strong>${ans.html}</div>
-          <button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button>
-        </div>`;
-      document.getElementById('dvBackBtn').addEventListener('click',()=>{
+      dynamic.innerHTML = `<div class="dv-answer">
+        <div class="dv-answer-card"><strong>${ans.title}</strong>${ans.html}</div>
+        <button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button>
+      </div>`;
+      document.getElementById('dvBackBtn').addEventListener('click', () => {
         addBot('¿Hay algo más en lo que pueda ayudarte?');
         dynamic.innerHTML = '';
-        setTimeout(()=>showOptions(), 300);
+        setTimeout(() => showOptions(), 300);
       });
       scrollBot();
     });
   }
-
-  function addBot(html){
-    const el=document.createElement('div');
-    el.className='dv-bubble';
-    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${html}</div>`;
-    chatBody.appendChild(el);scrollBot();
+  function addBot(html)  { const el = document.createElement('div'); el.className = 'dv-bubble'; el.innerHTML = `<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${html}</div>`; chatBody.appendChild(el); scrollBot(); }
+  function addUser(text) { const el = document.createElement('div'); el.className = 'dv-bubble user'; el.innerHTML = `<div class="dv-bubble-text">${text}</div>`; chatBody.appendChild(el); scrollBot(); }
+  function addTyping(cb) {
+    const el = document.createElement('div');
+    el.className = 'dv-typing';
+    el.innerHTML = `<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
+    chatBody.appendChild(el); scrollBot();
+    setTimeout(() => { chatBody.removeChild(el); cb(); }, 950);
   }
-  function addUser(text){
-    const el=document.createElement('div');
-    el.className='dv-bubble user';
-    el.innerHTML=`<div class="dv-bubble-text">${text}</div>`;
-    chatBody.appendChild(el);scrollBot();
-  }
-  function addTyping(cb){
-    const el=document.createElement('div');
-    el.className='dv-typing';
-    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
-    chatBody.appendChild(el);scrollBot();
-    setTimeout(()=>{chatBody.removeChild(el);cb();},950);
-  }
-  function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
+  function scrollBot() { setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 50); }
 })();
 </script>
 </body>
