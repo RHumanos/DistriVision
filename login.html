@@ -67,6 +67,29 @@ body{font-family:'Lato',sans-serif;color:var(--text);background:var(--gray);over
 }
 @keyframes loginReveal{from{opacity:0;transform:translateY(32px) scale(.95)}to{opacity:1;transform:none}}
 
+/* ── BOTÓN VOLVER (X) ── */
+.login-back-btn {
+  position:absolute;
+  top:18px;right:18px;
+  width:34px;height:34px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.6);
+  font-size:1rem;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all .2s;
+  font-weight:700;
+}
+.login-back-btn:hover {
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  border-color:rgba(255,255,255,.4);
+  transform:rotate(90deg);
+}
+
 .login-logo {
   text-align:center;margin-bottom:36px;
 }
@@ -118,9 +141,39 @@ body{font-family:'Lato',sans-serif;color:var(--text);background:var(--gray);over
   color:#fca5a5;font-size:.82rem;border-radius:10px;padding:10px 14px;
   margin-top:14px;display:none;text-align:center;
 }
+
+/* ── HINT CON CONTRASEÑAS OCULTAS ── */
 .login-hint{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);text-align:center}
-.login-hint p{font-size:.73rem;color:rgba(255,255,255,.25);line-height:1.7}
-.login-hint strong{color:rgba(255,255,255,.45)}
+.login-hint-toggle {
+  font-size:.72rem;color:rgba(255,255,255,.3);
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:5px;
+  border:none;background:none;font-family:'Lato',sans-serif;
+  padding:4px 8px;border-radius:6px;
+  transition:all .2s;
+  user-select:none;
+}
+.login-hint-toggle:hover{color:rgba(255,255,255,.55);background:rgba(255,255,255,.05)}
+.login-hint-toggle .hint-icon{font-size:.85rem}
+.login-hint-creds {
+  display:none;
+  margin-top:10px;
+  padding:10px 14px;
+  background:rgba(0,0,0,.25);
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.login-hint-creds.visible{display:block;animation:fadeInHint .25s ease}
+@keyframes fadeInHint{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.login-hint-creds p{font-size:.73rem;color:rgba(255,255,255,.35);line-height:2}
+.login-hint-creds strong{color:rgba(255,255,255,.55)}
+.login-hint-creds code{
+  font-family:monospace;font-size:.75rem;
+  background:rgba(255,255,255,.08);
+  padding:1px 6px;border-radius:4px;
+  color:rgba(100,185,240,.8);
+  letter-spacing:.5px;
+}
 
 /* ══════════════════════════════
    MAIN APP (oculto hasta login)
@@ -485,6 +538,10 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
   <div class="login-orb login-orb-1"></div>
   <div class="login-orb login-orb-2"></div>
   <div class="login-box">
+
+    <!-- ✕ Botón volver a index.html -->
+    <a href="index.html" class="login-back-btn" title="Volver al inicio">✕</a>
+
     <div class="login-logo">
       <div class="login-logo-circle">🏢</div>
       <div class="login-title">Distri<span>Vision</span></div>
@@ -508,13 +565,20 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
     <button class="login-btn" onclick="doLogin()">Ingresar al sistema →</button>
     <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
 
+    <!-- Hint con contraseñas ocultas por defecto -->
     <div class="login-hint">
-      <p>
-        <strong>Admin:</strong> admin / DV@dmin2025 &nbsp;|&nbsp;
-        <strong>Jefe:</strong> jefe / JefeRH#2025<br>
-        <strong>Auxiliar:</strong> auxiliar / Aux*2025
-      </p>
+      <button class="login-hint-toggle" onclick="toggleHint(this)">
+        <span class="hint-icon">🔑</span> Ver credenciales de acceso
+      </button>
+      <div class="login-hint-creds" id="login-hint-creds">
+        <p>
+          <strong>👑 Admin:</strong> <code>admin</code> / <code>DV@dmin2025</code><br>
+          <strong>🧑‍💼 Jefe:</strong> <code>jefe</code> / <code>JefeRH#2025</code><br>
+          <strong>👤 Auxiliar:</strong> <code>auxiliar</code> / <code>Aux*2025</code>
+        </p>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -706,6 +770,17 @@ tbody td{padding:14px 16px;font-size:.87rem;color:var(--text);vertical-align:mid
 
 <script>
 /* ═══════════════════════════════════════════════
+   HINT TOGGLE
+═══════════════════════════════════════════════ */
+function toggleHint(btn) {
+  const creds = document.getElementById('login-hint-creds');
+  const isVisible = creds.classList.toggle('visible');
+  btn.innerHTML = isVisible
+    ? '<span class="hint-icon">🙈</span> Ocultar credenciales'
+    : '<span class="hint-icon">🔑</span> Ver credenciales de acceso';
+}
+
+/* ═══════════════════════════════════════════════
    CREDENCIALES — Incrustadas en código
    (sin base de datos)
 ═══════════════════════════════════════════════ */
@@ -724,37 +799,11 @@ let modalMode = 'add'; // 'add' | 'edit' | 'view'
 
 /* ═══════════════════════════════════════════════
    BASE DE DATOS DE EMPLEADOS (localStorage-backed)
-   20 campos por empleado:
-   1.  id               — Identificador único
-   2.  nombres          — Nombres completos
-   3.  apellidos        — Apellidos completos
-   4.  cedula           — Número de cédula
-   5.  fecha_nacimiento — Fecha de nacimiento
-   6.  cargo            — Cargo/Posición
-   7.  area             — Área (Administrativo|Comercial|Bodega|Transporte)
-   8.  fecha_ingreso    — Fecha de ingreso
-   9.  salario          — Salario base
-   10. telefono         — Teléfono celular
-   11. telefono_alt     — Teléfono alternativo
-   12. email            — Correo electrónico
-   13. direccion        — Dirección residencia
-   14. eps              — EPS afiliada
-   15. pension          — Fondo de pensión
-   16. arl              — ARL
-   17. tipo_contrato    — Tipo de contrato
-   18. banco            — Banco cuenta nómina
-   19. num_cuenta       — Número de cuenta bancaria
-   20. estado           — Estado (Activo|Inactivo)
 ═══════════════════════════════════════════════ */
 
 const STORAGE_KEY = 'dv_personal_v1';
 
 const DEFAULT_EMPLOYEES = [
-  /* ──────────────────────────────
-     ÁREA: ADMINISTRATIVO (5 empleados)
-     Agrega más empleados copiando este bloque
-     y cambiando area a "Administrativo"
-  ────────────────────────────── */
   {
     id: 1, nombres: 'Carlos Alberto', apellidos: 'Ramírez Torres',
     cedula: '1012345678', fecha_nacimiento: '1985-03-14', cargo: 'Coordinador Administrativo',
@@ -800,13 +849,6 @@ const DEFAULT_EMPLOYEES = [
     arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
     num_cuenta: '567-890123-45', estado: 'Activo'
   },
-  // AGREGA MÁS EMPLEADOS DE ADMINISTRATIVO AQUÍ (id 6 en adelante del área)
-
-  /* ──────────────────────────────
-     ÁREA: COMERCIAL (5 empleados)
-     Agrega más empleados copiando este bloque
-     y cambiando area a "Comercial"
-  ────────────────────────────── */
   {
     id: 6, nombres: 'Andrés Felipe', apellidos: 'Moreno Castro',
     cedula: '1045678901', fecha_nacimiento: '1988-06-14', cargo: 'Director Comercial',
@@ -852,13 +894,6 @@ const DEFAULT_EMPLOYEES = [
     arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
     num_cuenta: '012-345678-90', estado: 'Activo'
   },
-  // AGREGA MÁS EMPLEADOS DE COMERCIAL AQUÍ
-
-  /* ──────────────────────────────
-     ÁREA: BODEGA (5 empleados)
-     Agrega más empleados copiando este bloque
-     y cambiando area a "Bodega"
-  ────────────────────────────── */
   {
     id: 11, nombres: 'Pedro Antonio', apellidos: 'Vargas Niño',
     cedula: '80123456', fecha_nacimiento: '1980-01-25', cargo: 'Jefe de Bodega',
@@ -904,13 +939,6 @@ const DEFAULT_EMPLOYEES = [
     arl: 'Sura', tipo_contrato: 'Indefinido', banco: 'Bancolombia',
     num_cuenta: '567-801234-15', estado: 'Activo'
   },
-  // AGREGA MÁS EMPLEADOS DE BODEGA AQUÍ
-
-  /* ──────────────────────────────
-     ÁREA: TRANSPORTE (5 empleados)
-     Agrega más empleados copiando este bloque
-     y cambiando area a "Transporte"
-  ────────────────────────────── */
   {
     id: 16, nombres: 'Gilberto', apellidos: 'Rincón Espitia',
     cedula: '77890123', fecha_nacimiento: '1973-04-09', cargo: 'Conductor Senior',
@@ -956,19 +984,6 @@ const DEFAULT_EMPLOYEES = [
     arl: 'Sura', tipo_contrato: 'Prestación', banco: 'Nequi',
     num_cuenta: '012-456789-20', estado: 'Activo'
   }
-  // AGREGA MÁS EMPLEADOS DE TRANSPORTE AQUÍ
-  // ─────────────────────────────────────────
-  // PLANTILLA PARA NUEVO EMPLEADO:
-  // {
-  //   id: NUMERO_UNICO, nombres: 'Nombres', apellidos: 'Apellidos',
-  //   cedula: 'CEDULA', fecha_nacimiento: 'AAAA-MM-DD', cargo: 'Cargo',
-  //   area: 'Administrativo|Comercial|Bodega|Transporte',
-  //   fecha_ingreso: 'AAAA-MM-DD', salario: '0000000',
-  //   telefono: '300XXXXXXX', telefono_alt: '', email: 'correo@distrivision.co',
-  //   direccion: 'Dirección completa', eps: 'EPS', pension: 'Fondo',
-  //   arl: 'ARL', tipo_contrato: 'Tipo', banco: 'Banco',
-  //   num_cuenta: 'XXX-XXXXXX-XX', estado: 'Activo'
-  // },
 ];
 
 /* ═══ INIT DATA ═══ */
@@ -1246,7 +1261,6 @@ function closeModalOverlay(e) {
 /* ─── FORM ─── */
 function buildForm(emp) {
   const v = emp || {};
-  const ro = '';
   return `
   <div class="form-section">
     <div class="form-section-title">👤 Información Personal</div>
