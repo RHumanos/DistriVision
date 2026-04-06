@@ -3060,7 +3060,7 @@ function doLogout() {
 
 function applyRoleUI() {
   const canAdd = currentUser.canAdd;
-  document.querySelectorAll('#btn-add-emp, [onclick="openModal('add')"]').forEach(el => {
+  document.querySelectorAll('#btn-add-emp').forEach(el => {
     el.style.display = canAdd ? '' : 'none';
   });
 }
