@@ -10,6 +10,136 @@
 <link rel="apple-touch-icon" href="img/1 (3).png">
 <link rel="shortcut icon" href="img/1 (3).png">
 </head>
+  <style>
+    /* ══════════════════════════════
+   NAV DROPDOWN — Nosotros
+══════════════════════════════ */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.nav-arrow {
+  font-size: .65rem;
+  transition: transform .28s cubic-bezier(.34,1.56,.64,1);
+  display: inline-block;
+  color: var(--blue);
+  opacity: .7;
+}
+
+.nav-dropdown:hover .nav-arrow,
+.nav-dropdown.open .nav-arrow {
+  transform: rotate(180deg);
+}
+
+/* Submenú */
+.nav-submenu {
+  position: absolute !important;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(37,92,149,.18), 0 0 0 1px rgba(37,92,149,.06);
+  padding: 8px;
+  min-width: 220px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+  z-index: 200;
+}
+
+/* Triángulo decorativo */
+.nav-submenu::before {
+  content: '';
+  position: absolute;
+  top: -7px; left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-bottom-color: var(--white);
+  border-top: none;
+  filter: drop-shadow(0 -2px 2px rgba(37,92,149,.06));
+}
+
+/* Visible en hover desktop */
+.nav-dropdown:hover .nav-submenu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Items del submenú */
+.nav-submenu li {
+  width: 100%;
+}
+
+.nav-submenu a {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px !important;
+  border-radius: 10px !important;
+  font-size: .86rem !important;
+  font-weight: 500 !important;
+  color: var(--text) !important;
+  transition: background .18s, color .18s, padding-left .18s !important;
+  white-space: nowrap;
+}
+
+.nav-submenu a::after { display: none !important; }
+
+.nav-submenu a:hover {
+  background: var(--blue-xlight) !important;
+  color: var(--blue) !important;
+  padding-left: 20px !important;
+}
+
+/* ── Móvil: dropdown dentro del menú hamburguesa ── */
+@media (max-width: 900px) {
+  .nav-submenu {
+    position: static !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: var(--blue-xlight) !important;
+    padding: 4px 0 4px 16px !important;
+    margin: 0 !important;
+    border-left: 3px solid var(--blue-light);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 1;
+    pointer-events: none;
+    transition: max-height .35s ease, padding .25s ease !important;
+  }
+
+  .nav-submenu::before { display: none; }
+
+  .nav-dropdown.open .nav-submenu {
+    max-height: 400px;
+    pointer-events: all;
+    padding: 6px 0 6px 16px !important;
+  }
+
+  .nav-submenu a {
+    border-bottom: none !important;
+    padding: 11px 12px !important;
+    font-size: .88rem !important;
+  }
+
+  .nav-submenu a:hover {
+    padding-left: 16px !important;
+  }
+}
+   </style>
 <body>
 
 <!-- ══════════════ SPLASH SCREEN ══════════════ -->
