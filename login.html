@@ -3180,9 +3180,9 @@ function renderTable() {
       <td style="font-size:.85rem">${e.eps}</td>
       <td><span style="font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:50px;background:${e.estado==='Activo'?'rgba(22,163,74,.1)':'rgba(156,163,175,.1)'};color:${e.estado==='Activo'?'#16a34a':'#6b7280'}">${e.estado}</span></td>
       <td><div class="actions-cell">
-        <button class="btn btn-outline btn-sm btn-icon" onclick="openModal('view',${e.id})" title="Ver detalle">👁</button>
-        ${canEdit   ? `<button class="btn btn-accent btn-sm btn-icon" onclick="openModal('edit',${e.id})" title="Editar">✏️</button>` : ''}
-        ${canDelete ? `<button class="btn btn-danger btn-sm btn-icon" onclick="deleteEmployee(${e.id})" title="Eliminar">🗑</button>` : ''}
+        <button class="btn btn-outline btn-sm btn-icon" onclick="openModal(&quot;view&quot;,${e.id})" title="Ver detalle">👁</button>
+${canEdit   ? `<button class="btn btn-accent btn-sm btn-icon" onclick="openModal(&quot;edit&quot;,${e.id})" title="Editar">✏️</button>` : ''}
+${canDelete ? `<button class="btn btn-danger btn-sm btn-icon" onclick="openModal(&quot;delete&quot;,${e.id})" title="Eliminar">🗑</button>` : ''}
       </div></td>
     </tr>`;
   }).join('');
