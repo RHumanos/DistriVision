@@ -17,6 +17,7 @@
 :root {
   --blue:       #255c95;
   --blue-dark:  #1a3d5c;
+  --blue-deep:  #0f2642;
   --blue-light: #dbeafe;
   --blue-xlight:#eff6ff;
   --accent:     #e8832a;
@@ -38,13 +39,119 @@ img { max-width: 100%; }
 
 #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; z-index: 999; background: linear-gradient(90deg, #228fd2, #255c95); border-radius: 0 3px 3px 0; transition: width .1s linear; box-shadow: 0 0 8px rgba(34,143,210,.4); }
 
-#navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 6vw; height: 76px; background: rgba(255,255,255,.96); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(37,92,149,.1); transition: box-shadow .3s; }
+/* ══════════════════════════════
+   TOP BAR
+══════════════════════════════ */
+#top-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 201;
+  height: 38px;
+  background: var(--blue-deep);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6vw;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+#top-bar::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent, transparent 120px,
+    rgba(255,255,255,.015) 120px,
+    rgba(255,255,255,.015) 121px
+  );
+  pointer-events: none;
+}
+.top-bar-left { display: flex; align-items: center; gap: 24px; }
+.top-bar-left span, .top-bar-hours {
+  font-family: 'Lato', sans-serif;
+  font-size: .72rem;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .3px;
+  display: flex; align-items: center; gap: 6px;
+}
+.top-bar-right { display: flex; align-items: center; gap: 20px; }
+.top-bar-login {
+  display: flex; align-items: center; gap: 7px;
+  font-family: 'Lato', sans-serif;
+  font-size: .72rem; font-weight: 700;
+  color: rgba(255,255,255,.75);
+  text-decoration: none; letter-spacing: .5px;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.top-bar-login:hover {
+  background: rgba(255,255,255,.12); color: var(--white);
+  border-color: rgba(255,255,255,.25); transform: translateY(-1px);
+}
+.top-bar-login svg { opacity: .8; transition: opacity .2s; }
+.top-bar-login:hover svg { opacity: 1; }
+
+/* ══════════════════════════════
+   NAV DROPDOWN — Nosotros
+══════════════════════════════ */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: flex !important; align-items: center; gap: 5px; cursor: pointer;
+}
+.nav-arrow {
+  font-size: .65rem;
+  transition: transform .28s cubic-bezier(.34,1.56,.64,1);
+  display: inline-block; color: var(--blue); opacity: .7;
+}
+.nav-dropdown.open .nav-arrow { transform: rotate(180deg); }
+.nav-submenu {
+  position: absolute !important;
+  top: calc(100% + 16px); left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(37,92,149,.18), 0 0 0 1px rgba(37,92,149,.06);
+  padding: 8px; min-width: 220px;
+  display: flex !important; flex-direction: column !important; gap: 2px !important;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+  z-index: 200;
+}
+.nav-submenu::before {
+  content: '';
+  position: absolute; top: -7px; left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-bottom-color: var(--white); border-top: none;
+  filter: drop-shadow(0 -2px 2px rgba(37,92,149,.06));
+}
+.nav-dropdown.open .nav-submenu {
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-submenu li { width: 100%; }
+.nav-submenu a {
+  display: flex !important; align-items: center; gap: 10px;
+  padding: 11px 16px !important; border-radius: 10px !important;
+  font-size: .86rem !important; font-weight: 500 !important;
+  color: var(--text) !important;
+  transition: background .18s, color .18s, padding-left .18s !important;
+  white-space: nowrap;
+}
+.nav-submenu a::after { display: none !important; }
+.nav-submenu a:hover {
+  background: var(--blue-xlight) !important;
+  color: var(--blue) !important; padding-left: 20px !important;
+}
+
+#navbar { position: fixed; top: 38px; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 6vw; height: 76px; background: rgba(255,255,255,.96); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(37,92,149,.1); transition: box-shadow .3s; }
 #navbar.scrolled { box-shadow: 0 4px 24px rgba(37,92,149,.12); }
 .nav-logo { display: flex; align-items: center; text-decoration: none; }
 .logo-img  { height: 42px; width: auto; }
 #navMenu { display: flex; align-items: center; gap: 0; list-style: none; }
-#navMenu a { display: block; padding: 8px 14px; font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: color .2s, background .2s; }
-#navMenu a:hover { color: var(--blue); background: var(--blue-xlight); }
+#navMenu > li > a { display: block; padding: 8px 14px; font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600; color: var(--text-muted); text-decoration: none; border-radius: 8px; transition: color .2s, background .2s; }
+#navMenu > li > a:hover { color: var(--blue); background: var(--blue-xlight); }
 .nav-cta { background: var(--blue) !important; color: #fff !important; border-radius: 50px !important; padding: 9px 20px !important; box-shadow: 0 4px 14px rgba(37,92,149,.3); transition: transform .2s, box-shadow .2s !important; }
 .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,92,149,.4) !important; }
 .nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; transition: background .2s; }
@@ -54,19 +161,57 @@ img { max-width: 100%; }
 #navbar.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 #navbar.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* ── Responsive ── */
 @media (max-width: 900px) {
-  #navbar { height: 68px; padding: 0 5vw; }
+  #top-bar { padding: 0 5vw; height: 34px; }
+  .top-bar-left span:first-child, .top-bar-hours { display: none; }
+  .top-bar-left span:last-child { font-size: .68rem; }
+  #navbar { top: 34px; height: 68px; padding: 0 5vw; }
   .nav-hamburger { display: flex; }
-  #navMenu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(16px); border-bottom: 2px solid rgba(37,92,149,.12); box-shadow: 0 12px 40px rgba(37,92,149,.15); padding: 12px 5vw 20px; gap: 4px; animation: menuSlideDown .25s cubic-bezier(.16,1,.3,1) both; }
+  #navMenu {
+    display: none; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(255,255,255,.98); backdrop-filter: blur(16px);
+    border-bottom: 2px solid rgba(37,92,149,.12);
+    box-shadow: 0 12px 40px rgba(37,92,149,.15);
+    padding: 12px 5vw 20px; gap: 4px;
+    animation: menuSlideDown .25s cubic-bezier(.16,1,.3,1) both;
+  }
   #navbar.menu-open #navMenu { display: flex; }
   #navMenu li { width: 100%; }
-  #navMenu a { padding: 11px 16px; font-size: .9rem; border-radius: 10px; width: 100%; border-bottom: 1px solid rgba(37,92,149,.06); }
+  #navMenu > li > a { padding: 11px 16px; font-size: .9rem; border-radius: 10px; width: 100%; border-bottom: 1px solid rgba(37,92,149,.06); }
   #navMenu li:last-child a { border-bottom: none; }
   .nav-cta { margin-top: 8px; text-align: center; border-radius: 50px !important; padding: 12px 20px !important; }
   .cursor-dot, .cursor-ring { display: none; }
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
   #portalSidebar .sidebar-widget:nth-child(1),
   #portalSidebar .sidebar-widget:nth-child(2) { display: none; }
+
+  .nav-submenu {
+    position: static !important; transform: none !important;
+    box-shadow: none !important; border-radius: 0 !important;
+    background: var(--blue-xlight) !important;
+    padding: 0 !important; margin: 0 !important;
+    border-left: 3px solid var(--blue-light);
+    max-height: 0; overflow: hidden; opacity: 1;
+    pointer-events: none;
+    transition: max-height .35s ease !important;
+  }
+  .nav-submenu::before { display: none; }
+  .nav-dropdown.open .nav-submenu {
+    max-height: 400px; pointer-events: all;
+    padding: 6px 0 6px 16px !important;
+  }
+  .nav-submenu a {
+    border-bottom: none !important; padding: 11px 12px !important;
+    font-size: .88rem !important;
+  }
+}
+@media (max-width: 600px) {
+  #top-bar { height: 30px; padding: 0 4vw; }
+  .top-bar-left { display: none; }
+  .top-bar-login { font-size: .68rem; padding: 4px 11px; }
+  #navbar { top: 30px; }
 }
 @keyframes menuSlideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -132,24 +277,52 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
+<!-- ══════════════ TOP BAR ══════════════ -->
+<div id="top-bar">
+  <div class="top-bar-left">
+    <span>📞 (8) 870 34 34 &nbsp;|&nbsp; 310 599 6169</span>
+    <span>✉️ recurso.humano@distrivision.com.co</span>
+  </div>
+  <div class="top-bar-right">
+    <span class="top-bar-hours">🕐 Lun – Vie: 8:00 am – 6:00 pm</span>
+    <a href="login.html" class="top-bar-login">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Iniciar sesión
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════ NAV ══════════════ -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
     <img src="img/1 (3).png" alt="DistriVision" class="logo-img">
   </a>
   <ul id="navMenu">
-    <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="index.html#mision">Misión &amp; Visión</a></li>
-    <li><a href="index.html#servicios">Servicios</a></li>
-    <li><a href="index.html#galeria">Galería</a></li>
+    <li class="nav-dropdown">
+      <a href="index.html#nosotros" class="nav-dropdown-toggle">
+        Nosotros <span class="nav-arrow">▾</span>
+      </a>
+      <ul class="nav-submenu">
+        <li><a href="index.html#nosotros">🏢 Quiénes Somos</a></li>
+        <li><a href="index.html#mision">🎯 Misión &amp; Visión</a></li>
+        <li><a href="index.html#servicios">🚚 Servicios</a></li>
+        <li><a href="index.html#galeria">🖼️ Galería</a></li>
+        <li><a href="index.html#contacto">📍 Contacto</a></li>
+      </ul>
+    </li>
     <li><a href="historia.html">Historia</a></li>
     <li><a href="noticias.html">Noticias</a></li>
     <li><a href="certificados.html">Certificados</a></li>
     <li><a href="vacantes.html">Vacantes</a></li>
-    <li><a href="index.html#contacto">Contacto</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú"
+          aria-expanded="false" aria-controls="navMenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -344,16 +517,9 @@ footer { background: #0f2642; font-family: 'Lato', sans-serif; }
   <div class="dv-chat-footer">Potenciado por <span>DistriVision</span> · Neiva, Colombia</div>
 </div>
 
-<!-- ════════════════════════════════════════════════════
-     ZONA DE DATOS — SOLO EDITAR AQUÍ
-     ▸ Agrega entradas para TODOS los meses del año.
-     ▸ El portal mostrará automáticamente los del mes actual.
-     ▸ El calendario mostrará los de cualquier mes al navegar.
-════════════════════════════════════════════════════ -->
 <script>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   1. CUMPLEAÑOS  ← AGREGA AQUÍ TODOS LOS MESES
-   Formato: { month: MES_NUMERO, day: DÍA, name: 'Nombre', photo: '' }
+   1. CUMPLEAÑOS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const BIRTHDAYS = [
   // ── MARZO ──
@@ -381,8 +547,6 @@ const BIRTHDAYS = [
   { month:4, day:15, name:'Jair Medina Pachongo',             photo:'' },
   { month:4, day:19, name:'Laura Valentina Avila Torres',     photo:'' },
   { month:4, day:26, name:'Daniel Mauricio Ojeda Caldon',     photo:'' },
-  // ── MAYO (ejemplo — reemplaza con los reales) ──
-  // { month:5, day:5,  name:'Ejemplo Nombre Apellido',          photo:'' },
 ];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -464,7 +628,7 @@ const POSTS = [
 ];
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   4. PRÓXIMOS EVENTOS (widget sidebar)
+   4. PRÓXIMOS EVENTOS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 const UPCOMING_EVENTS = [
   { day:'28', mon:'Mar', title:'Fecha límite Reglamento Interno', time:'📋 Firmar en RR.HH. antes de esta fecha' },
@@ -472,7 +636,7 @@ const UPCOMING_EVENTS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   MOTOR DEL PORTAL — No editar salvo que sepas lo que haces
+   MOTOR DEL PORTAL
 ═══════════════════════════════════════════════════════════════ */
 const MONTH_NAMES  = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const SHORT_MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
@@ -480,23 +644,20 @@ const DAY_NAMES    = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes'
 const BDAY_EMOJIS  = ['🎂','🎉','🥳','🎊','🎈','🌟','✨','💫','🎁','🎀'];
 function getRandomBdayEmoji() { return BDAY_EMOJIS[Math.floor(Math.random() * BDAY_EMOJIS.length)]; }
 
-/* ── Fecha real del sistema ── */
 const now        = new Date();
 const TODAY_DAY  = now.getDate();
-const TODAY_MON  = now.getMonth() + 1;   // 1–12
+const TODAY_MON  = now.getMonth() + 1;
 const TODAY_YEAR = now.getFullYear();
 
 document.getElementById('heroDay').textContent       = TODAY_DAY;
 document.getElementById('heroMonthYear').textContent = MONTH_NAMES[TODAY_MON - 1] + ' ' + TODAY_YEAR;
 
-/* ── Cumpleaños del MES ACTUAL (usa TODAY_MON del sistema) ── */
 const bdaysThisMonth = BIRTHDAYS.filter(b => b.month === TODAY_MON).sort((a,b) => a.day - b.day);
 const bdaysToday     = bdaysThisMonth.filter(b => b.day === TODAY_DAY);
 
 document.getElementById('bdayMonthLabel').textContent =
   bdaysThisMonth.length + ' en ' + MONTH_NAMES[TODAY_MON - 1];
 
-/* Sidebar: lista cumpleaños del mes */
 (function () {
   const list = document.getElementById('bdaySidebarList');
   if (!bdaysThisMonth.length) {
@@ -515,7 +676,6 @@ document.getElementById('bdayMonthLabel').textContent =
   }).join('');
 })();
 
-/* Sidebar: próximos eventos */
 (function () {
   const wrap = document.getElementById('upcomingEvents');
   if (!UPCOMING_EVENTS.length) {
@@ -535,7 +695,6 @@ document.getElementById('bdayMonthLabel').textContent =
     </div>`).join('');
 })();
 
-/* ── Feed ── */
 const feed      = document.getElementById('portalFeed');
 const feedEmpty = document.getElementById('feedEmpty');
 let allCards    = [];
@@ -546,7 +705,6 @@ function addCard(el, type) {
   allCards.push({ type, el });
 }
 
-/* ── Motor de partículas ── */
 function launchParticles(canvasId) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
@@ -579,7 +737,6 @@ function launchParticles(canvasId) {
   window.addEventListener('resize', () => { resize(); });
 }
 
-/* ① Tarjetas cumpleaños del DÍA */
 bdaysToday.forEach(b => {
   MODAL_DATA.push({ _bday: true, person: b });
   const idx      = MODAL_DATA.length - 1;
@@ -614,7 +771,6 @@ bdaysToday.forEach(b => {
   requestAnimationFrame(() => launchParticles(canvasId));
 });
 
-/* ② Celebraciones */
 if (!CELEBRATIONS.length) {
   MODAL_DATA.push({ _generic: true });
   const idx  = MODAL_DATA.length - 1;
@@ -658,7 +814,6 @@ if (!CELEBRATIONS.length) {
   });
 }
 
-/* ③ Resumen cumpleaños del mes */
 if (bdaysThisMonth.length) {
   const listHtml = bdaysThisMonth.map(b => `🎂 <b>${b.day} ${SHORT_MONTHS[TODAY_MON-1]}</b> — ${b.name}`).join('<br>');
   MODAL_DATA.push({ _bdayList: true, listHtml, month: MONTH_NAMES[TODAY_MON-1], total: bdaysThisMonth.length });
@@ -681,7 +836,6 @@ if (bdaysThisMonth.length) {
   addCard(card, 'cumpleanos');
 }
 
-/* ④ Posts activos */
 POSTS.forEach(p => {
   MODAL_DATA.push({ _post: true, data: p });
   const idx  = MODAL_DATA.length - 1;
@@ -711,7 +865,6 @@ POSTS.forEach(p => {
   addCard(card, p.type);
 });
 
-/* Contadores */
 const counts = {};
 allCards.forEach(c => counts[c.type] = (counts[c.type]||0) + 1);
 document.getElementById('cnt-todos').textContent = allCards.length;
@@ -720,7 +873,6 @@ document.getElementById('cnt-todos').textContent = allCards.length;
   if (el) el.textContent = counts[t] || 0;
 });
 
-/* ── Filtro de tabs ── */
 document.querySelectorAll('.ptab').forEach(tab => {
   tab.addEventListener('click', function () {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
@@ -752,7 +904,6 @@ document.querySelectorAll('.ptab').forEach(tab => {
   });
 });
 
-/* ── Modal ── */
 function openModal(idx) {
   const d = MODAL_DATA[idx]; if (!d) return;
   const band   = document.getElementById('cmmBand');
@@ -813,13 +964,11 @@ document.getElementById('commModal').addEventListener('click', e => { if (e.targ
 document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
 function closeModal() { document.getElementById('commModal').classList.remove('open'); document.body.style.overflow=''; }
 
-/* ── Calendario ── */
 let calViewMonth = TODAY_MON, calViewYear = TODAY_YEAR, calSelected = null;
 
 function buildCalendarEvents() {
   const map = {};
   function addEv(year, month, day, ev) { const key=`${year}-${month}-${day}`; if (!map[key]) map[key]=[]; map[key].push(ev); }
-  /* Cumpleaños: se muestran en TODOS los años en el calendario */
   BIRTHDAYS.forEach(b => addEv(calViewYear, b.month, b.day, { type:'birthday', icon:'🎂', title:`Cumpleaños: ${b.name}`, modalIdx:null }));
   CELEBRATIONS.forEach(cel => { if (cel.calDay && cel.calMonth) { const yr=cel.calYear||calViewYear; addEv(yr, cel.calMonth, cel.calDay, { type:'celebracion', icon:cel.icon||'🎉', title:cel.title, modalIdx:MODAL_DATA.findIndex(d=>d._cel&&d.data===cel) }); } });
   POSTS.forEach(p => { if (p.calDay && p.calMonth) { const yr=p.calYear||calViewYear; addEv(yr, p.calMonth, p.calDay, { type:p.type, icon:p.icon||'📢', title:p.title, modalIdx:MODAL_DATA.findIndex(d=>d._post&&d.data===p) }); } });
@@ -892,14 +1041,13 @@ function resetDayPanel() {
   document.getElementById('cdpEvents').innerHTML=`<div class="cdp-empty"><span>🗓️</span><p>Haz clic en un día para ver sus eventos</p></div>`;
 }
 
-/* ── Mood ── */
 function selectMood(btn) {
   document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   setTimeout(()=>{ document.getElementById('moodOptions').style.display='none'; document.getElementById('moodThanks').style.display='block'; },600);
 }
 
-/* ── Cursor personalizado ── */
+/* ── Cursor ── */
 const dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
 if (window.matchMedia('(pointer: fine)').matches) {
@@ -911,7 +1059,7 @@ if (window.matchMedia('(pointer: fine)').matches) {
 const pb=document.getElementById('scroll-progress');
 window.addEventListener('scroll',()=>{ pb.style.width=((window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100)+'%'; },{passive:true});
 
-/* ── Nav ── */
+/* ── Nav scrolled ── */
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=> navbar.classList.toggle('scrolled',window.scrollY>60),{passive:true});
 
@@ -923,6 +1071,26 @@ if (hamb) {
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&navbar.classList.contains('menu-open')){ navbar.classList.remove('menu-open'); hamb.setAttribute('aria-expanded','false'); document.body.style.overflow=''; hamb.focus(); } });
   document.addEventListener('click',e=>{ if(navbar.classList.contains('menu-open')&&!navbar.contains(e.target)){ navbar.classList.remove('menu-open'); hamb.setAttribute('aria-expanded','false'); document.body.style.overflow=''; } });
 }
+
+/* ── Dropdown Nosotros ── */
+(function setupDropdown() {
+  const dropItem = document.querySelector('.nav-dropdown');
+  if (!dropItem) return;
+  const toggle = dropItem.querySelector('.nav-dropdown-toggle');
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    dropItem.classList.toggle('open');
+  });
+  dropItem.querySelectorAll('.nav-submenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropItem.classList.remove('open');
+      navbar.classList.remove('menu-open');
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!dropItem.contains(e.target)) dropItem.classList.remove('open');
+  });
+})();
 
 /* ── Chatbot ── */
 (function(){
