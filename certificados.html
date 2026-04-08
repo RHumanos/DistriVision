@@ -4,11 +4,186 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DistriVision – Certificados</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style5.css">
   <link rel="icon" type="image/png" href="img/1 (3).png">
-<link rel="apple-touch-icon" href="img/1 (3).png">
-<link rel="shortcut icon" href="img/1 (3).png">
+  <link rel="apple-touch-icon" href="img/1 (3).png">
+  <link rel="shortcut icon" href="img/1 (3).png">
+
+<style>
+/* ══════════════════════════════
+   TOP BAR (copiado del portal)
+══════════════════════════════ */
+:root {
+  --blue:       #255c95;
+  --blue-dark:  #1a3d5c;
+  --blue-deep:  #0f2642;
+  --blue-light: #dbeafe;
+  --blue-xlight:#eff6ff;
+  --accent:     #e8832a;
+  --white:      #ffffff;
+  --gray:       #f4f7fb;
+  --text:       #1a2533;
+  --text-muted: #6b7a8d;
+  --shadow-sm:  0 2px 8px rgba(37,92,149,.07);
+  --shadow-md:  0 8px 32px rgba(37,92,149,.14);
+  --transition: .28s ease;
+}
+
+#top-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 201;
+  height: 38px;
+  background: var(--blue-deep);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6vw;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+#top-bar::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent, transparent 120px,
+    rgba(255,255,255,.015) 120px,
+    rgba(255,255,255,.015) 121px
+  );
+  pointer-events: none;
+}
+.top-bar-left { display: flex; align-items: center; gap: 24px; }
+.top-bar-left span, .top-bar-hours {
+  font-family: 'Lato', sans-serif;
+  font-size: .72rem;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .3px;
+  display: flex; align-items: center; gap: 6px;
+}
+.top-bar-right { display: flex; align-items: center; gap: 20px; }
+.top-bar-login {
+  display: flex; align-items: center; gap: 7px;
+  font-family: 'Lato', sans-serif;
+  font-size: .72rem; font-weight: 700;
+  color: rgba(255,255,255,.75);
+  text-decoration: none; letter-spacing: .5px;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.top-bar-login:hover {
+  background: rgba(255,255,255,.12); color: var(--white);
+  border-color: rgba(255,255,255,.25); transform: translateY(-1px);
+}
+.top-bar-login svg { opacity: .8; transition: opacity .2s; }
+.top-bar-login:hover svg { opacity: 1; }
+
+/* ══════════════════════════════
+   NAV — con dropdown Nosotros
+══════════════════════════════ */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: flex !important; align-items: center; gap: 5px; cursor: pointer;
+}
+.nav-arrow {
+  font-size: .65rem;
+  transition: transform .28s cubic-bezier(.34,1.56,.64,1);
+  display: inline-block; color: var(--blue); opacity: .7;
+}
+.nav-dropdown.open .nav-arrow { transform: rotate(180deg); }
+.nav-submenu {
+  position: absolute !important;
+  top: calc(100% + 16px); left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(37,92,149,.18), 0 0 0 1px rgba(37,92,149,.06);
+  padding: 8px; min-width: 220px;
+  display: flex !important; flex-direction: column !important; gap: 2px !important;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1);
+  z-index: 200;
+}
+.nav-submenu::before {
+  content: '';
+  position: absolute; top: -7px; left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-bottom-color: var(--white); border-top: none;
+  filter: drop-shadow(0 -2px 2px rgba(37,92,149,.06));
+}
+.nav-dropdown.open .nav-submenu {
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-submenu li { width: 100%; }
+.nav-submenu a {
+  display: flex !important; align-items: center; gap: 10px;
+  padding: 11px 16px !important; border-radius: 10px !important;
+  font-size: .86rem !important; font-weight: 500 !important;
+  color: var(--text) !important;
+  transition: background .18s, color .18s, padding-left .18s !important;
+  white-space: nowrap;
+}
+.nav-submenu a::after { display: none !important; }
+.nav-submenu a:hover {
+  background: var(--blue-xlight) !important;
+  color: var(--blue) !important; padding-left: 20px !important;
+}
+
+/* Ajuste de navbar: ahora empieza bajo el top-bar */
+#navbar {
+  top: 38px !important;
+}
+
+/* ── Responsive top-bar + nav ── */
+@media (max-width: 900px) {
+  #top-bar { padding: 0 5vw; height: 34px; }
+  .top-bar-left span:first-child, .top-bar-hours { display: none; }
+  .top-bar-left span:last-child { font-size: .68rem; }
+  #navbar { top: 34px !important; }
+
+  .nav-submenu {
+    position: static !important; transform: none !important;
+    box-shadow: none !important; border-radius: 0 !important;
+    background: var(--blue-xlight) !important;
+    padding: 0 !important; margin: 0 !important;
+    border-left: 3px solid var(--blue-light);
+    max-height: 0; overflow: hidden; opacity: 1;
+    pointer-events: none;
+    transition: max-height .35s ease !important;
+  }
+  .nav-submenu::before { display: none; }
+  .nav-dropdown.open .nav-submenu {
+    max-height: 400px; pointer-events: all;
+    padding: 6px 0 6px 16px !important;
+  }
+  .nav-submenu a {
+    border-bottom: none !important; padding: 11px 12px !important;
+    font-size: .88rem !important;
+  }
+}
+@media (max-width: 600px) {
+  #top-bar { height: 30px; padding: 0 4vw; }
+  .top-bar-left { display: none; }
+  .top-bar-login { font-size: .68rem; padding: 4px 11px; }
+  #navbar { top: 30px !important; }
+}
+
+/* Empujar el contenido para que no quede bajo top-bar + navbar */
+body { padding-top: 0; }
+/* El hero/page-hero ya maneja su propio padding-top en style5.css,
+   solo necesitamos sumar la altura del top-bar (38px) */
+.page-hero { padding-top: calc(38px + 76px + 60px) !important; }
+@media (max-width: 900px) {
+  .page-hero { padding-top: calc(34px + 68px + 48px) !important; }
+}
+@media (max-width: 600px) {
+  .page-hero { padding-top: calc(30px + 68px + 40px) !important; }
+}
+</style>
 </head>
 <body>
 
@@ -16,25 +191,52 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
+<!-- ══════════════ TOP BAR ══════════════ -->
+<div id="top-bar">
+  <div class="top-bar-left">
+    <span>📞 (8) 870 34 34 &nbsp;|&nbsp; 310 599 6169</span>
+    <span>✉️ recurso.humano@distrivision.com.co</span>
+  </div>
+  <div class="top-bar-right">
+    <span class="top-bar-hours">🕐 Lun – Vie: 8:00 am – 6:00 pm</span>
+    <a href="login.html" class="top-bar-login">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Iniciar sesión
+    </a>
+  </div>
+</div>
+
 <!-- ══════════════ NAV ══════════════ -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
-    <img src="img/1 (3).png" alt="DistriVision Logo" class="logo-img">
+    <img src="img/1 (3).png" alt="DistriVision" class="logo-img">
   </a>
   <ul id="navMenu">
-    <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="index.html#mision">Misión &amp; Visión</a></li>
-    <li><a href="index.html#servicios">Servicios</a></li>
-    <li><a href="index.html#galeria">Galería</a></li>
+    <li class="nav-dropdown">
+      <a href="index.html#nosotros" class="nav-dropdown-toggle">
+        Nosotros <span class="nav-arrow">▾</span>
+      </a>
+      <ul class="nav-submenu">
+        <li><a href="index.html#nosotros">🏢 Quiénes Somos</a></li>
+        <li><a href="index.html#mision">🎯 Misión &amp; Visión</a></li>
+        <li><a href="index.html#servicios">🚚 Servicios</a></li>
+        <li><a href="index.html#galeria">🖼️ Galería</a></li>
+        <li><a href="index.html#contacto">📍 Contacto</a></li>
+      </ul>
+    </li>
     <li><a href="historia.html">Historia</a></li>
     <li><a href="noticias.html">Noticias</a></li>
     <li><a href="certificados.html" class="nav-active">Certificados</a></li>
     <li><a href="vacantes.html">Vacantes</a></li>
-    <li><a href="index.html#contacto">Contacto</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú"
+          aria-expanded="false" aria-controls="navMenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -215,7 +417,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 DistriVision LTDA. Todos los derechos reservados.</p>
+    <p>© 2026 DistriVision LTDA. Todos los derechos reservados.</p>
     <p>Distribución con Excelencia y Compromiso</p>
   </div>
 </footer>
@@ -257,15 +459,20 @@
 const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 let mouseX=0,mouseY=0,ringX=0,ringY=0;
-document.addEventListener('mousemove',e=>{
-  mouseX=e.clientX;mouseY=e.clientY;
-  dot.style.left=mouseX+'px';dot.style.top=mouseY+'px';
-});
-(function animateRing(){
-  ringX+=(mouseX-ringX)*.12;ringY+=(mouseY-ringY)*.12;
-  ring.style.left=ringX+'px';ring.style.top=ringY+'px';
-  requestAnimationFrame(animateRing);
-})();
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.addEventListener('mousemove',e=>{
+    mouseX=e.clientX;mouseY=e.clientY;
+    dot.style.left=mouseX+'px';dot.style.top=mouseY+'px';
+  });
+  (function animateRing(){
+    ringX+=(mouseX-ringX)*.12;ringY+=(mouseY-ringY)*.12;
+    ring.style.left=ringX+'px';ring.style.top=ringY+'px';
+    requestAnimationFrame(animateRing);
+  })();
+} else {
+  if(dot) dot.style.display='none';
+  if(ring) ring.style.display='none';
+}
 
 /* ── SCROLL PROGRESS ── */
 const progressBar=document.getElementById('scroll-progress');
@@ -283,9 +490,52 @@ window.addEventListener('scroll',()=>{
 /* ── HAMBURGUESA ── */
 const hambBtn=document.getElementById('navHamburger');
 if(hambBtn){
-  hambBtn.addEventListener('click',()=>navbar.classList.toggle('menu-open'));
-  document.querySelectorAll('#navMenu a').forEach(l=>l.addEventListener('click',()=>navbar.classList.remove('menu-open')));
+  hambBtn.addEventListener('click',()=>{
+    const isOpen = navbar.classList.toggle('menu-open');
+    hambBtn.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('#navMenu a').forEach(l=>l.addEventListener('click',()=>{
+    navbar.classList.remove('menu-open');
+    hambBtn.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  }));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&navbar.classList.contains('menu-open')){
+      navbar.classList.remove('menu-open');
+      hambBtn.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+      hambBtn.focus();
+    }
+  });
+  document.addEventListener('click',e=>{
+    if(navbar.classList.contains('menu-open')&&!navbar.contains(e.target)){
+      navbar.classList.remove('menu-open');
+      hambBtn.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+    }
+  });
 }
+
+/* ── DROPDOWN NOSOTROS ── */
+(function setupDropdown(){
+  const dropItem=document.querySelector('.nav-dropdown');
+  if(!dropItem)return;
+  const toggle=dropItem.querySelector('.nav-dropdown-toggle');
+  toggle.addEventListener('click',(e)=>{
+    e.preventDefault();
+    dropItem.classList.toggle('open');
+  });
+  dropItem.querySelectorAll('.nav-submenu a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      dropItem.classList.remove('open');
+      navbar.classList.remove('menu-open');
+    });
+  });
+  document.addEventListener('click',(e)=>{
+    if(!dropItem.contains(e.target)) dropItem.classList.remove('open');
+  });
+})();
 
 /* ── PARTÍCULAS HERO ── */
 (function(){
@@ -308,12 +558,10 @@ if(hambBtn){
   }
 })();
 
-/* ── BOTONES MAGNÉTICOS — solo en desktop, nunca en el btn-white ── */
+/* ── BOTONES MAGNÉTICOS ── */
 (function(){
-  // Solo aplica efecto magnético si NO es touch y NO es el btn-white
-  const isTouchDevice = window.matchMedia('(hover: none)').matches;
-  if(isTouchDevice) return;
-
+  const isTouchDevice=window.matchMedia('(hover: none)').matches;
+  if(isTouchDevice)return;
   document.querySelectorAll('.nav-cta, .drive-open-btn').forEach(btn=>{
     btn.addEventListener('mousemove',e=>{
       const r=btn.getBoundingClientRect();
@@ -421,119 +669,73 @@ if(iframe&&loading){
   let isOpen = false, initialized = false;
 
   const OPTIONS = [
-    { icon:'📞', label:'Comunícate con nosotros',        sub:'Teléfono, WhatsApp o correo',    id:'contacto'     },
-    { icon:'📋', label:'Cómo obtener mi certificado',    sub:'Pasos del proceso explicados',   id:'certificado'  },
-    { icon:'💼', label:'Vacantes y empleo',              sub:'Trabaja con DistriVision',        id:'vacantes'     }
+    { icon:'📞', label:'Comunícate con nosotros',     sub:'Teléfono, WhatsApp o correo',  id:'contacto'    },
+    { icon:'📋', label:'Cómo obtener mi certificado', sub:'Pasos del proceso explicados', id:'certificado' },
+    { icon:'💼', label:'Vacantes y empleo',            sub:'Trabaja con DistriVision',     id:'vacantes'    }
   ];
 
   const ANSWERS = {
-    contacto: {
+    contacto:{
       title:'📞 Contáctanos directamente',
-      html:`
-        <p>Puedes comunicarte con nosotros por cualquiera de estos medios:</p><br>
-        <p>📍 <b>Oficina:</b> CL 26 SUR No. 6 – 74, Neiva</p>
-        <p>📞 <b>Teléfono:</b> (8) 870 34 34</p>
-        <p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p>
-        <p>✉️ <b>RR.HH.:</b> <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>✉️ <b>General:</b> <a href="mailto:distribuciones_vision@hotmail.com">distribuciones_vision@hotmail.com</a></p>
-      `
+      html:`<p>📍 <b>Oficina:</b> CL 26 SUR No. 6–74, Neiva</p><p>📞 <b>Teléfono:</b> (8) 870 34 34</p><p>📱 <b>WhatsApp:</b> <a href="https://wa.me/573105996169" target="_blank">310 599 6169</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>`
     },
-    certificado: {
+    certificado:{
       title:'📋 Cómo obtener tu certificado',
-      html:`
-        <p><b>Sigue estos 3 sencillos pasos:</b></p><br>
-        <p><b>1️⃣ Descarga e imprime</b> el formato desde la carpeta de Drive en esta página.</p>
-        <p><b>2️⃣ Diligencia</b> todos los campos con letra clara y legible.</p>
-        <p><b>3️⃣ Preséntalo</b> en Recursos Humanos para firma y sello oficial.</p><br>
-        <p>📍 <b>RR.HH.:</b> CL 26 SUR No. 6 – 74, Neiva</p>
-      `
+      html:`<p><b>1️⃣ Descarga</b> el formato desde Drive.</p><p><b>2️⃣ Diligencia</b> todos los campos.</p><p><b>3️⃣ Preséntalo</b> en RR.HH. para firma y sello.</p><p>📍 CL 26 SUR No. 6–74, Neiva</p>`
     },
-    vacantes: {
+    vacantes:{
       title:'💼 Vacantes en DistriVision',
-      html:`
-        <p>¿Quieres ser parte de nuestro equipo?</p><br>
-        <p>👉 <a href="vacantes.html">Ver vacantes disponibles →</a></p><br>
-        <p>O envía tu hoja de vida a:</p>
-        <p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p>
-        <p>📱 <a href="https://wa.me/573105996169" target="_blank">WhatsApp: 310 599 6169</a></p>
-      `
+      html:`<p>👉 <a href="vacantes.html">Ver vacantes →</a></p><p>✉️ <a href="mailto:recurso.humano@distrivision.com.co">recurso.humano@distrivision.com.co</a></p><p>📱 <a href="https://wa.me/573105996169">WhatsApp: 310 599 6169</a></p>`
     }
   };
 
-  helpBtn.addEventListener('click', ()=>{
-    isOpen = !isOpen;
-    helpBtn.classList.toggle('open', isOpen);
-    chatPanel.classList.toggle('open', isOpen);
-    if(isOpen && !initialized) initChat();
+  helpBtn.addEventListener('click',()=>{
+    isOpen=!isOpen;
+    helpBtn.classList.toggle('open',isOpen);
+    chatPanel.classList.toggle('open',isOpen);
+    if(isOpen&&!initialized) initChat();
   });
 
   function initChat(){
-    initialized = true;
+    initialized=true;
     addTyping(()=>{
-      addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte hoy?');
-      setTimeout(()=>showOptions(), 400);
+      addBot('¡Hola! 👋 Soy el asistente de <b>DistriVision</b>. ¿En qué puedo ayudarte?');
+      setTimeout(()=>showOptions(),400);
     });
   }
 
   function showOptions(){
-    dynamic.innerHTML = '<div class="dv-options" id="dvOptions"></div>';
-    const container = document.getElementById('dvOptions');
-    OPTIONS.forEach((opt,i)=>{
-      const b = document.createElement('button');
-      b.className = 'dv-option-btn';
-      b.style.animationDelay = (i*.08)+'s';
-      b.innerHTML = `
-        <div class="opt-icon">${opt.icon}</div>
-        <div class="opt-label">
-          <div>${opt.label}</div>
-          <div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${opt.sub}</div>
-        </div>
-        <span class="opt-arrow">›</span>
-      `;
-      b.addEventListener('click', ()=>selectOption(opt));
-      container.appendChild(b);
+    dynamic.innerHTML='<div class="dv-options" id="dvOptions"></div>';
+    const c=document.getElementById('dvOptions');
+    OPTIONS.forEach((o,i)=>{
+      const b=document.createElement('button');
+      b.className='dv-option-btn';
+      b.style.animationDelay=(i*.08)+'s';
+      b.innerHTML=`<div class="opt-icon">${o.icon}</div><div class="opt-label"><div>${o.label}</div><div style="font-weight:400;font-size:.75rem;color:#5a6b80;margin-top:1px">${o.sub}</div></div><span class="opt-arrow">›</span>`;
+      b.addEventListener('click',()=>selOpt(o));
+      c.appendChild(b);
     });
     scrollBot();
   }
 
-  function selectOption(opt){
-    addUser(opt.icon+' '+opt.label);
-    dynamic.innerHTML = '';
+  function selOpt(o){
+    addUser(o.icon+' '+o.label);
+    dynamic.innerHTML='';
     addTyping(()=>{
-      const ans = ANSWERS[opt.id];
-      dynamic.innerHTML = `
-        <div class="dv-answer">
-          <div class="dv-answer-card"><strong>${ans.title}</strong>${ans.html}</div>
-          <button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button>
-        </div>`;
+      const a=ANSWERS[o.id];
+      dynamic.innerHTML=`<div class="dv-answer"><div class="dv-answer-card"><strong>${a.title}</strong>${a.html}</div><button class="dv-back-btn" id="dvBackBtn">← Volver al menú</button></div>`;
       document.getElementById('dvBackBtn').addEventListener('click',()=>{
         addBot('¿Hay algo más en lo que pueda ayudarte?');
-        dynamic.innerHTML = '';
-        setTimeout(()=>showOptions(), 300);
+        dynamic.innerHTML='';
+        setTimeout(()=>showOptions(),300);
       });
       scrollBot();
     });
   }
 
-  function addBot(html){
-    const el=document.createElement('div');
-    el.className='dv-bubble';
-    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${html}</div>`;
-    chatBody.appendChild(el);scrollBot();
-  }
-  function addUser(text){
-    const el=document.createElement('div');
-    el.className='dv-bubble user';
-    el.innerHTML=`<div class="dv-bubble-text">${text}</div>`;
-    chatBody.appendChild(el);scrollBot();
-  }
-  function addTyping(cb){
-    const el=document.createElement('div');
-    el.className='dv-typing';
-    el.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`;
-    chatBody.appendChild(el);scrollBot();
-    setTimeout(()=>{chatBody.removeChild(el);cb();},950);
-  }
+  function addBot(h){ const e=document.createElement('div'); e.className='dv-bubble'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-bubble-text">${h}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addUser(t){ const e=document.createElement('div'); e.className='dv-bubble user'; e.innerHTML=`<div class="dv-bubble-text">${t}</div>`; chatBody.appendChild(e); scrollBot(); }
+  function addTyping(cb){ const e=document.createElement('div'); e.className='dv-typing'; e.innerHTML=`<div class="dv-bubble-avatar">🤖</div><div class="dv-typing-dots"><span></span><span></span><span></span></div>`; chatBody.appendChild(e); scrollBot(); setTimeout(()=>{ chatBody.removeChild(e); cb(); },950); }
   function scrollBot(){ setTimeout(()=>chatBody.scrollTop=chatBody.scrollHeight,50); }
 })();
 </script>
