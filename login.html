@@ -160,8 +160,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:72px;display:flex;ali
 .btn-sm{padding:7px 14px;font-size:.78rem;border-radius:8px}
 .btn-icon{padding:8px;width:36px;height:36px;justify-content:center}
 
-.table-wrapper{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm);overflow:hidden;width:100%}
-table{width:100%;border-collapse:collapse;table-layout:fixed}
+/* ===== SCROLL LATERAL EN TABLAS (móvil) ===== */
+.table-wrapper{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-mid);box-shadow:var(--shadow-sm);overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%}
+table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:600px}
 thead{background:var(--blue-deep)}
 thead th{padding:12px 10px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 tbody tr{border-bottom:1px solid var(--gray-mid);transition:background .15s}
@@ -202,9 +203,6 @@ table.emp-table th:nth-child(4),table.emp-table td:nth-child(4){width:140px}
 table.emp-table th:nth-child(5),table.emp-table td:nth-child(5){width:140px}
 table.emp-table th:nth-child(6),table.emp-table td:nth-child(6){width:80px}
 table.emp-table th:nth-child(7),table.emp-table td:nth-child(7){width:90px}
-@media(max-width:1200px){table.emp-table .col-eps{display:none}}
-@media(max-width:1000px){table.emp-table .col-telefono,.col-eps{display:none}}
-@media(max-width:750px){table.emp-table .col-cedula,.col-telefono,.col-eps{display:none}}
 
 /* col widths carnet table */
 table.carnet-table th:nth-child(1),table.carnet-table td:nth-child(1){width:220px}
@@ -285,6 +283,9 @@ table.carnet-table th:nth-child(6),table.carnet-table td:nth-child(6){width:100p
   .form-grid.cols-3{grid-template-columns:1fr}
   .detail-grid{grid-template-columns:1fr}
   .detail-block{border-right:none!important;padding-left:0!important;padding-right:0!important}
+  /* Hint scroll lateral en móvil */
+  .table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{min-width:540px}
 }
 
 /* PRINT */
@@ -453,7 +454,6 @@ table.carnet-table th:nth-child(6),table.carnet-table td:nth-child(6){width:100p
             <div class="stat-card-bar"><div class="stat-card-bar-fill" id="bar-tra" style="width:25%"></div></div>
           </div>
         </div>
-        <!-- Semáforo resumen -->
         <div class="semaforo-row">
           <div class="sem-card rojo">
             <div class="sem-dot rojo"></div>
@@ -545,13 +545,11 @@ table.carnet-table th:nth-child(6),table.carnet-table td:nth-child(6){width:100p
             <button class="btn btn-success" onclick="exportExcelCarnet()">📊 Exportar Excel</button>
           </div>
         </div>
-        <!-- Nota aclaratoria -->
         <div class="info-note">
-          ℹ️ <strong>Nota:</strong> La fecha registrada corresponde a la <strong>fecha de expedición</strong> del carnet. La vigencia real es de <strong>1 año</strong> desde esa fecha. El semáforo muestra el estado sobre la fecha de <strong>vencimiento</strong> (expedición + 1 año).
+          ℹ️ <strong>Nota:</strong> La fecha registrada es la <strong>fecha de expedición</strong> del carnet. La vigencia es de <strong>365 días</strong> desde esa fecha (expedición + 365 días = vencimiento).
         </div>
-        <!-- Legend -->
         <div class="legend-bar">
-          <span style="font-size:.75rem;font-weight:700;color:var(--text-muted);margin-right:4px">SEMÁFORO (sobre fecha vencimiento = expedición + 1 año):</span>
+          <span style="font-size:.75rem;font-weight:700;color:var(--text-muted);margin-right:4px">SEMÁFORO (vencimiento = expedición + 365 días):</span>
           <div class="legend-item"><div class="legend-dot" style="background:#dc2626;box-shadow:0 0 6px #dc2626"></div> 🔴 Vencido</div>
           <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;box-shadow:0 0 6px #f59e0b"></div> 🟡 Vence este año</div>
           <div class="legend-item"><div class="legend-dot" style="background:#16a34a;box-shadow:0 0 6px #16a34a"></div> 🟢 Vigente (vence año futuro)</div>
@@ -684,13 +682,14 @@ const USERS = {
 let currentRole='administrador', currentUser=null, currentView='dashboard';
 let currentAreaFilter='all', editingId=null, modalMode='add';
 const STORAGE_KEY='dv_personal_v3';
-const TODAY = new Date('2026-04-13');
+
+/* HOY fijo para semáforo */
+const TODAY = new Date('2026-04-13T00:00:00');
 const CURRENT_YEAR = TODAY.getFullYear(); // 2026
 
 /* ==================== DATOS DE CARNET ====================
-   IMPORTANTE: Las fechas en CARNET_DATA son fechas de EXPEDICIÓN.
-   La vigencia del carnet es de 1 año desde la expedición.
-   La fecha real de vencimiento = fecha_expedicion + 1 año.
+   Las fechas son fechas de EXPEDICIÓN.
+   Vigencia = expedición + 365 días exactos.
 */
 const CARNET_DATA = {
   "26431825":"2024-07-13","79656851":"2024-07-13","1007411166":"2025-06-12",
@@ -726,28 +725,27 @@ const CARNET_DATA = {
 };
 
 /* ==================== SEMÁFORO ====================
-   La fecha almacenada es la de EXPEDICIÓN del carnet.
-   Vigencia = 1 año → fecha_vencimiento_real = expedicion + 1 año.
-   🔴 Rojo    = fecha_vencimiento_real < HOY  (ya venció)
-   🟡 Amarillo = fecha_vencimiento_real >= HOY  Y  año_vencimiento == AÑO_ACTUAL  (vence este año)
-   🟢 Verde   = fecha_vencimiento_real >= HOY  Y  año_vencimiento > AÑO_ACTUAL   (vence en años futuros)
+   ÚNICA función que calcula la fecha de vencimiento:
+   vencimiento = fecha_expedicion + 365 días EXACTOS (no setFullYear).
+
+   🔴 Rojo    = vencimiento < HOY  (ya venció)
+   🟡 Amarillo = vencimiento >= HOY  Y  año_vencimiento == AÑO_ACTUAL
+   🟢 Verde   = vencimiento >= HOY  Y  año_vencimiento > AÑO_ACTUAL
 */
 function getExpiryDate(expeditionDateStr) {
   if (!expeditionDateStr) return null;
   const d = new Date(expeditionDateStr + 'T00:00:00');
   if (isNaN(d.getTime())) return null;
-  // Sumar exactamente 1 año
-  const expiry = new Date(d);
-  expiry.setFullYear(expiry.getFullYear() + 1);
-  return expiry;
+  // Sumar exactamente 365 días en milisegundos
+  return new Date(d.getTime() + 365 * 24 * 60 * 60 * 1000);
 }
 
 function getCarnetStatus(expeditionDateStr) {
   const expiry = getExpiryDate(expeditionDateStr);
   if (!expiry) return 'sin';
-  if (expiry < TODAY) return 'rojo';                          // ya venció
-  if (expiry.getFullYear() === CURRENT_YEAR) return 'amarillo'; // vence este año
-  return 'verde';                                              // vence en año futuro
+  if (expiry < TODAY) return 'rojo';
+  if (expiry.getFullYear() === CURRENT_YEAR) return 'amarillo';
+  return 'verde';
 }
 
 function carnetBadgeHTML(expeditionDateStr) {
@@ -765,14 +763,12 @@ function carnetBadgeHTML(expeditionDateStr) {
     const diff = Math.ceil((expiry - TODAY) / (1000*60*60*24));
     return `<span class="carnet-badge carnet-amarillo"><span class="c-dot"></span>Vence ${formatted} · ${diff}d</span>`;
   }
-  // verde
   const years = expiry.getFullYear() - CURRENT_YEAR;
   return `<span class="carnet-badge carnet-verde"><span class="c-dot"></span>Vence ${formatted} · +${years}a</span>`;
 }
 
 function getCarnetForEmployee(emp) {
   const ced = String(emp.cedula || '').trim();
-  // Si el empleado tiene fecha guardada manualmente, usarla; si no, buscar en CARNET_DATA
   return emp.carnet_manipulacion || CARNET_DATA[ced] || null;
 }
 
@@ -998,7 +994,7 @@ function filterArea(area,evt){
 function renderDashTable(){
   const recent=[...employees].slice(-8).reverse();
   if(!recent.length){document.getElementById('dash-table').innerHTML='<div class="empty-state" style="padding:40px"><div class="es-icon">👥</div><h3>Sin empleados</h3></div>';return;}
-  let html=`<table style="table-layout:auto"><thead><tr>
+  let html=`<table style="table-layout:auto;min-width:500px"><thead><tr>
     <th>Empleado</th><th>Área</th><th>Cargo</th><th>Carnet Manip. (Vence)</th><th>Acciones</th>
   </tr></thead><tbody>`;
   recent.forEach(e=>{
@@ -1098,11 +1094,10 @@ function renderCarnetTable(){
     const initials=(e.nombres[0]||'')+(e.apellidos[0]||'');
     const color=AREA_COLORS[e.area]||'#255c95';
     const carnet=getCarnetForEmployee(e);
-    // Mostrar también la fecha de expedición en tooltip
     const expiry=getExpiryDate(carnet);
     const expiryStr=expiry?expiry.toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'}):'';
     const expedStr=carnet?new Date(carnet+'T00:00:00').toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'}):'';
-    const tooltip=carnet?`Expedición: ${expedStr} → Vence: ${expiryStr}`:'Sin registro';
+    const tooltip=carnet?`Expedición: ${expedStr} → Vence: ${expiryStr} (+365 días)`:'Sin registro';
     return `<tr title="${tooltip}">
       <td><div class="emp-info">
         <div class="emp-avatar" style="background:${color}">${initials}</div>
@@ -1140,13 +1135,13 @@ function openCarnetEdit(id){
     <div style="padding:8px 0">
       <div class="form-section-title" style="font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--gray-mid)">🪪 Fecha de Expedición del Carnet</div>
       <div class="form-group">
-        <label>Fecha de expedición (el sistema calcula +1 año para la vigencia)</label>
+        <label>Fecha de expedición (vencimiento = esta fecha + 365 días exactos)</label>
         <input type="date" id="f-carnet-date" value="${carnet||''}">
       </div>
       <div style="margin-top:16px;padding:12px;background:var(--gray);border-radius:10px;font-size:.82rem;color:var(--text-muted)">
         <strong>Estado actual:</strong> ${carnetBadgeHTML(carnet)}<br>
         <span style="font-size:.76rem;margin-top:4px;display:block">
-          ${carnet?`Expedición: <strong>${new Date(carnet+'T00:00:00').toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'})}</strong> → Vencimiento real: <strong>${expiryFormatted}</strong>`:'Sin fecha registrada'}
+          ${carnet?`Expedición: <strong>${new Date(carnet+'T00:00:00').toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'})}</strong> → Vencimiento (+365 días): <strong>${expiryFormatted}</strong>`:'Sin fecha registrada'}
         </span>
       </div>
     </div>`;
@@ -1239,7 +1234,7 @@ function buildForm(emp){
   <div class="form-section">
     <div class="form-section-title">🪪 Carnet de Manipulación</div>
     <div style="background:var(--blue-xlight);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:.78rem;color:var(--blue-dark)">
-      ℹ️ Ingresa la <strong>fecha de expedición</strong>. El sistema calcula la vigencia (+1 año) automáticamente.
+      ℹ️ Ingresa la <strong>fecha de expedición</strong>. El vencimiento se calcula como expedición + 365 días exactos.
     </div>
     <div class="form-grid">
       <div class="form-group">
@@ -1247,7 +1242,7 @@ function buildForm(emp){
         <input type="date" id="f-carnet_manipulacion" value="${carnet}">
       </div>
       <div class="form-group" style="justify-content:flex-end;padding-top:24px">
-        ${carnet?`<div style="font-size:.78rem;color:var(--text-muted)">Vencimiento: <strong>${expiryStr}</strong><br>${carnetBadgeHTML(carnet)}</div>`:'<span style="font-size:.8rem;color:var(--text-muted)">Sin registro de carnet</span>'}
+        ${carnet?`<div style="font-size:.78rem;color:var(--text-muted)">Vencimiento (+365d): <strong>${expiryStr}</strong><br>${carnetBadgeHTML(carnet)}</div>`:'<span style="font-size:.8rem;color:var(--text-muted)">Sin registro de carnet</span>'}
       </div>
     </div>
   </div>
@@ -1301,7 +1296,7 @@ function buildDetailView(emp){
     ['Área',emp.area],['Cargo',emp.cargo],
     ['Fecha ingreso',emp.fecha_ingreso],['Tipo contrato',emp.tipo_contrato],
     ['Salario base',emp.salario?'$'+Number(emp.salario).toLocaleString('es-CO'):''],['Estado',emp.estado],
-    ['Carnet — Expedición',expedStr||''],['Carnet — Vencimiento real',carnet?expiryStr+' (expedición +1 año)':''],
+    ['Carnet — Expedición',expedStr||''],['Carnet — Vencimiento (+365d)',carnet?expiryStr:''],
     ['Teléfono',emp.telefono],['Tel. alternativo',emp.telefono_alt],
     ['Email',emp.email],['Dirección',emp.direccion],
     ['EPS',emp.eps],['Pensión',emp.pension],
@@ -1377,7 +1372,7 @@ function exportExcel(){
       'Área':e.area,'Cargo':e.cargo,'Fecha Ingreso':e.fecha_ingreso,
       'Tipo Contrato':e.tipo_contrato,'Salario':e.salario,'Estado':e.estado,
       'Carnet — Fecha Expedición':carnet||'SIN REGISTRO',
-      'Carnet — Fecha Vencimiento (Exp+1año)':expiryStr,
+      'Carnet — Fecha Vencimiento (Exp+365días)':expiryStr,
       'Semáforo Carnet':{'rojo':'🔴 VENCIDO','amarillo':'🟡 POR VENCER','verde':'🟢 VIGENTE','sin':'⚪ SIN REGISTRO'}[getCarnetStatus(carnet)]||'',
       'Teléfono':e.telefono,'Email':e.email,'EPS':e.eps,'Pensión':e.pension,
     };
@@ -1418,7 +1413,7 @@ function exportExcelCarnet(){
       'Nombres':e.nombres,'Apellidos':e.apellidos,'Cédula':e.cedula,
       'Área':e.area,'Cargo':e.cargo,
       'Fecha Expedición':carnet||'SIN REGISTRO',
-      'Fecha Vencimiento (Exp+1año)':expiryStr,
+      'Fecha Vencimiento (Exp+365días)':expiryStr,
       'Tiempo restante':diasInfo,
     };
   });
