@@ -38,6 +38,22 @@ body{font-family:'Lato',sans-serif;color:var(--text);background:var(--gray);over
 .login-orb-2{width:400px;height:400px;background:#64b9f0;bottom:-100px;left:-100px;opacity:.10}
 .login-box{background:rgba(255,255,255,.06);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:52px 48px 44px;width:100%;max-width:440px;box-shadow:0 32px 80px rgba(0,0,0,.4);position:relative;z-index:1;animation:loginReveal .7s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes loginReveal{from{opacity:0;transform:translateY(32px) scale(.95)}to{opacity:1;transform:none}}
+
+/* BOTONES LOGIN: CASA Y CERRAR */
+.login-nav-btns{position:absolute;top:16px;right:16px;display:flex;gap:8px;z-index:10}
+.login-nav-btn{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.1);
+  color:rgba(255,255,255,.7);
+  cursor:pointer;font-size:.95rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;font-family:'Lato',sans-serif;
+  text-decoration:none;line-height:1;padding:0;
+}
+.login-nav-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.5);color:#fff;transform:scale(1.12)}
+.login-nav-btn.close-btn:hover{transform:rotate(90deg) scale(1.12)}
+
 .login-logo{text-align:center;margin-bottom:36px}
 .login-logo-circle{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2.2rem;box-shadow:0 0 40px rgba(34,143,210,.3)}
 .login-title{font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-.5px}
@@ -293,6 +309,14 @@ table.carnet-table th:nth-child(6),table.carnet-table td:nth-child(6){width:100p
   <div class="login-orb login-orb-2"></div>
   <canvas id="login-particles" style="position:absolute;inset:0;pointer-events:none;z-index:0"></canvas>
   <div class="login-box">
+
+    <!-- ▸ BOTONES: CASA e IR ATRÁS -->
+    <div class="login-nav-btns">
+      <a href="index.html" class="login-nav-btn" title="Ir al inicio (index.html)">&#127968;</a>
+      <button class="login-nav-btn close-btn" title="Volver a la página anterior"
+        onclick="history.length > 1 ? history.back() : window.location.href='index.html'">&#x2715;</button>
+    </div>
+
     <div class="login-logo">
       <div class="login-logo-circle">🏢</div>
       <div class="login-title">Distri<span>Vision</span></div>
@@ -647,33 +671,27 @@ async function idbSaveAll(data) {
 }
 
 async function loadEmployeesFromStorage() {
-  // Intentar IndexedDB primero
   const idbData = await idbGetAll();
   if (idbData && idbData.length > 0) {
-    // Sincronizar también a localStorage como respaldo
     try { localStorage.setItem(LS_KEY, JSON.stringify(idbData)); } catch(e){}
     return idbData;
   }
-  // Fallback: localStorage
   try {
     const ls = localStorage.getItem(LS_KEY);
     if (ls) {
       const parsed = JSON.parse(ls);
       if (parsed && parsed.length > 0) {
-        // Migrar a IndexedDB
         await idbSaveAll(parsed);
         return parsed;
       }
     }
   } catch(e){}
-  // Sin datos previos → cargar defaults y guardar
   await idbSaveAll(DEFAULT_EMPLOYEES);
   try { localStorage.setItem(LS_KEY, JSON.stringify(DEFAULT_EMPLOYEES)); } catch(e){}
   return DEFAULT_EMPLOYEES;
 }
 
 async function saveEmployees(data) {
-  // Guardar en ambos para máxima resiliencia
   const ok = await idbSaveAll(data);
   try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch(e){}
   return ok;
