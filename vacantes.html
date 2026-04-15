@@ -5,9 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DistriVision – Vacantes</title>
   <link rel="stylesheet" href="styles4.css">
-    <link rel="icon" type="image/png" href="img/1 (3).png">
-<link rel="apple-touch-icon" href="img/1 (3).png">
-<link rel="shortcut icon" href="img/1 (3).png">
+  <link rel="icon" type="image/png" href="img/1 (3).png">
+  <link rel="apple-touch-icon" href="img/1 (3).png">
+  <link rel="shortcut icon" href="img/1 (3).png">
+
+<style>
+/* ══ TOP BAR ══ */
+#top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 201;
+  height: 38px; background: #0f2642;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6vw; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+#top-bar::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg,transparent,transparent 120px,rgba(255,255,255,.015) 120px,rgba(255,255,255,.015) 121px);
+  pointer-events: none;
+}
+.top-bar-left { display: flex; align-items: center; gap: 24px; }
+.top-bar-left span, .top-bar-hours {
+  font-family: 'Lato', sans-serif; font-size: .72rem;
+  color: rgba(255,255,255,.45); letter-spacing: .3px;
+  display: flex; align-items: center; gap: 6px;
+}
+.top-bar-right { display: flex; align-items: center; gap: 20px; }
+.top-bar-login {
+  display: flex; align-items: center; gap: 7px;
+  font-family: 'Lato', sans-serif; font-size: .72rem; font-weight: 700;
+  color: rgba(255,255,255,.75); text-decoration: none; letter-spacing: .5px;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05);
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.top-bar-login:hover { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.25); transform: translateY(-1px); }
+.top-bar-login svg { opacity: .8; transition: opacity .2s; }
+.top-bar-login:hover svg { opacity: 1; }
+
+/* ══ NAV ══ */
+#navbar {
+  position: fixed; top: 38px; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6vw; height: 76px;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(37,92,149,.1); transition: box-shadow .3s;
+}
+#navbar.scrolled { box-shadow: 0 4px 24px rgba(37,92,149,.12); }
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.logo-img { height: 42px; width: auto; }
+#navMenu { display: flex; align-items: center; gap: 0; list-style: none; margin: 0; padding: 0; }
+#navMenu > li > a {
+  display: block; padding: 8px 14px;
+  font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 600;
+  color: #6b7a8d; text-decoration: none; border-radius: 8px;
+  transition: color .2s, background .2s;
+}
+#navMenu > li > a:hover { color: #255c95; background: #eff6ff; }
+.nav-cta { background: #255c95 !important; color: #fff !important; border-radius: 50px !important; padding: 9px 20px !important; box-shadow: 0 4px 14px rgba(37,92,149,.3); transition: transform .2s, box-shadow .2s !important; }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,92,149,.4) !important; }
+.nav-hamburger {
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; background: none; border: none; cursor: pointer; padding: 8px;
+  border-radius: 8px; transition: background .2s;
+}
+.nav-hamburger:hover { background: #eff6ff; }
+.nav-hamburger span {
+  display: block; width: 24px; height: 2px; background: #1a2533;
+  border-radius: 2px; transition: transform .28s ease, opacity .28s ease; transform-origin: center;
+}
+#navbar.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#navbar.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#navbar.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ══ DROPDOWN NOSOTROS ══ */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle { display: flex !important; align-items: center; gap: 5px; cursor: pointer; }
+.nav-arrow { font-size: .65rem; transition: transform .28s cubic-bezier(.34,1.56,.64,1); display: inline-block; color: #255c95; opacity: .7; }
+.nav-dropdown.open .nav-arrow { transform: rotate(180deg); }
+.nav-submenu {
+  position: absolute !important; top: calc(100% + 16px); left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(37,92,149,.18), 0 0 0 1px rgba(37,92,149,.06);
+  padding: 8px; min-width: 220px;
+  display: flex !important; flex-direction: column !important; gap: 2px !important;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1); z-index: 200;
+}
+.nav-submenu::before {
+  content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+  border: 7px solid transparent; border-bottom-color: #fff; border-top: none;
+  filter: drop-shadow(0 -2px 2px rgba(37,92,149,.06));
+}
+.nav-dropdown.open .nav-submenu { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+.nav-submenu li { width: 100%; list-style: none; }
+.nav-submenu a {
+  display: flex !important; align-items: center; gap: 10px;
+  padding: 11px 16px !important; border-radius: 10px !important;
+  font-size: .86rem !important; font-weight: 500 !important; color: #1a2533 !important;
+  transition: background .18s, color .18s, padding-left .18s !important; white-space: nowrap;
+  text-decoration: none;
+}
+.nav-submenu a::after { display: none !important; }
+.nav-submenu a:hover { background: #eff6ff !important; color: #255c95 !important; padding-left: 20px !important; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 900px) {
+  #top-bar { padding: 0 5vw; height: 34px; }
+  .top-bar-left span:first-child, .top-bar-hours { display: none; }
+  #navbar { top: 34px; height: 68px; padding: 0 5vw; }
+  .nav-hamburger { display: flex; }
+  #navMenu {
+    display: none; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(255,255,255,.98); backdrop-filter: blur(16px);
+    border-bottom: 2px solid rgba(37,92,149,.12);
+    box-shadow: 0 12px 40px rgba(37,92,149,.15);
+    padding: 12px 5vw 20px; gap: 4px;
+    animation: menuSlideDown .25s cubic-bezier(.16,1,.3,1) both;
+  }
+  #navbar.menu-open #navMenu { display: flex; }
+  #navMenu li { width: 100%; }
+  #navMenu > li > a { padding: 11px 16px; font-size: .9rem; border-radius: 10px; width: 100%; border-bottom: 1px solid rgba(37,92,149,.06); }
+  .nav-cta { margin-top: 8px; text-align: center; border-radius: 50px !important; padding: 12px 20px !important; }
+  .nav-submenu {
+    position: static !important; transform: none !important;
+    box-shadow: none !important; border-radius: 0 !important;
+    background: #eff6ff !important; padding: 0 !important; margin: 0 !important;
+    border-left: 3px solid #dbeafe; max-height: 0; overflow: hidden; opacity: 1;
+    pointer-events: none; transition: max-height .35s ease !important;
+  }
+  .nav-submenu::before { display: none; }
+  .nav-dropdown.open .nav-submenu { max-height: 400px; pointer-events: all; padding: 6px 0 6px 16px !important; }
+  .nav-submenu a { border-bottom: none !important; padding: 11px 12px !important; font-size: .88rem !important; }
+}
+@media (max-width: 600px) {
+  #top-bar { height: 30px; padding: 0 4vw; }
+  .top-bar-left { display: none; }
+  .top-bar-login { font-size: .68rem; padding: 4px 11px; }
+  #navbar { top: 30px; }
+}
+/* Ajuste del hero para compensar top bar + nav */
+.page-hero { padding-top: calc(38px + 76px + 60px) !important; }
+@media (max-width: 900px) { .page-hero { padding-top: calc(34px + 68px + 48px) !important; } }
+@media (max-width: 600px) { .page-hero { padding-top: calc(30px + 68px + 40px) !important; } }
+@keyframes menuSlideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
 </head>
 <body>
 
@@ -15,25 +157,52 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div id="scroll-progress"></div>
 
-<!-- ══════════════ NAV (original styles4.css) ══════════════ -->
+<!-- ══════════════ TOP BAR ══════════════ -->
+<div id="top-bar">
+  <div class="top-bar-left">
+    <span>📞 (8) 870 34 34 &nbsp;|&nbsp; 310 599 6169</span>
+    <span>✉️ recurso.humano@distrivision.com.co</span>
+  </div>
+  <div class="top-bar-right">
+    <span class="top-bar-hours">🕐 Lun – Vie: 8:00 am – 6:00 pm</span>
+    <a href="login.html" class="top-bar-login">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Iniciar sesión
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════ NAV ══════════════ -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
-    <img src="img/1 (3).png" alt="DistriVision Logo" class="logo-img">
+    <img src="img/1 (3).png" alt="DistriVision" class="logo-img">
   </a>
   <ul id="navMenu">
-    <li><a href="index.html#nosotros">Nosotros</a></li>
-    <li><a href="index.html#mision">Misión &amp; Visión</a></li>
-    <li><a href="index.html#servicios">Servicios</a></li>
-    <li><a href="index.html#galeria">Galería</a></li>
+    <li class="nav-dropdown">
+      <a href="index.html#nosotros" class="nav-dropdown-toggle">
+        Nosotros <span class="nav-arrow">▾</span>
+      </a>
+      <ul class="nav-submenu">
+        <li><a href="index.html#nosotros">🏢 Quiénes Somos</a></li>
+        <li><a href="index.html#mision">🎯 Misión &amp; Visión</a></li>
+        <li><a href="index.html#servicios">🚚 Servicios</a></li>
+        <li><a href="index.html#galeria">🖼️ Galería</a></li>
+        <li><a href="index.html#contacto">📍 Contacto</a></li>
+      </ul>
+    </li>
     <li><a href="historia.html">Historia</a></li>
     <li><a href="noticias.html">Noticias</a></li>
     <li><a href="certificados.html">Certificados</a></li>
     <li><a href="vacantes.html">Vacantes</a></li>
-    <li><a href="index.html#contacto">Contacto</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contacto.html" class="nav-cta">Contáctenos</a></li>
   </ul>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú"
+          aria-expanded="false" aria-controls="navMenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -214,7 +383,6 @@
           <span class="fs-error-msg" id="err-telefono">⚠ Por favor ingresa tu teléfono de contacto.</span>
         </div>
 
-        <!-- ══ NUEVO CAMPO: CARGO ══ -->
         <div class="fs-group" style="grid-column: 1 / -1;">
           <label class="fs-label" for="fs-cargo">Cargo al que aspira <em>*</em></label>
           <input class="fs-input" type="text" id="fs-cargo" placeholder="Ej: Auxiliar de Bodega, Vendedor, Conductor..." maxlength="100">
@@ -354,13 +522,56 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ── HAMBURGUESA ── */
-const hambBtn = document.getElementById('navHamburger');
-if (hambBtn) {
-  hambBtn.addEventListener('click', () => navbar.classList.toggle('menu-open'));
-  document.querySelectorAll('#navMenu a').forEach(link =>
-    link.addEventListener('click', () => navbar.classList.remove('menu-open'))
-  );
+const hamb = document.getElementById('navHamburger');
+if (hamb) {
+  hamb.addEventListener('click', () => {
+    const isOpen = navbar.classList.toggle('menu-open');
+    hamb.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('menu-open');
+      hamb.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && navbar.classList.contains('menu-open')) {
+      navbar.classList.remove('menu-open');
+      hamb.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      hamb.focus();
+    }
+  });
+  document.addEventListener('click', e => {
+    if (navbar.classList.contains('menu-open') && !navbar.contains(e.target)) {
+      navbar.classList.remove('menu-open');
+      hamb.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
 }
+
+/* ── DROPDOWN NOSOTROS ── */
+(function setupDropdown() {
+  const dropItem = document.querySelector('.nav-dropdown');
+  if (!dropItem) return;
+  const toggle = dropItem.querySelector('.nav-dropdown-toggle');
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    dropItem.classList.toggle('open');
+  });
+  dropItem.querySelectorAll('.nav-submenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      dropItem.classList.remove('open');
+      navbar.classList.remove('menu-open');
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!dropItem.contains(e.target)) dropItem.classList.remove('open');
+  });
+})();
 
 /* ── PARTÍCULAS HERO ── */
 (function createParticles() {
@@ -461,7 +672,6 @@ document.querySelectorAll('.btn-primary,.btn-outline,.btn-white,.nav-cta,.pdf-do
     if (!valid) { document.querySelector('.form-solicitud-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     const destinatario = 'recurso.humano@distrivision.com.co';
-    // ── ASUNTO CON EL CARGO YA INCLUIDO ──
     const asunto = 'Solicitud de Vacante - ' + g;
     const lineas = [
       'Estimado equipo de Recursos Humanos de DistriVision,','',
