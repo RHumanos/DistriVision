@@ -167,6 +167,29 @@
     padding-left: 20px !important;
   }
 
+  /* ══════════════════════════════
+     FIX LOGO HERO — tamaño controlado
+  ══════════════════════════════ */
+  .page-hero {
+    align-items: center;
+  }
+
+  .hero-logo-wrap {
+    width: 160px !important;
+    height: 160px !important;
+    max-width: 160px !important;
+    flex-shrink: 0 !important;
+    align-self: center !important;
+  }
+
+  .logo-circle {
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+    flex-shrink: 0 !important;
+  }
+
   /* ── Responsive top bar ── */
   @media (max-width: 900px) {
     #top-bar {
@@ -205,6 +228,18 @@
       padding: 11px 12px !important;
       font-size: .88rem !important;
     }
+
+    .hero-logo-wrap {
+      width: 140px !important;
+      height: 140px !important;
+      max-width: 140px !important;
+    }
+    .logo-circle {
+      width: 105px !important;
+      height: 105px !important;
+      max-width: 105px !important;
+      max-height: 105px !important;
+    }
   }
 
   @media (max-width: 600px) {
@@ -213,6 +248,33 @@
     .top-bar-login { font-size: .68rem; padding: 4px 11px; }
     nav { top: 30px !important; }
     nav.menu-open ul { top: calc(68px + 30px) !important; }
+
+    .hero-logo-wrap {
+      width: 120px !important;
+      height: 120px !important;
+      max-width: 120px !important;
+    }
+    .logo-circle {
+      width: 90px !important;
+      height: 90px !important;
+      max-width: 90px !important;
+      max-height: 90px !important;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero-logo-wrap {
+      width: 100px !important;
+      height: 100px !important;
+      max-width: 100px !important;
+    }
+    .logo-circle {
+      width: 76px !important;
+      height: 76px !important;
+      max-width: 76px !important;
+      max-height: 76px !important;
+    }
+    .logo-circle-text .lc-main { font-size: 1rem !important; }
   }
   </style>
 </head>
