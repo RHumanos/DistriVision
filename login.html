@@ -350,10 +350,11 @@ table.carnet-table th:nth-child(7),table.carnet-table td:nth-child(7){width:95px
       <div class="login-sub">Sistema de Gestión de Personal · Multi-Empresa</div>
     </div>
     <div class="login-role-tabs">
-      <button class="role-tab active" data-role="administrador" onclick="selectRole(this)">👑 Admin</button>
-      <button class="role-tab" data-role="jefe" onclick="selectRole(this)">🧑‍💼 Jefe</button>
-      <button class="role-tab" data-role="auxiliar" onclick="selectRole(this)">👤 Auxiliar</button>
-    </div>
+  <button class="role-tab active" data-role="administrador" onclick="selectRole(this)">👑 Admin</button>
+  <button class="role-tab" data-role="jefe" onclick="selectRole(this)">🧑‍💼 Jefe</button>
+  <button class="role-tab" data-role="auxiliar" onclick="selectRole(this)">👤 Auxiliar</button>
+  <button class="role-tab" data-role="usuario" onclick="selectRole(this)">🙋 Usuario</button>
+</div>
     <div class="login-field">
       <label>Usuario</label>
       <input type="text" id="login-user" placeholder="Ingresa tu usuario" autocomplete="username">
@@ -665,7 +666,8 @@ table.carnet-table th:nth-child(7),table.carnet-table td:nth-child(7){width:95px
 const USERS={
   administrador:{user:'admin',   pass:'DV@dmin2025', name:'Administrador',    badge:'badge-admin',    canEdit:true, canDelete:true, canAdd:true},
   jefe:         {user:'jefe',    pass:'JefeRH#2025', name:'Jefe de Recursos', badge:'badge-jefe',     canEdit:true, canDelete:false,canAdd:true},
-  auxiliar:     {user:'auxiliar',pass:'Aux*2025',    name:'Auxiliar RH',      badge:'badge-auxiliar', canEdit:false,canDelete:false,canAdd:false}
+  auxiliar:     {user:'auxiliar',pass:'Aux*2025',    name:'Auxiliar RH',      badge:'badge-auxiliar', canEdit:false,canDelete:false,canAdd:false},
+  usuario:      {user:'usuario', pass:'User#2025',   name:'Usuario',          badge:'badge-auxiliar', canEdit:false,canDelete:false,canAdd:false, soloContacto:true}
 };
 let currentRole='administrador',currentUser=null,currentView='dashboard';
 let currentAreaFilter='all',editingId=null,modalMode='add';
@@ -1280,17 +1282,37 @@ function buildDetailView(emp){
   const expiry=getExpiryDate(carnet);
   const expiryStr=expiry?expiry.toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'}):'—';
   const expedStr=carnet?new Date(carnet+'T00:00:00').toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'}):'';
-  const fields=[
-    ['Empresa',getEmpresaLabel(emp)],['Nombres',emp.nombres],['Apellidos',emp.apellidos],
-    ['Cédula',emp.cedula],['Fecha nacimiento',emp.fecha_nacimiento],
-    ['Área',emp.area],['Cargo',emp.cargo],['Fecha ingreso',emp.fecha_ingreso],
-    ['Tipo contrato',emp.tipo_contrato],['Salario base',emp.salario?'$'+Number(emp.salario).toLocaleString('es-CO'):''],
-    ['Estado',emp.estado],['Carnet — Expedición',expedStr||''],['Carnet — Vencimiento',carnet?expiryStr:''],
-    ['Teléfono',emp.telefono],['Tel. alternativo',emp.telefono_alt],
-    ['Email',emp.email],['Dirección',emp.direccion],
-    ['EPS',emp.eps],['Pensión',emp.pension],['ARL',emp.arl],
-    ['Banco',emp.banco],['N° de cuenta',emp.num_cuenta],
+
+  // Rol "usuario": solo campos de contacto y trabajo
+  const esUsuario = currentUser?.role === 'usuario';
+
+  const todosLosCampos=[
+    ['Empresa',getEmpresaLabel(emp)],
+    ['Nombres',emp.nombres],
+    ['Apellidos',emp.apellidos],
+    ['Cédula',emp.cedula],
+    ['Fecha nacimiento', esUsuario ? null : emp.fecha_nacimiento],
+    ['Área',emp.area],
+    ['Cargo',emp.cargo],
+    ['Fecha ingreso',emp.fecha_ingreso],
+    ['Tipo contrato', esUsuario ? null : emp.tipo_contrato],
+    ['Salario base', esUsuario ? null : (emp.salario?'$'+Number(emp.salario).toLocaleString('es-CO'):'')],
+    ['Estado',emp.estado],
+    ['Carnet — Expedición', expedStr||''],
+    ['Carnet — Vencimiento', carnet ? expiryStr : ''],
+    ['Teléfono',emp.telefono],
+    ['Tel. alternativo',emp.telefono_alt],
+    ['Email',emp.email],
+    ['Dirección',emp.direccion],
+    ['EPS', esUsuario ? null : emp.eps],
+    ['Pensión', esUsuario ? null : emp.pension],
+    ['ARL', esUsuario ? null : emp.arl],
+    ['Banco', esUsuario ? null : emp.banco],
+    ['N° de cuenta', esUsuario ? null : emp.num_cuenta],
   ];
+
+  const fields = todosLosCampos.filter(([,val]) => val !== null);
+
   let rows='';
   fields.forEach(([lbl,val])=>{rows+=`<div class="detail-block"><div class="detail-lbl">${lbl}</div><div class="detail-val ${!val?'empty':''}">${val||'Sin información'}</div></div>`});
   return`<div class="profile-header">
