@@ -330,6 +330,73 @@ table.carnet-table th:nth-child(7),table.carnet-table td:nth-child(7){width:95px
   .table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch}
   table{min-width:540px}
 }
+  /* PAGINACIÓN */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--white);
+  border-top: 1px solid var(--gray-mid);
+  border-radius: 0 0 var(--radius) var(--radius);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pagination-info {
+  font-size: .78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.page-btn {
+  min-width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1.5px solid var(--gray-mid);
+  background: var(--white);
+  color: var(--text-muted);
+  font-family: 'Lato', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+.page-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--blue-xlight);
+}
+.page-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+.page-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+.page-size-select {
+  border: 1.5px solid var(--gray-mid);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--white);
+  cursor: pointer;
+  outline: none;
+  transition: border-color .2s;
+}
+.page-size-select:focus { border-color: var(--accent); }
 </style>
 </head>
 <body>
@@ -541,7 +608,7 @@ table.carnet-table th:nth-child(7),table.carnet-table td:nth-child(7){width:95px
             <option value="Inactivo">Inactivo</option>
           </select>
         </div>
-        <div class="table-wrapper">
+         <div class="table-wrapper" id="emp-table-wrapper">
           <table class="emp-table">
             <thead>
               <tr>
@@ -557,6 +624,18 @@ table.carnet-table th:nth-child(7),table.carnet-table td:nth-child(7){width:95px
             </thead>
             <tbody id="emp-table-body"></tbody>
           </table>
+        </div>
+        <div class="pagination-bar" id="emp-pagination-bar">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span class="pagination-info" id="emp-page-info">—</span>
+            <select class="page-size-select" id="emp-page-size" onchange="changePageSize()">
+              <option value="15">15 por página</option>
+              <option value="25" selected>25 por página</option>
+              <option value="50">50 por página</option>
+              <option value="100">100 por página</option>
+            </select>
+          </div>
+          <div class="pagination-controls" id="emp-page-controls"></div>
         </div>
         <div id="table-empty" class="empty-state" style="display:none">
           <div class="es-icon">🔍</div><h3>Sin resultados</h3><p>Intenta con otro filtro o término de búsqueda</p>
@@ -1055,41 +1134,117 @@ function renderDashTable(){
   document.getElementById('dash-table').innerHTML=html;
 }
 
-function renderTable(){
-  const search=(document.getElementById('search-input')?.value||'').toLowerCase();
-  const area=document.getElementById('filter-area')?.value||'';
-  const status=document.getElementById('filter-status')?.value||'';
-  let src=getFilteredByEmpresa(employees);
-  let filtered=src.filter(e=>{
-    const matchSearch=!search||(`${e.nombres} ${e.apellidos}`).toLowerCase().includes(search)||e.cedula.includes(search)||e.cargo.toLowerCase().includes(search)||(e.email||'').toLowerCase().includes(search);
-    return matchSearch&&(!area||e.area===area)&&(!status||e.estado===status);
+/* ==================== PAGINACIÓN PERSONAL ==================== */
+let empCurrentPage = 1;
+let empPageSize = 25;
+let empFiltered = [];
+
+function changePageSize() {
+  empPageSize = parseInt(document.getElementById('emp-page-size').value);
+  empCurrentPage = 1;
+  renderTablePage();
+}
+
+function renderTable() {
+  const search = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const area = document.getElementById('filter-area')?.value || '';
+  const status = document.getElementById('filter-status')?.value || '';
+  let src = getFilteredByEmpresa(employees);
+
+  empFiltered = src.filter(e => {
+    const matchSearch = !search ||
+      (`${e.nombres} ${e.apellidos}`).toLowerCase().includes(search) ||
+      e.cedula.includes(search) ||
+      e.cargo.toLowerCase().includes(search) ||
+      (e.email || '').toLowerCase().includes(search);
+    return matchSearch && (!area || e.area === area) && (!status || e.estado === status);
   });
-  const tbody=document.getElementById('emp-table-body');
-  const empty=document.getElementById('table-empty');
-  if(!filtered.length){tbody.innerHTML='';empty.style.display='block';return}
-  empty.style.display='none';
-  tbody.innerHTML=filtered.map(e=>{
-    const initials=(e.nombres[0]||'')+(e.apellidos[0]||'');
-    const color=getColor(e);
-    const carnet=getCarnetForEmployee(e);
-    return`<tr>
+
+  empCurrentPage = 1;
+  renderTablePage();
+}
+
+function renderTablePage() {
+  const tbody = document.getElementById('emp-table-body');
+  const empty = document.getElementById('table-empty');
+  const bar = document.getElementById('emp-pagination-bar');
+
+  if (!empFiltered.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    if (bar) bar.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  if (bar) bar.style.display = 'flex';
+
+  const totalPages = Math.ceil(empFiltered.length / empPageSize);
+  if (empCurrentPage > totalPages) empCurrentPage = totalPages;
+
+  const start = (empCurrentPage - 1) * empPageSize;
+  const pageData = empFiltered.slice(start, start + empPageSize);
+
+  tbody.innerHTML = pageData.map(e => {
+    const initials = (e.nombres[0] || '') + (e.apellidos[0] || '');
+    const color = getColor(e);
+    const carnet = getCarnetForEmployee(e);
+    return `<tr>
       <td><div class="emp-info">
         <div class="emp-avatar" style="background:${color}">${initials}</div>
-        <div class="emp-info-text"><div class="emp-name">${e.nombres} ${e.apellidos}</div><div class="emp-cargo">${e.email||''}</div></div>
+        <div class="emp-info-text"><div class="emp-name">${e.nombres} ${e.apellidos}</div><div class="emp-cargo">${e.email || ''}</div></div>
       </div></td>
       <td>${e.cedula}</td>
-      <td><span class="area-tag ${AREA_CLASS[e.area]||''}">${e.area}</span></td>
+      <td><span class="area-tag ${AREA_CLASS[e.area] || ''}">${e.area}</span></td>
       <td title="${e.cargo}">${e.cargo}</td>
       <td>${carnetBadgeHTML(carnet)}</td>
-      <td><span class="status-badge ${e.estado==='Activo'?'status-activo':'status-inactivo'}">${e.estado}</span></td>
+      <td><span class="status-badge ${e.estado === 'Activo' ? 'status-activo' : 'status-inactivo'}">${e.estado}</span></td>
       <td>${empresaBadgeHTML(e)}</td>
       <td><div class="actions-cell">
         <button class="btn btn-outline btn-sm btn-icon" onclick="openModal('view',${e.id})" title="Ver">👁</button>
-        ${currentUser?.canEdit?`<button class="btn btn-accent btn-sm btn-icon" onclick="openModal('edit',${e.id})" title="Editar">✏️</button>`:''}
-        ${currentUser?.canDelete?`<button class="btn btn-danger btn-sm btn-icon" onclick="deleteEmployee(${e.id})" title="Eliminar">🗑</button>`:''}
+        ${currentUser?.canEdit ? `<button class="btn btn-accent btn-sm btn-icon" onclick="openModal('edit',${e.id})" title="Editar">✏️</button>` : ''}
+        ${currentUser?.canDelete ? `<button class="btn btn-danger btn-sm btn-icon" onclick="deleteEmployee(${e.id})" title="Eliminar">🗑</button>` : ''}
       </div></td>
     </tr>`;
   }).join('');
+
+  // Info
+  const from = start + 1;
+  const to = Math.min(start + empPageSize, empFiltered.length);
+  document.getElementById('emp-page-info').textContent =
+    `${from}–${to} de ${empFiltered.length} empleados`;
+
+  // Botones de página
+  renderPageButtons('emp-page-controls', totalPages, empCurrentPage, (p) => {
+    empCurrentPage = p;
+    renderTablePage();
+    document.getElementById('emp-table-wrapper')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+function renderPageButtons(containerId, totalPages, current, onClick) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  let pages = [];
+  if (totalPages <= 7) {
+    pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  } else {
+    pages = [1];
+    if (current > 3) pages.push('...');
+    for (let i = Math.max(2, current - 1); i <= Math.min(totalPages - 1, current + 1); i++) pages.push(i);
+    if (current < totalPages - 2) pages.push('...');
+    pages.push(totalPages);
+  }
+
+  container.innerHTML = `
+    <button class="page-btn" ${current === 1 ? 'disabled' : ''} onclick="(${onClick.toString()})(${current - 1})">‹</button>
+    ${pages.map(p => p === '...'
+      ? `<span style="padding:0 4px;color:var(--text-muted);font-size:.85rem">…</span>`
+      : `<button class="page-btn ${p === current ? 'active' : ''}" onclick="(${onClick.toString()})(${p})">${p}</button>`
+    ).join('')}
+    <button class="page-btn" ${current === totalPages ? 'disabled' : ''} onclick="(${onClick.toString()})(${current + 1})">›</button>
+  `;
 }
 
 function renderCarnetTable(){
